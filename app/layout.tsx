@@ -74,6 +74,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" data-brand={brand.id === "backNine" ? "backNine" : undefined}>
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-1500136289047835" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
