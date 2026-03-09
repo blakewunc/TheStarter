@@ -200,6 +200,47 @@ export function OverviewTab({ tripId, trip, currentUserId, isOrganizer, onSwitch
 
         {/* Right Column */}
         <div className="space-y-6">
+          {/* Sport Module Card — golf/ski trips only */}
+          {trip.trip_type === 'golf' && (
+            <div className="overflow-hidden rounded-[8px] border border-[#DAD2BC] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+              <div className="bg-[#252323] px-6 py-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#A99985]">Golf Planner</p>
+                <p className="mt-0.5 text-lg font-bold text-white">Tee Times & Scorecards</p>
+              </div>
+              <div className="px-6 py-4">
+                <p className="mb-4 text-sm text-[#A99985]">
+                  Schedule rounds, track scores, coordinate equipment, and rank the leaderboard.
+                </p>
+                <button
+                  onClick={() => onSwitchTab('golf')}
+                  className="w-full rounded-[5px] bg-[#252323] py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3a3838]"
+                >
+                  Open Golf Planner &#x26F3;
+                </button>
+              </div>
+            </div>
+          )}
+
+          {trip.trip_type === 'ski' && (
+            <div className="overflow-hidden rounded-[8px] border border-[#DAD2BC] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+              <div className="bg-[#252323] px-6 py-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#A99985]">Ski Planner</p>
+                <p className="mt-0.5 text-lg font-bold text-white">Tickets & Rentals</p>
+              </div>
+              <div className="px-6 py-4">
+                <p className="mb-4 text-sm text-[#A99985]">
+                  Coordinate lift tickets, track ability levels, and organize equipment rentals.
+                </p>
+                <button
+                  onClick={() => onSwitchTab('ski')}
+                  className="w-full rounded-[5px] bg-[#252323] py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3a3838]"
+                >
+                  Open Ski Planner &#x26F7;&#xFE0F;
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Budget at a Glance */}
           <BudgetSnapshotCard
             totalEstimated={budgetTotal}

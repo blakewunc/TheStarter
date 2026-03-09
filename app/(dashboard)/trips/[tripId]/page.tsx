@@ -39,8 +39,7 @@ function TripDetailContent({ tripId }: { tripId: string }) {
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   const [aiPanelOpen, setAiPanelOpen] = useState(false)
 
-  const hasSportTab = trip?.trip_type === 'golf' || trip?.trip_type === 'ski'
-  const validTabs: string[] = hasSportTab
+  const validTabs: string[] = trip?.trip_type === 'golf' || trip?.trip_type === 'ski'
     ? [...BASE_TABS, trip!.trip_type as string]
     : [...BASE_TABS]
 
@@ -148,18 +147,7 @@ function TripDetailContent({ tripId }: { tripId: string }) {
               <Users className="mr-1.5 h-3.5 w-3.5" />
               Availability
             </TabsTrigger>
-            {trip.trip_type === 'golf' && (
-              <TabsTrigger value="golf">
-                <span className="mr-1.5 text-sm">&#x26F3;</span>
-                Golf
-              </TabsTrigger>
-            )}
-            {trip.trip_type === 'ski' && (
-              <TabsTrigger value="ski">
-                <span className="mr-1.5 text-sm">&#x26F7;&#xFE0F;</span>
-                Ski
-              </TabsTrigger>
-            )}
+            {/* Golf/Ski tabs are accessed via the Overview sport card, not the tab bar */}
           </TabsList>
 
           <TabsContent value="overview">
