@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Expense } from '@/lib/hooks/useExpenses'
-import { formatDistanceToNow } from 'date-fns'
+
 
 interface ExpenseListProps {
   expenses: Expense[]
@@ -30,12 +30,17 @@ export function ExpenseList({ expenses, currentUserId, onDelete }: ExpenseListPr
 
   if (expenses.length === 0) {
     return (
-      <Card>
-        <CardContent className="py-12 text-center">
-          <p className="text-[#A99985]">No expenses yet</p>
-          <p className="mt-2 text-sm text-[#A99985]">Add an expense to get started</p>
-        </CardContent>
-      </Card>
+      <div className="rounded-[5px] border-2 border-dashed border-[#DAD2BC] p-12 text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F1ED]">
+          <svg className="h-6 w-6 text-[#A99985]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
+          </svg>
+        </div>
+        <h3 className="text-base font-semibold text-[#252323]">No expenses logged</h3>
+        <p className="mt-1 text-sm text-[#A99985]">
+          Track what everyone pays for — Uber, dinner, green fees — and split it automatically.
+        </p>
+      </div>
     )
   }
 

@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Sparkles, ChevronLeft, Pencil, Trash2, MoreHorizontal } from 'lucide-react'
+import { toast } from 'sonner'
+import { Sparkles, ChevronLeft, Pencil, Trash2, MoreHorizontal, Share2 } from 'lucide-react'
 
 interface TripDetailHeaderProps {
   trip: {
@@ -13,6 +14,7 @@ interface TripDetailHeaderProps {
     end_date: string
     status: string
     trip_type: string | null
+    invite_code: string
   }
   isOrganizer: boolean
   onOpenAI: () => void
@@ -22,6 +24,13 @@ export function TripDetailHeader({ trip, isOrganizer, onOpenAI }: TripDetailHead
   const router = useRouter()
   const [isDeleting, setIsDeleting] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
+
+  const copyRecapLink = () => {
+    const url = `${window.location.origin}/recap/${trip.invite_code}`
+    navigator.clipboard.writeText(url)
+    toast.success('Recap link copied!')
+    setShowMenu(false)
+  }
 
   // Parse dates as local to avoid timezone shift
   const [sy, sm, sd] = trip.start_date.split('-').map(Number)
@@ -140,6 +149,14 @@ export function TripDetailHeader({ trip, isOrganizer, onOpenAI }: TripDetailHead
                   <>
                     <div className="fixed inset-0 z-40" onClick={() => setShowMenu(false)} />
                     <div className="absolute right-0 top-full z-50 mt-1 w-48 rounded-[5px] border border-[#DAD2BC] bg-white py-1 shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
+                      <button
+                        onClick={copyRecapLink}
+                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+                      >
+                        <Share2 className="h-3.5 w-3.5" />
+                        Share Recap
+                      </button>
+                      <div className="my-1 border-t border-[#F5F1ED]" />
                       <button
                         onClick={() => {
                           setShowMenu(false)

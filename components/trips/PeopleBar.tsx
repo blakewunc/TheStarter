@@ -172,6 +172,34 @@ export function PeopleBar({ tripId, members, currentUserId, inviteCode }: People
           </button>
         </div>
       </div>
+
+      {/* Progress nudge */}
+      {members.length > 0 && (
+        <div className="mt-3 border-t border-[#F5F1ED] pt-3">
+          {pendingCount === 0 ? (
+            <p className="text-xs text-[#4A7C59]">
+              ✓ Everyone has responded
+            </p>
+          ) : (
+            <div className="flex items-center gap-3">
+              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#F5F1ED]">
+                <div
+                  className="h-full rounded-full bg-[#4A7C59] transition-all"
+                  style={{ width: `${Math.round(((members.length - pendingCount) / members.length) * 100)}%` }}
+                />
+              </div>
+              <span className="shrink-0 text-xs text-[#A99985]">
+                {members.length - pendingCount} of {members.length} responded
+                {pendingCount > 0 && (
+                  <button onClick={copyInviteLink} className="ml-1.5 text-[#70798C] underline-offset-2 hover:underline">
+                    nudge them
+                  </button>
+                )}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 }

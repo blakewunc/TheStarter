@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { CoverPhotoUpload } from '@/components/trips/CoverPhotoUpload'
 
 interface Trip {
   id: string
@@ -18,6 +19,7 @@ interface Trip {
   description: string | null
   budget_total: number | null
   expected_guests: number | null
+  cover_image_url: string | null
   status: string
 }
 
@@ -29,6 +31,7 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  const [coverImageUrl, setCoverImageUrl] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     title: '',
     destination: '',
@@ -50,6 +53,7 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
         }
         const data = await response.json()
         setTrip(data.trip)
+        setCoverImageUrl(data.trip.cover_image_url || null)
 
         // Populate form with trip data
         setFormData({
@@ -86,6 +90,7 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
         end_date: formData.end_date,
         status: formData.status,
         trip_type: formData.trip_type,
+        cover_image_url: coverImageUrl,
       }
 
       if (formData.description) {
@@ -158,6 +163,15 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label>Cover Photo</Label>
+                <CoverPhotoUpload
+                  tripId={tripId}
+                  currentUrl={coverImageUrl}
+                  onUpload={setCoverImageUrl}
+                />
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="title">Trip Title *</Label>
                 <Input

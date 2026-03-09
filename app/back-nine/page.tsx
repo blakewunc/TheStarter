@@ -1,5 +1,23 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+
+export const metadata: Metadata = {
+  title: 'The Back Nine — Golf Trip Planner for Your Crew',
+  description: 'Plan your golf trip with the boys. Tee times, scorecards, expense splitting, group availability, and full itineraries — everything your golf crew needs in one place.',
+  keywords: ['golf trip planner', 'golf group planner', 'tee time planner', 'golf scorecard app', 'golf trip organizer', 'golf vacation planner'],
+  openGraph: {
+    title: 'The Back Nine — Golf Trip Planner for Your Crew',
+    description: 'Tee times, scorecards, and expense splitting for your golf crew. Plan your next trip in minutes.',
+    type: 'website',
+    siteName: 'The Back Nine',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'The Back Nine — Golf Trip Planner',
+    description: 'Tee times, scorecards, and expense splitting for your golf crew.',
+  },
+}
 
 const TeeTimeIcon = () => (
   <svg className="h-7 w-7 text-[#8ECC7A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">

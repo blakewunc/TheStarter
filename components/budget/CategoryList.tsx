@@ -68,26 +68,25 @@ export function CategoryList({
 
   if (categories.length === 0) {
     return (
-      <div className="rounded-lg border-2 border-dashed border-zinc-200 p-12 text-center dark:border-zinc-800">
-        <svg
-          className="mx-auto h-12 w-12 text-zinc-400"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-        <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-          No budget categories yet
-        </h3>
-        <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-          Get started by adding your first budget category.
+      <div className="rounded-[5px] border-2 border-dashed border-[#DAD2BC] p-12 text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F1ED]">
+          <svg className="h-6 w-6 text-[#A99985]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 className="text-base font-semibold text-[#252323]">No budget yet</h3>
+        <p className="mt-1 text-sm text-[#A99985]">
+          Add categories to build your trip budget — lodging, flights, food, activities.
         </p>
+        {isOrganizer && (
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {['Lodging', 'Flights', 'Food & Drinks', 'Activities', 'Transportation'].map((name) => (
+              <span key={name} className="rounded-full border border-[#DAD2BC] px-3 py-1 text-xs text-[#A99985]">
+                {name}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     )
   }

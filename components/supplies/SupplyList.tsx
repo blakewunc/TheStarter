@@ -25,7 +25,6 @@ const CATEGORY_LABELS: Record<string, string> = {
 export function SupplyList({
   supplies,
   currentUserId,
-  tripId,
   onClaim,
   onToggleStatus,
   onDelete,
@@ -89,10 +88,15 @@ export function SupplyList({
 
   if (supplies.length === 0) {
     return (
-      <div className="py-12 text-center">
-        <p className="text-lg font-semibold text-[#A99985]">No items yet</p>
-        <p className="mt-2 text-sm text-[#A99985]">
-          Add items to the shared packing list so everyone knows what to bring!
+      <div className="rounded-[5px] border-2 border-dashed border-[#DAD2BC] p-12 text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F1ED]">
+          <svg className="h-6 w-6 text-[#A99985]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <h3 className="text-base font-semibold text-[#252323]">Packing list is empty</h3>
+        <p className="mt-1 text-sm text-[#A99985]">
+          Add items so everyone knows what to bring — sunscreen, speakers, golf balls, snacks.
         </p>
       </div>
     )

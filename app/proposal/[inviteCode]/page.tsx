@@ -15,6 +15,7 @@ interface ProposalData {
     trip_type: string
     status: string
     invite_code: string
+    cover_image_url: string | null
     member_count: number
     accepted_count: number
     expected_guests: number | null
@@ -43,7 +44,7 @@ async function fetchProposal(inviteCode: string): Promise<ProposalData | null> {
     .select(`
       id, title, destination, start_date, end_date, description,
       budget_total, expected_guests, trip_type, status, proposal_enabled,
-      invite_code, trip_members(id, rsvp_status)
+      invite_code, cover_image_url, trip_members(id, rsvp_status)
     `)
     .eq('invite_code', inviteCode)
     .single()
@@ -80,6 +81,7 @@ async function fetchProposal(inviteCode: string): Promise<ProposalData | null> {
       trip_type: trip.trip_type,
       status: trip.status,
       invite_code: trip.invite_code,
+      cover_image_url: (trip as any).cover_image_url || null,
       member_count: memberCount,
       accepted_count: acceptedCount,
       expected_guests: (trip as any).expected_guests || null,
@@ -173,8 +175,15 @@ export default async function ProposalPage(
 
   return (
     <div className="min-h-screen bg-[#F5F1ED]">
+      {/* Cover photo */}
+      {trip.cover_image_url && (
+        <div className="h-56 w-full overflow-hidden sm:h-72">
+          <img src={trip.cover_image_url} alt={trip.title} className="h-full w-full object-cover" />
+        </div>
+      )}
+
       {/* Hero */}
-      <div className="bg-gradient-to-b from-white to-[#F5F1ED]">
+      <div className={trip.cover_image_url ? 'bg-white' : 'bg-gradient-to-b from-white to-[#F5F1ED]'}>
         <div className="mx-auto max-w-3xl px-6 py-16 text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#70798C]">
             Trip Proposal
@@ -316,7 +325,12 @@ export default async function ProposalPage(
 
       {/* Footer */}
       <div className="py-8 text-center">
-        <p className="text-xs text-[#A99985]">Powered by {brandName}</p>
+        <a
+          href={isGolf ? `https://thebacknine.app?utm_source=proposal&utm_medium=referral&utm_campaign=trip_share` : `https://grouptrip-mu.vercel.app?utm_source=proposal&utm_medium=referral&utm_campaign=trip_share`}
+          className="text-xs text-[#A99985] underline-offset-2 hover:underline"
+        >
+          Powered by {brandName}
+        </a>
       </div>
     </div>
   )

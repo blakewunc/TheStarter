@@ -1,5 +1,23 @@
+import type { Metadata } from 'next'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+
+export const metadata: Metadata = {
+  title: 'GroupTrip — Collaborative Group Trip Planning',
+  description: 'Plan bachelor parties, group travel, and weekend getaways together. Shared itineraries, budget splitting, expense tracking, and real-time collaboration. No app download required.',
+  keywords: ['group trip planner', 'bachelor party planner', 'trip planning app', 'shared itinerary', 'expense splitting', 'group travel'],
+  openGraph: {
+    title: 'GroupTrip — Plan Group Adventures Together',
+    description: 'Itineraries, expenses, and RSVPs — all in one place. No group chat chaos.',
+    type: 'website',
+    siteName: 'GroupTrip',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'GroupTrip — Plan Group Adventures Together',
+    description: 'Itineraries, expenses, and RSVPs — all in one place.',
+  },
+}
 
 const CalendarIcon = () => (
   <svg className="h-7 w-7 text-[#70798C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
