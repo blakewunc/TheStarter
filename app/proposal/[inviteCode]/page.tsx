@@ -1,13 +1,11 @@
-'use client'
-
-import { useState, useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
-import { createClient } from '@/lib/supabase/client'
+import { createServiceClient } from '@/lib/supabase/server'
+import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+import { JoinButton } from './JoinButton'
 
 interface ProposalData {
   trip: {
+    id: string
     title: string
     destination: string | null
     start_date: string | null
@@ -37,131 +35,141 @@ interface ProposalData {
   }>
 }
 
-function ProposalSkeleton() {
-  return (
-    <div className="min-h-screen bg-[#F5F1ED]">
-      {/* Hero skeleton */}
-      <div className="bg-gradient-to-b from-white to-[#F5F1ED] px-6 py-16">
-        <div className="mx-auto max-w-3xl text-center space-y-4">
-          <Skeleton className="h-4 w-24 mx-auto" />
-          <Skeleton className="h-10 w-2/3 mx-auto" />
-          <Skeleton className="h-5 w-40 mx-auto" />
-          <Skeleton className="h-5 w-32 mx-auto" />
-          <Skeleton className="h-11 w-40 mx-auto mt-6" />
-        </div>
-      </div>
-      {/* Budget skeleton */}
-      <div className="mx-auto max-w-3xl px-6 py-12 space-y-6">
-        <Skeleton className="h-4 w-32 mx-auto" />
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <Skeleton className="h-24 w-full" />
-          <Skeleton className="h-24 w-full" />
-          <Skeleton className="h-24 w-full" />
-        </div>
-        <Skeleton className="h-40 w-full" />
-      </div>
-    </div>
-  )
+async function fetchProposal(inviteCode: string): Promise<ProposalData | null> {
+  const supabase = createServiceClient()
+
+  const { data: trip, error } = await supabase
+    .from('trips')
+    .select(`
+      id, title, destination, start_date, end_date, description,
+      budget_total, expected_guests, trip_type, status, proposal_enabled,
+      invite_code, trip_members(id, rsvp_status)
+    `)
+    .eq('invite_code', inviteCode)
+    .single()
+
+  if (error || !trip || !trip.proposal_enabled) return null
+
+  const [{ data: categories }, { data: itinerary }] = await Promise.all([
+    supabase
+      .from('budget_categories')
+      .select('id, name, estimated_cost, split_type')
+      .eq('trip_id', trip.id)
+      .order('created_at', { ascending: true }),
+    supabase
+      .from('itinerary_items')
+      .select('id, title, description, date, time, location')
+      .eq('trip_id', trip.id)
+      .order('date', { ascending: true })
+      .order('time', { ascending: true })
+      .limit(10),
+  ])
+
+  const memberCount = trip.trip_members?.length || 0
+  const acceptedCount = trip.trip_members?.filter((m: any) => m.rsvp_status === 'accepted').length || 0
+
+  return {
+    trip: {
+      id: trip.id,
+      title: trip.title,
+      destination: trip.destination,
+      start_date: trip.start_date,
+      end_date: trip.end_date,
+      description: trip.description,
+      budget_total: trip.budget_total,
+      trip_type: trip.trip_type,
+      status: trip.status,
+      invite_code: trip.invite_code,
+      member_count: memberCount,
+      accepted_count: acceptedCount,
+      expected_guests: (trip as any).expected_guests || null,
+    },
+    categories: categories || [],
+    itinerary: itinerary || [],
+  }
 }
 
-export default function ProposalPage() {
-  const params = useParams()
-  const router = useRouter()
-  const inviteCode = params.inviteCode as string
-  const [data, setData] = useState<ProposalData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+function formatDate(dateStr: string) {
+  return new Date(dateStr + 'T00:00:00').toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'long',
+    day: 'numeric',
+  })
+}
 
-  useEffect(() => {
-    const fetchProposal = async () => {
-      try {
-        const response = await fetch(`/api/proposal/${inviteCode}`)
-        if (!response.ok) {
-          if (response.status === 404) {
-            setError('This proposal is not available.')
-          } else {
-            setError('Something went wrong.')
-          }
-          return
-        }
-        const result = await response.json()
-        setData(result)
-      } catch {
-        setError('Failed to load proposal.')
-      } finally {
-        setLoading(false)
-      }
-    }
+function formatDateRange(start: string | null, end: string | null) {
+  if (!start) return null
+  const startStr = formatDate(start)
+  if (!end) return startStr
+  return `${startStr} – ${formatDate(end)}`
+}
 
-    fetchProposal()
-  }, [inviteCode])
+export async function generateMetadata(
+  { params }: { params: Promise<{ inviteCode: string }> }
+): Promise<Metadata> {
+  const { inviteCode } = await params
+  const data = await fetchProposal(inviteCode)
 
-  if (loading) return <ProposalSkeleton />
-
-  if (error || !data) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED]">
-        <div className="max-w-md rounded-[8px] border border-[#DAD2BC] bg-white p-8 text-center shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F1ED] mx-auto">
-            <svg className="h-6 w-6 text-[#A99985]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-            </svg>
-          </div>
-          <h1 className="mb-2 text-xl font-bold text-[#252323]">Proposal Not Found</h1>
-          <p className="text-[#A99985]">{error || 'This proposal does not exist or has been disabled.'}</p>
-          <button
-            onClick={() => router.back()}
-            className="mt-6 text-sm text-[#70798C] underline-offset-2 hover:underline"
-          >
-            Go back
-          </button>
-        </div>
-      </div>
-    )
+  if (!data) {
+    return { title: 'Trip Proposal' }
   }
 
-  const { trip, categories, itinerary } = data
-
+  const { trip, categories } = data
   const totalBudget = categories.reduce((sum, cat) => sum + (cat.estimated_cost || 0), 0)
   const guestCount = trip.expected_guests || trip.member_count || 1
-  const perPerson = totalBudget / guestCount
+  const perPerson = guestCount > 0 ? Math.round(totalBudget / guestCount) : 0
   const isGolf = trip.trip_type === 'golf'
+  const appName = isGolf ? 'The Back Nine' : 'GroupTrip'
 
-  const formatDate = (dateStr: string) => {
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'long',
-      day: 'numeric',
-    })
-  }
+  const dateRange = formatDateRange(trip.start_date, trip.end_date)
+  const parts = [
+    trip.destination,
+    dateRange,
+    trip.member_count > 0 ? `${trip.member_count} invited` : null,
+    perPerson > 0 ? `Est. $${perPerson.toLocaleString()}/person` : null,
+  ].filter(Boolean)
 
-  const formatDateRange = () => {
-    if (!trip.start_date) return null
-    const start = formatDate(trip.start_date)
-    if (!trip.end_date) return start
-    const end = formatDate(trip.end_date)
-    return `${start} \u2013 ${end}`
+  const description = parts.join(' · ')
+
+  return {
+    title: `${trip.title} — ${appName}`,
+    description,
+    openGraph: {
+      title: trip.title,
+      description,
+      type: 'website',
+      siteName: appName,
+    },
+    twitter: {
+      card: 'summary',
+      title: trip.title,
+      description,
+    },
   }
+}
+
+export default async function ProposalPage(
+  { params }: { params: Promise<{ inviteCode: string }> }
+) {
+  const { inviteCode } = await params
+  const data = await fetchProposal(inviteCode)
+
+  if (!data) notFound()
+
+  const { trip, categories, itinerary } = data
+  const totalBudget = categories.reduce((sum, cat) => sum + (cat.estimated_cost || 0), 0)
+  const guestCount = trip.expected_guests || trip.member_count || 1
+  const perPerson = guestCount > 0 ? Math.round(totalBudget / guestCount) : 0
+  const isGolf = trip.trip_type === 'golf'
+  const brandName = isGolf ? 'The Back Nine' : 'GroupTrip'
+  const dateRange = formatDateRange(trip.start_date, trip.end_date)
 
   const itineraryByDate = itinerary.reduce((acc, item) => {
     if (!acc[item.date]) acc[item.date] = []
     acc[item.date].push(item)
     return acc
   }, {} as Record<string, typeof itinerary>)
-
   const dates = Object.keys(itineraryByDate).sort()
-
-  const handleJoin = async () => {
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user) {
-      router.push(`/invite/${inviteCode}`)
-    } else {
-      router.push(`/login?next=/invite/${inviteCode}`)
-    }
-  }
-
-  const brandName = isGolf ? 'The Back Nine' : 'GroupTrip'
 
   return (
     <div className="min-h-screen bg-[#F5F1ED]">
@@ -177,8 +185,8 @@ export default function ProposalPage() {
           {trip.destination && (
             <p className="mb-2 text-lg text-[#A99985]">{trip.destination}</p>
           )}
-          {formatDateRange() && (
-            <p className="text-base text-[#A99985]">{formatDateRange()}</p>
+          {dateRange && (
+            <p className="text-base text-[#A99985]">{dateRange}</p>
           )}
           {trip.description && (
             <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#A99985]">
@@ -186,7 +194,6 @@ export default function ProposalPage() {
             </p>
           )}
 
-          {/* Social proof */}
           <div className="mt-6 flex items-center justify-center gap-4 text-sm">
             <span className="text-[#A99985]">{trip.member_count} invited</span>
             <span className="text-[#DAD2BC]">&bull;</span>
@@ -195,11 +202,8 @@ export default function ProposalPage() {
             </span>
           </div>
 
-          {/* Above-fold CTA */}
           <div className="mt-8">
-            <Button size="lg" onClick={handleJoin} className="px-10">
-              Join This Trip
-            </Button>
+            <JoinButton inviteCode={inviteCode} size="lg" />
             <p className="mt-3 text-xs text-[#A99985]">Free to join — no credit card required</p>
           </div>
         </div>
@@ -213,10 +217,9 @@ export default function ProposalPage() {
           </h2>
 
           <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {/* Per Person — most prominent */}
             <div className="rounded-[8px] border-2 border-[#70798C] bg-white p-5 text-center shadow-[0_2px_6px_rgba(0,0,0,0.08)] sm:order-first">
               <p className="text-4xl font-bold text-[#70798C]">
-                ${Math.round(perPerson).toLocaleString()}
+                ${perPerson.toLocaleString()}
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#A99985]">Per Person</p>
             </div>
@@ -272,7 +275,6 @@ export default function ProposalPage() {
                       className="rounded-[5px] border border-[#DAD2BC] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)] overflow-hidden"
                     >
                       <div className="flex items-stretch">
-                        {/* Colored left border accent */}
                         <div className="w-1 flex-shrink-0 bg-[#70798C]" />
                         <div className="flex items-start gap-3 p-4">
                           {item.time && (
@@ -307,9 +309,7 @@ export default function ProposalPage() {
           <p className="mb-6 text-[#A99985]">
             Sign up to confirm your spot and start collaborating with the group.
           </p>
-          <Button size="lg" onClick={handleJoin} className="px-10">
-            Join This Trip
-          </Button>
+          <JoinButton inviteCode={inviteCode} size="lg" />
           <p className="mt-3 text-xs text-[#A99985]">Free to join — no credit card required</p>
         </div>
       </div>
