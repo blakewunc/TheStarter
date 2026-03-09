@@ -7,9 +7,12 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useBrand } from '@/lib/BrandProvider'
 
 export default function NewTripPage() {
   const router = useRouter()
+  const brand = useBrand()
+  const isBackNine = brand.id === 'backNine'
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -91,25 +94,30 @@ export default function NewTripPage() {
                 />
               </div>
 
-              <div className="space-y-2">
+              {isBackNine && <input type="hidden" name="trip_type" value="golf" />}
+              <div className={`space-y-2${isBackNine ? ' hidden' : ''}`}>
                 <Label htmlFor="trip_type">Trip Type*</Label>
-                <select
-                  id="trip_type"
-                  name="trip_type"
-                  className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] transition-all duration-200 focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED]"
-                  required
-                  disabled={loading}
-                  defaultValue="general"
-                >
-                  <option value="general">General Trip</option>
-                  <option value="golf">⛳ Golf Trip</option>
-                  <option value="ski">⛷️ Ski Trip</option>
-                  <option value="bachelor_party">🎉 Bachelor Party</option>
-                  <option value="bachelorette_party">💃 Bachelorette Party</option>
-                </select>
-                <p className="text-xs text-[#A99985]">
-                  Golf and ski trips include sport-specific features
-                </p>
+                {!isBackNine && (
+                  <>
+                    <select
+                      id="trip_type"
+                      name="trip_type"
+                      className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] transition-all duration-200 focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED]"
+                      required
+                      disabled={loading}
+                      defaultValue="general"
+                    >
+                      <option value="general">General Trip</option>
+                      <option value="golf">⛳ Golf Trip</option>
+                      <option value="ski">⛷️ Ski Trip</option>
+                      <option value="bachelor_party">🎉 Bachelor Party</option>
+                      <option value="bachelorette_party">💃 Bachelorette Party</option>
+                    </select>
+                    <p className="text-xs text-[#A99985]">
+                      Golf and ski trips include sport-specific features
+                    </p>
+                  </>
+                )}
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">

@@ -49,6 +49,25 @@
   --shadow-card-hover: var(--shadow-md);
 }
 
+/* The Back Nine — golf brand overrides */
+[data-brand="backNine"] {
+  --background: #D8EADF;
+  --background-card: #ffffff;
+  --foreground: #092D3D;
+  --muted: #5A7A6B;
+  --border: #B8D4C4;
+  --border-input: #A3C4B0;
+  --accent: #074B63;
+  --accent-hover: #0B442D;
+  --accent-active: #092D3D;
+  --beige: #B8D4C4;
+  --taupe: #5A7A6B;
+  --success: #12733C;
+  --warning: #8ECC7A;
+  --error: #8B4444;
+  --info: #074B63;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
