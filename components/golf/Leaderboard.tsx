@@ -13,6 +13,7 @@ interface Score {
   handicap: number | null
   tee_time_id: string
   course_name: string
+  par: number
 }
 
 export function Leaderboard({ tripId }: LeaderboardProps) {
@@ -52,33 +53,54 @@ export function Leaderboard({ tripId }: LeaderboardProps) {
     )
   }
 
-  // Sort scores by lowest score
-  const sortedScores = [...scores].sort((a, b) => a.score - b.score)
+  const getRelativeToPar = (score: number, par: number) => {
+    const diff = score - par
+    if (diff === 0) return { text: 'E', color: 'text-[#A99985]' }
+    if (diff > 0) return { text: `+${diff}`, color: 'text-[#8B4444]' }
+    return { text: `${diff}`, color: 'text-[#4A7C59]' }
+  }
+
+  // Sort by score relative to par (best first)
+  const sortedScores = [...scores].sort((a, b) => {
+    const aDiff = a.score - (a.par || 72)
+    const bDiff = b.score - (b.par || 72)
+    return aDiff - bDiff
+  })
 
   return (
     <div className="space-y-3">
-      {sortedScores.map((score, index) => (
-        <div
-          key={`${score.user_id}-${score.tee_time_id}`}
-          className="flex items-center justify-between rounded-[5px] border border-[#DAD2BC] bg-white p-3"
-        >
-          <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F5F1ED] text-sm font-semibold text-[#252323]">
-              {index + 1}
+      {sortedScores.map((score, index) => {
+        const par = score.par || 72
+        const relative = getRelativeToPar(score.score, par)
+
+        return (
+          <div
+            key={`${score.user_id}-${score.tee_time_id}`}
+            className="flex items-center justify-between rounded-[5px] border border-[#DAD2BC] bg-white p-3"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F5F1ED] text-sm font-semibold text-[#252323]">
+                {index + 1}
+              </div>
+              <div>
+                <p className="font-medium text-[#252323]">{score.user_name}</p>
+                <p className="text-xs text-[#A99985]">{score.course_name} &middot; Par {par}</p>
+              </div>
             </div>
-            <div>
-              <p className="font-medium text-[#252323]">{score.user_name}</p>
-              <p className="text-xs text-[#A99985]">{score.course_name}</p>
+            <div className="text-right">
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-lg font-bold text-[#252323]">{score.score}</span>
+                <span className={`text-sm font-semibold ${relative.color}`}>
+                  {relative.text}
+                </span>
+              </div>
+              {score.handicap !== null && (
+                <p className="text-xs text-[#A99985]">HCP: {score.handicap}</p>
+              )}
             </div>
           </div>
-          <div className="text-right">
-            <p className="text-lg font-bold text-[#252323]">{score.score}</p>
-            {score.handicap !== null && (
-              <p className="text-xs text-[#A99985]">HCP: {score.handicap}</p>
-            )}
-          </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { TeeTimeList } from '@/components/golf/TeeTimeList'
 import { Leaderboard } from '@/components/golf/Leaderboard'
 import { EquipmentCoordination } from '@/components/golf/EquipmentCoordination'
 import { GroupMaker } from '@/components/golf/GroupMaker'
+import { CourseRatings } from '@/components/golf/CourseRatings'
 import { AdSlot } from '@/components/ads/AdSlot'
 
 interface GolfTabProps {
@@ -26,11 +27,17 @@ export function GolfTab({ tripId }: GolfTabProps) {
         <GroupMaker tripId={tripId} />
       </div>
 
-      {/* Sidebar ad */}
+      {/* Sidebar: Ratings + Ad */}
       <div className="hidden lg:block">
-        <div className="sticky top-20">
+        <div className="sticky top-20 space-y-6">
+          <CourseRatings tripId={tripId} />
           <AdSlot position="sidebar" />
         </div>
+      </div>
+
+      {/* Mobile: Ratings below main content */}
+      <div className="lg:hidden">
+        <CourseRatings tripId={tripId} />
       </div>
     </div>
   )

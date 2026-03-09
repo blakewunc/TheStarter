@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 
-// GET /api/trips/[tripId]/golf/tee-times - Get all tee times for a trip
+// GET /api/trips/[tripId]/golf/ratings - Get ratings for courses on this trip
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ tripId: string }> }
@@ -10,13 +10,12 @@ export async function GET(
     const { tripId } = await params
     const supabase = await createClient()
 
-    // Check authentication
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Verify user is a trip member
+    // Verify trip membership
     const { data: membership } = await supabase
       .from('trip_members')
       .select('id')
@@ -28,24 +27,39 @@ export async function GET(
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    // Fetch tee times
-    const { data: teeTimes, error } = await supabase
-      .from('golf_tee_times')
-      .select('*')
+    // Get ratings for this trip
+    const { data: ratings, error } = await supabase
+      .from('golf_course_ratings')
+      .select(`
+        *,
+        profiles:user_id (display_name, email)
+      `)
       .eq('trip_id', tripId)
-      .order('tee_time', { ascending: true })
+      .order('created_at', { ascending: false })
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    return NextResponse.json({ teeTimes })
+    return NextResponse.json({
+      ratings: ratings?.map((r: any) => ({
+        id: r.id,
+        course_name: r.course_name,
+        course_location: r.course_location,
+        rating: r.rating,
+        review: r.review,
+        user_id: r.user_id,
+        user_name: r.profiles?.display_name || r.profiles?.email || 'Anonymous',
+        created_at: r.created_at,
+      })),
+      currentUserId: user.id,
+    })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 }
 
-// POST /api/trips/[tripId]/golf/tee-times - Create a new tee time
+// POST /api/trips/[tripId]/golf/ratings - Submit or update a course rating
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ tripId: string }> }
@@ -54,13 +68,12 @@ export async function POST(
     const { tripId } = await params
     const supabase = await createClient()
 
-    // Check authentication
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Verify user is a trip member
+    // Verify trip membership
     const { data: membership } = await supabase
       .from('trip_members')
       .select('id')
@@ -73,21 +86,26 @@ export async function POST(
     }
 
     const body = await request.json()
-    const { course_name, course_location, tee_time, num_players, par, notes } = body
+    const { course_name, course_location, rating, review } = body
 
-    // Create tee time
-    const { data: teeTime, error } = await supabase
-      .from('golf_tee_times')
-      .insert({
-        trip_id: tripId,
-        course_name,
-        course_location,
-        tee_time,
-        num_players: num_players || 4,
-        par: par || 72,
-        notes,
-        created_by: user.id,
-      })
+    if (!course_name || !rating || rating < 1 || rating > 5) {
+      return NextResponse.json({ error: 'course_name and rating (1-5) required' }, { status: 400 })
+    }
+
+    // Upsert rating (one per user per course per trip)
+    const { data: upserted, error } = await supabase
+      .from('golf_course_ratings')
+      .upsert(
+        {
+          trip_id: tripId,
+          user_id: user.id,
+          course_name,
+          course_location: course_location || null,
+          rating,
+          review: review || null,
+        },
+        { onConflict: 'trip_id,user_id,course_name' }
+      )
       .select()
       .single()
 
@@ -95,7 +113,7 @@ export async function POST(
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    return NextResponse.json({ teeTime }, { status: 201 })
+    return NextResponse.json({ rating: upserted }, { status: 201 })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }

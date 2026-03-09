@@ -34,6 +34,7 @@ export function AddTeeTimeDialog({ tripId, open, onOpenChange }: AddTeeTimeDialo
       course_location: formData.get('course_location') as string,
       tee_time: teeTime,
       num_players: parseInt(formData.get('num_players') as string),
+      par: parseInt(formData.get('par') as string) || 72,
       notes: formData.get('notes') as string,
     }
 
@@ -81,14 +82,29 @@ export function AddTeeTimeDialog({ tripId, open, onOpenChange }: AddTeeTimeDialo
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="course_location">Location</Label>
-            <Input
-              id="course_location"
-              name="course_location"
-              placeholder="e.g., Pebble Beach, CA"
-              disabled={loading}
-            />
+          <div className="grid gap-4 sm:grid-cols-[1fr_auto]">
+            <div className="space-y-2">
+              <Label htmlFor="course_location">Location</Label>
+              <Input
+                id="course_location"
+                name="course_location"
+                placeholder="e.g., Pebble Beach, CA"
+                disabled={loading}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="par">Course Par</Label>
+              <Input
+                id="par"
+                name="par"
+                type="number"
+                min="60"
+                max="80"
+                defaultValue="72"
+                className="w-20"
+                disabled={loading}
+              />
+            </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
