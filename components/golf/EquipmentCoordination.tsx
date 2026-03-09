@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import { SkeletonCard } from '@/components/ui/skeleton'
 import { createClient } from '@/lib/supabase/client'
 
 interface EquipmentCoordinationProps {
@@ -91,7 +92,7 @@ export function EquipmentCoordination({ tripId }: EquipmentCoordinationProps) {
   }
 
   if (loading) {
-    return <p className="text-sm text-[#A99985]">Loading...</p>
+    return <SkeletonCard />
   }
 
   return (

@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface ProposalData {
   trip: {
@@ -31,6 +33,33 @@ interface ProposalData {
     time: string | null
     location: string | null
   }>
+}
+
+function ProposalSkeleton() {
+  return (
+    <div className="min-h-screen bg-[#F5F1ED]">
+      {/* Hero skeleton */}
+      <div className="bg-gradient-to-b from-white to-[#F5F1ED] px-6 py-16">
+        <div className="mx-auto max-w-3xl text-center space-y-4">
+          <Skeleton className="h-4 w-24 mx-auto" />
+          <Skeleton className="h-10 w-2/3 mx-auto" />
+          <Skeleton className="h-5 w-40 mx-auto" />
+          <Skeleton className="h-5 w-32 mx-auto" />
+          <Skeleton className="h-11 w-40 mx-auto mt-6" />
+        </div>
+      </div>
+      {/* Budget skeleton */}
+      <div className="mx-auto max-w-3xl px-6 py-12 space-y-6">
+        <Skeleton className="h-4 w-32 mx-auto" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <Skeleton className="h-24 w-full" />
+          <Skeleton className="h-24 w-full" />
+          <Skeleton className="h-24 w-full" />
+        </div>
+        <Skeleton className="h-40 w-full" />
+      </div>
+    </div>
+  )
 }
 
 export default function ProposalPage() {
@@ -65,20 +94,25 @@ export default function ProposalPage() {
     fetchProposal()
   }, [inviteCode])
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED]">
-        <div className="text-[#A99985]">Loading proposal...</div>
-      </div>
-    )
-  }
+  if (loading) return <ProposalSkeleton />
 
   if (error || !data) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED]">
-        <div className="max-w-md rounded-[5px] border border-[#DAD2BC] bg-white p-8 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+        <div className="max-w-md rounded-[8px] border border-[#DAD2BC] bg-white p-8 text-center shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F1ED] mx-auto">
+            <svg className="h-6 w-6 text-[#A99985]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+            </svg>
+          </div>
           <h1 className="mb-2 text-xl font-bold text-[#252323]">Proposal Not Found</h1>
           <p className="text-[#A99985]">{error || 'This proposal does not exist or has been disabled.'}</p>
+          <button
+            onClick={() => router.back()}
+            className="mt-6 text-sm text-[#70798C] underline-offset-2 hover:underline"
+          >
+            Go back
+          </button>
         </div>
       </div>
     )
@@ -88,6 +122,7 @@ export default function ProposalPage() {
 
   const totalBudget = categories.reduce((sum, cat) => sum + (cat.estimated_cost || 0), 0)
   const perPerson = trip.member_count > 0 ? totalBudget / trip.member_count : totalBudget
+  const isGolf = trip.trip_type === 'golf'
 
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -105,7 +140,6 @@ export default function ProposalPage() {
     return `${start} \u2013 ${end}`
   }
 
-  // Group itinerary by date
   const itineraryByDate = itinerary.reduce((acc, item) => {
     if (!acc[item.date]) acc[item.date] = []
     acc[item.date].push(item)
@@ -114,12 +148,16 @@ export default function ProposalPage() {
 
   const dates = Object.keys(itineraryByDate).sort()
 
+  const handleJoin = () => router.push(`/login?next=/invite/${inviteCode}`)
+
+  const brandName = isGolf ? 'The Back Nine' : 'GroupTrip'
+
   return (
     <div className="min-h-screen bg-[#F5F1ED]">
-      {/* Hero Section */}
-      <div className="bg-white">
+      {/* Hero */}
+      <div className="bg-gradient-to-b from-white to-[#F5F1ED]">
         <div className="mx-auto max-w-3xl px-6 py-16 text-center">
-          <p className="mb-3 text-sm font-medium uppercase tracking-widest text-[#70798C]">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#70798C]">
             Trip Proposal
           </p>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-[#252323] sm:text-5xl">
@@ -136,34 +174,46 @@ export default function ProposalPage() {
               {trip.description}
             </p>
           )}
-          <div className="mt-6 flex items-center justify-center gap-4 text-sm text-[#A99985]">
-            <span>{trip.member_count} invited</span>
-            <span className="text-[#DAD2BC]">{'\u2022'}</span>
-            <span>{trip.accepted_count} confirmed</span>
+
+          {/* Social proof */}
+          <div className="mt-6 flex items-center justify-center gap-4 text-sm">
+            <span className="text-[#A99985]">{trip.member_count} invited</span>
+            <span className="text-[#DAD2BC]">&bull;</span>
+            <span className="font-semibold text-[#4A7C59]">
+              {trip.accepted_count} confirmed
+            </span>
+          </div>
+
+          {/* Above-fold CTA */}
+          <div className="mt-8">
+            <Button size="lg" onClick={handleJoin} className="px-10">
+              Join This Trip
+            </Button>
+            <p className="mt-3 text-xs text-[#A99985]">Free to join — no credit card required</p>
           </div>
         </div>
       </div>
 
-      {/* Budget Section */}
+      {/* Budget */}
       {categories.length > 0 && (
         <div className="mx-auto max-w-3xl px-6 py-12">
-          <h2 className="mb-6 text-center text-sm font-medium uppercase tracking-widest text-[#70798C]">
+          <h2 className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-[#70798C]">
             Estimated Budget
           </h2>
 
-          {/* Budget Summary Cards */}
-          <div className="mb-8 grid grid-cols-3 gap-4">
+          <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {/* Per Person — most prominent */}
+            <div className="rounded-[8px] border-2 border-[#70798C] bg-white p-5 text-center shadow-[0_2px_6px_rgba(0,0,0,0.08)] sm:order-first">
+              <p className="text-4xl font-bold text-[#70798C]">
+                ${Math.round(perPerson).toLocaleString()}
+              </p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#A99985]">Per Person</p>
+            </div>
             <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               <p className="text-2xl font-bold text-[#252323]">
                 ${totalBudget.toLocaleString()}
               </p>
               <p className="mt-1 text-xs text-[#A99985]">Total Budget</p>
-            </div>
-            <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-              <p className="text-2xl font-bold text-[#252323]">
-                ${Math.round(perPerson).toLocaleString()}
-              </p>
-              <p className="mt-1 text-xs text-[#A99985]">Per Person</p>
             </div>
             <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
               <p className="text-2xl font-bold text-[#252323]">
@@ -173,7 +223,6 @@ export default function ProposalPage() {
             </div>
           </div>
 
-          {/* Budget Breakdown */}
           <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-[#252323]">
               Breakdown
@@ -192,10 +241,10 @@ export default function ProposalPage() {
         </div>
       )}
 
-      {/* Itinerary Section */}
+      {/* Itinerary */}
       {dates.length > 0 && (
         <div className="mx-auto max-w-3xl px-6 py-12">
-          <h2 className="mb-6 text-center text-sm font-medium uppercase tracking-widest text-[#70798C]">
+          <h2 className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-[#70798C]">
             Planned Activities
           </h2>
 
@@ -209,22 +258,26 @@ export default function ProposalPage() {
                   {itineraryByDate[date].map((item) => (
                     <div
                       key={item.id}
-                      className="rounded-[5px] border border-[#DAD2BC] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
+                      className="rounded-[5px] border border-[#DAD2BC] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)] overflow-hidden"
                     >
-                      <div className="flex items-start gap-3">
-                        {item.time && (
-                          <span className="mt-0.5 text-sm font-medium text-[#70798C]">
-                            {item.time}
-                          </span>
-                        )}
-                        <div>
-                          <p className="font-medium text-[#252323]">{item.title}</p>
-                          {item.location && (
-                            <p className="mt-0.5 text-sm text-[#A99985]">{item.location}</p>
+                      <div className="flex items-stretch">
+                        {/* Colored left border accent */}
+                        <div className="w-1 flex-shrink-0 bg-[#70798C]" />
+                        <div className="flex items-start gap-3 p-4">
+                          {item.time && (
+                            <span className="mt-0.5 min-w-[48px] text-sm font-semibold text-[#70798C]">
+                              {item.time}
+                            </span>
                           )}
-                          {item.description && (
-                            <p className="mt-1 text-sm text-[#A99985]">{item.description}</p>
-                          )}
+                          <div>
+                            <p className="font-medium text-[#252323]">{item.title}</p>
+                            {item.location && (
+                              <p className="mt-0.5 text-sm text-[#A99985]">{item.location}</p>
+                            )}
+                            {item.description && (
+                              <p className="mt-1 text-sm text-[#A99985]">{item.description}</p>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -236,25 +289,23 @@ export default function ProposalPage() {
         </div>
       )}
 
-      {/* CTA Section */}
+      {/* Bottom CTA */}
       <div className="bg-white">
         <div className="mx-auto max-w-3xl px-6 py-16 text-center">
           <h2 className="mb-3 text-2xl font-bold text-[#252323]">Ready to join?</h2>
           <p className="mb-6 text-[#A99985]">
-            Sign up or log in to join this trip and start collaborating with the group.
+            Sign up to confirm your spot and start collaborating with the group.
           </p>
-          <button
-            onClick={() => router.push(`/login?next=/invite/${inviteCode}`)}
-            className="rounded-[5px] bg-[#70798C] px-8 py-3 text-base font-medium text-white hover:bg-[#5A6270] transition-colors"
-          >
+          <Button size="lg" onClick={handleJoin} className="px-10">
             Join This Trip
-          </button>
+          </Button>
+          <p className="mt-3 text-xs text-[#A99985]">Free to join — no credit card required</p>
         </div>
       </div>
 
       {/* Footer */}
       <div className="py-8 text-center">
-        <p className="text-xs text-[#A99985]">Powered by GroupTrip</p>
+        <p className="text-xs text-[#A99985]">Powered by {brandName}</p>
       </div>
     </div>
   )

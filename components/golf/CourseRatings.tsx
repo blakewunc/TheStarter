@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
+import { Skeleton } from '@/components/ui/skeleton'
 import { toast } from 'sonner'
 
 interface CourseRatingsProps {
@@ -172,7 +173,13 @@ export function CourseRatings({ tripId }: CourseRatingsProps) {
   }
 
   if (loading) {
-    return <p className="text-sm text-[#A99985]">Loading ratings...</p>
+    return (
+      <div className="space-y-3">
+        <Skeleton className="h-5 w-32" />
+        <Skeleton className="h-20 w-full" />
+        <Skeleton className="h-20 w-full" />
+      </div>
+    )
   }
 
   return (

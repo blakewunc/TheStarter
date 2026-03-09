@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { SkeletonList } from '@/components/ui/skeleton'
 
 interface GroupMakerProps {
   tripId: string
@@ -113,7 +114,7 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
   }
 
   if (loading) {
-    return <p className="text-sm text-[#A99985]">Loading players...</p>
+    return <SkeletonList count={3} />
   }
 
   if (players.length === 0) {
