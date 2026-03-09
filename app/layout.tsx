@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { BrandProvider } from "@/lib/BrandProvider";
 import { getBrandFromHeader } from "@/lib/brand";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,6 +87,7 @@ export default async function RootLayout({
           <Footer />
           <Toaster />
         </BrandProvider>
+        <Analytics />
       </body>
     </html>
   );
