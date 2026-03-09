@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
 interface Profile {
@@ -27,27 +27,29 @@ export function useBudget(tripId: string) {
   const [categories, setCategories] = useState<BudgetCategory[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const supabase = createClient()
+  const supabaseRef = useRef(createClient())
+
+  const fetchBudget = useCallback(async () => {
+    try {
+      setLoading(true)
+      const response = await fetch(`/api/trips/${tripId}/budget`)
+      if (!response.ok) {
+        throw new Error('Failed to fetch budget')
+      }
+      const data = await response.json()
+      setCategories(data.categories)
+      setError(null)
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }, [tripId])
 
   useEffect(() => {
-    // Fetch initial budget data
-    async function fetchBudget() {
-      try {
-        const response = await fetch(`/api/trips/${tripId}/budget`)
-        if (!response.ok) {
-          throw new Error('Failed to fetch budget')
-        }
-        const data = await response.json()
-        setCategories(data.categories)
-        setError(null)
-      } catch (err: any) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
     fetchBudget()
+
+    const supabase = supabaseRef.current
 
     // Set up real-time subscription for budget_categories
     const categoriesChannel = supabase
@@ -60,10 +62,7 @@ export function useBudget(tripId: string) {
           table: 'budget_categories',
           filter: `trip_id=eq.${tripId}`,
         },
-        async () => {
-          // Refetch budget data when categories change
-          fetchBudget()
-        }
+        () => fetchBudget()
       )
       .subscribe()
 
@@ -77,19 +76,15 @@ export function useBudget(tripId: string) {
           schema: 'public',
           table: 'budget_splits',
         },
-        async () => {
-          // Refetch budget data when splits change
-          fetchBudget()
-        }
+        () => fetchBudget()
       )
       .subscribe()
 
-    // Cleanup subscriptions on unmount
     return () => {
       categoriesChannel.unsubscribe()
       splitsChannel.unsubscribe()
     }
-  }, [tripId, supabase])
+  }, [tripId, fetchBudget])
 
-  return { categories, loading, error, refetch: () => setLoading(true) }
+  return { categories, loading, error, refetch: fetchBudget }
 }

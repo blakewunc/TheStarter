@@ -37,6 +37,7 @@ export function LoginForm() {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password })
       if (error) throw error
+      router.refresh()
       router.push(next)
     } catch (error: any) {
       setMessage({ type: 'error', text: error.message || 'Failed to sign in' })

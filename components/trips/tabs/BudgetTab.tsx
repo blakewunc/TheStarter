@@ -16,7 +16,7 @@ interface BudgetTabProps {
 }
 
 export function BudgetTab({ tripId, trip, currentUserId, isOrganizer }: BudgetTabProps) {
-  const { categories, loading, error } = useBudget(tripId)
+  const { categories, loading, error, refetch } = useBudget(tripId)
   const [addDialogOpen, setAddDialogOpen] = useState(false)
 
   const memberCount = trip.trip_members?.length || 0
@@ -58,7 +58,7 @@ export function BudgetTab({ tripId, trip, currentUserId, isOrganizer }: BudgetTa
             tripId={tripId}
             memberCount={memberCount}
             isOrganizer={isOrganizer}
-            onRefresh={() => {}}
+            onRefresh={refetch}
           />
         </CardContent>
       </Card>
@@ -85,7 +85,7 @@ export function BudgetTab({ tripId, trip, currentUserId, isOrganizer }: BudgetTa
         tripId={tripId}
         open={addDialogOpen}
         onOpenChange={setAddDialogOpen}
-        onSuccess={() => {}}
+        onSuccess={refetch}
       />
     </div>
   )

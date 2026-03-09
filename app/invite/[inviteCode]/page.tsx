@@ -1,6 +1,6 @@
 'use client'
 
-import { use, useEffect, useState } from 'react'
+import { use, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -21,17 +21,21 @@ interface Trip {
 export default function InvitePage({ params }: { params: Promise<{ inviteCode: string }> }) {
   const { inviteCode } = use(params)
   const router = useRouter()
-  const supabase = createClient()
   const [trip, setTrip] = useState<Trip | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [user, setUser] = useState<any>(null)
   const [joining, setJoining] = useState(false)
+  const [authLoading, setAuthLoading] = useState(true)
+  const supabaseRef = useRef(createClient())
 
   useEffect(() => {
+    const supabase = supabaseRef.current
+
     // Check if user is authenticated
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user)
+    supabase.auth.getUser().then(({ data: { user: u } }) => {
+      setUser(u)
+      setAuthLoading(false)
     })
 
     // Fetch trip details
@@ -51,7 +55,7 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
     }
 
     fetchTrip()
-  }, [inviteCode, supabase.auth])
+  }, [inviteCode])
 
   const handleJoinTrip = async () => {
     if (!user) {
@@ -171,8 +175,8 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
             </ul>
           </div>
 
-          <Button onClick={handleJoinTrip} disabled={joining} className="w-full" size="lg">
-            {joining ? 'Joining...' : user ? 'Join This Trip' : 'Sign In to Join'}
+          <Button onClick={handleJoinTrip} disabled={joining || authLoading} className="w-full" size="lg">
+            {joining ? 'Joining...' : authLoading ? 'Loading...' : user ? 'Join This Trip' : 'Sign In to Join'}
           </Button>
 
           {!user && (

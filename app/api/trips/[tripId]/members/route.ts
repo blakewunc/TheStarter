@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { addMemberSchema } from '@/lib/validations/members'
 import { NextResponse } from 'next/server'
 
@@ -91,8 +91,10 @@ export async function POST(
 
     const { email, name } = validation.data
 
-    // Check if a profile with this email exists
-    const { data: existingProfile } = await supabase
+    // Use service client to look up profiles by email — bypasses RLS
+    // (authenticated client can only see own profile, not other users')
+    const serviceClient = createServiceClient()
+    const { data: existingProfile } = await serviceClient
       .from('profiles')
       .select('id')
       .eq('email', email.toLowerCase())
