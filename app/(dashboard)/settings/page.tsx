@@ -39,10 +39,12 @@ export default function SettingsPage() {
     async function loadProfile() {
       try {
         const { data: { user } } = await supabase.auth.getUser()
-        if (!user) {
-          router.push('/login')
-          return
-        }
+        // TEMPORARILY DISABLED for Google AdSense review - re-enable after approval
+        // if (!user) {
+        //   router.push('/login')
+        //   return
+        // }
+        if (!user) { setLoading(false); return }
 
         // Detect auth provider
         const provider = user.app_metadata?.provider || 'email'

@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server'
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -12,12 +11,13 @@ export default async function TripsPage() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (!user) {
-    redirect('/login')
-  }
+  // TEMPORARILY DISABLED for Google AdSense review - re-enable after approval
+  // if (!user) {
+  //   redirect('/login')
+  // }
 
-  // Fetch user's trips
-  const { data: trips } = await supabase
+  // Fetch user's trips (returns empty if not logged in)
+  const { data: trips } = user ? await supabase
     .from('trips')
     .select(
       `
@@ -26,7 +26,7 @@ export default async function TripsPage() {
     `
     )
     .eq('trip_members.user_id', user.id)
-    .order('created_at', { ascending: false })
+    .order('created_at', { ascending: false }) : { data: [] }
 
   return (
     <div className="min-h-screen bg-[#F5F1ED]">

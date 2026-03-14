@@ -75,10 +75,8 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
       setLoading(true)
       try {
         const { data: { user } } = await supabase.auth.getUser()
-        if (!user) {
-          router.push('/login')
-          return
-        }
+        // TEMPORARILY DISABLED for Google AdSense review - re-enable after approval
+        // if (!user) { router.push('/login'); return }
 
         const [tripRes, accRes, transRes, itinRes, expRes] = await Promise.all([
           fetch(`/api/trips/${tripId}`),
