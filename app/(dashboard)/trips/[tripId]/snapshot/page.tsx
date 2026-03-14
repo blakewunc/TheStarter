@@ -115,7 +115,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
           teeTimes,
           expenses: expData.expenses || [],
           members: tripData.trip?.trip_members || [],
-          currentUserId: user.id,
+          currentUserId: user?.id ?? null,
         })
       } catch (err: any) {
         setError(err.message || 'Failed to load snapshot')
