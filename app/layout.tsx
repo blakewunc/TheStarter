@@ -25,12 +25,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const isBackNine = brandId === "backNine";
 
   const title = isBackNine
-    ? "The Back Nine - Plan Your Golf Trip"
+    ? "The Starter - Plan Your Golf Trip"
     : "GroupTrip - Plan Group Adventures Together";
   const description = isBackNine
     ? "Plan golf trips with your crew. Tee times, scorecards, expense splitting, and itineraries — all in one place."
     : "Collaborative trip planning for bachelor parties, bachelorette parties, golf trips, and ski trips. Share itineraries, split costs, coordinate equipment, and keep everyone on the same page.";
-  const siteName = isBackNine ? "The Back Nine" : "GroupTrip";
+  const siteName = isBackNine ? "The Starter" : "GroupTrip";
 
   return {
     title: {

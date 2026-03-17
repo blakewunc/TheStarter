@@ -22,11 +22,11 @@ export const brands: Record<BrandId, BrandConfig> = {
   },
   backNine: {
     id: 'backNine',
-    name: 'The Back Nine',
+    name: 'The Starter',
     tagline: 'Plan your next golf trip with the boys',
     description: 'Tee times, scorecards, expenses, and itineraries for your golf crew.',
     defaultTripType: 'golf',
-    domain: 'https://thebacknine.app',
+    domain: 'https://thestarter.app',
     otherBrand: 'groupTrip',
   },
 }

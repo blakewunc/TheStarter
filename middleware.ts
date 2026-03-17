@@ -4,26 +4,26 @@ import { updateSession } from './lib/supabase/middleware'
 export async function middleware(request: NextRequest) {
   // Detect brand from hostname
   const host = request.headers.get('host') || ''
-  const isBackNine = host.includes('thebacknine')
+  const isBackNine = host.includes('thestarter')
   const brand = isBackNine ? 'backNine' : 'groupTrip'
 
-  // Rewrite root path to golf landing page for Back Nine domain
+  // Rewrite root path to golf landing page for The Starter domain
   if (isBackNine && request.nextUrl.pathname === '/') {
     const url = request.nextUrl.clone()
-    url.pathname = '/back-nine'
+    url.pathname = '/starter'
     const response = NextResponse.rewrite(url)
     response.headers.set('x-brand', brand)
     return response
   }
 
-  // TEMPORARILY redirect auth pages to landing for Back Nine during AdSense review
+  // TEMPORARILY redirect auth pages to landing for The Starter during AdSense review
   if (isBackNine && (
     request.nextUrl.pathname === '/login' ||
     request.nextUrl.pathname === '/signup' ||
     request.nextUrl.pathname === '/forgot-password'
   )) {
     const url = request.nextUrl.clone()
-    url.pathname = '/back-nine'
+    url.pathname = '/starter'
     const response = NextResponse.redirect(url)
     response.headers.set('x-brand', brand)
     return response
