@@ -1,13 +1,13 @@
-# GroupTrip / The Back Nine
+# GroupTrip / The Starter
 
 ## Project
 
 Collaborative trip planning SaaS with two brands on a single codebase:
 
 - **GroupTrip** (`grouptrip-mu.vercel.app`) — general group trips: bachelor parties, bachelorette parties, ski trips
-- **The Back Nine** (`thebacknine.app`) — golf-focused brand with ad monetization, pitched separately to golfers
+- **The Starter** (`thestarter.app`) — golf-focused brand with ad monetization, pitched separately to golfers
 
-**Current priority:** The Back Nine golf experience.
+**Current priority:** The Starter golf experience.
 
 ## Tech Stack
 
@@ -18,7 +18,7 @@ Collaborative trip planning SaaS with two brands on a single codebase:
 - **Real-time:** Supabase Realtime subscriptions
 - **AI:** Anthropic Claude API for trip planning assistant
 - **Hosting:** Vercel with custom domains
-- **Ads:** Google AdSense (Back Nine only)
+- **Ads:** Google AdSense (The Starter only)
 
 ## Architecture
 
@@ -28,12 +28,12 @@ Hostname detection in `middleware.ts` sets `x-brand` header. `app/layout.tsx` re
 
 - Brand config: `lib/brand.ts`
 - Context hook: `useBrand()` from `lib/BrandProvider.tsx`
-- CSS overrides: `[data-brand="backNine"]` block in `app/globals.css`
+- CSS overrides: `[data-brand="starter"]` block in `app/globals.css`
 
 ### Color Palettes
 
 **GroupTrip (A&K luxury):** `#252323` text, `#70798C` accent, `#F5F1ED` bg, `#DAD2BC` borders, `#A99985` muted
-**Back Nine (golf greens):** `#092D3D` text, `#074B63` accent, `#D8EADF` bg, `#B8D4C4` borders, `#5A7A6B` muted
+**The Starter (golf greens):** `#092D3D` text, `#074B63` accent, `#D8EADF` bg, `#B8D4C4` borders, `#5A7A6B` muted
 
 ### Data Fetching Pattern
 
@@ -73,5 +73,5 @@ Always check actual schema columns before writing queries. Run migrations via Su
 - Always run `npm run build` and verify before pushing
 - Prefer editing existing files over creating new ones
 - No dark mode — neither brand uses it
-- Ad slots (`components/ads/AdSlot.tsx`) only render on Back Nine brand
+- Ad slots (`components/ads/AdSlot.tsx`) only render on The Starter brand
 - Use `sonner` for toast notifications, not alert()

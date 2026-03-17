@@ -3,18 +3,18 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'The Back Nine — Golf Trip Planner for Your Crew',
+  title: 'The Starter — Golf Trip Planner for Your Crew',
   description: 'Plan your golf trip with the boys. Tee times, scorecards, expense splitting, group availability, and full itineraries — everything your golf crew needs in one place.',
   keywords: ['golf trip planner', 'golf group planner', 'tee time planner', 'golf scorecard app', 'golf trip organizer', 'golf vacation planner'],
   openGraph: {
-    title: 'The Back Nine — Golf Trip Planner for Your Crew',
+    title: 'The Starter — Golf Trip Planner for Your Crew',
     description: 'Tee times, scorecards, and expense splitting for your golf crew. Plan your next trip in minutes.',
     type: 'website',
-    siteName: 'The Back Nine',
+    siteName: 'The Starter',
   },
   twitter: {
     card: 'summary',
-    title: 'The Back Nine — Golf Trip Planner',
+    title: 'The Starter — Golf Trip Planner',
     description: 'Tee times, scorecards, and expense splitting for your golf crew.',
   },
 }
@@ -43,7 +43,7 @@ const ItineraryIcon = () => (
   </svg>
 )
 
-export default function BackNineLanding() {
+export default function StarterLanding() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#0B442D] to-[#092D3D] px-4">
       <main className="mx-auto max-w-3xl text-center">
@@ -56,7 +56,7 @@ export default function BackNineLanding() {
         </div>
 
         <h1 className="mb-4 text-5xl font-bold tracking-tight text-white sm:text-6xl">
-          The Back Nine
+          The Starter
         </h1>
         <p className="mb-4 text-xl text-[#8ECC7A]">
           Plan your next golf trip with the boys

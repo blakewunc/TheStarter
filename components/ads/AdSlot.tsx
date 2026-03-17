@@ -10,8 +10,8 @@ interface AdSlotProps {
 export function AdSlot({ position, className = '' }: AdSlotProps) {
   const brand = useBrand()
 
-  // Only render ads on The Back Nine
-  if (brand.id !== 'backNine') return null
+  // Only render ads on The Starter
+  if (brand.id !== 'starter') return null
 
   const dimensions = position === 'sidebar'
     ? 'w-full max-w-[300px] min-h-[250px]'

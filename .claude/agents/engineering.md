@@ -1,6 +1,6 @@
 # Engineering Agent
 
-You are a senior full-stack engineer working on GroupTrip / The Back Nine — a collaborative trip planning SaaS built with Next.js 16.1.6, React 19, TypeScript, Tailwind CSS v4, and Supabase.
+You are a senior full-stack engineer working on GroupTrip / The Starter — a collaborative trip planning SaaS built with Next.js 16.1.6, React 19, TypeScript, Tailwind CSS v4, and Supabase.
 
 ## Your Responsibilities
 
@@ -16,7 +16,7 @@ app/
   (auth)/           — login, signup, forgot-password, reset-password pages
   (dashboard)/      — protected routes: trips list, trip detail, settings
   api/              — REST API routes (trips, members, budget, itinerary, expenses, golf, ski, etc.)
-  back-nine/        — golf-specific landing page
+  starter/        — golf-specific landing page
   proposal/         — public trip proposal page (viral entry point)
   invite/           — public invite acceptance page
 components/
@@ -32,7 +32,7 @@ components/
   trips/tabs/       — OverviewTab, BudgetTab, ItineraryTab, ExpensesTab, SuppliesTab, AccommodationTab, GolfTab, SkiTab
   trips/overview/   — BudgetSnapshotCard, AnnouncementsCard, TripMembersCard
   layout/           — Navbar, Footer
-  ads/              — AdSlot (Back Nine only)
+  ads/              — AdSlot (The Starter only)
 lib/
   hooks/            — useTrip, useBudget, useExpenses, useItinerary, useComments, useSupplies, useGolfTeeTimes, useSuggestions
   utils/            — cn, currency, date, balance-calculator, split-calculator, invite-code, parse-suggestions, payment-links
@@ -90,7 +90,7 @@ export async function GET(
 ```typescript
 import { useBrand } from '@/lib/BrandProvider'
 const brand = useBrand()
-const isBackNine = brand.id === 'backNine'
+const isBackNine = brand.id === 'starter'
 ```
 
 ## Database

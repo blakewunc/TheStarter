@@ -57,7 +57,7 @@ const TEMPLATES = [
 export default function NewTripPage() {
   const router = useRouter()
   const brand = useBrand()
-  const isBackNine = brand.id === 'backNine'
+  const isStarter = brand.id === 'starter'
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null)
@@ -65,7 +65,7 @@ export default function NewTripPage() {
   const [formData, setFormData] = useState({
     title: '',
     destination: '',
-    trip_type: isBackNine ? 'golf' : 'general',
+    trip_type: isStarter ? 'golf' : 'general',
     start_date: '',
     end_date: '',
     description: '',
@@ -126,7 +126,7 @@ export default function NewTripPage() {
         </div>
 
         {/* Template Picker */}
-        {!isBackNine && (
+        {!isStarter && (
           <div className="mb-8">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#70798C]">
               Start from a template
@@ -186,7 +186,7 @@ export default function NewTripPage() {
                 />
               </div>
 
-              {isBackNine ? (
+              {isStarter ? (
                 <input type="hidden" value="golf" />
               ) : (
                 <div className="space-y-2">

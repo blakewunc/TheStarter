@@ -49,8 +49,8 @@
   --shadow-card-hover: var(--shadow-md);
 }
 
-/* The Back Nine — golf brand overrides */
-[data-brand="backNine"] {
+/* The Starter — golf brand overrides */
+[data-brand="starter"] {
   --background: #D8EADF;
   --background-card: #ffffff;
   --foreground: #092D3D;

@@ -81,7 +81,7 @@ export async function generateMetadata(
 
   const { trip, attendees, itinerary } = data
   const isGolf = trip.trip_type === 'golf'
-  const appName = isGolf ? 'The Back Nine' : 'GroupTrip'
+  const appName = isGolf ? 'The Starter' : 'GroupTrip'
   const description = [
     trip.destination,
     formatDateRange(trip.start_date, trip.end_date),
@@ -115,8 +115,8 @@ export default async function RecapPage(
 
   const { trip, itinerary, attendees, golfRounds } = data
   const isGolf = trip.trip_type === 'golf'
-  const brandName = isGolf ? 'The Back Nine' : 'GroupTrip'
-  const brandDomain = isGolf ? 'https://thebacknine.app' : 'https://grouptrip-mu.vercel.app'
+  const brandName = isGolf ? 'The Starter' : 'GroupTrip'
+  const brandDomain = isGolf ? 'https://thestarter.app' : 'https://grouptrip-mu.vercel.app'
   const dateRange = formatDateRange(trip.start_date, trip.end_date)
 
   const itineraryByDate = itinerary.reduce((acc, item) => {
@@ -277,7 +277,7 @@ export default async function RecapPage(
           </p>
           <p className="mb-4 text-sm text-[#A99985]">
             {isGolf
-              ? 'The Back Nine makes it easy to organize your next golf getaway.'
+              ? 'The Starter makes it easy to organize your next golf getaway.'
               : 'GroupTrip handles the itinerary, budget, and RSVPs — all in one place.'}
           </p>
           <Link

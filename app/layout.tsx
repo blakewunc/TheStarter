@@ -22,15 +22,15 @@ const geistMono = Geist_Mono({
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const brandId = headersList.get("x-brand");
-  const isBackNine = brandId === "backNine";
+  const isStarter = brandId === "starter";
 
-  const title = isBackNine
-    ? "The Back Nine - Plan Your Golf Trip"
+  const title = isStarter
+    ? "The Starter - Plan Your Golf Trip"
     : "GroupTrip - Plan Group Adventures Together";
-  const description = isBackNine
+  const description = isStarter
     ? "Plan golf trips with your crew. Tee times, scorecards, expense splitting, and itineraries — all in one place."
     : "Collaborative trip planning for bachelor parties, bachelorette parties, golf trips, and ski trips. Share itineraries, split costs, coordinate equipment, and keep everyone on the same page.";
-  const siteName = isBackNine ? "The Back Nine" : "GroupTrip";
+  const siteName = isStarter ? "The Starter" : "GroupTrip";
 
   return {
     title: {
@@ -38,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${siteName}`,
     },
     description,
-    keywords: isBackNine
+    keywords: isStarter
       ? ["golf trip planner", "golf trip", "tee times", "golf scorecard", "golf trip organizer", "group golf"]
       : ["trip planning", "group travel", "bachelor party planning", "bachelorette party", "golf trip planner", "ski trip organizer", "collaborative itinerary", "expense splitting", "travel coordination"],
     authors: [{ name: siteName }],
@@ -74,7 +74,7 @@ export default async function RootLayout({
   const brand = getBrandFromHeader(brandId);
 
   return (
-    <html lang="en" data-brand={brand.id === "backNine" ? "backNine" : undefined}>
+    <html lang="en" data-brand={brand.id === "starter" ? "starter" : undefined}>
       <head>
         <meta name="google-adsense-account" content="ca-pub-1500136289047835" />
       </head>
