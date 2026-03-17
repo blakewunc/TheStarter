@@ -57,6 +57,11 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/blog" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'}`}>
+                    {isBackNine ? 'Golf Trip Guides' : 'Blog'}
+                  </Link>
+                </li>
+                <li>
                   <Link href="/settings" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'}`}>
                     Settings
                   </Link>
@@ -65,17 +70,22 @@ export function Footer() {
             </div>
             <div>
               <h4 className={`text-xs font-semibold uppercase tracking-wide ${isBackNine ? 'text-[#8ECC7A]' : 'text-[#252323]'}`}>
-                Legal
+                Company
               </h4>
               <ul className="mt-3 space-y-2">
                 <li>
-                  <Link href="/privacy" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'}`}>
-                    Privacy Policy
+                  <Link href="/about" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'}`}>
+                    About
                   </Link>
                 </li>
                 <li>
-                  <Link href="/terms" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'}`}>
-                    Terms of Service
+                  <Link href="/contact" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'}`}>
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'}`}>
+                    Privacy Policy
                   </Link>
                 </li>
               </ul>

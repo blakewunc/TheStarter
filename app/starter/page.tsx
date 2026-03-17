@@ -55,14 +55,14 @@ export default function StarterLanding() {
           </div>
         </div>
         <p className="mb-4 text-xl text-[#8ECC7A]">
-          Plan your next golf trip with the boys
+          Plan your next golf trip with your crew
         </p>
         <p className="mb-10 text-base text-[#B8D4C4]">
           Tee times, scorecards, expense splitting, and full itineraries — everything your crew needs in one place.
         </p>
 
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <Link href="/login">
+          <Link href="/trips">
             <Button size="lg" className="w-full bg-[#12733C] text-white hover:bg-[#0B442D] sm:w-auto px-10">
               Plan Your Golf Trip
             </Button>
