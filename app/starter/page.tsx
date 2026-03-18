@@ -60,13 +60,13 @@ export default function StarterLanding() {
         </p>
 
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <Link href="/trips">
+          <Link href="/signup">
             <Button size="lg" className="w-full bg-[#12733C] text-white hover:bg-[#0B442D] sm:w-auto px-10">
-              Plan Your Golf Trip
+              Get Started Free
             </Button>
           </Link>
-          <Link href="/signup" className="text-sm text-[#8ECC7A] underline-offset-2 hover:underline">
-            or create an account
+          <Link href="/trips/demo" className="text-sm text-[#8ECC7A] underline-offset-2 hover:underline">
+            See how it works
           </Link>
         </div>
         <p className="mt-3 text-xs text-[#5A7A6B]">Free to get started — no credit card required</p>

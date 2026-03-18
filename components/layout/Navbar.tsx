@@ -105,7 +105,7 @@ export function Navbar() {
                 </div>
 
                 <Link
-                  href="/trips"
+                  href={user ? '/trips' : '/trips/demo'}
                   onClick={() => setSwitcherOpen(false)}
                   className={`flex items-center gap-3 px-3 py-2.5 text-sm transition-colors ${
                     isBackNine
@@ -115,7 +115,7 @@ export function Navbar() {
                 >
                   <span className="text-base">⛳</span>
                   <div className="flex-1">
-                    <p className="font-medium">Golf Trips</p>
+                    <p className="font-medium">{user ? 'Golf Trips' : 'See Demo'}</p>
                   </div>
                   <svg className={`h-2.5 w-2.5 ${isBackNine ? 'text-[#8ECC7A]' : 'text-[#4A7C59]'}`} fill="currentColor" viewBox="0 0 8 8">
                     <circle cx="4" cy="4" r="3" />

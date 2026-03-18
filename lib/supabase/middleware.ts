@@ -33,17 +33,19 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser()
 
   // Protected routes - require authentication
-  // TEMPORARILY DISABLED for Google AdSense review - re-enable after approval
-  // if (
-  //   !user &&
-  //   (request.nextUrl.pathname.startsWith('/trips') ||
-  //     request.nextUrl.pathname.startsWith('/settings'))
-  // ) {
-  //   const url = request.nextUrl.clone()
-  //   url.pathname = '/login'
-  //   url.searchParams.set('next', request.nextUrl.pathname)
-  //   return NextResponse.redirect(url)
-  // }
+  // /trips/demo is public (for previewing the product without an account)
+  const isProtected =
+    !user &&
+    (request.nextUrl.pathname.startsWith('/settings') ||
+      (request.nextUrl.pathname.startsWith('/trips') &&
+        !request.nextUrl.pathname.startsWith('/trips/demo')))
+
+  if (isProtected) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/login'
+    url.searchParams.set('next', request.nextUrl.pathname)
+    return NextResponse.redirect(url)
+  }
 
   // Redirect authenticated users away from auth pages
   // Preserve ?next= param so invite/proposal flows complete correctly
