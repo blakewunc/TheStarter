@@ -169,20 +169,20 @@ export function Navbar() {
                   className={`text-sm font-medium transition-colors ${
                     isActive('/trips')
                       ? isBackNine ? 'text-white' : 'text-[#252323]'
-                      : isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'
+                      : isBackNine ? 'text-[#8fa3b1] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'
                   }`}
                 >
-                  {isBackNine ? 'My Golf Trips' : 'My Trips'}
+                  {isBackNine ? 'My golf trips' : 'My Trips'}
                 </Link>
                 <Link
                   href="/trips/new"
                   className={`text-sm font-medium transition-colors ${
                     isActive('/trips/new')
                       ? isBackNine ? 'text-white' : 'text-[#252323]'
-                      : isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'
+                      : isBackNine ? 'text-[#8fa3b1] hover:text-white' : 'text-[#A99985] hover:text-[#252323]'
                   }`}
                 >
-                  {isBackNine ? 'Plan a Trip' : 'Create Trip'}
+                  {isBackNine ? 'Plan a trip' : 'Create Trip'}
                 </Link>
               </div>
             )}
@@ -198,14 +198,12 @@ export function Navbar() {
                       Settings
                     </Button>
                   </Link>
-                  <Button
-                    variant="secondary"
-                    size="sm"
+                  <button
                     onClick={handleSignOut}
-                    className={isBackNine ? 'bg-white/10 text-white hover:bg-white/20 border-[#B8D4C4]' : ''}
+                    className={isBackNine ? 'text-sm text-[#8fa3b1] hover:text-white transition-colors' : 'text-sm text-[#A99985] hover:text-[#252323] transition-colors'}
                   >
                     Sign Out
-                  </Button>
+                  </button>
                 </>
               ) : (
                 <>
@@ -236,20 +234,20 @@ export function Navbar() {
                 className={`block rounded-[5px] px-4 py-2.5 text-sm font-medium transition-colors ${
                   isActive('/trips')
                     ? isBackNine ? 'bg-white/10 text-white' : 'bg-[#F5F1ED] text-[#252323]'
-                    : isBackNine ? 'text-[#B8D4C4] hover:bg-white/10 hover:text-white' : 'text-[#A99985] hover:bg-[#F5F1ED] hover:text-[#252323]'
+                    : isBackNine ? 'text-[#8fa3b1] hover:bg-white/10 hover:text-white' : 'text-[#A99985] hover:bg-[#F5F1ED] hover:text-[#252323]'
                 }`}
               >
-                {isBackNine ? 'My Golf Trips' : 'My Trips'}
+                {isBackNine ? 'My golf trips' : 'My Trips'}
               </Link>
               <Link
                 href="/trips/new"
                 className={`block rounded-[5px] px-4 py-2.5 text-sm font-medium transition-colors ${
                   isActive('/trips/new')
                     ? isBackNine ? 'bg-white/10 text-white' : 'bg-[#F5F1ED] text-[#252323]'
-                    : isBackNine ? 'text-[#B8D4C4] hover:bg-white/10 hover:text-white' : 'text-[#A99985] hover:bg-[#F5F1ED] hover:text-[#252323]'
+                    : isBackNine ? 'text-[#8fa3b1] hover:bg-white/10 hover:text-white' : 'text-[#A99985] hover:bg-[#F5F1ED] hover:text-[#252323]'
                 }`}
               >
-                {isBackNine ? 'Plan a Trip' : 'Create Trip'}
+                {isBackNine ? 'Plan a trip' : 'Create Trip'}
               </Link>
             </>
           ) : (
