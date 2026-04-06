@@ -750,10 +750,10 @@ export default function StarterLanding() {
 
               <div className="sl-step sl-reveal sl-reveal-d1">
                 <div className="sl-step-img">
-                  {/* Golf course — fairways, landscape */}
+                  {/* Aerial view of a golf club — fairway layout from above */}
                   <img
-                    src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=800&q=80"
-                    alt="Golf course fairway and greens"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/GreatSouthernGolfClubAerialView_Fairway_layout.jpg/800px-GreatSouthernGolfClubAerialView_Fairway_layout.jpg"
+                    alt="Aerial view of a golf course fairway layout"
                     loading="lazy"
                   />
                 </div>
@@ -769,10 +769,10 @@ export default function StarterLanding() {
 
               <div className="sl-step sl-reveal sl-reveal-d2">
                 <div className="sl-step-img">
-                  {/* Scenic golf destination — course landscape */}
+                  {/* Golfers playing together on a course */}
                   <img
-                    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
-                    alt="Beautiful golf course destination landscape"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Golfers_playing_at_the_Holyhead_Golf_Course_-_geograph.org.uk_-_895350.jpg/800px-Golfers_playing_at_the_Holyhead_Golf_Course_-_geograph.org.uk_-_895350.jpg"
+                    alt="Group of golfers playing on a course"
                     loading="lazy"
                   />
                 </div>
@@ -825,10 +825,10 @@ export default function StarterLanding() {
 
               <div className="sl-trip-card sl-reveal sl-reveal-d1">
                 <div className="sl-trip-img">
-                  {/* Pebble Beach — coastal golf course */}
+                  {/* Pebble Beach — Hole 7, cliff over the Pacific Ocean */}
                   <img
-                    src="https://images.unsplash.com/photo-1464699908537-0954e50791ee?w=1200&q=80"
-                    alt="Pebble Beach golf course along the California coast"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Pebble_Beach_Golf_Links%2C_hole_7.jpg/1200px-Pebble_Beach_Golf_Links%2C_hole_7.jpg"
+                    alt="Pebble Beach Golf Links, Hole 7 overlooking the Pacific Ocean"
                     loading="lazy"
                   />
                   <div className="sl-trip-overlay" />
@@ -843,10 +843,10 @@ export default function StarterLanding() {
 
               <div className="sl-trip-card sl-reveal sl-reveal-d2">
                 <div className="sl-trip-img">
-                  {/* Pinehurst — pine-lined sandy fairway, NC Sandhills */}
+                  {/* Pinehurst No. 2 — actual course, NC Sandhills */}
                   <img
-                    src="https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=900&q=80"
-                    alt="Pinehurst golf course in the North Carolina Sandhills"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Pinehurst_No._2.JPG/1200px-Pinehurst_No._2.JPG"
+                    alt="Pinehurst No. 2 golf course, North Carolina"
                     loading="lazy"
                   />
                   <div className="sl-trip-overlay" />
@@ -861,10 +861,10 @@ export default function StarterLanding() {
 
               <div className="sl-trip-card sl-reveal sl-reveal-d2">
                 <div className="sl-trip-img">
-                  {/* Scottish links — golf course with flag */}
+                  {/* Old Course at St Andrews — Swilcan Bridge, R&A Clubhouse */}
                   <img
-                    src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=900&q=80"
-                    alt="Scottish links golf course under dramatic skies"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/R%26A_Clubhouse%2C_Old_Course%2C_Swilcan_Burn_bridge.jpg/1200px-R%26A_Clubhouse%2C_Old_Course%2C_Swilcan_Burn_bridge.jpg"
+                    alt="The Old Course at St Andrews — Swilcan Bridge and R&A Clubhouse"
                     loading="lazy"
                   />
                   <div className="sl-trip-overlay" />
