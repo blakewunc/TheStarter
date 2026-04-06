@@ -76,6 +76,61 @@ const TEMPLATES = {
       { name: 'Miscellaneous', split_type: 'equal', description: 'Tips, 17-Mile Drive toll, extras, Carmel shopping', base_per_person: 300 },
     ],
   },
+  'scottish-pilgrimage': {
+    title: 'Scottish Links Pilgrimage',
+    destination: 'St Andrews, Scotland',
+    trip_type: 'golf',
+    description: '7-night St Andrews-based pilgrimage: Old Course ballot attempt, Carnoustie, Kingsbarns, and Dumbarnie. Old Course is aspirational — the itinerary is built to give you the best possible odds.',
+    nights: 7,
+    itinerary: [
+      // Day 1 — Arrive
+      { offset: 0, time: '12:00', title: 'Fly into Edinburgh', location: 'Edinburgh Airport (EDI)', description: 'Fly into Edinburgh. Domestic from London or direct from US. Pick up rental car — you\'ll need it.', sort_order: 0 },
+      { offset: 0, time: '14:00', title: 'Transfer to St Andrews (~1.5 hrs)', location: 'St Andrews, Fife', description: 'Drive through Fife. First views of the town and the Old Course from the road. It hits different.', sort_order: 1 },
+      { offset: 0, time: '16:00', title: 'Check In + Walk the Town', location: 'St Andrews', description: 'Walk the West Sands beach, the Old Course, and the Swilcan Bridge. It\'s free to walk. Don\'t skip this.', sort_order: 2 },
+      { offset: 0, time: '17:00', title: 'Enter Old Course Ballot (Day 3 attempt)', location: 'St Andrews Links', description: 'Submit ballot entry online at standrews.com for your first Old Course attempt. Odds are roughly 20% per entry but improve with more days.', sort_order: 3 },
+      { offset: 0, time: '19:30', title: 'Dinner — The Seafood Ristorante', location: 'The Seafood Ristorante, St Andrews', description: 'Best restaurant in St Andrews. Elevated Scottish seafood. Book ahead.', sort_order: 4 },
+      // Day 2 — Warm-Up
+      { offset: 1, time: '08:30', title: 'Round 1 — New Course or Dumbarnie Links', location: 'St Andrews New Course / Dumbarnie Links', description: 'New Course: challenging, historic, excellent. Dumbarnie: modern links (2020), stunning views, very bookable. Ease into Scottish golf.', sort_order: 5 },
+      { offset: 1, time: '14:00', title: 'Afternoon — Range + Recovery', location: 'St Andrews', description: 'Driving range, putting green, or just walk the Old Course again. Get the feel of links turf.', sort_order: 6 },
+      { offset: 1, time: '17:00', title: 'Enter Ballot (Day 4 attempt)', location: 'St Andrews Links', description: 'Second ballot entry. Odds compound with each day you\'re here.', sort_order: 7 },
+      { offset: 1, time: '19:00', title: 'Dinner + Pub Night — Rusacks or The Dunvegan', location: 'St Andrews', description: 'Drinks with a view of the 18th at Rusacks. Or pub crawl: The Dunvegan, The Central, Ma Bells.', sort_order: 8 },
+      // Day 3 — Old Course Attempt
+      { offset: 2, time: '07:00', title: '🎯 Old Course Ballot Result Day', location: 'St Andrews Links', description: 'BALLOT SUCCESS → You\'re playing the Old Course today. The round of your life. Take a caddie — no exceptions.\n\nBALLOT FAILURE → You\'re playing Kingsbarns Golf Links instead. Still exceptional.', sort_order: 9 },
+      { offset: 2, time: '13:00', title: 'Lunch + Replay the Round', location: 'St Andrews Clubhouse', description: 'Whatever happened, the morning is worth talking about over lunch.', sort_order: 10 },
+      { offset: 2, time: '17:00', title: 'Enter Ballot (Day 5 attempt)', location: 'St Andrews Links', description: 'Keep entering. The more days you\'re here, the better your cumulative odds.', sort_order: 11 },
+      { offset: 2, time: '20:00', title: 'Dinner — The Peat Inn', location: 'The Peat Inn, Cupar (20 min)', description: 'Michelin-star restaurant 20 mins from St Andrews. Exceptional. Worth the drive for the nicer dinner.', sort_order: 12 },
+      // Day 4 — Premium Round
+      { offset: 3, time: '08:30', title: 'Round 3 — Kingsbarns (if not played) or Dumbarnie', location: 'Kingsbarns Golf Links / Dumbarnie Links', description: 'Kingsbarns is premium, bookable, and genuinely world-class. Ocean views on nearly every hole. If you played it on Day 3, Dumbarnie is a great alternative.', sort_order: 13 },
+      { offset: 3, time: '14:00', title: 'Afternoon — Explore Fife Coast', location: 'East Neuk of Fife', description: 'Crail, Anstruther fish and chips (best in Scotland), Pittenweem harbour. Short drives but a proper taste of the Scottish coast.', sort_order: 14 },
+      { offset: 3, time: '17:00', title: 'Enter Ballot (Day 6 attempt)', location: 'St Andrews Links', description: 'Final primary ballot entry for an Old Course shot.', sort_order: 15 },
+      // Day 5 — Carnoustie
+      { offset: 4, time: '07:30', title: 'Drive to Carnoustie (45 mins)', location: 'Carnoustie Golf Links', description: 'The hardest course of the trip. Championship Links — where Jean Van de Velde melted down in \'99. Brutal in wind.', sort_order: 16 },
+      { offset: 4, time: '08:30', title: 'Round 4 — Carnoustie Championship Links', location: 'Carnoustie, Angus', description: 'The Barry Burn on 18 is iconic. Bring your A-game or accept the suffering with grace. Every bit as hard as advertised.', sort_order: 17 },
+      { offset: 4, time: '14:00', title: 'Lunch in Dundee or Arbroath', location: 'Dundee / Arbroath', description: 'Arbroath smokie (smoked haddock) in Arbroath itself — or a proper lunch in Dundee before heading back.', sort_order: 18 },
+      { offset: 4, time: '19:30', title: 'Dinner — The Criterion Restaurant', location: 'St Andrews', description: 'Classic St Andrews spot for a good group meal at a reasonable price.', sort_order: 19 },
+      // Day 6 — Flex / Final Attempt
+      { offset: 5, time: '08:00', title: '🎯 Old Course Final Attempt (Ballot or Replay)', location: 'St Andrews Links', description: 'If ballot success: play the Old Course — or play it again if you already succeeded earlier.\n\nIf ballot fails: replay your favorite course from the week, or play the Jubilee Course (excellent, less famous).', sort_order: 20 },
+      { offset: 5, time: '15:00', title: 'Afternoon — Free Time in St Andrews', location: 'St Andrews', description: 'Golf Museum, Bottle Dungeon, cathedral ruins. Or just sit at the 18th with a drink.', sort_order: 21 },
+      { offset: 5, time: '19:30', title: 'Celebration Dinner — Playfair\'s', location: 'Playfair\'s, St Andrews', description: 'Good Scottish bistro. Great for a final night out and celebrating whatever golf you played this week.', sort_order: 22 },
+      // Day 7 — Light Day
+      { offset: 6, time: '09:00', title: 'Morning — Town, Golf Shop, Souvenirs', location: 'St Andrews', description: 'The golf shop on Golf Place. St Andrews-branded stuff is actually worth buying here. Old Tom Morris shop too.', sort_order: 23 },
+      { offset: 6, time: '11:00', title: 'Optional: Eden Course or Putting Green', location: 'St Andrews Eden Course', description: 'Eden Course is relaxed, cheap, and fun. Perfect for a final easy 9 before heading out.', sort_order: 24 },
+      { offset: 6, time: '14:00', title: 'Drive back to Edinburgh', location: 'Edinburgh', description: 'Check in near the airport for an early morning flight.', sort_order: 25 },
+      { offset: 6, time: '19:00', title: 'Final Night — Edinburgh Old Town', location: 'Edinburgh', description: 'Dinner and drinks in Edinburgh. The Royal Mile, Grassmarket. Proper end to the trip.', sort_order: 26 },
+      // Day 8 — Departure
+      { offset: 7, time: '06:00', title: 'Fly Home', location: 'Edinburgh Airport (EDI)', description: 'Already looking up Old Course ballot dates for next year.', sort_order: 27 },
+    ],
+    budget_categories: [
+      { name: 'Flights (transatlantic)', split_type: 'equal', description: 'US to Edinburgh return — book early for better rates', base_per_person: 1200 },
+      { name: 'Lodging (7 nights)', split_type: 'equal', description: 'St Andrews hotel or self-catering cottage — 7 nights', base_per_person: 1750 },
+      { name: 'Golf — Old Course', split_type: 'equal', description: 'If ballot is successful (~20–60% odds per entry)', base_per_person: 250 },
+      { name: 'Golf — Carnoustie', split_type: 'equal', description: 'Championship Links green fee', base_per_person: 200 },
+      { name: 'Golf — Kingsbarns', split_type: 'equal', description: 'Premium coastal links — highly recommended', base_per_person: 275 },
+      { name: 'Golf — Dumbarnie + New Course', split_type: 'equal', description: 'Two additional rounds', base_per_person: 280 },
+      { name: 'Food & Drinks (7 days)', split_type: 'equal', description: 'Dinners, pub nights, lunches on the road', base_per_person: 700 },
+      { name: 'Car Rental + Transport', split_type: 'equal', description: 'Rental car for the week + Carnoustie day trip', base_per_person: 300 },
+    ],
+  },
 } as const
 
 export async function POST(request: Request) {

@@ -872,8 +872,8 @@ export default function StarterLanding() {
                 <div className="sl-trip-info">
                   <span className="sl-trip-tag">International · Limited</span>
                   <h3 className="sl-trip-name">Scottish Links<br />Pilgrimage</h3>
-                  <p className="sl-trip-meta">7 nights · 5 rounds · St Andrews, Carnoustie, Royal Dornoch</p>
-                  <Link href="/trips/new" className="sl-trip-cta">Plan this trip</Link>
+                  <p className="sl-trip-meta">7 nights · 5 rounds · St Andrews, Kingsbarns, Carnoustie + Dumbarnie</p>
+                  <Link href="/trips/curated/scottish-pilgrimage" className="sl-trip-cta">Plan this trip</Link>
                 </div>
               </div>
 
