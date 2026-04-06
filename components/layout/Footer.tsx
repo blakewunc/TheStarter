@@ -1,14 +1,19 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useBrand } from '@/lib/BrandProvider'
 import { brands } from '@/lib/brand'
 import { AdSlot } from '@/components/ads/AdSlot'
 import { StarterLogo } from '@/components/StarterLogo'
 
 export function Footer() {
+  const pathname = usePathname()
   const brand = useBrand()
   const isBackNine = brand.id === 'backNine'
+
+  // Full-page landing uses its own footer
+  if (pathname === '/starter') return null
 
   return (
     <footer className={`border-t ${

@@ -59,6 +59,9 @@ export function Navbar() {
 
   const isActive = (path: string) => pathname === path
 
+  // Full-page landing uses its own nav
+  if (pathname === '/starter') return null
+
   return (
     <nav className={`sticky top-0 z-50 border-b shadow-sm ${
       isBackNine
