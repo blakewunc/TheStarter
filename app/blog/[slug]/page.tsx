@@ -1,7 +1,6 @@
 import { getAllPosts, getPostBySlug } from '@/lib/blog'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { BlogCTA } from '@/components/BlogCTA'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
@@ -40,53 +39,108 @@ export default async function BlogPostPage(
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
-  return (
-    <div className="min-h-screen bg-[#F5F1ED]">
-      <div className="mx-auto max-w-2xl px-6 py-16">
-        {/* Back */}
-        <Link href="/blog" className="mb-8 inline-flex items-center gap-1.5 text-sm text-[#A99985] transition-colors hover:text-[#252323]">
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          All Guides
-        </Link>
+  const allPosts = getAllPosts()
+  const related = allPosts
+    .filter((p) => p.slug !== post.slug && p.category === post.category)
+    .slice(0, 3)
 
-        {/* Header */}
-        <header className="mb-10">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="inline-flex items-center rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs font-medium text-[#4A7C59]">
+  return (
+    <div className="min-h-screen" style={{ background: '#F5F1ED' }}>
+      {/* Article header */}
+      <div style={{ background: '#1C1A17', padding: '40px 24px 36px' }}>
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
+          <Link
+            href="/blog"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: 'rgba(245,241,237,0.40)', textDecoration: 'none', marginBottom: '20px', letterSpacing: '0.05em' }}
+          >
+            ← All Guides
+          </Link>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            <span style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.45)', fontWeight: 600 }}>
               {post.category}
             </span>
-            <span className="text-xs text-[#A99985]">{post.readTime}</span>
+            <span style={{ fontSize: '10px', color: 'rgba(245,241,237,0.25)' }}>·</span>
+            <span style={{ fontSize: '10px', color: 'rgba(245,241,237,0.35)' }}>{post.readTime}</span>
           </div>
-          <h1 className="mb-4 text-3xl font-bold tracking-tight text-[#252323] sm:text-4xl">
+
+          <h1 style={{ fontSize: '30px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", lineHeight: 1.2, marginBottom: '14px' }}>
             {post.title}
           </h1>
-          <p className="text-base leading-relaxed text-[#A99985]">{post.description}</p>
-          <p className="mt-4 text-xs text-[#A99985]">
+          <p style={{ fontSize: '14px', color: 'rgba(245,241,237,0.50)', lineHeight: 1.6, marginBottom: '16px' }}>
+            {post.description}
+          </p>
+          <p style={{ fontSize: '11px', color: 'rgba(245,241,237,0.30)' }}>
             {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
           </p>
-        </header>
+        </div>
+      </div>
 
-        {/* Content */}
-        <div className="prose prose-stone max-w-none
-          prose-headings:font-semibold prose-headings:text-[#252323] prose-headings:tracking-tight
-          prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:border-b prose-h2:border-[#DAD2BC] prose-h2:pb-2
-          prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
-          prose-p:text-[#252323] prose-p:leading-7
-          prose-li:text-[#252323] prose-li:leading-relaxed
-          prose-ul:my-4 prose-ol:my-4
-          prose-strong:text-[#252323] prose-strong:font-semibold
-          prose-a:text-[#4A7C59] prose-a:no-underline hover:prose-a:underline
-          prose-hr:border-[#DAD2BC] prose-hr:my-10
-          prose-blockquote:border-l-[#70798C] prose-blockquote:text-[#A99985] prose-blockquote:not-italic
-          prose-table:text-sm prose-th:text-[#252323] prose-td:text-[#252323]
-          prose-code:text-[#252323] prose-code:bg-[#F5F1ED] prose-code:px-1 prose-code:rounded
-        ">
+      {/* Article body */}
+      <div style={{ maxWidth: '680px', margin: '0 auto', padding: '48px 24px 0' }}>
+        <div
+          className="prose prose-stone max-w-none
+            prose-headings:font-medium prose-headings:text-[#1C1A17] prose-headings:tracking-tight
+            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+            prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
+            prose-p:text-[#3C3835] prose-p:leading-8 prose-p:text-base
+            prose-li:text-[#3C3835] prose-li:leading-relaxed
+            prose-ul:my-4 prose-ol:my-4
+            prose-strong:text-[#1C1A17] prose-strong:font-semibold
+            prose-a:text-[#70798C] prose-a:no-underline hover:prose-a:underline
+            prose-hr:border-[rgba(28,26,23,0.10)] prose-hr:my-10
+            prose-blockquote:border-l-[#70798C] prose-blockquote:text-[#6B6460] prose-blockquote:not-italic
+            prose-table:text-sm prose-th:text-[#1C1A17] prose-td:text-[#3C3835]
+            prose-code:text-[#1C1A17] prose-code:bg-[rgba(28,26,23,0.06)] prose-code:px-1 prose-code:rounded
+          "
+        >
           <MDXRemote source={post.content} />
         </div>
 
-        <BlogCTA />
+        {/* CTA */}
+        <div style={{ margin: '56px 0 0', background: '#1C1A17', borderRadius: '8px', padding: '32px', textAlign: 'center' }}>
+          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", marginBottom: '8px' }}>
+            Ready to plan your trip?
+          </p>
+          <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', marginBottom: '20px', lineHeight: 1.6 }}>
+            Build your itinerary, split costs, and coordinate the whole crew. Free to start.
+          </p>
+          <Link
+            href="/trips/new"
+            style={{ display: 'inline-block', background: '#F5F1ED', color: '#1C1A17', borderRadius: '5px', padding: '10px 24px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.05em', textDecoration: 'none' }}
+          >
+            Start planning →
+          </Link>
+        </div>
+
+        {/* Related articles */}
+        {related.length > 0 && (
+          <div style={{ margin: '48px 0 64px' }}>
+            <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', fontWeight: 600, marginBottom: '16px' }}>
+              More in {post.category}
+            </p>
+            <div className="space-y-3">
+              {related.map((rp) => (
+                <Link key={rp.slug} href={`/blog/${rp.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+                  <div
+                    style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '6px', padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}
+                    className="hover:shadow-[0_2px_6px_rgba(0,0,0,0.06)]"
+                  >
+                    <div style={{ minWidth: 0 }}>
+                      <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1A17', marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {rp.title}
+                      </p>
+                      <p style={{ fontSize: '11px', color: '#A09890' }}>{rp.readTime}</p>
+                    </div>
+                    <span style={{ fontSize: '12px', color: '#70798C', flexShrink: 0 }}>→</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!related.length && <div style={{ paddingBottom: '64px' }} />}
       </div>
     </div>
   )

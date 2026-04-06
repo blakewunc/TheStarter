@@ -656,9 +656,11 @@ function SettleBetDialog({ bet, onClose, tripId, members, scores, onSettled }: S
 
 interface GolfBetsProps {
   tripId: string
+  /** Show only settle/settled view — hides Add Bet and pre-round controls */
+  settleOnly?: boolean
 }
 
-export function GolfBets({ tripId }: GolfBetsProps) {
+export function GolfBets({ tripId, settleOnly = false }: GolfBetsProps) {
   const [bets, setBets] = useState<BetEntry[]>([])
   const [loading, setLoading] = useState(true)
   const [members, setMembers] = useState<Member[]>([])
@@ -736,18 +738,20 @@ export function GolfBets({ tripId }: GolfBetsProps) {
   const settledBets = bets.filter((b) => b.status === 'settled')
 
   return (
-    <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-      {/* Header */}
-      <div className="mb-5 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-[#252323]">Golf Bets</h3>
-        <Button
-          size="sm"
-          onClick={() => setShowAdd(true)}
-          className="bg-[#4A7C59] text-white hover:bg-[#3d6b4a]"
-        >
-          + Add Bet
-        </Button>
-      </div>
+    <div>
+      {/* Add Bet button — hidden in settleOnly mode */}
+      {!settleOnly && (
+        <div className="mb-5 flex items-center justify-between">
+          <p className="text-sm text-[#A09890]">Track side action before the round</p>
+          <Button
+            size="sm"
+            onClick={() => setShowAdd(true)}
+            style={{ background: '#70798C', color: '#fff', fontSize: '12px', padding: '6px 14px', borderRadius: '5px', border: 'none', cursor: 'pointer', fontWeight: 500 }}
+          >
+            + Add Bet
+          </Button>
+        </div>
+      )}
 
       {deleteError && (
         <p className="mb-3 text-sm text-[#8B4444]">{deleteError}</p>
@@ -755,24 +759,28 @@ export function GolfBets({ tripId }: GolfBetsProps) {
 
       {loading ? (
         <div className="space-y-3">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="h-20 animate-pulse rounded-[5px] bg-[#F5F1ED]" />
+          {[1, 2].map((i) => (
+            <div key={i} className="h-16 animate-pulse rounded-[5px] bg-[#F5F1ED]" />
           ))}
         </div>
       ) : bets.length === 0 ? (
-        <div className="py-10 text-center">
-          <div className="text-4xl">🎰</div>
-          <p className="mt-2 font-medium text-[#252323]">No bets yet</p>
-          <p className="mt-1 text-sm text-[#A99985]">
-            Add a bet to track side action and settle up after your rounds.
+        <div className="py-8 text-center">
+          <div className="text-3xl">🎰</div>
+          <p className="mt-2 text-sm font-medium text-[#1C1A17]">
+            {settleOnly ? 'No open bets to settle' : 'No bets yet'}
           </p>
+          {!settleOnly && (
+            <p className="mt-1 text-xs text-[#A09890]">
+              Add a bet before the round and settle up after.
+            </p>
+          )}
         </div>
       ) : (
         <div className="space-y-6">
           {openBets.length > 0 && (
             <div>
-              <p className="mb-3 text-sm font-medium uppercase tracking-wider text-[#A99985]">
-                Open
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#A09890]">
+                {settleOnly ? 'Open — needs a winner' : 'Open'}
               </p>
               <div className="space-y-3">
                 {openBets.map((bet) => (
@@ -796,7 +804,7 @@ export function GolfBets({ tripId }: GolfBetsProps) {
 
           {settledBets.length > 0 && (
             <div>
-              <p className="mb-3 text-sm font-medium uppercase tracking-wider text-[#A99985]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#A09890]">
                 Settled
               </p>
               <div className="space-y-3">

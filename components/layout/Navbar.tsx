@@ -99,6 +99,30 @@ export function Navbar() {
               My golf trips
             </Link>
             <Link
+              href="/my-group"
+              style={{
+                fontSize: '12px',
+                letterSpacing: '0.05em',
+                color: pathname.startsWith('/my-group') ? 'var(--cream)' : 'rgba(245,241,237,0.45)',
+                textDecoration: 'none',
+                transition: 'color 0.2s',
+              }}
+            >
+              My group
+            </Link>
+            <Link
+              href="/blog"
+              style={{
+                fontSize: '12px',
+                letterSpacing: '0.05em',
+                color: pathname.startsWith('/blog') ? 'var(--cream)' : 'rgba(245,241,237,0.45)',
+                textDecoration: 'none',
+                transition: 'color 0.2s',
+              }}
+            >
+              Blog
+            </Link>
+            <Link
               href="/trips/new"
               style={{
                 fontSize: '12px',

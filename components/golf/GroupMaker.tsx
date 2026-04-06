@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { SkeletonList } from '@/components/ui/skeleton'
+import { toast } from 'sonner'
 
 interface GroupMakerProps {
   tripId: string
@@ -16,6 +17,12 @@ interface Player {
 
 type GroupMode = 'competitive' | 'balanced'
 
+interface TeeTimeOption {
+  id: string
+  course_name: string
+  tee_time: string
+}
+
 export function GroupMaker({ tripId }: GroupMakerProps) {
   const [players, setPlayers] = useState<Player[]>([])
   const [groups, setGroups] = useState<Player[][]>([])
@@ -23,13 +30,19 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
   const [groupSize, setGroupSize] = useState(4)
   const [loading, setLoading] = useState(true)
   const [generated, setGenerated] = useState(false)
+  const [teeTimes, setTeeTimes] = useState<TeeTimeOption[]>([])
+  const [assigningTeeTimeId, setAssigningTeeTimeId] = useState<string>('')
+  const [assigning, setAssigning] = useState(false)
 
   useEffect(() => {
-    async function fetchPlayers() {
+    async function fetchData() {
       try {
-        const response = await fetch(`/api/trips/${tripId}/golf/equipment`)
-        if (response.ok) {
-          const data = await response.json()
+        const [equipRes, teeTimesRes] = await Promise.all([
+          fetch(`/api/trips/${tripId}/golf/equipment`),
+          fetch(`/api/trips/${tripId}/golf/tee-times`),
+        ])
+        if (equipRes.ok) {
+          const data = await equipRes.json()
           const playerList: Player[] = (data.equipment || []).map((eq: any) => ({
             user_id: eq.user_id,
             user_name: eq.user_name,
@@ -37,15 +50,42 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
           }))
           setPlayers(playerList)
         }
+        if (teeTimesRes.ok) {
+          const data = await teeTimesRes.json()
+          setTeeTimes(data.teeTimes || [])
+          if (data.teeTimes?.length > 0) {
+            setAssigningTeeTimeId(data.teeTimes[0].id)
+          }
+        }
       } catch (error) {
-        console.error('Failed to fetch players:', error)
+        console.error('Failed to fetch data:', error)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchPlayers()
+    fetchData()
   }, [tripId])
+
+  const assignGroupsToTeeTime = async () => {
+    if (!assigningTeeTimeId || groups.length === 0) return
+    // Flatten all players in generated groups into a single player[] array
+    const allPlayers = groups.flat().map((p) => p.user_id)
+    setAssigning(true)
+    try {
+      const res = await fetch(`/api/trips/${tripId}/golf/tee-times/${assigningTeeTimeId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ players: allPlayers }),
+      })
+      if (!res.ok) throw new Error('Failed to assign')
+      toast.success('Groups saved to tee time')
+    } catch {
+      toast.error('Could not save groups')
+    } finally {
+      setAssigning(false)
+    }
+  }
 
   const generateGroups = () => {
     if (players.length === 0) return
@@ -224,6 +264,49 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
           {generated ? 'Regenerate Groups' : 'Generate Groups'}
         </Button>
       </div>
+
+      {/* Assign to tee time — shown after groups generated */}
+      {generated && groups.length > 0 && teeTimes.length > 0 && (
+        <div className="flex items-center gap-2">
+          <select
+            value={assigningTeeTimeId}
+            onChange={(e) => setAssigningTeeTimeId(e.target.value)}
+            style={{
+              flex: 1,
+              fontSize: '12px',
+              color: '#1C1A17',
+              border: '0.5px solid rgba(28,26,23,0.20)',
+              borderRadius: '5px',
+              padding: '6px 10px',
+              background: '#fff',
+            }}
+          >
+            {teeTimes.map((tt) => (
+              <option key={tt.id} value={tt.id}>
+                {tt.course_name}
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={assignGroupsToTeeTime}
+            disabled={assigning}
+            style={{
+              background: '#70798C',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '5px',
+              padding: '6px 14px',
+              fontSize: '12px',
+              fontWeight: 500,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              opacity: assigning ? 0.6 : 1,
+            }}
+          >
+            {assigning ? 'Saving...' : 'Save to Round'}
+          </button>
+        </div>
+      )}
 
       {/* Generated Groups */}
       {generated && groups.length > 0 && (

@@ -986,6 +986,80 @@ export default function StarterLanding() {
           </div>
         </section>
 
+        {/* FROM THE BLOG */}
+        <section style={{ background: '#F5F1ED', padding: '72px 0' }}>
+          <div className="mx-auto max-w-5xl px-6">
+            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '32px' }}>
+              <div>
+                <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: '8px', fontWeight: 600 }}>
+                  The Starter · Journal
+                </p>
+                <h2 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+                  From the blog
+                </h2>
+              </div>
+              <Link href="/blog" style={{ fontSize: '12px', color: '#70798C', fontWeight: 500, textDecoration: 'none', letterSpacing: '0.04em' }}>
+                All guides →
+              </Link>
+            </div>
+
+            <div style={{ display: 'grid', gap: '16px', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+              {[
+                {
+                  slug: 'golf-trip-planning-checklist',
+                  title: 'The Complete Golf Trip Planning Checklist',
+                  description: 'Month-by-month from idea to first tee without missing anything.',
+                  category: 'Planning Tips',
+                  readTime: '7 min read',
+                },
+                {
+                  slug: 'nassau-betting-format-explained',
+                  title: 'Nassau Betting: The Format Your Group Needs',
+                  description: 'Front 9, back 9, total — why every golf trip runs a nassau.',
+                  category: 'Betting Formats',
+                  readTime: '5 min read',
+                },
+                {
+                  slug: 'pinehurst-golf-trip-guide',
+                  title: 'Pinehurst Golf Trip Guide',
+                  description: 'Everything your group needs to know before heading to the Sandhills.',
+                  category: 'Destinations',
+                  readTime: '8 min read',
+                },
+              ].map((post) => (
+                <Link key={post.slug} href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
+                  <article
+                    style={{
+                      background: '#fff',
+                      border: '0.5px solid rgba(28,26,23,0.10)',
+                      borderRadius: '8px',
+                      padding: '20px',
+                      height: '100%',
+                      boxSizing: 'border-box',
+                      transition: 'box-shadow 0.2s',
+                    }}
+                    className="hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                      <span style={{ fontSize: '10px', letterSpacing: '0.10em', textTransform: 'uppercase', color: '#70798C', fontWeight: 600 }}>
+                        {post.category}
+                      </span>
+                      <span style={{ fontSize: '10px', color: '#DAD2BC' }}>·</span>
+                      <span style={{ fontSize: '10px', color: '#A09890' }}>{post.readTime}</span>
+                    </div>
+                    <h3 style={{ fontSize: '15px', fontWeight: 500, color: '#1C1A17', lineHeight: 1.35, marginBottom: '8px' }}>
+                      {post.title}
+                    </h3>
+                    <p style={{ fontSize: '12px', color: '#6B6460', lineHeight: 1.6 }}>
+                      {post.description}
+                    </p>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* BANNER CTA */}
         <div className="sl-cta-banner">
           <div className="sl-cta-banner-img" />
