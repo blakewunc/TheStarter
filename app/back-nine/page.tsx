@@ -75,7 +75,7 @@ export default function StarterLanding() {
       {/* ── Feature Tiles ─────────────────────────────────────────── */}
       <section className="border-t border-[#DAD2BC]">
         <div className="mx-auto max-w-5xl px-6 py-20">
-          <div className="grid gap-0 divide-y divide-[#DAD2BC] sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4 lg:divide-y-0">
+          <div className="grid gap-0 divide-y divide-[#DAD2BC] sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3 lg:divide-y-0">
             {[
               {
                 num: '01',
@@ -97,8 +97,20 @@ export default function StarterLanding() {
               },
               {
                 num: '04',
+                title: 'Foursomes & group maker',
+                body: 'Tell it your group size and number of rounds. It builds the pairings so everyone plays with everyone.',
+                chip: 'Rotations done.',
+              },
+              {
+                num: '05',
+                title: 'Payout calculation',
+                body: 'Nassau, skins, wolf — The Starter tracks every bet and calculates the final payout at the 19th. No math.',
+                chip: 'Settled at the turn.',
+              },
+              {
+                num: '06',
                 title: 'Nassau & skins',
-                body: 'Set stakes, track bets, calculate payouts at the 19th hole. Handicap-adjusted.',
+                body: 'Set stakes before the first tee. Bets track automatically as scores come in. Handicap-adjusted.',
                 chip: 'Handled at the turn.',
               },
             ].map((tile) => (
@@ -120,6 +132,43 @@ export default function StarterLanding() {
                 </span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── AI section ────────────────────────────────────────────── */}
+      <section className="border-t border-[#DAD2BC] bg-white">
+        <div className="mx-auto max-w-5xl px-6 py-20">
+          <div className="grid items-center gap-16 lg:grid-cols-2">
+            <div>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#70798C]">
+                AI trip builder
+              </p>
+              <h2 className="font-['Playfair_Display',Georgia,serif] mb-6 text-4xl font-bold leading-tight text-[#092D3D] sm:text-5xl">
+                Tell us where. We&apos;ll build the trip.
+              </h2>
+              <p className="text-base leading-relaxed text-[#5A7A6B]">
+                Describe your trip and The Starter drafts the itinerary, suggests foursomes, and sets up cost splits — ready to share in minutes. You make the calls. We do the logistics.
+              </p>
+            </div>
+            <div className="space-y-3">
+              {[
+                '"8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head."',
+                '"Scottsdale long weekend. TPC + one more course. Skins game, $20 per hole. Need lodging options near Old Town."',
+              ].map((prompt) => (
+                <div
+                  key={prompt}
+                  className="rounded-[5px] border border-[#DAD2BC] bg-[#F5F1ED] px-5 py-4"
+                >
+                  <p className="font-mono text-xs leading-relaxed text-[#70798C]">
+                    {prompt}
+                  </p>
+                </div>
+              ))}
+              <p className="pt-1 text-xs text-[#A99985]">
+                The Starter turns this into a full trip draft. You adjust, share, and go.
+              </p>
+            </div>
           </div>
         </div>
       </section>

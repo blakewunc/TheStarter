@@ -104,8 +104,21 @@ export default async function BlogPostPage(
           </ReactMarkdown>
         </div>
 
+        {/* Internal link — golf trip planner */}
+        <div style={{ margin: '48px 0 0', background: '#F0F4ED', border: '0.5px solid rgba(59,109,17,0.15)', borderRadius: '6px', padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
+          <p style={{ fontSize: '13px', color: '#3C3835', lineHeight: 1.5 }}>
+            Ready to <Link href="/golf-trip-planner" style={{ color: '#3B6D11', textDecoration: 'underline', textUnderlineOffset: '3px' }}>plan a golf trip</Link>? The Starter handles itinerary, costs, foursomes, and payouts — all in one link.
+          </p>
+          <Link
+            href="/golf-trip-planner"
+            style={{ flexShrink: 0, fontSize: '11px', fontWeight: 600, color: '#3B6D11', letterSpacing: '0.06em', textDecoration: 'none', textTransform: 'uppercase' }}
+          >
+            Golf trip planner →
+          </Link>
+        </div>
+
         {/* CTA */}
-        <div style={{ margin: '56px 0 0', background: '#1C1A17', borderRadius: '8px', padding: '32px', textAlign: 'center' }}>
+        <div style={{ margin: '32px 0 0', background: '#1C1A17', borderRadius: '8px', padding: '32px', textAlign: 'center' }}>
           <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", marginBottom: '8px' }}>
             Ready to plan your trip?
           </p>
