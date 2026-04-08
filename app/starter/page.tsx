@@ -83,7 +83,22 @@ export default function StarterLanding() {
       { threshold: 0.12, rootMargin: '0px 0px -48px 0px' }
     )
     revealEls.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+
+    // Feature panels — lower threshold so large panels trigger earlier
+    const panelObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible')
+            panelObserver.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.25 }
+    )
+    document.querySelectorAll('.sl-fp-reveal').forEach((el) => panelObserver.observe(el))
+
+    return () => { observer.disconnect(); panelObserver.disconnect() }
   }, [])
 
   return (
@@ -512,42 +527,58 @@ export default function StarterLanding() {
 
         /* FEATURES */
         .sl-features { background: #EDECE6; }
-        .sl-features-inner { max-width: 1280px; margin: 0 auto; }
-        .sl-features-header { margin-bottom: 72px; }
-        .sl-features-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 16px;
+        .sl-section.sl-features { padding: 100px 0 0; }
+        .sl-features-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+        .sl-features-header { padding-bottom: 72px; }
+        .sl-fp-hairline { border-top: 0.5px solid var(--border); }
+        .sl-fp {
+          min-height: 60vh;
+          border-bottom: 0.5px solid var(--border);
+          display: flex;
+          align-items: center;
         }
-        .sl-feature {
-          background: var(--cream);
-          padding: 48px 36px;
-          border: 1px solid var(--border);
-          transition: background 0.3s;
+        .sl-fp-inner {
+          max-width: 1280px;
+          margin: 0 auto;
+          width: 100%;
+          padding: 80px 48px;
+          display: flex;
+          gap: 36px;
+          align-items: flex-start;
         }
-        .sl-feature:hover { background: #F9F6F2; }
-        .sl-feature-num {
-          font-family: monospace;
-          font-size: 12px;
-          color: var(--accent);
-          letter-spacing: 0.08em;
-          margin-bottom: 28px;
-          display: block;
+        .sl-fp-bar {
+          width: 2px;
+          align-self: stretch;
+          background: #70798C;
+          flex-shrink: 0;
+          transform: scaleY(0);
+          transform-origin: top;
+          transition: transform 0.4s ease;
         }
-        .sl-feature-name {
+        .sl-fp-reveal.visible .sl-fp-bar { transform: scaleY(1); }
+        .sl-fp-content { flex: 1; }
+        .sl-fp-title {
           font-family: var(--serif);
-          font-size: 21px;
+          font-size: clamp(40px, 7vw, 64px);
           font-weight: 400;
+          line-height: 1.05;
           color: var(--ink);
-          margin-bottom: 12px;
-          line-height: 1.2;
+          margin-bottom: 20px;
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .sl-feature-desc {
-          font-size: 14px;
-          font-weight: 300;
+        .sl-fp-desc {
+          font-size: 15px;
+          line-height: 1.75;
           color: var(--muted);
-          line-height: 1.7;
+          max-width: 540px;
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.5s ease 80ms, transform 0.5s ease 80ms;
         }
+        .sl-fp-reveal.visible .sl-fp-title { opacity: 1; transform: translateY(0); }
+        .sl-fp-reveal.visible .sl-fp-desc { opacity: 1; transform: translateY(0); }
 
         /* TESTIMONIALS */
         .sl-testimonials { max-width: 1280px; margin: 0 auto; }
@@ -701,7 +732,7 @@ export default function StarterLanding() {
           .sl-steps { grid-template-columns: 1fr; gap: 2px; }
           .sl-trips-grid { grid-template-columns: 1fr; }
           .sl-trip-card:first-child { grid-column: span 1; }
-          .sl-features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .sl-fp-inner { padding: 60px 32px; }
           .sl-reviews-grid { grid-template-columns: 1fr; }
           .sl-cta-banner-img { background-attachment: scroll; }
           .sl-footer-top { flex-direction: column; gap: 36px; }
@@ -709,7 +740,9 @@ export default function StarterLanding() {
           .sl-how-header-right { text-align: left; }
         }
         @media (max-width: 768px) {
-          .sl-features-grid { grid-template-columns: 1fr; }
+          .sl-fp { min-height: unset; }
+          .sl-fp-inner { padding: 48px 24px; }
+          .sl-features-inner { padding: 0 24px; }
           .sl-hero-actions { flex-direction: column; }
           .sl-hero-headline { font-size: 42px; }
           .sl-trips-header { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -973,34 +1006,25 @@ export default function StarterLanding() {
                 Everything a golf trip<br />needs. <em>Nothing it doesn&apos;t.</em>
               </h2>
             </div>
-            <div className="sl-features-grid">
-
-              <div className="sl-feature sl-reveal">
-                <span className="sl-feature-num">01</span>
-                <h3 className="sl-feature-name">AI Trip Planner</h3>
-                <p className="sl-feature-desc">Tell us where you&apos;re going. The Starter builds the itinerary, suggests courses, and structures the whole trip — in seconds.</p>
-              </div>
-
-              <div className="sl-feature sl-reveal sl-reveal-d1">
-                <span className="sl-feature-num">02</span>
-                <h3 className="sl-feature-name">Cost Splitting</h3>
-                <p className="sl-feature-desc">Green fees, lodging, caddies, that late-night whisky — log it once. Everyone sees their share. No more Venmo math at checkout.</p>
-              </div>
-
-              <div className="sl-feature sl-reveal sl-reveal-d2">
-                <span className="sl-feature-num">03</span>
-                <h3 className="sl-feature-name">Live Scoring</h3>
-                <p className="sl-feature-desc">Real-time scores with handicap adjustments baked in. The leaderboard updates the moment someone taps a putt.</p>
-              </div>
-
-              <div className="sl-feature sl-reveal sl-reveal-d3">
-                <span className="sl-feature-num">04</span>
-                <h3 className="sl-feature-name">Betting &amp; Payouts</h3>
-                <p className="sl-feature-desc">Nassau, skins, wolf — set the stakes, track carry overs, collect at the 19th. Calculated automatically. No disputes at the bar.</p>
-              </div>
-
-            </div>
           </div>
+          <div className="sl-fp-hairline" />
+
+          {[
+            { title: 'AI Trip Planner', desc: 'Tell us where you\'re going. The Starter builds the itinerary, suggests courses, and structures the whole trip — in seconds.' },
+            { title: 'Cost Splitting', desc: 'Green fees, lodging, caddies, that late-night whisky — log it once. Everyone sees their share. No more Venmo math at checkout.' },
+            { title: 'Live Scoring', desc: 'Real-time scores with handicap adjustments baked in. The leaderboard updates the moment someone taps a putt.' },
+            { title: 'Betting & Payouts', desc: 'Nassau, skins, wolf — set the stakes, track carry overs, collect at the 19th. Calculated automatically. No disputes at the bar.' },
+          ].map((panel) => (
+            <div key={panel.title} className="sl-fp sl-fp-reveal">
+              <div className="sl-fp-inner">
+                <div className="sl-fp-bar" aria-hidden="true" />
+                <div className="sl-fp-content">
+                  <h3 className="sl-fp-title">{panel.title}</h3>
+                  <p className="sl-fp-desc">{panel.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </section>
 
         {/* TESTIMONIALS */}
