@@ -1,5 +1,7 @@
 'use client'
 
+import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
+
 import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -87,6 +89,18 @@ export function BudgetTab({ tripId, trip, currentUserId, isOrganizer }: BudgetTa
         onOpenChange={setAddDialogOpen}
         onSuccess={refetch}
       />
+
+      {trip.start_date && (
+        <PuttingCountdown
+          tripStart={trip.start_date}
+          tripLabel={[
+            trip.end_date
+              ? `${new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(trip.end_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
+              : new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+            trip.destination,
+          ].filter(Boolean).join(' · ')}
+        />
+      )}
     </div>
   )
 }

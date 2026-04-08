@@ -1,35 +1,44 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@plugin "@tailwindcss/typography";
 
 :root {
-  /* A&K luxury color palette */
+  /* The Starter design tokens */
+  --cream: #F5F1ED;
+  --ink: #1C1A17;
+  --muted: #6B6460;
+  --subtle: #A09890;
+  --accent: #70798C;
+  --surface: #EDECE6;
+  --border: rgba(28, 26, 23, 0.10);
+  --border-md: rgba(28, 26, 23, 0.18);
+  --green: #3B6D11;
+  --green-bg: #EAF3DE;
+
+  /* Font families */
+  --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --sans: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
+
+  /* Legacy aliases (keep for backward compat with existing components) */
   --background: #F5F1ED;
   --background-card: #ffffff;
-  --foreground: #252323;
-  --muted: #A99985;
-  --border: #DAD2BC;
-  --border-input: #CEC5B0;
-  --accent: #70798C;
+  --foreground: #1C1A17;
+  --border-input: rgba(28, 26, 23, 0.18);
   --accent-hover: #5A6270;
   --accent-active: #4A505C;
-
-  /* Secondary palette */
-  --beige: #DAD2BC;
-  --taupe: #A99985;
-
-  /* Semantic colors - muted luxury versions */
-  --success: #4A7C59;
+  --beige: #EDECE6;
+  --taupe: #A09890;
+  --success: #3B6D11;
   --warning: #B8956A;
   --error: #8B4444;
   --info: #5A6F7F;
 
-  /* Shadows - extremely subtle luxury */
+  /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.1);
 
-  /* Radius - subtle 5px A&K style */
+  /* Radius */
   --radius-sm: 3px;
   --radius: 5px;
   --radius-lg: 8px;
@@ -37,36 +46,45 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--cream);
+  --color-foreground: var(--ink);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-dm-sans), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-cormorant);
 
   /* Custom shadows */
   --shadow-card: var(--shadow);
   --shadow-card-hover: var(--shadow-md);
 }
 
-/* The Back Nine — golf brand overrides */
+/* The Starter / Back Nine — dark ink brand overrides */
 [data-brand="backNine"] {
-  --background: #D8EADF;
+  --cream: #F5F1ED;
+  --ink: #1C1A17;
+  --muted: #6B6460;
+  --subtle: #A09890;
+  --accent: #70798C;
+  --surface: #EDECE6;
+  --border: rgba(28, 26, 23, 0.10);
+  --border-md: rgba(28, 26, 23, 0.18);
+  --green: #3B6D11;
+  --green-bg: #EAF3DE;
+
+  /* Legacy aliases */
+  --background: #F5F1ED;
   --background-card: #ffffff;
-  --foreground: #092D3D;
-  --muted: #5A7A6B;
-  --border: #B8D4C4;
-  --border-input: #A3C4B0;
-  --accent: #074B63;
-  --accent-hover: #0B442D;
-  --accent-active: #092D3D;
-  --beige: #B8D4C4;
-  --taupe: #5A7A6B;
-  --success: #12733C;
-  --warning: #8ECC7A;
+  --foreground: #1C1A17;
+  --border-input: rgba(28, 26, 23, 0.18);
+  --accent-hover: #5A6270;
+  --beige: #EDECE6;
+  --taupe: #A09890;
+  --success: #3B6D11;
+  --warning: #B8956A;
   --error: #8B4444;
-  --info: #074B63;
+  --info: #70798C;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -78,9 +96,9 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -5,6 +5,7 @@ import { Leaderboard } from '@/components/golf/Leaderboard'
 import { EquipmentCoordination } from '@/components/golf/EquipmentCoordination'
 import { GroupMaker } from '@/components/golf/GroupMaker'
 import { CourseRatings } from '@/components/golf/CourseRatings'
+import { GolfBets } from '@/components/golf/GolfBets'
 import { AdSlot } from '@/components/ads/AdSlot'
 
 interface GolfTabProps {
@@ -21,6 +22,9 @@ export function GolfTab({ tripId }: GolfTabProps) {
       <div className="space-y-8">
         {/* Tee Times */}
         <TeeTimeList tripId={tripId} />
+
+        {/* Golf Bets */}
+        <GolfBets tripId={tripId} />
 
         {/* Scores + Equipment side by side */}
         <div className="grid gap-6 sm:grid-cols-2">

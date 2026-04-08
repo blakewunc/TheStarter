@@ -10,6 +10,9 @@ import { format } from 'date-fns'
 
 interface TeeTimeListProps {
   tripId: string
+  /** Show only Enter Scores buttons — no schedule management */
+  scoreOnly?: boolean
+  onScoresSaved?: (courseName: string) => void
 }
 
 interface Member {
@@ -17,7 +20,7 @@ interface Member {
   display_name: string
 }
 
-export function TeeTimeList({ tripId }: TeeTimeListProps) {
+export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTimeListProps) {
   const [showAddDialog, setShowAddDialog] = useState(false)
   const [scoreTeeTime, setScoreTeeTime] = useState<{ id: string; course_name: string; par: number } | null>(null)
   const [members, setMembers] = useState<Member[]>([])
@@ -66,73 +69,46 @@ export function TeeTimeList({ tripId }: TeeTimeListProps) {
 
   return (
     <div className="space-y-4">
-      {/* Section header */}
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-[#252323]">Tee Times</h3>
-        <Button size="sm" onClick={() => setShowAddDialog(true)}>
-          Schedule Round
-        </Button>
-      </div>
+      {/* Section header — hidden in scoreOnly mode */}
+      {!scoreOnly && (
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold text-[#1C1A17]">Tee Times</h3>
+          <Button size="sm" onClick={() => setShowAddDialog(true)}>
+            Schedule Round
+          </Button>
+        </div>
+      )}
 
       {teeTimes.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-[5px] border border-dashed border-[#DAD2BC] bg-white py-12 text-center">
-          <svg className="mb-3 h-10 w-10 text-[#DAD2BC]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M12 2v14M12 16c0 0-4 1.5-4 4h8c0-2.5-4-4-4-4z" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M12 2l6 4-6 4V2z" fill="currentColor" stroke="none" />
-          </svg>
-          <p className="text-sm font-medium text-[#252323]">No rounds scheduled yet</p>
-          <p className="mt-1 text-xs text-[#A99985]">Add your first tee time to get started</p>
+        <div className="flex flex-col items-center justify-center rounded-[5px] border border-dashed border-[#DAD2BC] bg-white/10 py-8 text-center">
+          <p className="text-sm font-medium" style={{ color: scoreOnly ? 'rgba(245,241,237,0.60)' : '#1C1A17' }}>
+            No rounds scheduled yet
+          </p>
+          {!scoreOnly && (
+            <p className="mt-1 text-xs text-[#A09890]">Add your first tee time to get started</p>
+          )}
         </div>
       ) : (
         <div className="space-y-3">
           {teeTimes.map((teeTime: any) => (
             <div
               key={teeTime.id}
-              className="rounded-[5px] border border-[#DAD2BC] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.06)] space-y-2"
+              style={scoreOnly
+                ? { borderRadius: '5px', border: '0.5px solid rgba(245,241,237,0.15)', background: 'rgba(245,241,237,0.08)', padding: '12px 14px' }
+                : { borderRadius: '5px', border: '0.5px solid rgba(28,26,23,0.12)', background: '#fff', padding: '14px', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }
+              }
             >
-              <div className="flex items-start justify-between">
+              {/* Course name + date — always shown */}
+              <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-semibold text-[#252323]">{teeTime.course_name}</h4>
-                  <div className="flex items-center gap-2 mt-0.5">
-                    {teeTime.course_location && (
-                      <p className="text-sm text-[#A99985]">{teeTime.course_location}</p>
-                    )}
-                    <span className="rounded-full bg-[#4A7C59]/10 px-2 py-0.5 text-xs font-medium text-[#4A7C59]">
-                      Par {teeTime.par || 72}
-                    </span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-[#252323]">
-                    {format(new Date(teeTime.tee_time), 'MMM d, yyyy')}
+                  <p className="text-sm font-semibold" style={{ color: scoreOnly ? '#F5F1ED' : '#1C1A17' }}>
+                    {teeTime.course_name}
                   </p>
-                  <p className="text-sm text-[#A99985]">
-                    {format(new Date(teeTime.tee_time), 'h:mm a')}
+                  <p className="text-xs mt-0.5" style={{ color: scoreOnly ? 'rgba(245,241,237,0.50)' : '#A09890' }}>
+                    {format(new Date(teeTime.tee_time), 'MMM d · h:mm a')} · Par {teeTime.par || 72}
                   </p>
                 </div>
-              </div>
-
-              {teeTime.notes && (
-                <p className="text-sm text-[#A99985]">{teeTime.notes}</p>
-              )}
-
-              <div className="flex items-center justify-between border-t border-[#DAD2BC] pt-2">
-                <div className="flex items-center gap-1.5">
-                  {Array.from({ length: teeTime.num_players || 4 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-2 w-2 rounded-full ${
-                        i < (teeTime.players?.length || 0) ? 'bg-[#4A7C59]' : 'bg-[#DAD2BC]'
-                      }`}
-                    />
-                  ))}
-                  <span className="ml-1 text-xs text-[#A99985]">
-                    {teeTime.players?.length || 0}/{teeTime.num_players} players
-                  </span>
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
+                <button
                   onClick={() =>
                     setScoreTeeTime({
                       id: teeTime.id,
@@ -140,21 +116,55 @@ export function TeeTimeList({ tripId }: TeeTimeListProps) {
                       par: teeTime.par || 72,
                     })
                   }
-                  className="border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59]/5"
+                  style={{
+                    background: scoreOnly ? 'rgba(245,241,237,0.15)' : 'transparent',
+                    border: scoreOnly ? 'none' : '0.5px solid #3B6D11',
+                    color: scoreOnly ? '#F5F1ED' : '#3B6D11',
+                    borderRadius: '5px',
+                    padding: '6px 12px',
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                  }}
                 >
                   Enter Scores
-                </Button>
+                </button>
               </div>
+
+              {/* Player dots + meta — only in full mode */}
+              {!scoreOnly && (
+                <>
+                  {teeTime.notes && (
+                    <p className="text-xs text-[#A09890] mt-1">{teeTime.notes}</p>
+                  )}
+                  <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-[rgba(28,26,23,0.07)]">
+                    {Array.from({ length: teeTime.num_players || 4 }).map((_: unknown, i: number) => (
+                      <div
+                        key={i}
+                        className={`h-2 w-2 rounded-full ${
+                          i < (teeTime.players?.length || 0) ? 'bg-[#3B6D11]' : 'bg-[#DAD2BC]'
+                        }`}
+                      />
+                    ))}
+                    <span className="ml-1 text-xs text-[#A09890]">
+                      {teeTime.players?.length || 0}/{teeTime.num_players} players
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>
       )}
 
-      <AddTeeTimeDialog
-        tripId={tripId}
-        open={showAddDialog}
-        onOpenChange={setShowAddDialog}
-      />
+      {!scoreOnly && (
+        <AddTeeTimeDialog
+          tripId={tripId}
+          open={showAddDialog}
+          onOpenChange={setShowAddDialog}
+        />
+      )}
 
       <EnterScoresDialog
         tripId={tripId}
@@ -162,6 +172,7 @@ export function TeeTimeList({ tripId }: TeeTimeListProps) {
         members={members}
         open={!!scoreTeeTime}
         onOpenChange={(open) => { if (!open) setScoreTeeTime(null) }}
+        onScoresSaved={onScoresSaved}
       />
     </div>
   )

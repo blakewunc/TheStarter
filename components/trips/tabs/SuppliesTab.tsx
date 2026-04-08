@@ -1,5 +1,7 @@
 'use client'
 
+import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
+
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { AddSupplyDialog } from '@/components/supplies/AddSupplyDialog'
 import { SupplyList } from '@/components/supplies/SupplyList'
@@ -136,6 +138,18 @@ export function SuppliesTab({ tripId, trip, currentUserId }: SuppliesTabProps) {
         onToggleStatus={handleToggleStatus}
         onDelete={handleDelete}
       />
+
+      {trip.start_date && (
+        <PuttingCountdown
+          tripStart={trip.start_date}
+          tripLabel={[
+            trip.end_date
+              ? `${new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(trip.end_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
+              : new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+            trip.destination,
+          ].filter(Boolean).join(' · ')}
+        />
+      )}
     </div>
   )
 }

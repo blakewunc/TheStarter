@@ -121,8 +121,8 @@ export default function NewTripPage() {
     <div className="min-h-screen bg-[#F5F1ED] p-6">
       <div className="mx-auto max-w-2xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight text-[#252323]">Create a New Trip</h1>
-          <p className="mt-1 text-[#A99985]">Start planning your next group adventure</p>
+          <h1 className="text-3xl font-bold tracking-tight text-[#1C1A17]">Create a New Trip</h1>
+          <p className="mt-1 text-[#A09890]">Start planning your next group adventure</p>
         </div>
 
         {/* Template Picker */}
@@ -144,8 +144,8 @@ export default function NewTripPage() {
                   }`}
                 >
                   <span className="text-2xl">{template.icon}</span>
-                  <p className="mt-2 text-sm font-semibold text-[#252323]">{template.name}</p>
-                  <p className="mt-0.5 text-xs text-[#A99985]">{template.description}</p>
+                  <p className="mt-2 text-sm font-semibold text-[#1C1A17]">{template.name}</p>
+                  <p className="mt-0.5 text-xs text-[#A09890]">{template.description}</p>
                 </button>
               ))}
             </div>
@@ -196,7 +196,7 @@ export default function NewTripPage() {
                     value={formData.trip_type}
                     onChange={(e) => setFormData({ ...formData, trip_type: e.target.value })}
                     disabled={loading}
-                    className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] transition-all focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED]"
+                    className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] transition-all focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED]"
                   >
                     <option value="general">General Trip</option>
                     <option value="golf">⛳ Golf Trip</option>
@@ -204,7 +204,7 @@ export default function NewTripPage() {
                     <option value="bachelor_party">🎉 Bachelor Party</option>
                     <option value="bachelorette_party">💃 Bachelorette Party</option>
                   </select>
-                  <p className="text-xs text-[#A99985]">
+                  <p className="text-xs text-[#A09890]">
                     Golf and ski trips unlock sport-specific features
                   </p>
                 </div>
@@ -249,7 +249,7 @@ export default function NewTripPage() {
                     required
                     disabled={loading}
                   />
-                  <p className="text-xs text-[#A99985]">Used to calculate cost per person</p>
+                  <p className="text-xs text-[#A09890]">Used to calculate cost per person</p>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="budget_total">Total Budget (optional)</Label>

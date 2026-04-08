@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { BrandProvider } from "@/lib/BrandProvider";
 import { getBrandFromHeader } from "@/lib/brand";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,18 +20,31 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  style: ["normal", "italic"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+});
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const brandId = headersList.get("x-brand");
   const isBackNine = brandId === "backNine";
 
   const title = isBackNine
-    ? "The Back Nine - Plan Your Golf Trip"
+    ? "The Starter - Plan Your Golf Trip"
     : "GroupTrip - Plan Group Adventures Together";
   const description = isBackNine
     ? "Plan golf trips with your crew. Tee times, scorecards, expense splitting, and itineraries — all in one place."
     : "Collaborative trip planning for bachelor parties, bachelorette parties, golf trips, and ski trips. Share itineraries, split costs, coordinate equipment, and keep everyone on the same page.";
-  const siteName = isBackNine ? "The Back Nine" : "GroupTrip";
+  const siteName = isBackNine ? "The Starter" : "GroupTrip";
 
   return {
     title: {
@@ -79,7 +93,7 @@ export default async function RootLayout({
         <meta name="google-adsense-account" content="ca-pub-1500136289047835" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${dmSans.variable} antialiased`}
       >
         <BrandProvider brand={brand}>
           <Navbar />
@@ -88,6 +102,7 @@ export default async function RootLayout({
           <Toaster />
         </BrandProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
