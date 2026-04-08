@@ -121,7 +121,7 @@ export async function generateMetadata(
   const guestCount = trip.expected_guests || trip.member_count || 1
   const perPerson = guestCount > 0 ? Math.round(totalBudget / guestCount) : 0
   const isGolf = trip.trip_type === 'golf'
-  const appName = isGolf ? 'The Back Nine' : 'GroupTrip'
+  const appName = isGolf ? 'The Starter' : 'GroupTrip'
 
   const dateRange = formatDateRange(trip.start_date, trip.end_date)
   const parts = [
@@ -163,7 +163,7 @@ export default async function ProposalPage(
   const guestCount = trip.expected_guests || trip.member_count || 1
   const perPerson = guestCount > 0 ? Math.round(totalBudget / guestCount) : 0
   const isGolf = trip.trip_type === 'golf'
-  const brandName = isGolf ? 'The Back Nine' : 'GroupTrip'
+  const brandName = isGolf ? 'The Starter' : 'GroupTrip'
   const dateRange = formatDateRange(trip.start_date, trip.end_date)
 
   const itineraryByDate = itinerary.reduce((acc, item) => {
@@ -326,7 +326,7 @@ export default async function ProposalPage(
       {/* Footer */}
       <div className="py-8 text-center">
         <a
-          href={isGolf ? `https://thebacknine.app?utm_source=proposal&utm_medium=referral&utm_campaign=trip_share` : `https://grouptrip-mu.vercel.app?utm_source=proposal&utm_medium=referral&utm_campaign=trip_share`}
+          href={isGolf ? `https://thestarter.app?utm_source=proposal&utm_medium=referral&utm_campaign=trip_share` : `https://grouptrip-mu.vercel.app?utm_source=proposal&utm_medium=referral&utm_campaign=trip_share`}
           className="text-xs text-[#A99985] underline-offset-2 hover:underline"
         >
           Powered by {brandName}

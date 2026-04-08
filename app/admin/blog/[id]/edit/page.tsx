@@ -1,36 +1,58 @@
-import { createClient } from '@/lib/supabase/server'
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { BlogPostForm } from '@/components/admin/BlogPostForm'
+'use client'
 
-export default async function EditBlogPostPage({
-  params,
-}: {
-  params: Promise<{ id: string }>
-}) {
-  const { id } = await params
-  const supabase = await createClient()
+import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
+import PostEditor from '../../PostEditor'
 
-  const { data: post, error } = await supabase
-    .from('blog_posts')
-    .select('*')
-    .eq('id', id)
-    .single()
+export default function EditPostPage() {
+  const { id } = useParams<{ id: string }>()
+  const [post, setPost] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+  const [notFound, setNotFound] = useState(false)
 
-  if (error || !post) notFound()
+  useEffect(() => {
+    fetch(`/api/admin/blog/${id}`)
+      .then((r) => {
+        if (!r.ok) { setNotFound(true); setLoading(false); return null }
+        return r.json()
+      })
+      .then((data) => {
+        if (data) { setPost(data.post); setLoading(false) }
+      })
+  }, [id])
+
+  if (loading) {
+    return (
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px' }}>
+        <p style={{ color: '#A09890', fontSize: '13px' }}>Loading…</p>
+      </div>
+    )
+  }
+
+  if (notFound || !post) {
+    return (
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px' }}>
+        <p style={{ color: '#8B4444', fontSize: '13px' }}>Post not found.</p>
+      </div>
+    )
+  }
 
   return (
-    <div>
-      <div className="mb-8">
-        <Link
-          href="/admin/blog"
-          className="mb-2 inline-block text-xs text-[#A99985] hover:text-[#252323]"
-        >
-          ← All posts
-        </Link>
-        <h1 className="text-2xl font-bold text-[#252323]">Edit post</h1>
-      </div>
-      <BlogPostForm initial={{ ...post, id }} />
-    </div>
+    <PostEditor
+      mode="edit"
+      initialData={{
+        id: post.id,
+        title: post.title || '',
+        slug: post.slug || '',
+        category: post.category || '',
+        excerpt: post.excerpt || '',
+        content: post.content || '',
+        meta_title: post.meta_title || '',
+        meta_description: post.meta_description || '',
+        focus_keyword: post.focus_keyword || '',
+        featured_image_url: post.featured_image_url || '',
+        published: post.published ?? false,
+      }}
+    />
   )
 }

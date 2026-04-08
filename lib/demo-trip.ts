@@ -1,0 +1,65 @@
+export const DEMO_TRIP = {
+  id: 'demo',
+  title: 'Pinehurst Boys Trip',
+  destination: 'Pinehurst, NC',
+  dates: 'May 15–18, 2025',
+  start_date: '2025-05-15',
+  end_date: '2025-05-18',
+  players: 8,
+  status: 'planning',
+  trip_type: 'golf',
+  rounds: [
+    {
+      id: 'r1',
+      course: 'Pinehurst No. 2',
+      date: 'May 16, 2025',
+      teeTime: '8:12 AM',
+      par: 70,
+      players: ['Marcus', 'Tyler', 'Jordan', 'Chris', 'Dave', 'Rob', 'Pete', 'Sam'],
+    },
+    {
+      id: 'r2',
+      course: 'Pinehurst No. 4',
+      date: 'May 17, 2025',
+      teeTime: '9:00 AM',
+      par: 72,
+      players: ['Marcus', 'Tyler', 'Jordan', 'Chris', 'Dave', 'Rob', 'Pete', 'Sam'],
+    },
+  ],
+  itinerary: [
+    {
+      day: 'Thu May 15',
+      events: ['Arrive Pinehurst', 'Check in to The Carolina Hotel', 'Dinner: 1895 Grille'],
+    },
+    {
+      day: 'Fri May 16',
+      events: ['Round 1: Pinehurst No. 2 — 8:12 AM', 'Lunch at The Deuce', 'Evening: cards + drinks'],
+    },
+    {
+      day: 'Sat May 17',
+      events: ['Round 2: Pinehurst No. 4 — 9:00 AM', 'Group dinner: Duddingsworth & Whitby'],
+    },
+    {
+      day: 'Sun May 18',
+      events: ['Breakfast', 'Depart'],
+    },
+  ],
+  expenses: [
+    { item: 'Green fees — No. 2', total: 2800, perPerson: 350 },
+    { item: 'Green fees — No. 4', total: 1920, perPerson: 240 },
+    { item: 'Lodging (2 nights)', total: 3200, perPerson: 400 },
+    { item: 'Group dinners', total: 960, perPerson: 120 },
+  ],
+  totalPerPerson: 1110,
+  bettingFormat: 'Nassau — $5 per side',
+  scores: [
+    { player: 'Marcus', round1: 82, round2: 80 },
+    { player: 'Tyler', round1: 89, round2: 91 },
+    { player: 'Jordan', round1: 75, round2: 77 },
+    { player: 'Chris', round1: 87, round2: 85 },
+    { player: 'Dave', round1: 84, round2: 83 },
+    { player: 'Rob', round1: 92, round2: 90 },
+    { player: 'Pete', round1: 79, round2: 78 },
+    { player: 'Sam', round1: 88, round2: 86 },
+  ],
+}

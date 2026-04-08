@@ -1,5 +1,7 @@
 'use client'
 
+import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
+
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -53,7 +55,7 @@ const transportTypeLabels: Record<TransportType, string> = {
   other: '🚌 Other',
 }
 
-export function AccommodationTab({ tripId, currentUserId, isOrganizer }: AccommodationTabProps) {
+export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: AccommodationTabProps) {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [accommodation, setAccommodation] = useState<any>(null)
@@ -698,6 +700,18 @@ export function AccommodationTab({ tripId, currentUserId, isOrganizer }: Accommo
           </Card>
         </div>
       </div>
+
+      {trip.start_date && (
+        <PuttingCountdown
+          tripStart={trip.start_date}
+          tripLabel={[
+            trip.end_date
+              ? `${new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(trip.end_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
+              : new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+            trip.destination,
+          ].filter(Boolean).join(' · ')}
+        />
+      )}
     </div>
   )
 }

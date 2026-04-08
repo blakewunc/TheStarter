@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
 import { formatCurrency } from '@/lib/utils/currency'
 import { calculateEqualSplit, calculateTotalBudget } from '@/lib/utils/split-calculator'
 import type { BudgetCategory } from '@/lib/hooks/useBudget'
@@ -58,12 +57,6 @@ export function CategoryList({
     return 'Group Expense (not split)'
   }
 
-  const getSplitTypeBadgeColor = (splitType: string) => {
-    if (splitType === 'equal') return 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
-    if (splitType === 'custom') return 'bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400'
-    return 'bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400'
-  }
-
   const totalBudget = categories.length > 0 ? calculateTotalBudget(categories) : 0
 
   if (categories.length === 0) {
@@ -94,17 +87,17 @@ export function CategoryList({
   return (
     <div className="space-y-4">
       {/* Total Budget Summary */}
-      <div className="rounded-lg bg-gradient-to-br from-blue-50 to-purple-50 p-6 dark:from-blue-950/20 dark:to-purple-950/20">
+      <div className="rounded-[5px]" style={{ background: '#0d1f2d', padding: '24px' }}>
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Total Budget</p>
-            <p className="mt-1 text-3xl font-bold text-zinc-900 dark:text-zinc-50">
+            <p className="text-sm font-medium" style={{ color: '#8fa3b1' }}>Total Budget</p>
+            <p className="mt-1 text-3xl font-bold" style={{ color: '#F5F1ED' }}>
               {formatCurrency(totalBudget)}
             </p>
           </div>
           <div className="text-right">
-            <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Per Person</p>
-            <p className="mt-1 text-3xl font-bold text-zinc-900 dark:text-zinc-50">
+            <p className="text-sm font-medium" style={{ color: '#8fa3b1' }}>Per Person</p>
+            <p className="mt-1 text-3xl font-bold" style={{ color: '#F5F1ED' }}>
               {formatCurrency(totalBudget / Math.max(memberCount, 1))}
             </p>
           </div>
@@ -116,57 +109,63 @@ export function CategoryList({
         {categories.map((category) => (
           <div
             key={category.id}
-            className="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950"
+            className="rounded-[8px] border bg-white p-4" style={{ borderColor: '#e8e3dd' }}
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">
                 <div className="flex items-center space-x-2">
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-50">
+                  <h3 className="font-medium" style={{ color: '#0d1f2d' }}>
                     {category.name}
                   </h3>
                   <span
-                    className={`rounded-full px-2 py-0.5 text-xs font-medium ${getSplitTypeBadgeColor(
-                      category.split_type
-                    )}`}
+                    className="rounded"
+                    style={
+                      category.split_type === 'equal'
+                        ? { background: '#EAF3DE', color: '#3B6D11', fontSize: '11px', padding: '2px 8px', borderRadius: '4px' }
+                        : category.split_type === 'custom'
+                        ? { background: '#EAF0F8', color: '#2a4a7f', fontSize: '11px', padding: '2px 8px', borderRadius: '4px' }
+                        : { background: '#F5F1ED', color: '#70798C', fontSize: '11px', padding: '2px 8px', borderRadius: '4px' }
+                    }
                   >
                     {category.split_type}
                   </span>
                 </div>
-                <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                <p className="mt-1" style={{ fontSize: '13px', color: '#70798C' }}>
                   {getSplitTypeLabel(category)}
                 </p>
               </div>
 
               <div className="flex items-center space-x-3">
                 <div className="text-right">
-                  <p className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                  <p className="text-xl font-semibold" style={{ color: '#0d1f2d' }}>
                     {formatCurrency(category.estimated_cost)}
                   </p>
                 </div>
 
                 {isOrganizer && (
-                  <Button
-                    variant="outline"
-                    size="sm"
+                  <button
                     onClick={() => handleDelete(category.id)}
                     disabled={deletingId === category.id}
+                    style={{ fontSize: '13px', color: '#9a9590', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px' }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#e24b4a')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#9a9590')}
                   >
                     {deletingId === category.id ? 'Deleting...' : 'Delete'}
-                  </Button>
+                  </button>
                 )}
               </div>
             </div>
 
             {/* Custom splits detail */}
             {category.split_type === 'custom' && category.budget_splits.length > 0 && (
-              <div className="mt-3 space-y-1 border-t border-zinc-100 pt-3 dark:border-zinc-800">
+              <div className="mt-3 space-y-1 border-t pt-3" style={{ borderColor: '#e8e3dd' }}>
                 <p className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
                   Custom Split Breakdown:
                 </p>
                 {category.budget_splits.map((split) => (
                   <div
                     key={split.id}
-                    className="flex items-center justify-between text-sm text-zinc-600 dark:text-zinc-400"
+                    className="flex items-center justify-between text-sm" style={{ color: '#70798C' }}
                   >
                     <span>
                       {split.profiles.display_name || split.profiles.email}

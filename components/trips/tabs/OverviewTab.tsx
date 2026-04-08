@@ -5,6 +5,7 @@ import { toast } from 'sonner'
 import { BudgetSnapshotCard } from '@/components/trips/overview/BudgetSnapshotCard'
 import { TripMembersCard } from '@/components/trips/overview/TripMembersCard'
 import { AnnouncementsCard } from '@/components/trips/overview/AnnouncementsCard'
+import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
 import { useBudget } from '@/lib/hooks/useBudget'
 import { useItinerary } from '@/lib/hooks/useItinerary'
 
@@ -318,6 +319,19 @@ export function OverviewTab({ tripId, trip, currentUserId, isOrganizer, onSwitch
           )}
         </div>
       </div>
+
+      {/* Putting Countdown — only when trip has a start date */}
+      {trip.start_date && (
+        <PuttingCountdown
+          tripStart={trip.start_date}
+          tripLabel={[
+            trip.start_date && trip.end_date
+              ? `${new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(trip.end_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
+              : '',
+            trip.destination,
+          ].filter(Boolean).join(' · ')}
+        />
+      )}
     </div>
   )
 }
