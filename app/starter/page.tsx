@@ -857,6 +857,34 @@ export default function StarterLanding() {
           </div>
         </section>
 
+        {/* AI SECTION */}
+        <section className="sl-section" style={{ background: '#fff' }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '64px', alignItems: 'center' }}>
+            <div className="sl-reveal">
+              <p className="sl-eyebrow">AI Trip Builder</p>
+              <h2 className="sl-headline" style={{ maxWidth: '480px' }}>
+                Tell us where.<br /><em>We&apos;ll build the trip.</em>
+              </h2>
+              <p style={{ fontSize: '16px', color: 'var(--muted)', lineHeight: 1.7, marginTop: '20px', maxWidth: '420px' }}>
+                Describe your trip and The Starter drafts the itinerary, suggests foursomes, and sets up cost splits — ready to share in minutes. You make the calls. We do the logistics.
+              </p>
+            </div>
+            <div className="sl-reveal sl-reveal-d2" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {[
+                '"8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head."',
+                '"Scottsdale long weekend. TPC + one more course. Skins game, $20 per hole. Need lodging options near Old Town."',
+              ].map((prompt) => (
+                <div key={prompt} style={{ background: 'var(--cream)', border: '0.5px solid rgba(28,26,23,0.12)', borderRadius: '6px', padding: '16px 20px' }}>
+                  <p style={{ fontFamily: 'monospace', fontSize: '13px', color: 'var(--ink-muted)', lineHeight: 1.6 }}>{prompt}</p>
+                </div>
+              ))}
+              <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '4px', lineHeight: 1.6 }}>
+                The Starter turns this into a full trip draft. You adjust, share, and go.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* FEATURED TRIPS */}
         <section className="sl-section" id="trips">
           <div className="sl-trips">
@@ -978,6 +1006,22 @@ export default function StarterLanding() {
                 </div>
                 <h3 className="sl-feature-name">Nassau &amp; Skins</h3>
                 <p className="sl-feature-desc">Set the stakes before the first tee. Track holes, carry overs, and press bets in real time. Payouts calculated automatically — no disputes at the bar.</p>
+              </div>
+
+              <div className="sl-feature sl-reveal sl-reveal-d1">
+                <div className="sl-feature-icon">
+                  <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <h3 className="sl-feature-name">Foursomes &amp; Group Maker</h3>
+                <p className="sl-feature-desc">Input your group size and number of rounds. The Starter builds rotating pairings so everyone plays with everyone — no organizer math required.</p>
+              </div>
+
+              <div className="sl-feature sl-reveal sl-reveal-d2">
+                <div className="sl-feature-icon">
+                  <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                </div>
+                <h3 className="sl-feature-name">Payout Calculation</h3>
+                <p className="sl-feature-desc">Nassau, skins, wolf — every bet tracked, every side game settled. The Starter calculates who owes what at the 19th hole. No spreadsheet, no argument.</p>
               </div>
 
             </div>
