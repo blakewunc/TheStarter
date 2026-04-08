@@ -197,6 +197,34 @@ export default function GolfTripPlannerPage() {
             That's it. The rest of the planning — foursomes, format, dinner reservations — can happen in the two weeks before. Start with dates and an anchor tee time, and the rest follows.
           </p>
 
+          <hr />
+
+          <h2>Skip the Spreadsheet</h2>
+
+          <p>
+            Describe your trip and The Starter drafts the itinerary for you. Tell it the destination, group size, number of rounds, and budget — it handles the structure. You handle the decisions.
+          </p>
+
+        </div>
+
+        {/* AI prompt examples */}
+        <div style={{ margin: '32px 0', background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '8px', padding: '24px 28px' }}>
+          <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', fontWeight: 600, marginBottom: '16px' }}>
+            Tell us where. We&apos;ll build the trip.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {[
+              '"8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, $600/head."',
+              '"Scottsdale long weekend. TPC + one more course. Skins, $20 per hole."',
+            ].map((prompt) => (
+              <div key={prompt} style={{ background: '#F5F1ED', borderRadius: '5px', padding: '12px 16px' }}>
+                <p style={{ fontFamily: 'monospace', fontSize: '12px', color: '#70798C', lineHeight: 1.5 }}>{prompt}</p>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: '12px', color: '#A09890', marginTop: '14px', lineHeight: 1.6 }}>
+            The Starter turns this into a full trip draft — itinerary, foursomes, cost splits — ready to share in minutes.
+          </p>
         </div>
 
         {/* CTA */}
