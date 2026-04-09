@@ -112,6 +112,7 @@ export function Navbar() {
           <div className="hidden md:flex" style={{ gap: '28px' }}>
             {[
               { href: '/trips', label: 'My trips', active: isActive('/trips') },
+              { href: '/my-group', label: 'The Club', active: pathname.startsWith('/my-group') },
               { href: '/blog', label: 'Blog', active: pathname.startsWith('/blog') },
               { href: '/trips/new', label: 'Plan a trip', active: isActive('/trips/new') },
             ].map(({ href, label, active }) => (
@@ -176,6 +177,7 @@ export function Navbar() {
         >
           {[
             { href: '/trips', label: 'My trips' },
+            { href: '/my-group', label: 'The Club' },
             { href: '/blog', label: 'Blog' },
             { href: '/trips/new', label: 'Plan a trip' },
             { href: '/settings', label: 'Settings' },
