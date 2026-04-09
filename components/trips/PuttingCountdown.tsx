@@ -9,7 +9,7 @@ interface PuttingCountdownProps {
 }
 
 export function PuttingCountdown({ tripStart, tripLabel, bookingWindow = 90 }: PuttingCountdownProps) {
-  const { daysUntil, pct, ballX, headline, pctLabel } = useMemo(() => {
+  const { daysUntil, ballX, headline, pctLabel } = useMemo(() => {
     const start = new Date(tripStart + 'T00:00:00')
     const today = new Date()
     today.setHours(0, 0, 0, 0)
@@ -47,41 +47,64 @@ export function PuttingCountdown({ tripStart, tripLabel, bookingWindow = 90 }: P
   }, [tripStart, bookingWindow])
 
   return (
-    <div style={{ marginTop: '48px', paddingBottom: '56px' }}>
-      {/* Headline row */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-end',
-        marginBottom: '12px',
-        padding: '0 2px',
-      }}>
-        <div>
-          <div style={{
-            fontFamily: 'var(--serif)',
-            fontSize: '22px',
-            fontWeight: 300,
-            color: 'var(--ink)',
-            lineHeight: 1.1,
-          }}>
-            {daysUntil > 0
-              ? <>Tee it up in <em>{daysUntil}</em> days</>
-              : <em>{headline}</em>
-            }
-          </div>
-          <div style={{ fontSize: '12px', color: 'var(--subtle)', marginTop: '3px' }}>
-            {tripLabel}
-          </div>
-        </div>
-        {pctLabel && (
-          <div style={{
-            fontSize: '11px',
-            color: 'var(--subtle)',
-            letterSpacing: '0.06em',
-            textTransform: 'uppercase',
-          }}>
-            {pctLabel}
-          </div>
+    <div>
+      {/* Header: eyebrow + big number + meta */}
+      <div style={{ marginBottom: '16px' }}>
+        {daysUntil > 0 ? (
+          <>
+            <div style={{
+              fontFamily: 'var(--sans)',
+              fontSize: '10px',
+              fontWeight: 500,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: '#888780',
+              marginBottom: '4px',
+            }}>
+              Tee it up in
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+              <span style={{
+                fontFamily: 'var(--serif)',
+                fontSize: '56px',
+                fontWeight: 400,
+                color: '#2C2A26',
+                lineHeight: 1,
+              }}>
+                {daysUntil}
+              </span>
+              <span style={{
+                fontFamily: 'var(--sans)',
+                fontSize: '13px',
+                color: '#888780',
+              }}>
+                days
+              </span>
+            </div>
+            <div style={{
+              fontFamily: 'var(--sans)',
+              fontSize: '11px',
+              color: '#888780',
+              marginTop: '6px',
+            }}>
+              {[tripLabel, pctLabel].filter(Boolean).join(' · ')}
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{
+              fontFamily: 'var(--serif)',
+              fontSize: '28px',
+              fontWeight: 400,
+              color: '#2C2A26',
+              fontStyle: 'italic',
+            }}>
+              {headline}
+            </div>
+            <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', marginTop: '4px' }}>
+              {tripLabel}
+            </div>
+          </>
         )}
       </div>
 

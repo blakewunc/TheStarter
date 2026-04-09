@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, useContext, type ReactNode } from 'react'
 
 interface TabsContextType {
   value: string
@@ -38,8 +38,15 @@ interface TabsListProps {
 export function TabsList({ children, className = '' }: TabsListProps) {
   return (
     <div
-      className={`flex overflow-x-auto border-b border-[#DAD2BC] scrollbar-hide ${className}`}
       role="tablist"
+      style={{
+        display: 'flex',
+        overflowX: 'auto',
+        background: '#F5F1ED',
+        borderBottom: '0.5px solid #D6CFC8',
+        scrollbarWidth: 'none',
+      }}
+      className={className}
     >
       {children}
     </div>
@@ -61,11 +68,25 @@ export function TabsTrigger({ value, children, className = '' }: TabsTriggerProp
       role="tab"
       aria-selected={isActive}
       onClick={() => onValueChange(value)}
-      className={`whitespace-nowrap px-4 py-3 text-sm font-medium transition-colors border-b-2 -mb-px ${
-        isActive
-          ? 'border-[#70798C] text-[#252323]'
-          : 'border-transparent text-[#A99985] hover:text-[#252323] hover:border-[#DAD2BC]'
-      } ${className}`}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '6px',
+        padding: '0.85rem 0',
+        marginRight: '1.25rem',
+        fontFamily: 'var(--sans)',
+        fontSize: '13px',
+        fontWeight: isActive ? 500 : 400,
+        color: isActive ? '#2C2A26' : '#888780',
+        background: 'none',
+        border: 'none',
+        borderBottom: isActive ? '1.5px solid #2C2A26' : '1.5px solid transparent',
+        cursor: 'pointer',
+        whiteSpace: 'nowrap',
+        transition: 'color 0.15s',
+        marginBottom: '-0.5px',
+      }}
+      className={className}
     >
       {children}
     </button>
@@ -83,7 +104,7 @@ export function TabsContent({ value, children, className = '' }: TabsContentProp
   if (activeValue !== value) return null
 
   return (
-    <div role="tabpanel" className={`pt-6 ${className}`}>
+    <div role="tabpanel" className={className} style={{ paddingTop: '24px' }}>
       {children}
     </div>
   )

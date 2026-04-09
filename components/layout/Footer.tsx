@@ -16,6 +16,29 @@ export function Footer() {
   // pathname is '/' (browser URL) when middleware rewrites / → /starter
   if (isBackNine && (pathname === '/' || pathname === '/starter')) return null
 
+  // App interior pages (trip detail, trips list, settings) get a minimal cream footer
+  const isAppInterior = isBackNine && (
+    pathname.startsWith('/trips') ||
+    pathname.startsWith('/settings') ||
+    pathname.startsWith('/my-group') ||
+    pathname.startsWith('/admin')
+  )
+
+  if (isAppInterior) {
+    return (
+      <footer style={{ borderTop: '0.5px solid #D6CFC8', background: '#F5F1ED', padding: '12px 40px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: 0 }}>
+            © {new Date().getFullYear()} The Starter. All rights reserved.
+          </p>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: 0 }}>
+            A GroupTrip product
+          </p>
+        </div>
+      </footer>
+    )
+  }
+
   return (
     <footer className={`border-t ${
       isBackNine

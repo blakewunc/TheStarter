@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { Sparkles, ChevronLeft, Pencil, Trash2, MoreHorizontal, Share2, FileText } from 'lucide-react'
+import { Pencil, Trash2, MoreHorizontal, Share2, FileText, UserPlus } from 'lucide-react'
 
 interface TripDetailHeaderProps {
   trip: {
@@ -17,13 +17,18 @@ interface TripDetailHeaderProps {
     invite_code: string
   }
   isOrganizer: boolean
-  onOpenAI: () => void
 }
 
-export function TripDetailHeader({ trip, isOrganizer, onOpenAI }: TripDetailHeaderProps) {
+export function TripDetailHeader({ trip, isOrganizer }: TripDetailHeaderProps) {
   const router = useRouter()
   const [isDeleting, setIsDeleting] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
+
+  const copyInviteLink = () => {
+    const url = `${window.location.origin}/invite/${trip.invite_code}`
+    navigator.clipboard.writeText(url)
+    toast.success('Invite link copied!')
+  }
 
   const copyRecapLink = () => {
     const url = `${window.location.origin}/recap/${trip.invite_code}`
@@ -54,13 +59,18 @@ export function TripDetailHeader({ trip, isOrganizer, onOpenAI }: TripDetailHead
     return `${daysAway} days away`
   }
 
-  const getStatusColor = (status: string) => {
+  const getStatusPill = (status: string) => {
     switch (status) {
-      case 'planning': return 'bg-[#70798C]/10 text-[#70798C] border-[#70798C]/20'
-      case 'confirmed': return 'bg-[#4A7C59]/10 text-[#4A7C59] border-[#4A7C59]/20'
-      case 'completed': return 'bg-[#A99985]/10 text-[#A99985] border-[#A99985]/20'
-      case 'cancelled': return 'bg-[#8B4444]/10 text-[#8B4444] border-[#8B4444]/20'
-      default: return 'bg-[#70798C]/10 text-[#70798C] border-[#70798C]/20'
+      case 'planning':
+        return { bg: '#EAF3DE', text: '#3B6D11', border: '#C0DD97', label: 'Planning' }
+      case 'confirmed':
+        return { bg: '#EAF3DE', text: '#3B6D11', border: '#C0DD97', label: 'Confirmed' }
+      case 'completed':
+        return { bg: '#F1EFE8', text: '#5F5E5A', border: '#D6CFC8', label: 'Completed' }
+      case 'cancelled':
+        return { bg: '#FDE8E8', text: '#8B4444', border: '#F3B8B8', label: 'Cancelled' }
+      default:
+        return { bg: '#EAF3DE', text: '#3B6D11', border: '#C0DD97', label: status }
     }
   }
 
@@ -77,109 +87,201 @@ export function TripDetailHeader({ trip, isOrganizer, onOpenAI }: TripDetailHead
     }
   }
 
-  return (
-    <div className="rounded-[8px] border border-[#DAD2BC] bg-white px-6 py-5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-      <div className="flex items-start justify-between gap-4">
-        {/* Left: Back link + Trip info */}
-        <div className="min-w-0 flex-1">
-          <button
-            onClick={() => router.push('/trips')}
-            className="mb-2 inline-flex items-center gap-1 text-sm font-medium text-[#A99985] transition-colors hover:text-[#252323]"
-          >
-            <ChevronLeft className="h-3.5 w-3.5" />
-            My Trips
-          </button>
+  const statusPill = getStatusPill(trip.status)
 
-          <h1 className="truncate text-xl font-bold text-[#252323] sm:text-2xl">
+  return (
+    <div style={{ paddingBottom: '4px' }}>
+      {/* Breadcrumb */}
+      <button
+        onClick={() => router.push('/trips')}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '4px',
+          fontFamily: 'var(--sans)',
+          fontSize: '11px',
+          color: '#888780',
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          padding: 0,
+          marginBottom: '10px',
+          transition: 'color 0.15s',
+        }}
+      >
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+          <path d="M7.5 2.5L4 6l3.5 3.5" />
+        </svg>
+        My trips
+      </button>
+
+      {/* Title row */}
+      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '16px' }}>
+        {/* Left: Title + meta */}
+        <div style={{ minWidth: 0, flex: 1 }}>
+          <h1 style={{
+            fontFamily: 'var(--serif)',
+            fontSize: 'clamp(28px, 4vw, 38px)',
+            fontWeight: 400,
+            color: '#2C2A26',
+            lineHeight: 1.1,
+            margin: 0,
+          }}>
             {trip.title}
           </h1>
 
-          <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-[#A99985]">
-            <span className="flex items-center gap-1.5">
-              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              {trip.destination}
-            </span>
-            <span>{startStr}{startYear} - {endStr} ({days} {days === 1 ? 'day' : 'days'})</span>
-          </div>
-
-          <div className="mt-2 flex items-center gap-2">
-            <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold capitalize ${getStatusColor(trip.status)}`}>
-              {trip.status}
+          {/* Meta row */}
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: '6px',
+            marginTop: '8px',
+            fontFamily: 'var(--sans)',
+            fontSize: '13px',
+            color: '#888780',
+          }}>
+            <span>{trip.destination}</span>
+            <span style={{ color: '#D6CFC8' }}>·</span>
+            <span>{startStr}{startYear} – {endStr}</span>
+            <span style={{ color: '#D6CFC8' }}>·</span>
+            <span>{days} {days === 1 ? 'day' : 'days'}</span>
+            <span style={{ color: '#D6CFC8' }}>·</span>
+            {/* Status pill */}
+            <span style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              padding: '2px 8px',
+              borderRadius: '20px',
+              border: `0.5px solid ${statusPill.border}`,
+              background: statusPill.bg,
+              color: statusPill.text,
+              fontSize: '11px',
+              fontWeight: 500,
+            }}>
+              {statusPill.label}
             </span>
             {daysAway >= 0 && (
-              <span className="text-xs font-medium text-[#A99985]">
-                {getCountdownText()}
-              </span>
+              <>
+                <span style={{ color: '#D6CFC8' }}>·</span>
+                <span style={{ fontSize: '12px' }}>{getCountdownText()}</span>
+              </>
             )}
           </div>
         </div>
 
-        {/* Right: Actions */}
-        <div className="flex shrink-0 items-center gap-2">
+        {/* Right: Action buttons */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+          {/* Invite crew — always visible */}
           <button
-            onClick={onOpenAI}
-            className="inline-flex items-center gap-1.5 rounded-[5px] bg-[#70798C] px-3.5 py-2 text-sm font-medium text-white transition-colors hover:bg-[#5A6270]"
+            onClick={copyInviteLink}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 14px',
+              background: '#2C2A26',
+              color: '#F5F1ED',
+              border: 'none',
+              borderRadius: '6px',
+              fontFamily: 'var(--sans)',
+              fontSize: '12px',
+              fontWeight: 500,
+              cursor: 'pointer',
+            }}
           >
-            <Sparkles className="h-4 w-4" />
-            <span className="hidden sm:inline">AI Planner</span>
+            <UserPlus size={13} />
+            <span className="hidden sm:inline">Invite crew</span>
           </button>
 
+          {/* Edit — organizer only */}
           {isOrganizer && (
-            <>
+            <button
+              onClick={() => router.push(`/trips/${trip.id}/edit`)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px',
+                padding: '7px 12px',
+                background: 'transparent',
+                color: '#5F5E5A',
+                border: '0.5px solid #D6CFC8',
+                borderRadius: '6px',
+                fontFamily: 'var(--sans)',
+                fontSize: '12px',
+                fontWeight: 500,
+                cursor: 'pointer',
+              }}
+            >
+              <Pencil size={12} />
+              <span className="hidden sm:inline">Edit</span>
+            </button>
+          )}
+
+          {/* Overflow menu */}
+          {isOrganizer && (
+            <div style={{ position: 'relative' }}>
               <button
-                onClick={() => router.push(`/trips/${trip.id}/edit`)}
-                className="inline-flex items-center gap-1.5 rounded-[5px] border border-[#DAD2BC] px-3 py-2 text-sm font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+                onClick={() => setShowMenu(!showMenu)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '32px',
+                  height: '32px',
+                  background: 'transparent',
+                  border: '0.5px solid #D6CFC8',
+                  borderRadius: '6px',
+                  color: '#888780',
+                  cursor: 'pointer',
+                }}
               >
-                <Pencil className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">Edit</span>
+                <MoreHorizontal size={14} />
               </button>
 
-              <div className="relative">
-                <button
-                  onClick={() => setShowMenu(!showMenu)}
-                  className="rounded-[5px] border border-[#DAD2BC] p-2 text-[#A99985] transition-colors hover:bg-[#F5F1ED] hover:text-[#252323]"
-                >
-                  <MoreHorizontal className="h-4 w-4" />
-                </button>
-
-                {showMenu && (
-                  <>
-                    <div className="fixed inset-0 z-40" onClick={() => setShowMenu(false)} />
-                    <div className="absolute right-0 top-full z-50 mt-1 w-48 rounded-[5px] border border-[#DAD2BC] bg-white py-1 shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
-                      <button
-                        onClick={() => { setShowMenu(false); router.push(`/trips/${trip.id}/snapshot`) }}
-                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-[#252323] transition-colors hover:bg-[#F5F1ED]"
-                      >
-                        <FileText className="h-3.5 w-3.5" />
-                        View Trip Brief
-                      </button>
-                      <button
-                        onClick={copyRecapLink}
-                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-[#252323] transition-colors hover:bg-[#F5F1ED]"
-                      >
-                        <Share2 className="h-3.5 w-3.5" />
-                        Share Recap
-                      </button>
-                      <div className="my-1 border-t border-[#F5F1ED]" />
-                      <button
-                        onClick={() => {
-                          setShowMenu(false)
-                          handleDelete()
-                        }}
-                        disabled={isDeleting}
-                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-[#8B4444] transition-colors hover:bg-[#F5F1ED]"
-                      >
-                        <Trash2 className="h-3.5 w-3.5" />
-                        {isDeleting ? 'Deleting...' : 'Delete Trip'}
-                      </button>
-                    </div>
-                  </>
-                )}
-              </div>
-            </>
+              {showMenu && (
+                <>
+                  <div style={{ position: 'fixed', inset: 0, zIndex: 40 }} onClick={() => setShowMenu(false)} />
+                  <div style={{
+                    position: 'absolute',
+                    right: 0,
+                    top: '100%',
+                    marginTop: '4px',
+                    zIndex: 50,
+                    width: '180px',
+                    background: '#fff',
+                    border: '0.5px solid #D6CFC8',
+                    borderRadius: '8px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                    padding: '4px 0',
+                  }}>
+                    <button
+                      onClick={() => { setShowMenu(false); router.push(`/trips/${trip.id}/snapshot`) }}
+                      style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '8px', padding: '8px 14px', fontFamily: 'var(--sans)', fontSize: '13px', color: '#2C2A26', background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                      <FileText size={13} />
+                      View Trip Brief
+                    </button>
+                    <button
+                      onClick={copyRecapLink}
+                      style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '8px', padding: '8px 14px', fontFamily: 'var(--sans)', fontSize: '13px', color: '#2C2A26', background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                      <Share2 size={13} />
+                      Share Recap
+                    </button>
+                    <div style={{ borderTop: '0.5px solid #EAE6E1', margin: '4px 0' }} />
+                    <button
+                      onClick={() => { setShowMenu(false); handleDelete() }}
+                      disabled={isDeleting}
+                      style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '8px', padding: '8px 14px', fontFamily: 'var(--sans)', fontSize: '13px', color: '#8B4444', background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                      <Trash2 size={13} />
+                      {isDeleting ? 'Deleting…' : 'Delete Trip'}
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
           )}
         </div>
       </div>
