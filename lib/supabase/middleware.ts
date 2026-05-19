@@ -49,11 +49,21 @@ export async function updateSession(request: NextRequest) {
 
   // Redirect authenticated users away from auth pages
   // Preserve ?next= param so invite/proposal flows complete correctly
+  // Also protect /welcome — unauthenticated users get redirected to /auth
+  if (!user && request.nextUrl.pathname === '/welcome') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/auth'
+    return NextResponse.redirect(url)
+  }
+
+  // Redirect authenticated users away from auth pages
+  // Preserve ?next= param so invite/proposal flows complete correctly
   if (
     user &&
     (request.nextUrl.pathname === '/login' ||
       request.nextUrl.pathname === '/signup' ||
-      request.nextUrl.pathname === '/forgot-password')
+      request.nextUrl.pathname === '/forgot-password' ||
+      request.nextUrl.pathname === '/auth')
   ) {
     const next = request.nextUrl.searchParams.get('next') || '/trips'
     const url = request.nextUrl.clone()
