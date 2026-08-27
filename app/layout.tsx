@@ -46,6 +46,11 @@ export async function generateMetadata(): Promise<Metadata> {
     : "Collaborative trip planning for bachelor parties, bachelorette parties, golf trips, and ski trips. Share itineraries, split costs, coordinate equipment, and keep everyone on the same page.";
   const siteName = isBackNine ? "The Starter" : "GroupTrip";
 
+  const defaultOgImage = `/api/og?${new URLSearchParams({
+    title: isBackNine ? "Golf trips, handled." : title,
+    subtitle: "Plan the trip, split the costs, settle the bets.",
+  })}`;
+
   return {
     title: {
       default: title,
@@ -65,11 +70,15 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       siteName,
+      images: [{ url: defaultOgImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {
+      // summary_large_image was already declared with no image behind it, which is
+      // why shared links rendered as grey stubs.
       card: "summary_large_image",
       title,
       description,
+      images: [defaultOgImage],
     },
     robots: {
       index: true,

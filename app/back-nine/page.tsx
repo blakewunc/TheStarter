@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'The Starter — Golf Trip Planner for Your Crew',
+  // absolute, or the root template appends the brand a second time.
+  title: { absolute: 'The Starter — Golf Trip Planner for Your Crew' },
   description:
     'Plan your golf trip end-to-end. Split costs, build the itinerary, set the stakes, and send one link. The Starter keeps the group on the same page — before, during, and after.',
   keywords: [

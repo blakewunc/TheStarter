@@ -91,6 +91,13 @@ export async function generateMetadata(
     itinerary.length > 0 ? `${itinerary.length} activities` : null,
   ].filter(Boolean).join(' · ')
 
+  const ogImage = `/api/og?${new URLSearchParams({
+    eyebrow: 'Trip recap',
+    title: trip.title,
+    subtitle: trip.destination || '',
+    meta: description,
+  })}`
+
   return {
     title: `${trip.title} — Trip Recap`,
     description,
@@ -99,11 +106,13 @@ export async function generateMetadata(
       description,
       type: 'website',
       siteName: appName,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: trip.title }],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: `${trip.title} — Trip Recap`,
       description,
+      images: [ogImage],
     },
   }
 }
