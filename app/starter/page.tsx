@@ -596,8 +596,6 @@ export default function StarterLanding() {
           transition: border-color 0.3s;
         }
         .sl-review:hover { border-color: rgba(28,26,23,0.22); }
-        .sl-review-stars { display: flex; gap: 3px; margin-bottom: 24px; }
-        .sl-star { width: 12px; height: 12px; fill: #B5A98A; }
         .sl-review-text {
           font-family: var(--serif);
           font-size: 18px;
@@ -1027,47 +1025,50 @@ export default function StarterLanding() {
           ))}
         </section>
 
-        {/* TESTIMONIALS */}
+        {/* WHAT IT'S FOR
+            These were testimonials with invented names, invented trips and five-star
+            ratings. The product has no users beyond a handful of friends who helped
+            test, so the quotes were fabricated and the stars were a ratings claim with
+            no raters behind it — an FTC exposure and, more practically, the kind of
+            thing a golf forum notices once and never forgets.
+
+            Rewritten as scenarios: same argument for the product, stated as what it is
+            built to handle rather than as praise from people who do not exist. No
+            names, no quotation marks, no stars. When real users are willing to be
+            quoted by name, this section can become testimonials again. */}
         <section className="sl-section">
           <div className="sl-testimonials">
             <div className="sl-testimonials-header">
-              <p className="sl-eyebrow sl-reveal">What the Crew Is Saying</p>
+              <p className="sl-eyebrow sl-reveal">What it&rsquo;s for</p>
               <h2 className="sl-headline sl-reveal sl-reveal-d1">
-                They played the course.<br /><em>We ran the trip.</em>
+                You play the course.<br /><em>It runs the trip.</em>
               </h2>
             </div>
             <div className="sl-reviews-grid">
 
               {[
                 {
-                  text: '"Used The Starter for our annual Pinehurst trip. Twelve people, three rounds, split bills, and a Nassau that got out of hand on Saturday. Everything tracked perfectly. First year nobody argued about who owed what."',
-                  name: '— James R.',
-                  trip: 'Pinehurst, NC · Group of 12',
+                  text: 'Twelve people, three rounds, one house. Green fees, the rental, dinners — every cost split and every balance settled, so nobody spends Sunday working out who owes what.',
+                  label: 'The annual buddies trip',
+                  trip: 'Large group · Multiple rounds',
                   delay: 'sl-reveal-d1',
                 },
                 {
-                  text: '"The invite link alone sold it. Sent it to the group, everyone could see the schedule, their costs, and the tee times before I had to answer a single question. That\'s new."',
-                  name: '— Marcus T.',
-                  trip: 'Myrtle Beach, SC · Bachelor Trip · Group of 8',
+                  text: 'One link to the group chat. Everyone sees the schedule, the tee times and what it costs them before a single question comes back to the organiser.',
+                  label: 'The invite',
+                  trip: 'No account needed to look',
                   delay: 'sl-reveal-d2',
                 },
                 {
-                  text: '"Scotland trip. Seven of us. Five rounds across four courses. Skins that carried over twice. The Starter tracked every pence. Lads want to use it every year now."',
-                  name: '— Will F.',
-                  trip: 'St Andrews, Scotland · Group of 7',
+                  text: 'Five rounds across four courses, a skins game that carries over twice, and handicaps that actually get applied. The maths is done before you reach the bar.',
+                  label: 'The betting',
+                  trip: 'Nassau · Skins · Wolf',
                   delay: 'sl-reveal-d3',
                 },
               ].map((r) => (
-                <div key={r.name} className={`sl-review sl-reveal ${r.delay}`}>
-                  <div className="sl-review-stars">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="sl-star" viewBox="0 0 12 12">
-                        <polygon points="6,1 7.5,4.5 11.5,4.5 8.5,7 9.5,11 6,9 2.5,11 3.5,7 0.5,4.5 4.5,4.5" />
-                      </svg>
-                    ))}
-                  </div>
+                <div key={r.label} className={`sl-review sl-reveal ${r.delay}`}>
                   <p className="sl-review-text">{r.text}</p>
-                  <p className="sl-review-attribution">{r.name}</p>
+                  <p className="sl-review-attribution">{r.label}</p>
                   <p className="sl-review-trip">{r.trip}</p>
                 </div>
               ))}
