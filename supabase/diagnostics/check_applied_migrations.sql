@@ -30,9 +30,24 @@ WITH expected(migration, kind, obj, col) AS (VALUES
   ('017 groups + league',    'table',  'competitions',          NULL),
   ('017 groups + league',    'table',  'matches',               NULL),
   ('019 match reactions',    'table',  'match_reactions',       NULL),
+  -- Every column 020 adds is listed. A partial check here previously reported 020 as
+  -- applied while the column the API was actually failing on went unverified.
   ('020 courses + events',   'table',  'courses',               NULL),
   ('020 courses + events',   'column', 'itinerary_items',       'item_type'),
-  ('020 courses + events',   'column', 'itinerary_items',       'legacy_tee_time')
+  ('020 courses + events',   'column', 'itinerary_items',       'end_time'),
+  ('020 courses + events',   'column', 'itinerary_items',       'all_day'),
+  ('020 courses + events',   'column', 'itinerary_items',       'timezone'),
+  ('020 courses + events',   'column', 'itinerary_items',       'course_id'),
+  ('020 courses + events',   'column', 'itinerary_items',       'course_name'),
+  ('020 courses + events',   'column', 'itinerary_items',       'address'),
+  ('020 courses + events',   'column', 'itinerary_items',       'lat'),
+  ('020 courses + events',   'column', 'itinerary_items',       'lng'),
+  ('020 courses + events',   'column', 'itinerary_items',       'num_players'),
+  ('020 courses + events',   'column', 'itinerary_items',       'players'),
+  ('020 courses + events',   'column', 'itinerary_items',       'par'),
+  ('020 courses + events',   'column', 'itinerary_items',       'booking_confirmation'),
+  ('020 courses + events',   'column', 'itinerary_items',       'legacy_tee_time'),
+  ('021 golf bets',          'table',  'golf_bets',             NULL)
 )
 SELECT
   migration,

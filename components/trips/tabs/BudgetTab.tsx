@@ -22,6 +22,12 @@ export function BudgetTab({ tripId, trip, currentUserId, isOrganizer }: BudgetTa
   const [addDialogOpen, setAddDialogOpen] = useState(false)
 
   const memberCount = trip.trip_members?.length || 0
+  // Budgets get built before the crew is fully invited, so dividing by the current
+  // member count reports the organiser owing the entire cost. expected_guests is the
+  // planned headcount and is what OverviewTab already divides by; the two tabs
+  // disagreed until this used the same basis.
+  const expectedGuests = trip.expected_guests || null
+  const splitCount = Math.max(expectedGuests || memberCount, 1)
 
   if (loading) {
     return <p className="text-[#A99985]">Loading budget...</p>
@@ -51,14 +57,24 @@ export function BudgetTab({ tripId, trip, currentUserId, isOrganizer }: BudgetTa
         <CardHeader>
           <CardTitle>Budget Categories</CardTitle>
           <CardDescription>
-            {memberCount} {memberCount === 1 ? 'person' : 'people'} on this trip
+            Splitting {splitCount} {splitCount === 1 ? 'way' : 'ways'}
+            {expectedGuests
+              ? ` · ${expectedGuests} expected, ${memberCount} joined so far`
+              : ` · based on ${memberCount} ${memberCount === 1 ? 'member' : 'members'}`}
+            {!expectedGuests && (
+              <>
+                {' '}
+                — set <span className="font-medium">Expected Guests</span> in trip settings
+                to split by your planned headcount instead
+              </>
+            )}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <CategoryList
             categories={categories}
             tripId={tripId}
-            memberCount={memberCount}
+            splitCount={splitCount}
             isOrganizer={isOrganizer}
             onRefresh={refetch}
           />
