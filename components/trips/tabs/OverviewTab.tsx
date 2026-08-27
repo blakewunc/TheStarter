@@ -5,6 +5,7 @@ import { toast } from 'sonner'
 import { TripMembersCard } from '@/components/trips/overview/TripMembersCard'
 import { AnnouncementsCard } from '@/components/trips/overview/AnnouncementsCard'
 import { LodgingCard } from '@/components/trips/overview/LodgingCard'
+import { PunchList } from '@/components/trips/overview/PunchList'
 import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
 import { useBudget } from '@/lib/hooks/useBudget'
 import { useItinerary } from '@/lib/hooks/useItinerary'
@@ -76,11 +77,10 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
 
   // Progress
   const respondedCount = members.filter((m: any) => m.rsvp_status === 'accepted' || m.rsvp_status === 'declined' || m.rsvp_status === 'maybe').length
-  const rsvpDone = respondedCount === memberCount && memberCount > 0
-  const budgetDone = categories.length >= 1
-  const activitiesDone = itineraryItems.length >= 1
-  const progressParts = [rsvpDone, budgetDone, activitiesDone, availabilityCount > 0]
-  const progressPercent = Math.round((progressParts.filter(Boolean).length / progressParts.length) * 100)
+  // Who still owes an answer, which is a task rather than a ratio.
+  const pendingRsvpCount = members.filter(
+    (m: any) => !m.rsvp_status || m.rsvp_status === 'pending'
+  ).length
 
   // Upcoming activities (next 3 from today)
   const now = new Date()
@@ -277,24 +277,21 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
       {/* RIGHT SIDEBAR */}
       <div className="contents lg:flex lg:flex-col lg:gap-4">
 
-        {/* 1. Trip Progress */}
-        <div className="max-lg:order-5" style={{ ...card, padding: '20px' }}>
-          <p style={eyebrow}>Trip progress</p>
-          <div style={{ height: '2px', background: '#EAE6E1', borderRadius: '2px', overflow: 'hidden', marginBottom: '8px' }}>
-            <div style={{ height: '100%', background: '#3B6D11', borderRadius: '2px', width: `${progressPercent}%`, transition: 'width 0.5s' }} />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460' }}>
-            <span>{progressPercent}% planned</span>
-            {trip.start_date && (() => {
-              const [sy, sm, sd] = trip.start_date.split('-').map(Number)
-              const daysAway = Math.round((new Date(sy, sm - 1, sd).getTime() - now.getTime()) / 86400000)
-              return daysAway > 0 ? <span>{daysAway} days out</span> : null
-            })()}
-          </div>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', marginTop: '8px' }}>
-            {respondedCount}/{memberCount} responded
-            {itineraryItems.length > 0 && ` · ${itineraryItems.length} ${itineraryItems.length === 1 ? 'activity' : 'activities'}`}
-          </p>
+        {/* 1. What's left — replaces the "% planned" bar and the counts beside it.
+            Those measured "has at least one of each", so a trip with no lodging, no
+            tee times and nobody invited still read 75% planned. */}
+        <div className="max-lg:order-1">
+          <PunchList
+            expectedGuests={trip.expected_guests ?? null}
+            memberCount={memberCount}
+            pendingRsvpCount={pendingRsvpCount}
+            roundsPlanned={trip.rounds_planned ?? null}
+            teeTimeCount={trip.tee_time_count ?? 0}
+            lodgingCount={trip.lodging_count ?? 0}
+            budgetCategoryCount={trip.budget_category_count ?? 0}
+            isOrganizer={isOrganizer}
+            onGo={onSwitchTab}
+          />
         </div>
 
         {/* 2. Budget snapshot */}
@@ -348,7 +345,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
         {/* 4. Organizer Tools — first on mobile: it is the only block that asks
             the organiser to do something. */}
         {isOrganizer && (
-          <div className="max-lg:order-1" style={{ ...card, padding: '20px' }}>
+          <div className="max-lg:order-5" style={{ ...card, padding: '20px' }}>
             <p style={eyebrow}>Organizer tools</p>
 
             {/* Proposal toggle */}
