@@ -255,7 +255,7 @@ export default async function TripsPage() {
   let trips: TripCardData[] = []
 
   if (tripIds.length > 0) {
-    const { data: tripData } = await supabase
+    const { data: tripData, error: tripError } = await supabase
       .from('trips')
       .select(`
         id, title, destination, start_date, end_date, status,
@@ -263,14 +263,31 @@ export default async function TripsPage() {
           user_id, rsvp_status,
           profiles(display_name, email)
         ),
-        budget_categories(estimated_cost),
-        rounds:itinerary_items(id, item_type)
+        budget_categories(estimated_cost)
       `)
       .in('id', tripIds)
-      // Filters an embedded resource without !inner, so trips with no tee times
-      // are still returned — just with an empty rounds array.
-      .eq('rounds.item_type', 'tee_time')
       .order('created_at', { ascending: false })
+
+    // Never swallow this. An empty trips list and a failed query look identical in
+    // the UI, and silently rendering "no trips" to someone who has trips is the
+    // worst possible outcome.
+    if (tripError) {
+      throw new Error(`Failed to load trips: ${tripError.message}`)
+    }
+
+    // Round counts are fetched separately and allowed to fail. They are decoration;
+    // the trip list is not. Keeping this out of the query above means a schema drift
+    // here can never blank out someone's trips.
+    const roundsByTrip = new Map<string, number>()
+    const { data: roundsData } = await supabase
+      .from('itinerary_items')
+      .select('trip_id')
+      .in('trip_id', tripIds)
+      .eq('item_type', 'tee_time')
+
+    for (const r of roundsData ?? []) {
+      roundsByTrip.set(r.trip_id, (roundsByTrip.get(r.trip_id) ?? 0) + 1)
+    }
 
     trips = (tripData ?? []).map((t: any) => ({
       id: t.id,
@@ -285,7 +302,7 @@ export default async function TripsPage() {
         rsvp_status: m.rsvp_status,
       })),
       budgetTotal: (t.budget_categories ?? []).reduce((sum: number, c: any) => sum + (c.estimated_cost ?? 0), 0),
-      roundsCount: (t.rounds ?? []).length,
+      roundsCount: roundsByTrip.get(t.id) ?? 0,
     }))
   }
 
