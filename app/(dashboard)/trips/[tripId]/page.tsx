@@ -208,6 +208,7 @@ function TripDetailContent({ tripId }: { tripId: string }) {
       >
         <button
           onClick={() => setAiPanelOpen(true)}
+          aria-label="Ask about this trip"
           onMouseEnter={() => setAiHovered(true)}
           onMouseLeave={() => setAiHovered(false)}
           style={{
@@ -229,10 +230,10 @@ function TripDetailContent({ tripId }: { tripId: string }) {
             justifyContent: 'center',
           }}
         >
-          <Sparkles size={16} style={{ flexShrink: 0 }} />
+          <Sparkles size={16} style={{ flexShrink: 0 }} aria-hidden="true" />
           {aiHovered && (
             <span style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500 }}>
-              Ask the AI planner
+              Ask about this trip
             </span>
           )}
         </button>
