@@ -45,7 +45,15 @@ export async function GET(
       return NextResponse.json({ error: 'Trip not found' }, { status: 404 })
     }
 
-    return NextResponse.json({ trip })
+    // A trip with tee times on it is a golf trip whatever trip_type says — see the
+    // note on the trip page. Counted separately so a failure here cannot 404 the trip.
+    const { count: teeTimeCount } = await supabase
+      .from('itinerary_items')
+      .select('id', { count: 'exact', head: true })
+      .eq('trip_id', tripId)
+      .eq('item_type', 'tee_time')
+
+    return NextResponse.json({ trip: { ...trip, tee_time_count: teeTimeCount ?? 0 } })
   } catch (error) {
     console.error('Unexpected error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })

@@ -36,7 +36,17 @@ function TripDetailContent({ tripId }: { tripId: string }) {
   const [aiPanelOpen, setAiPanelOpen] = useState(false)
   const [aiHovered, setAiHovered] = useState(false)
 
-  const sportTab = trip?.trip_type === 'golf' ? 'golf' : trip?.trip_type === 'ski' ? 'ski' : null
+  // trip_type was silently dropped on create for a long stretch (createTripSchema had
+  // no trip_type and zod strips unknown keys), so trips that are plainly golf trips are
+  // stored as 'general' and lost their Golf tab. A trip with tee times on it is a golf
+  // trip regardless of what the column says, so the tab follows the evidence too.
+  const hasTeeTimes = ((trip as any)?.tee_time_count ?? 0) > 0
+  const sportTab =
+    trip?.trip_type === 'golf' || hasTeeTimes
+      ? 'golf'
+      : trip?.trip_type === 'ski'
+      ? 'ski'
+      : null
   const validTabs: string[] = sportTab
     ? [...BASE_TABS, sportTab]
     : [...BASE_TABS]
