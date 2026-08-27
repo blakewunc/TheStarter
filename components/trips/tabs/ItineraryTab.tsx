@@ -1,6 +1,25 @@
 'use client'
 
 import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
+import { parseLocalDate, formatTime } from '@/lib/dates'
+
+const EVENT_TYPE_LABELS: Record<string, string> = {
+  tee_time: 'Tee time',
+  lodging: 'Lodging',
+  meal: 'Meal',
+  travel: 'Travel',
+}
+
+/** 'other' renders nothing — an unlabelled card reads as a plain activity. */
+function EventTypeBadge({ type }: { type?: string }) {
+  const label = type ? EVENT_TYPE_LABELS[type] : null
+  if (!label) return null
+  return (
+    <span className="shrink-0 rounded-full bg-[#F5F1ED] px-2 py-0.5 text-[10px] font-medium text-[#70798C]">
+      {label}
+    </span>
+  )
+}
 
 import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -138,7 +157,7 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
           {dates.map((date) => (
             <div key={date}>
               <h3 className="mb-4 text-xl font-bold text-[#252323]">
-                {new Date(date).toLocaleDateString('en-US', {
+                {parseLocalDate(date).toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',
@@ -151,10 +170,29 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
                     <CardHeader>
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <CardTitle>{item.title}</CardTitle>
+                          <div className="flex items-center gap-2">
+                            <CardTitle>{item.title}</CardTitle>
+                            <EventTypeBadge type={item.item_type} />
+                          </div>
                           <CardDescription className="mt-1 space-y-1">
-                            {item.time && <div>{'\u{1F550}'} {item.time}</div>}
-                            {item.location && <div>{'\u{1F4CD}'} {item.location}</div>}
+                            {item.time && (
+                              <div>
+                                {'\u{1F550}'} {formatTime(item.time)}
+                                {item.end_time ? ` – ${formatTime(item.end_time)}` : ''}
+                              </div>
+                            )}
+                            {(item.address || item.location) && (
+                              <div>{'\u{1F4CD}'} {item.address || item.location}</div>
+                            )}
+                            {item.item_type === 'tee_time' && (
+                              <div>
+                                {'\u{26F3}'} {item.num_players || 4} players
+                                {item.par ? ` · Par ${item.par}` : ''}
+                                {item.booking_confirmation
+                                  ? ` · Conf ${item.booking_confirmation}`
+                                  : ''}
+                              </div>
+                            )}
                           </CardDescription>
                         </div>
                         {isOrganizer && (

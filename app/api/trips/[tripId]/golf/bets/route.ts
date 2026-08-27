@@ -31,7 +31,7 @@ export async function GET(
       .select(`
         *,
         winner:winner_id (id, display_name, email),
-        tee_time:tee_time_id (id, course_name, tee_time)
+        tee_time:tee_time_id (id, course_name, date, time)
       `)
       .eq('trip_id', tripId)
       .order('created_at', { ascending: false })
@@ -96,7 +96,7 @@ export async function POST(
       .select(`
         *,
         winner:winner_id (id, display_name, email),
-        tee_time:tee_time_id (id, course_name, tee_time)
+        tee_time:tee_time_id (id, course_name, date, time)
       `)
       .single()
 

@@ -53,8 +53,9 @@ export function CourseRatings({ tripId }: CourseRatingsProps) {
           // Get unique courses from tee times
           const courseMap = new Map<string, string | null>()
           for (const tt of ttData.teeTimes || []) {
-            if (!courseMap.has(tt.course_name)) {
-              courseMap.set(tt.course_name, tt.course_location)
+            const name = tt.course_name || tt.title
+            if (name && !courseMap.has(name)) {
+              courseMap.set(name, tt.address ?? tt.location ?? null)
             }
           }
           setCourses(Array.from(courseMap.entries()).map(([name, location]) => ({ name, location })))

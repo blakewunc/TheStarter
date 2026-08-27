@@ -38,15 +38,16 @@ export async function GET(
           display_name,
           email
         ),
-        golf_tee_times:tee_time_id (
+        tee_time:tee_time_id (
           id,
           course_name,
-          tee_time,
+          date,
+          time,
           par,
           trip_id
         )
       `)
-      .eq('golf_tee_times.trip_id', tripId)
+      .eq('tee_time.trip_id', tripId)
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 })
@@ -59,8 +60,10 @@ export async function GET(
       score: score.score,
       handicap: score.handicap,
       tee_time_id: score.tee_time_id,
-      course_name: score.golf_tee_times?.course_name || 'Unknown Course',
-      par: score.golf_tee_times?.par || 72,
+      course_name: score.tee_time?.course_name || 'Unknown Course',
+      par: score.tee_time?.par || 72,
+      date: score.tee_time?.date ?? null,
+      time: score.tee_time?.time ?? null,
     }))
 
     return NextResponse.json({ scores: transformedScores })
@@ -108,10 +111,11 @@ export async function POST(
 
     // Verify tee time belongs to this trip
     const { data: teeTime } = await supabase
-      .from('golf_tee_times')
+      .from('itinerary_items')
       .select('id')
       .eq('id', tee_time_id)
       .eq('trip_id', tripId)
+      .eq('item_type', 'tee_time')
       .single()
 
     if (!teeTime) {

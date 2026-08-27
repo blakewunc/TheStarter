@@ -49,11 +49,24 @@ export default function AboutPage() {
           </div>
 
           <p>
-            The Starter is part of the GroupTrip family of products — a suite of tools for planning group travel. GroupTrip handles general group trips; The Starter is the golf-specific product.
+            The Starter is purpose-built for golf trips — tee times, scorecards, betting, and the logistics that come with getting a group to a course.
           </p>
 
           <p className="font-medium text-[#252323]">
             thestarter.app — Golf trips, handled.
+          </p>
+
+          <p className="text-xs text-[#A99985]">
+            Golf course location data ©{' '}
+            <a
+              href="https://www.openstreetmap.org/copyright"
+              className="underline underline-offset-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              OpenStreetMap contributors
+            </a>
+            , available under the Open Database License (ODbL).
           </p>
         </div>
 

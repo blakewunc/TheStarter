@@ -6,36 +6,52 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { CoursePicker, type Course } from '@/components/golf/CoursePicker'
 
 interface AddTeeTimeDialogProps {
   tripId: string
   open: boolean
   onOpenChange: (open: boolean) => void
+  /** "lat,lng" of the trip destination, used to bias course search. Optional. */
+  near?: string | null
 }
 
-export function AddTeeTimeDialog({ tripId, open, onOpenChange }: AddTeeTimeDialogProps) {
+export function AddTeeTimeDialog({ tripId, open, onOpenChange, near }: AddTeeTimeDialogProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [courseName, setCourseName] = useState('')
+  const [course, setCourse] = useState<Course | null>(null)
+
+  const reset = () => {
+    setCourseName('')
+    setCourse(null)
+    setError(null)
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
 
-    const formData = new FormData(e.currentTarget)
-    const date = formData.get('date') as string
-    const time = formData.get('time') as string
+    const form = e.currentTarget
+    const formData = new FormData(form)
 
-    // Combine date and time into ISO timestamp
-    const teeTime = new Date(`${date}T${time}`).toISOString()
-
+    // date and time are stored as-is: a calendar day and a wall clock at the venue.
+    // No Date object, no UTC conversion, nothing to shift.
     const data = {
-      course_name: formData.get('course_name') as string,
-      course_location: formData.get('course_location') as string,
-      tee_time: teeTime,
-      num_players: parseInt(formData.get('num_players') as string),
-      par: parseInt(formData.get('par') as string) || 72,
-      notes: formData.get('notes') as string,
+      course_id: course?.id ?? null,
+      // The typed text always wins. A course that isn't in the table still submits.
+      course_name: courseName.trim(),
+      address: course?.address ?? (formData.get('course_location') as string) ?? null,
+      lat: course?.lat ?? null,
+      lng: course?.lng ?? null,
+      timezone: course?.timezone ?? null,
+      date: formData.get('date') as string,
+      time: (formData.get('time') as string) || null,
+      num_players: parseInt(formData.get('num_players') as string) || 4,
+      par: parseInt(formData.get('par') as string) || course?.par || 72,
+      notes: (formData.get('notes') as string) || null,
+      booking_confirmation: (formData.get('booking_confirmation') as string) || null,
     }
 
     try {
@@ -46,13 +62,13 @@ export function AddTeeTimeDialog({ tripId, open, onOpenChange }: AddTeeTimeDialo
       })
 
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.error || 'Failed to create tee time')
+        const err = await response.json()
+        throw new Error(err.error || 'Failed to create tee time')
       }
 
       onOpenChange(false)
-      // Reset form
-      ;(e.target as HTMLFormElement).reset()
+      form.reset()
+      reset()
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -72,23 +88,64 @@ export function AddTeeTimeDialog({ tripId, open, onOpenChange }: AddTeeTimeDialo
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="course_name">Course Name*</Label>
-            <Input
+            <Label htmlFor="course_name">Course*</Label>
+            <CoursePicker
               id="course_name"
-              name="course_name"
-              placeholder="e.g., Pebble Beach Golf Links"
+              value={courseName}
+              onChange={setCourseName}
+              onSelectCourse={setCourse}
+              near={near}
               required
               disabled={loading}
             />
+            {course ? (
+              <p className="text-xs text-[#A99985]">
+                {[course.city, course.state].filter(Boolean).join(', ')}
+                {course.address ? ` · ${course.address}` : ''}
+              </p>
+            ) : (
+              <p className="text-xs text-[#A99985]">
+                Not finding it? Just type the name — it saves either way.
+              </p>
+            )}
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-[1fr_auto]">
+          {/* Only needed when the course wasn't matched; a matched course brings its own address. */}
+          {!course && (
             <div className="space-y-2">
               <Label htmlFor="course_location">Location</Label>
               <Input
                 id="course_location"
                 name="course_location"
                 placeholder="e.g., Pebble Beach, CA"
+                disabled={loading}
+              />
+            </div>
+          )}
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="date">Date*</Label>
+              <Input id="date" name="date" type="date" required disabled={loading} />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="time">Time*</Label>
+              <Input id="time" name="time" type="time" required disabled={loading} />
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="num_players">Number of Players</Label>
+              <Input
+                id="num_players"
+                name="num_players"
+                type="number"
+                min="1"
+                max="4"
+                defaultValue="4"
+                required
                 disabled={loading}
               />
             </div>
@@ -100,47 +157,18 @@ export function AddTeeTimeDialog({ tripId, open, onOpenChange }: AddTeeTimeDialo
                 type="number"
                 min="60"
                 max="80"
-                defaultValue="72"
-                className="w-20"
-                disabled={loading}
-              />
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="space-y-2">
-              <Label htmlFor="date">Date*</Label>
-              <Input
-                id="date"
-                name="date"
-                type="date"
-                required
-                disabled={loading}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="time">Time*</Label>
-              <Input
-                id="time"
-                name="time"
-                type="time"
-                required
+                defaultValue={course?.par ?? 72}
                 disabled={loading}
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="num_players">Number of Players</Label>
+            <Label htmlFor="booking_confirmation">Booking confirmation (optional)</Label>
             <Input
-              id="num_players"
-              name="num_players"
-              type="number"
-              min="1"
-              max="4"
-              defaultValue="4"
-              required
+              id="booking_confirmation"
+              name="booking_confirmation"
+              placeholder="Confirmation number"
               disabled={loading}
             />
           </div>

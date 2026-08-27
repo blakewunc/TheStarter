@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { toDateString } from '@/lib/dates'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -25,7 +26,7 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
     description: '',
     amount: '',
     category: '',
-    date: new Date().toISOString().split('T')[0],
+    date: toDateString(new Date()),
     paid_by: currentUserId,
     split_type: 'equal' as 'equal' | 'custom',
   })
@@ -74,7 +75,7 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
         description: '',
         amount: '',
         category: '',
-        date: new Date().toISOString().split('T')[0],
+        date: toDateString(new Date()),
         paid_by: currentUserId,
         split_type: 'equal',
       })

@@ -767,7 +767,7 @@ export default function StarterLanding() {
           <div className="sl-hero-img" id="hero-img" />
           <div className="sl-hero-overlay" />
           <div className="sl-hero-content">
-            <p className="sl-hero-eyebrow">The Starter by GroupTrip</p>
+            <p className="sl-hero-eyebrow">The Starter</p>
             <h1 className="sl-hero-headline">Golf trips,<br /><em>handled.</em></h1>
             <p className="sl-hero-sub">You book the tee times. We handle everything else.</p>
             <div className="sl-hero-actions">
@@ -1168,14 +1168,13 @@ export default function StarterLanding() {
                     <li><Link href="/about">About</Link></li>
                     <li><Link href="/contact">Contact</Link></li>
                     <li><Link href="/privacy">Privacy Policy</Link></li>
-                    <li><a href="https://grouptrip-mu.vercel.app">GroupTrip</a></li>
                   </ul>
                 </div>
               </div>
             </div>
             <div className="sl-footer-bottom">
               <span>© 2026 The Starter. All rights reserved.</span>
-              <span className="sl-footer-by">A <a href="https://grouptrip-mu.vercel.app">GroupTrip</a> product</span>
+              <span className="sl-footer-by">Golf trips, handled.</span>
             </div>
           </div>
         </footer>

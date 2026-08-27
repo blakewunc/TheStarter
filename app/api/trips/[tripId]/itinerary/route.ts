@@ -1,6 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 
+// Mirrors the item_type CHECK constraint in migration 020.
+const ITEM_TYPES = ['tee_time', 'lodging', 'meal', 'travel', 'other']
+
 // GET /api/trips/:tripId/itinerary - Fetch all itinerary items for a trip
 export async function GET(
   request: Request,
@@ -38,6 +41,19 @@ export async function GET(
         location,
         date,
         time,
+        end_time,
+        all_day,
+        item_type,
+        course_id,
+        course_name,
+        address,
+        lat,
+        lng,
+        timezone,
+        num_players,
+        players,
+        par,
+        booking_confirmation,
         sort_order,
         created_at,
         created_by,
@@ -80,7 +96,25 @@ export async function POST(
 
     const { tripId } = await params
     const body = await request.json()
-    const { title, description, location, date, time } = body
+    const {
+      title,
+      description,
+      location,
+      date,
+      time,
+      end_time,
+      all_day,
+      item_type,
+      course_id,
+      course_name,
+      address,
+      lat,
+      lng,
+      timezone,
+      num_players,
+      par,
+      booking_confirmation,
+    } = body
 
     // Verify user is a member of this trip
     const { data: member } = await supabase
@@ -113,9 +147,22 @@ export async function POST(
         created_by: user.id,
         title,
         description,
-        location,
+        location: location || address || null,
         date,
-        time,
+        time: time || null,
+        end_time: end_time || null,
+        all_day: all_day ?? false,
+        item_type: ITEM_TYPES.includes(item_type) ? item_type : 'other',
+        // Venue fields are only meaningful for a tee time, but harmless elsewhere.
+        course_id: course_id || null,
+        course_name: course_name || null,
+        address: address || null,
+        lat: lat ?? null,
+        lng: lng ?? null,
+        timezone: timezone || null,
+        num_players: num_players ?? null,
+        par: par ?? null,
+        booking_confirmation: booking_confirmation || null,
       })
       .select(`
         id,
@@ -124,6 +171,19 @@ export async function POST(
         location,
         date,
         time,
+        end_time,
+        all_day,
+        item_type,
+        course_id,
+        course_name,
+        address,
+        lat,
+        lng,
+        timezone,
+        num_players,
+        players,
+        par,
+        booking_confirmation,
         sort_order,
         created_at,
         created_by,

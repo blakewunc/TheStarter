@@ -2,6 +2,7 @@
 
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
+import { parseLocalDate } from '@/lib/dates'
 import type { Suggestion } from '@/lib/hooks/useSuggestions'
 
 interface SuggestionListProps {
@@ -170,7 +171,7 @@ function SuggestionCard({
           <div className="flex flex-wrap gap-3 text-xs text-[#A99985]">
             {suggestion.date && (
               <span>
-                {new Date(suggestion.date).toLocaleDateString('en-US', {
+                {parseLocalDate(suggestion.date).toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric',
                 })}

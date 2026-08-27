@@ -343,7 +343,7 @@ export default function SettingsPage() {
           {/* About */}
           <Card>
             <CardHeader>
-              <CardTitle>About GroupTrip</CardTitle>
+              <CardTitle>About The Starter</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-[#A99985]">

@@ -20,7 +20,8 @@ type GroupMode = 'competitive' | 'balanced'
 interface TeeTimeOption {
   id: string
   course_name: string
-  tee_time: string
+  date: string
+  time: string | null
 }
 
 export function GroupMaker({ tripId }: GroupMakerProps) {
