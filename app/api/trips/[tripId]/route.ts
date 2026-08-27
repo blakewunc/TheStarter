@@ -45,15 +45,34 @@ export async function GET(
       return NextResponse.json({ error: 'Trip not found' }, { status: 404 })
     }
 
-    // A trip with tee times on it is a golf trip whatever trip_type says — see the
-    // note on the trip page. Counted separately so a failure here cannot 404 the trip.
-    const { count: teeTimeCount } = await supabase
-      .from('itinerary_items')
-      .select('id', { count: 'exact', head: true })
-      .eq('trip_id', tripId)
-      .eq('item_type', 'tee_time')
+    // Counts behind the punch list. Fetched here so the Overview needs one round trip
+    // rather than three, and deliberately separate from the trip query above: a count
+    // failing must never 404 the trip. Each falls back to a number that makes the
+    // punch list under-report rather than invent an outstanding task.
+    const [teeTimes, lodging, budget] = await Promise.all([
+      supabase
+        .from('itinerary_items')
+        .select('id', { count: 'exact', head: true })
+        .eq('trip_id', tripId)
+        .eq('item_type', 'tee_time'),
+      supabase
+        .from('accommodations')
+        .select('id', { count: 'exact', head: true })
+        .eq('trip_id', tripId),
+      supabase
+        .from('budget_categories')
+        .select('id', { count: 'exact', head: true })
+        .eq('trip_id', tripId),
+    ])
 
-    return NextResponse.json({ trip: { ...trip, tee_time_count: teeTimeCount ?? 0 } })
+    return NextResponse.json({
+      trip: {
+        ...trip,
+        tee_time_count: teeTimes.count ?? 0,
+        lodging_count: lodging.count ?? 0,
+        budget_category_count: budget.count ?? 0,
+      },
+    })
   } catch (error) {
     console.error('Unexpected error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
