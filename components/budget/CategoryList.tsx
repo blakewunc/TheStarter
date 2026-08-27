@@ -8,7 +8,9 @@ import type { BudgetCategory } from '@/lib/hooks/useBudget'
 interface CategoryListProps {
   categories: BudgetCategory[]
   tripId: string
-  memberCount: number
+  /** How many ways to divide an equal split. Not necessarily the member count —
+   *  a trip planned for 4 with only the organiser joined so far still splits 4 ways. */
+  splitCount: number
   isOrganizer: boolean
   onRefresh: () => void
 }
@@ -16,7 +18,7 @@ interface CategoryListProps {
 export function CategoryList({
   categories,
   tripId,
-  memberCount,
+  splitCount,
   isOrganizer,
   onRefresh,
 }: CategoryListProps) {
@@ -48,8 +50,10 @@ export function CategoryList({
 
   const getSplitTypeLabel = (category: BudgetCategory) => {
     if (category.split_type === 'equal') {
-      const perPerson = calculateEqualSplit(category.estimated_cost, memberCount)
-      return `Equal Split · ${formatCurrency(perPerson)} per person`
+      const perPerson = calculateEqualSplit(category.estimated_cost, splitCount)
+      // State the divisor: "$370 per person" alone gives no way to notice it was
+      // divided by the wrong number of people.
+      return `Equal Split · ${formatCurrency(perPerson)} each, split ${splitCount} ${splitCount === 1 ? 'way' : 'ways'}`
     }
     if (category.split_type === 'custom') {
       return 'Custom Split'
@@ -98,7 +102,7 @@ export function CategoryList({
           <div className="text-right">
             <p className="text-sm font-medium" style={{ color: '#8fa3b1' }}>Per Person</p>
             <p className="mt-1 text-3xl font-bold" style={{ color: '#F5F1ED' }}>
-              {formatCurrency(totalBudget / Math.max(memberCount, 1))}
+              {formatCurrency(totalBudget / Math.max(splitCount, 1))}
             </p>
           </div>
         </div>
