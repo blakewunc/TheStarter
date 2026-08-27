@@ -60,6 +60,8 @@ CREATE INDEX IF NOT EXISTS idx_courses_latlng ON public.courses(lat, lng);
 ALTER TABLE public.courses ENABLE ROW LEVEL SECURITY;
 
 -- Courses are shared reference data: any signed-in user may read them.
+-- Dropped first so the whole migration stays re-runnable after a partial failure.
+DROP POLICY IF EXISTS "Authenticated users can view courses" ON public.courses;
 CREATE POLICY "Authenticated users can view courses"
   ON public.courses FOR SELECT
   TO authenticated
@@ -101,49 +103,77 @@ CREATE INDEX IF NOT EXISTS idx_itinerary_items_course ON public.itinerary_items(
 -- 3. MERGE golf_tee_times -> itinerary_items
 -- =====================================================
 
--- Same UUID is carried over, which is what makes step 4 a constraint swap rather than
--- a data migration. ON CONFLICT DO NOTHING makes this re-runnable.
-INSERT INTO public.itinerary_items (
-  id, trip_id, date, time, title, description, location,
-  item_type, course_name, address, num_players, players, par,
-  legacy_tee_time, created_by, created_at, updated_at
-)
-SELECT
-  t.id,
-  t.trip_id,
-  (t.tee_time AT TIME ZONE 'America/New_York')::date,
-  (t.tee_time AT TIME ZONE 'America/New_York')::time,
-  t.course_name,
-  t.notes,
-  t.course_location,
-  'tee_time',
-  t.course_name,
-  t.course_location,
-  t.num_players,
-  COALESCE(t.players, '{}'),
-  t.par,
-  t.tee_time,
-  t.created_by,
-  t.created_at,
-  t.updated_at
-FROM public.golf_tee_times t
-ON CONFLICT (id) DO NOTHING;
+-- This whole section is conditional on golf_tee_times still existing, so re-running the
+-- migration after a successful pass (where it was renamed away) is a no-op rather than
+-- an error.
+--
+-- `par` is added defensively: it comes from migration 013, which is not guaranteed to
+-- have been applied — this repo has two files numbered 013 and two numbered 016, so a
+-- deployment can legitimately be missing one. Every other column read below was created
+-- alongside the table in migration 009.
+DO $$
+BEGIN
+  IF to_regclass('public.golf_tee_times') IS NULL THEN
+    RAISE NOTICE 'golf_tee_times not present — merge already applied, skipping.';
+    RETURN;
+  END IF;
+
+  ALTER TABLE public.golf_tee_times ADD COLUMN IF NOT EXISTS par INTEGER DEFAULT 72;
+
+  -- Same UUID is carried over, which is what makes step 4 a constraint swap rather
+  -- than a data migration. ON CONFLICT DO NOTHING makes this re-runnable.
+  INSERT INTO public.itinerary_items (
+    id, trip_id, date, time, title, description, location,
+    item_type, course_name, address, num_players, players, par,
+    legacy_tee_time, created_by, created_at, updated_at
+  )
+  SELECT
+    t.id,
+    t.trip_id,
+    (t.tee_time AT TIME ZONE 'America/New_York')::date,
+    (t.tee_time AT TIME ZONE 'America/New_York')::time,
+    t.course_name,
+    t.notes,
+    t.course_location,
+    'tee_time',
+    t.course_name,
+    t.course_location,
+    t.num_players,
+    COALESCE(t.players, '{}'),
+    COALESCE(t.par, 72),
+    t.tee_time,
+    t.created_by,
+    t.created_at,
+    t.updated_at
+  FROM public.golf_tee_times t
+  ON CONFLICT (id) DO NOTHING;
+END $$;
 
 -- =====================================================
 -- 4. REPOINT FOREIGN KEYS
 -- =====================================================
 -- The UUIDs are unchanged, so golf_scores.tee_time_id and golf_bets.tee_time_id already
 -- hold values that now exist in itinerary_items. Only the constraint target moves.
+--
+-- Each is guarded on its table existing: golf_bets comes from migration 016, which — like
+-- 013 — may not have been applied on a given deployment.
 
-ALTER TABLE public.golf_scores DROP CONSTRAINT IF EXISTS golf_scores_tee_time_id_fkey;
-ALTER TABLE public.golf_scores
-  ADD CONSTRAINT golf_scores_tee_time_id_fkey
-  FOREIGN KEY (tee_time_id) REFERENCES public.itinerary_items(id) ON DELETE CASCADE;
+DO $$
+BEGIN
+  IF to_regclass('public.golf_scores') IS NOT NULL THEN
+    ALTER TABLE public.golf_scores DROP CONSTRAINT IF EXISTS golf_scores_tee_time_id_fkey;
+    ALTER TABLE public.golf_scores
+      ADD CONSTRAINT golf_scores_tee_time_id_fkey
+      FOREIGN KEY (tee_time_id) REFERENCES public.itinerary_items(id) ON DELETE CASCADE;
+  END IF;
 
-ALTER TABLE public.golf_bets DROP CONSTRAINT IF EXISTS golf_bets_tee_time_id_fkey;
-ALTER TABLE public.golf_bets
-  ADD CONSTRAINT golf_bets_tee_time_id_fkey
-  FOREIGN KEY (tee_time_id) REFERENCES public.itinerary_items(id) ON DELETE SET NULL;
+  IF to_regclass('public.golf_bets') IS NOT NULL THEN
+    ALTER TABLE public.golf_bets DROP CONSTRAINT IF EXISTS golf_bets_tee_time_id_fkey;
+    ALTER TABLE public.golf_bets
+      ADD CONSTRAINT golf_bets_tee_time_id_fkey
+      FOREIGN KEY (tee_time_id) REFERENCES public.itinerary_items(id) ON DELETE SET NULL;
+  END IF;
+END $$;
 
 -- =====================================================
 -- 5. RETIRE THE OLD TABLE
