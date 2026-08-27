@@ -93,7 +93,7 @@ export function TripHeader({ trip, isOrganizer }: TripHeaderProps) {
               <Button variant="outline" size="sm" onClick={handleEdit}>
                 Edit Trip
               </Button>
-              <Button variant="secondary" size="sm" onClick={handleDelete} disabled={isDeleting}>
+              <Button variant="destructive" size="sm" onClick={handleDelete} disabled={isDeleting}>
                 {isDeleting ? 'Deleting...' : 'Delete Trip'}
               </Button>
             </div>

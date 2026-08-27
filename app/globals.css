@@ -32,6 +32,55 @@
   --error: #8B4444;
   --info: #5A6F7F;
 
+  /* ── Semantic tokens (Phase 0) ─────────────────────────────────────────────
+     Contrast measured against --paper (#F5F1ED). WCAG AA body text needs 4.5:1.
+
+       --ink        #1C1A17  15.45  ✓
+       --ink-soft   #6B6460   5.17  ✓  secondary text AND eyebrows
+       --ink-faint  #A09890   2.53  ✗  NON-TEXT ONLY
+       --pine       #3B6D11   5.53  ✓
+       --clay       #8B4444   6.21  ✓
+       --sand       #B8956A   2.48  ✗  fill/indicator only, never text
+
+     Two constraints worth stating plainly, because both are easy to undo by accident:
+
+     1. --ink-faint fails AA and must never carry text — not body, not helper text,
+        and not eyebrows. Nothing in this warm-grey family passes between #A09890
+        and #6B6460, so eyebrows use --ink-soft. This is a deliberate departure from
+        the original spec, which proposed --ink-faint for eyebrow/label text; that
+        would have failed the spec's own accessibility floor.
+
+     2. --sand cannot be text either. Use --sand-soft as a fill with --ink on top
+        (14.09), or --sand-ink when a sand-toned word is genuinely required.
+
+     The old --accent (#70798C) is 3.89 on paper and only 4.37 under white — the
+     previous primary button failed AA on its own label. It is kept for backward
+     compatibility but must not be used for new fills or text.
+     ──────────────────────────────────────────────────────────────────────── */
+
+  --paper: #F5F1ED;
+  --card: #ffffff;
+  --ink-soft: #6B6460;
+  --ink-faint: #A09890;
+  --rule: rgba(28, 26, 23, 0.10);
+  --rule-strong: #D6CFC8;
+
+  --pine: #3B6D11;
+  --pine-soft: #EAF3DE;
+  --sand: #B8956A;
+  --sand-soft: #EDE7DA;
+  --sand-ink: #7A5E38;
+  --clay: #8B4444;
+  --clay-soft: #FEF2F2;
+
+  /* Status semantics — pine means confirmed everywhere, not just in the hero band */
+  --status-confirmed: var(--pine);
+  --status-confirmed-bg: var(--pine-soft);
+  --status-planning: var(--sand);
+  --status-planning-bg: var(--sand-soft);
+  --status-attention: var(--clay);
+  --status-attention-bg: var(--clay-soft);
+
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
