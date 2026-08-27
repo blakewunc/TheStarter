@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { fetchErrorMessage } from '@/lib/hooks/fetchError'
 
 interface Profile {
   id: string
@@ -32,7 +33,7 @@ export function useComments(tripId: string, itineraryItemId?: string) {
 
         const response = await fetch(url)
         if (!response.ok) {
-          throw new Error('Failed to fetch comments')
+          throw new Error(await fetchErrorMessage(response, 'Failed to fetch comments'))
         }
         const data = await response.json()
         setComments(data.comments)

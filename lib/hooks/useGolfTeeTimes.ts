@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { fetchErrorMessage } from '@/lib/hooks/fetchError'
 
 export interface TeeTime {
   id: string
@@ -40,7 +41,7 @@ export function useGolfTeeTimes(tripId: string) {
       try {
         const response = await fetch(`/api/trips/${tripId}/golf/tee-times`)
         if (!response.ok) {
-          throw new Error('Failed to fetch tee times')
+          throw new Error(await fetchErrorMessage(response, 'Failed to fetch tee times'))
         }
         const data = await response.json()
         setTeeTimes(data.teeTimes || [])

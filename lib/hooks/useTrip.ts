@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { fetchErrorMessage } from '@/lib/hooks/fetchError'
 
 interface Profile {
   id: string
@@ -44,7 +45,7 @@ export function useTrip(tripId: string) {
       try {
         const response = await fetch(`/api/trips/${tripId}`)
         if (!response.ok) {
-          throw new Error('Failed to fetch trip')
+          throw new Error(await fetchErrorMessage(response, 'Failed to fetch trip'))
         }
         const data = await response.json()
         setTrip(data.trip)

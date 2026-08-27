@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import { fetchErrorMessage } from '@/lib/hooks/fetchError'
 
 interface Profile {
   id: string
@@ -38,7 +39,7 @@ export function useExpenses(tripId: string) {
       try {
         const response = await fetch(`/api/trips/${tripId}/expenses`)
         if (!response.ok) {
-          throw new Error('Failed to fetch expenses')
+          throw new Error(await fetchErrorMessage(response, 'Failed to fetch expenses'))
         }
         const data = await response.json()
         setExpenses(data.expenses)
