@@ -9,7 +9,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-[#F5F1ED]">
       <div className="mx-auto max-w-2xl px-6 py-16">
-        <h1 className="mb-2 text-3xl font-bold tracking-tight text-[#1C1A17]">Privacy Policy</h1>
+        <h1 className="mb-2 text-3xl page-title tracking-tight text-[#1C1A17]">Privacy Policy</h1>
         <p className="mb-10 text-sm text-[#6B6460]">Last updated: March 17, 2025</p>
 
         <div className="space-y-8 text-sm leading-relaxed text-[#1C1A17]">
@@ -80,7 +80,7 @@ export default function PrivacyPage() {
               <li>Export your trip data</li>
               <li>Opt out of non-essential communications</li>
             </ul>
-            <p className="mt-3">To exercise these rights, email us at <a href="mailto:hello@thestarter.app" className="text-[#4A7C59] underline-offset-2 hover:underline">hello@thestarter.app</a>.</p>
+            <p className="mt-3">To exercise these rights, email us at <a href="mailto:hello@thestarter.app" className="text-[#3B6D11] underline-offset-2 hover:underline">hello@thestarter.app</a>.</p>
           </section>
 
           <section>
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
             <p>For questions about this Privacy Policy or to make a privacy request, contact us at:</p>
             <div className="mt-3 rounded-[5px] border border-[#DAD2BC] bg-white p-4">
               <p className="font-medium text-[#1C1A17]">The Starter</p>
-              <p className="text-[#6B6460]">Email: <a href="mailto:hello@thestarter.app" className="text-[#4A7C59] underline-offset-2 hover:underline">hello@thestarter.app</a></p>
+              <p className="text-[#6B6460]">Email: <a href="mailto:hello@thestarter.app" className="text-[#3B6D11] underline-offset-2 hover:underline">hello@thestarter.app</a></p>
               <p className="text-[#6B6460]">Website: thestarter.app</p>
             </div>
           </section>

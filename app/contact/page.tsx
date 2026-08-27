@@ -10,7 +10,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#F5F1ED]">
       <div className="mx-auto max-w-2xl px-6 py-16">
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">Contact</p>
-        <h1 className="mb-3 text-3xl font-bold tracking-tight text-[#1C1A17]">Get in Touch</h1>
+        <h1 className="mb-3 text-3xl page-title tracking-tight text-[#1C1A17]">Get in Touch</h1>
         <p className="mb-10 text-[#6B6460]">
           Questions, feedback, partnership inquiries — we read everything.
         </p>
@@ -20,14 +20,14 @@ export default function ContactPage() {
             href="mailto:hello@thestarter.app"
             className="group rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-shadow hover:shadow-[0_2px_6px_rgba(0,0,0,0.08)]"
           >
-            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[5px] bg-[#4A7C59]/10">
-              <svg className="h-5 w-5 text-[#4A7C59]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[5px] bg-[#3B6D11]/10">
+              <svg className="h-5 w-5 text-[#3B6D11]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
             </div>
-            <h2 className="mb-1 font-semibold text-[#1C1A17] group-hover:text-[#4A7C59] transition-colors">Email Us</h2>
+            <h2 className="mb-1 font-semibold text-[#1C1A17] group-hover:text-[#3B6D11] transition-colors">Email Us</h2>
             <p className="mb-3 text-sm text-[#6B6460]">For general questions, feedback, or support.</p>
-            <p className="text-sm font-medium text-[#4A7C59]">hello@thestarter.app</p>
+            <p className="text-sm font-medium text-[#3B6D11]">hello@thestarter.app</p>
           </a>
 
           <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">

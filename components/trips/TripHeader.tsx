@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { StatusChip } from '@/components/ui/StatusChip'
 
 interface TripHeaderProps {
   trip: {
@@ -66,28 +67,11 @@ export function TripHeader({ trip, isOrganizer }: TripHeaderProps) {
     return `${startStr}${startYear} - ${endStr} (${days} ${days === 1 ? 'day' : 'days'})`
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'planning':
-        return 'bg-blue-100 text-blue-700 border border-blue-200'
-      case 'confirmed':
-        return 'bg-green-100 text-green-700 border border-green-200'
-      case 'completed':
-        return 'bg-gray-100 text-gray-700 border border-gray-200'
-      case 'cancelled':
-        return 'bg-red-100 text-red-700 border border-red-200'
-      default:
-        return 'bg-gray-100 text-gray-700 border border-gray-200'
-    }
-  }
-
   return (
     <div className="relative overflow-hidden rounded-[5px] border border-[#DAD2BC] bg-white p-8 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
       <div className="relative z-10">
         <div className="mb-4 flex items-center justify-between">
-          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(trip.status)}`}>
-            {trip.status}
-          </span>
+          <StatusChip status={trip.status} />
           {isOrganizer && (
             <div className="flex items-center space-x-2">
               <Button variant="outline" size="sm" onClick={handleEdit}>
@@ -100,7 +84,7 @@ export function TripHeader({ trip, isOrganizer }: TripHeaderProps) {
           )}
         </div>
 
-        <h1 className="mb-4 text-4xl font-bold tracking-tight text-[#1C1A17]">
+        <h1 className="mb-4 text-4xl page-title tracking-tight text-[#1C1A17]">
           {trip.title}
         </h1>
 

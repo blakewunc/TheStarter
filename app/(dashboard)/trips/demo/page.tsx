@@ -19,7 +19,7 @@ export default function DemoTripPage() {
           <span className="mb-3 inline-flex items-center rounded-[5px] bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#8ECC7A]">
             Demo Trip
           </span>
-          <h1 className="mb-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h1 className="mb-2 text-4xl page-title tracking-tight text-white sm:text-5xl">
             {DEMO_TRIP.title}
           </h1>
           <p className="mb-1 text-lg text-white/70">{DEMO_TRIP.destination}</p>
@@ -31,7 +31,7 @@ export default function DemoTripPage() {
               <div
                 key={s.player}
                 className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/20 text-xs font-semibold text-white"
-                style={{ backgroundColor: ['#70798C','#4A7C59','#8B7355','#6B8E7B','#7C6B8E','#5A7A6B','#8B4444','#B8956A'][i % 8] }}
+                style={{ backgroundColor: ['#70798C','#3B6D11','#8B7355','#6B8E7B','#7C6B8E','#5A7A6B','#8B4444','#B8956A'][i % 8] }}
                 title={s.player}
               >
                 {s.player[0]}
@@ -55,7 +55,7 @@ export default function DemoTripPage() {
                     <p className="mt-0.5 text-sm text-[#6B6460]">{round.date} · {round.teeTime}</p>
                     <p className="mt-0.5 text-xs text-[#6B6460]">Par {round.par} · {round.players.length} players</p>
                   </div>
-                  <span className="inline-flex items-center rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs font-medium text-[#4A7C59]">
+                  <span className="inline-flex items-center rounded-full bg-[#3B6D11]/10 px-2.5 py-0.5 text-xs font-medium text-[#3B6D11]">
                     Confirmed
                   </span>
                 </div>

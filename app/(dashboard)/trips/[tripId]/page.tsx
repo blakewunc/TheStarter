@@ -123,7 +123,7 @@ function TripDetailContent({ tripId }: { tripId: string }) {
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="itinerary">Itinerary</TabsTrigger>
               <TabsTrigger value="financials">Financials</TabsTrigger>
-              {sportTab === 'golf' && <TabsTrigger value="golf">Golf ⛳</TabsTrigger>}
+              {sportTab === 'golf' && <TabsTrigger value="golf">Golf</TabsTrigger>}
               {sportTab === 'ski' && <TabsTrigger value="ski">Ski ⛷️</TabsTrigger>}
               {isOrganizer && <TabsTrigger value="availability">Availability</TabsTrigger>}
             </TabsList>

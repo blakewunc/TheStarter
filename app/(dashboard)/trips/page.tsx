@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { formatDateRange } from '@/lib/utils/date'
 import { DEMO_TRIP } from '@/lib/demo-trip'
+import { StatusChip } from '@/components/ui/StatusChip'
 
 const AVATAR_COLORS = ['#70798C', '#B5A98A', '#C4B9A8', '#8C7B6B', '#9A8F82']
 
@@ -86,11 +87,11 @@ function TripCard({ trip }: { trip: TripCardData }) {
         {/* Dark header */}
         <div style={{ background: '#1C1A17', padding: '20px', position: 'relative' }}>
           {trip.status && (
-            <span
-              style={{ position: 'absolute', top: '14px', right: '14px', background: 'rgba(245,241,237,0.10)', color: 'rgba(245,241,237,0.45)', fontSize: '10px', letterSpacing: '0.08em', padding: '3px 8px', borderRadius: '4px', textTransform: 'uppercase' }}
-            >
-              {trip.status}
-            </span>
+            <StatusChip
+              status={trip.status}
+              ground="dark"
+              className="absolute right-3.5 top-3.5"
+            />
           )}
           {trip.destination && (
             <p style={{ fontSize: '10px', letterSpacing: '0.14em', color: 'rgba(245,241,237,0.40)', textTransform: 'uppercase', marginBottom: '4px' }}>

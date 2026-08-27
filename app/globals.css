@@ -144,6 +144,19 @@
   }
 }
 
+/* Phase 0.3 — display type.
+   Page titles were plain sans, which is what made Settings, Create Trip, Budget and
+   Itinerary read as a different product from the marketing site and the trip cards.
+   Playfair starts at 400; `font-bold` on a display serif at 40px+ is heavier than the
+   design wants, so weight is set here rather than left to a utility class. */
+.page-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
 body {
   background: var(--cream);
   color: var(--ink);

@@ -176,16 +176,16 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
                           <CardDescription className="mt-1 space-y-1">
                             {item.time && (
                               <div>
-                                {'\u{1F550}'} {formatTime(item.time)}
+                                {formatTime(item.time)}
                                 {item.end_time ? ` – ${formatTime(item.end_time)}` : ''}
                               </div>
                             )}
                             {(item.address || item.location) && (
-                              <div>{'\u{1F4CD}'} {item.address || item.location}</div>
+                              <div>{item.address || item.location}</div>
                             )}
                             {item.item_type === 'tee_time' && (
                               <div>
-                                {'\u{26F3}'} {item.num_players || 4} players
+                                {item.num_players || 4} players
                                 {item.par ? ` · Par ${item.par}` : ''}
                                 {item.booking_confirmation
                                   ? ` · Conf ${item.booking_confirmation}`

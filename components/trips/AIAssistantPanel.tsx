@@ -337,7 +337,7 @@ function MessageContent({
             <button
               onClick={() => onAddToItinerary(data)}
               disabled={isAdding}
-              className="mt-3 flex items-center gap-1 rounded-[5px] bg-[#4A7C59] px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#3d6a4a] disabled:opacity-50"
+              className="mt-3 flex items-center gap-1 rounded-[5px] bg-[#3B6D11] px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#3d6a4a] disabled:opacity-50"
             >
               <Plus className="h-3 w-3" />
               {isAdding ? 'Adding...' : 'Add to Itinerary'}

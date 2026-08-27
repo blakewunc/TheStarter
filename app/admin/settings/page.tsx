@@ -11,7 +11,7 @@ interface FeatureTile {
 const DEFAULT_TILES: FeatureTile[] = [
   { icon: '📍', title: 'Trip Planning', description: 'Build full itineraries day by day.' },
   { icon: '💰', title: 'Budget Splitting', description: 'Track costs and split them fairly.' },
-  { icon: '⛳', title: 'Golf Tools', description: 'Tee times, scorecards, and handicaps.' },
+  { icon: '', title: 'Golf Tools', description: 'Tee times, scorecards, and handicaps.' },
   { icon: '🎉', title: 'Group Coordination', description: 'RSVP, availability, and announcements.' },
 ]
 

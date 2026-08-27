@@ -162,7 +162,7 @@ export default async function RecapPage(
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-white/60">
             Trip Recap
           </p>
-          <h1 className="mb-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h1 className="mb-3 text-4xl page-title tracking-tight text-white sm:text-5xl">
             {trip.title}
           </h1>
           {trip.destination && (
@@ -227,7 +227,7 @@ export default async function RecapPage(
                       {isWinner && <span className="text-sm">🏆</span>}
                     </div>
                     <div className="text-right">
-                      <span className={`text-sm font-bold ${diff < 0 ? 'text-[#4A7C59]' : diff > 0 ? 'text-[#8B4444]' : 'text-[#6B6460]'}`}>
+                      <span className={`text-sm font-bold ${diff < 0 ? 'text-[#3B6D11]' : diff > 0 ? 'text-[#8B4444]' : 'text-[#6B6460]'}`}>
                         {diffStr}
                       </span>
                       <span className="ml-1.5 text-xs text-[#6B6460]">({player.totalScore})</span>

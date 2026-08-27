@@ -121,7 +121,7 @@ export default function NewTripPage() {
     <div className="min-h-screen bg-[#F5F1ED] p-6">
       <div className="mx-auto max-w-2xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight text-[#1C1A17]">Create a New Trip</h1>
+          <h1 className="text-3xl page-title tracking-tight text-[#1C1A17]">Create a New Trip</h1>
           <p className="mt-1 text-[#6B6460]">Start planning your next group adventure</p>
         </div>
 
