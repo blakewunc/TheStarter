@@ -43,7 +43,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (checking) {
     return <div style={{ minHeight: '100vh', background: '#F5F1ED', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <p style={{ color: '#A09890', fontSize: '13px' }}>Loading…</p>
+      <p style={{ color: '#6B6460', fontSize: '13px' }}>Loading…</p>
     </div>
   }
 
@@ -51,15 +51,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return (
       <div style={{ minHeight: '100vh', background: '#F5F1ED', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
         <div style={{ background: '#fff', borderRadius: '8px', padding: '36px', width: '100%', maxWidth: '380px', border: '0.5px solid rgba(28,26,23,0.10)' }}>
-          <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: '8px' }}>The Starter</p>
-          <h1 style={{ fontSize: '22px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Cormorant Garamond', Georgia, serif", marginBottom: '24px' }}>Admin Panel</h1>
+          <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: '8px' }}>The Starter</p>
+          <h1 style={{ fontSize: '22px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '24px' }}>Admin Panel</h1>
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <div>
-              <label style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: '#A09890', display: 'block', marginBottom: '6px' }}>Email</label>
+              <label style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: '#6B6460', display: 'block', marginBottom: '6px' }}>Email</label>
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoFocus style={{ width: '100%', height: '44px', border: '0.5px solid rgba(28,26,23,0.20)', borderRadius: '5px', padding: '0 12px', fontSize: '14px', color: '#1C1A17', boxSizing: 'border-box' }} />
             </div>
             <div>
-              <label style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: '#A09890', display: 'block', marginBottom: '6px' }}>Password</label>
+              <label style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: '#6B6460', display: 'block', marginBottom: '6px' }}>Password</label>
               <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ width: '100%', height: '44px', border: '0.5px solid rgba(28,26,23,0.20)', borderRadius: '5px', padding: '0 12px', fontSize: '14px', color: '#1C1A17', boxSizing: 'border-box' }} />
             </div>
             {loginError && <p style={{ fontSize: '12px', color: '#8B4444' }}>{loginError}</p>}
@@ -83,7 +83,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Admin nav */}
       <div style={{ background: '#1C1A17', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '48px', position: 'sticky', top: 0, zIndex: 50 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-          <span style={{ fontSize: '13px', fontWeight: 500, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", letterSpacing: '0.02em' }}>
+          <span style={{ fontSize: '13px', fontWeight: 500, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: '0.02em' }}>
             The Starter · Admin
           </span>
           <div style={{ display: 'flex', gap: '16px' }}>

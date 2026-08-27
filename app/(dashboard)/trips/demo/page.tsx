@@ -45,15 +45,15 @@ export default function DemoTripPage() {
 
         {/* Tee Times */}
         <div>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#70798C]">Tee Times</h2>
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">Tee Times</h2>
           <div className="space-y-3">
             {DEMO_TRIP.rounds.map((round) => (
               <div key={round.id} className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="font-semibold text-[#252323]">{round.course}</p>
-                    <p className="mt-0.5 text-sm text-[#A99985]">{round.date} · {round.teeTime}</p>
-                    <p className="mt-0.5 text-xs text-[#A99985]">Par {round.par} · {round.players.length} players</p>
+                    <p className="font-semibold text-[#1C1A17]">{round.course}</p>
+                    <p className="mt-0.5 text-sm text-[#6B6460]">{round.date} · {round.teeTime}</p>
+                    <p className="mt-0.5 text-xs text-[#6B6460]">Par {round.par} · {round.players.length} players</p>
                   </div>
                   <span className="inline-flex items-center rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs font-medium text-[#4A7C59]">
                     Confirmed
@@ -61,7 +61,7 @@ export default function DemoTripPage() {
                 </div>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {round.players.map((p) => (
-                    <span key={p} className="rounded-full bg-[#F5F1ED] px-2.5 py-0.5 text-xs text-[#70798C]">{p}</span>
+                    <span key={p} className="rounded-full bg-[#F5F1ED] px-2.5 py-0.5 text-xs text-[#3B6D11]">{p}</span>
                   ))}
                 </div>
               </div>
@@ -71,7 +71,7 @@ export default function DemoTripPage() {
 
         {/* Leaderboard */}
         <div>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#70798C]">Leaderboard</h2>
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">Leaderboard</h2>
           <div className="rounded-[5px] border border-[#DAD2BC] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)] overflow-hidden">
             {DEMO_TRIP.scores
               .map(s => ({ ...s, total: s.round1 + s.round2 }))
@@ -82,34 +82,34 @@ export default function DemoTripPage() {
                   className={`flex items-center justify-between px-5 py-3.5 ${i < DEMO_TRIP.scores.length - 1 ? 'border-b border-[#F5F1ED]' : ''}`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className={`w-5 text-sm font-bold ${i === 0 ? 'text-[#B8956A]' : 'text-[#A99985]'}`}>{i + 1}</span>
-                    <span className="font-medium text-[#252323]">{s.player}</span>
+                    <span className={`w-5 text-sm font-bold ${i === 0 ? 'text-[#B8956A]' : 'text-[#6B6460]'}`}>{i + 1}</span>
+                    <span className="font-medium text-[#1C1A17]">{s.player}</span>
                     {i === 0 && <span className="text-sm">🏆</span>}
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-[#A99985]">
+                  <div className="flex items-center gap-3 text-sm text-[#6B6460]">
                     <span>{s.round1}</span>
                     <span>·</span>
                     <span>{s.round2}</span>
-                    <span className="ml-1 font-bold text-[#252323]">{s.total}</span>
+                    <span className="ml-1 font-bold text-[#1C1A17]">{s.total}</span>
                   </div>
                 </div>
               ))}
           </div>
-          <p className="mt-2 text-right text-xs text-[#A99985]">{DEMO_TRIP.bettingFormat}</p>
+          <p className="mt-2 text-right text-xs text-[#6B6460]">{DEMO_TRIP.bettingFormat}</p>
         </div>
 
         {/* Itinerary */}
         <div>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#70798C]">Itinerary</h2>
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">Itinerary</h2>
           <div className="space-y-4">
             {DEMO_TRIP.itinerary.map((day) => (
               <div key={day.day}>
-                <h3 className="mb-2 text-sm font-semibold text-[#252323]">{day.day}</h3>
+                <h3 className="mb-2 text-sm font-semibold text-[#1C1A17]">{day.day}</h3>
                 <div className="space-y-1.5">
                   {day.events.map((event, i) => (
                     <div key={i} className="flex items-center gap-3 rounded-[5px] border border-[#DAD2BC] bg-white px-4 py-2.5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
                       <div className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#12733C]" />
-                      <span className="text-sm text-[#252323]">{event}</span>
+                      <span className="text-sm text-[#1C1A17]">{event}</span>
                     </div>
                   ))}
                 </div>
@@ -120,29 +120,29 @@ export default function DemoTripPage() {
 
         {/* Expenses */}
         <div>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#70798C]">Expenses</h2>
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">Expenses</h2>
           <div className="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <div className="rounded-[5px] border-2 border-[#70798C] bg-white p-4 text-center shadow-[0_2px_6px_rgba(0,0,0,0.08)]">
-              <p className="text-3xl font-bold text-[#70798C]">${DEMO_TRIP.totalPerPerson.toLocaleString()}</p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#A99985]">Per Person</p>
+            <div className="rounded-[5px] border-2 border-[#3B6D11] bg-white p-4 text-center shadow-[0_2px_6px_rgba(0,0,0,0.08)]">
+              <p className="text-3xl font-bold text-[#3B6D11]">${DEMO_TRIP.totalPerPerson.toLocaleString()}</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#6B6460]">Per Person</p>
             </div>
             <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-4 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-              <p className="text-2xl font-bold text-[#252323]">${totalExpenses.toLocaleString()}</p>
-              <p className="mt-1 text-xs text-[#A99985]">Total</p>
+              <p className="text-2xl font-bold text-[#1C1A17]">${totalExpenses.toLocaleString()}</p>
+              <p className="mt-1 text-xs text-[#6B6460]">Total</p>
             </div>
             <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-4 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-              <p className="text-2xl font-bold text-[#252323]">{DEMO_TRIP.players}</p>
-              <p className="mt-1 text-xs text-[#A99985]">Players</p>
+              <p className="text-2xl font-bold text-[#1C1A17]">{DEMO_TRIP.players}</p>
+              <p className="mt-1 text-xs text-[#6B6460]">Players</p>
             </div>
           </div>
           <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
             <div className="space-y-3">
               {DEMO_TRIP.expenses.map((expense) => (
                 <div key={expense.item} className="flex items-center justify-between border-b border-[#F5F1ED] pb-3 last:border-0 last:pb-0">
-                  <span className="text-sm text-[#252323]">{expense.item}</span>
+                  <span className="text-sm text-[#1C1A17]">{expense.item}</span>
                   <div className="text-right">
-                    <span className="text-sm font-medium text-[#252323]">${expense.total.toLocaleString()}</span>
-                    <span className="ml-2 text-xs text-[#A99985]">(${expense.perPerson}/person)</span>
+                    <span className="text-sm font-medium text-[#1C1A17]">${expense.total.toLocaleString()}</span>
+                    <span className="ml-2 text-xs text-[#6B6460]">(${expense.perPerson}/person)</span>
                   </div>
                 </div>
               ))}
@@ -152,8 +152,8 @@ export default function DemoTripPage() {
 
         {/* CTA */}
         <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-8 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-          <p className="mb-2 text-base font-semibold text-[#252323]">Ready to plan your own trip?</p>
-          <p className="mb-4 text-sm text-[#A99985]">
+          <p className="mb-2 text-base font-semibold text-[#1C1A17]">Ready to plan your own trip?</p>
+          <p className="mb-4 text-sm text-[#6B6460]">
             The Starter handles tee times, scoring, expenses, and itineraries — everything your golf crew needs.
           </p>
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
@@ -168,7 +168,7 @@ export default function DemoTripPage() {
 
       {/* Footer nav */}
       <div className="py-6 text-center">
-        <Link href="/trips" className="text-sm text-[#A99985] underline-offset-2 hover:underline">
+        <Link href="/trips" className="text-sm text-[#6B6460] underline-offset-2 hover:underline">
           ← Back to trips
         </Link>
       </div>

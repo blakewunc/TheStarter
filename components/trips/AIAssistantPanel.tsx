@@ -186,15 +186,15 @@ export function AIAssistantPanel({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#DAD2BC] px-6 py-4">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-[#70798C]" />
+            <Sparkles className="h-5 w-5 text-[#3B6D11]" />
             <div>
-              <h2 className="text-base font-semibold text-[#252323]">AI Trip Planner</h2>
-              <p className="text-xs text-[#A99985]">{tripDestination}</p>
+              <h2 className="text-base font-semibold text-[#1C1A17]">AI Trip Planner</h2>
+              <p className="text-xs text-[#6B6460]">{tripDestination}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="rounded-[5px] p-1.5 text-[#A99985] transition-colors hover:bg-[#F5F1ED] hover:text-[#252323]"
+            className="rounded-[5px] p-1.5 text-[#6B6460] transition-colors hover:bg-[#F5F1ED] hover:text-[#1C1A17]"
           >
             <X className="h-5 w-5" />
           </button>
@@ -206,7 +206,7 @@ export function AIAssistantPanel({
             {messages.map((message) => (
               <div key={message.id}>
                 {message.role === 'user' ? (
-                  <div className="ml-12 rounded-[5px] bg-[#70798C] px-4 py-3 text-sm text-white">
+                  <div className="ml-12 rounded-[5px] bg-[#3B6D11] px-4 py-3 text-sm text-white">
                     {message.content}
                   </div>
                 ) : (
@@ -228,7 +228,7 @@ export function AIAssistantPanel({
                   <button
                     key={prompt}
                     onClick={() => sendMessage(prompt)}
-                    className="rounded-full border border-[#DAD2BC] bg-white px-3 py-1.5 text-xs font-medium text-[#70798C] transition-colors hover:border-[#70798C] hover:bg-[#F5F1ED]"
+                    className="rounded-full border border-[#DAD2BC] bg-white px-3 py-1.5 text-xs font-medium text-[#3B6D11] transition-colors hover:border-[#3B6D11] hover:bg-[#F5F1ED]"
                   >
                     {prompt}
                   </button>
@@ -251,12 +251,12 @@ export function AIAssistantPanel({
               onKeyDown={handleKeyDown}
               placeholder={isStreaming ? 'Thinking...' : 'Ask about your trip...'}
               disabled={isStreaming}
-              className="flex-1 rounded-[5px] border border-[#DAD2BC] bg-white px-4 py-2.5 text-sm text-[#252323] placeholder:text-[#A99985] focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C]/15 disabled:opacity-50"
+              className="flex-1 rounded-[5px] border border-[#DAD2BC] bg-white px-4 py-2.5 text-sm text-[#1C1A17] placeholder:text-[#6B6460] focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17]/15 disabled:opacity-50"
             />
             <button
               onClick={() => sendMessage()}
               disabled={isStreaming || !input.trim()}
-              className="rounded-[5px] bg-[#70798C] p-2.5 text-white transition-colors hover:bg-[#5A6270] disabled:opacity-40"
+              className="rounded-[5px] bg-[#3B6D11] p-2.5 text-white transition-colors hover:bg-[#2F5A0E] disabled:opacity-40"
             >
               <Send className="h-4 w-4" />
             </button>
@@ -280,8 +280,8 @@ function MessageContent({
   if (!content) {
     return (
       <div className="rounded-[5px] bg-[#F5F1ED] px-4 py-3">
-        <div className="flex items-center gap-2 text-sm text-[#A99985]">
-          <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#70798C]" />
+        <div className="flex items-center gap-2 text-sm text-[#6B6460]">
+          <div className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#3B6D11]" />
           Thinking...
         </div>
       </div>
@@ -299,7 +299,7 @@ function MessageContent({
           return (
             <div
               key={i}
-              className="rounded-[5px] bg-[#F5F1ED] px-4 py-3 text-sm leading-relaxed text-[#252323]"
+              className="rounded-[5px] bg-[#F5F1ED] px-4 py-3 text-sm leading-relaxed text-[#1C1A17]"
             >
               <SimpleMarkdown text={trimmed} />
             </div>
@@ -315,8 +315,8 @@ function MessageContent({
             key={i}
             className="rounded-[5px] border border-[#DAD2BC] bg-white p-4 shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
           >
-            <h4 className="text-sm font-semibold text-[#252323]">{data.title}</h4>
-            <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[#A99985]">
+            <h4 className="text-sm font-semibold text-[#1C1A17]">{data.title}</h4>
+            <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[#6B6460]">
               {data.date && (
                 <span>
                   {parseLocalDate(data.date).toLocaleDateString('en-US', {
@@ -330,7 +330,7 @@ function MessageContent({
               {data.location && <span>{data.location}</span>}
             </div>
             {data.description && (
-              <p className="mt-2 text-xs leading-relaxed text-[#A99985]">
+              <p className="mt-2 text-xs leading-relaxed text-[#6B6460]">
                 {data.description}
               </p>
             )}

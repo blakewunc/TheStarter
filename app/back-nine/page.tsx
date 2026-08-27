@@ -36,13 +36,13 @@ export default function StarterLanding() {
 
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 pb-20 pt-24 sm:pt-32">
-        <p className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-[#70798C]">
+        <p className="mb-6 text-xs font-semibold uppercase tracking-[0.18em] text-[#3B6D11]">
           The Starter — Golf Trip Planner
         </p>
 
         <h1 className="font-['Playfair_Display',Georgia,serif] mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-[#092D3D] sm:text-6xl lg:text-7xl">
           The whole trip,{' '}
-          <em className="italic text-[#70798C]">not just the round.</em>
+          <em className="italic text-[#3B6D11]">not just the round.</em>
         </h1>
 
         <p className="mb-10 max-w-xl text-base leading-relaxed text-[#5A7A6B] sm:text-lg">
@@ -66,7 +66,7 @@ export default function StarterLanding() {
           </Link>
         </div>
 
-        <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-[#A99985]">
+        <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-[#6B6460]">
           <span>Free to start</span>
           <span>No credit card</span>
           <span>Works for groups of 4–20</span>
@@ -119,7 +119,7 @@ export default function StarterLanding() {
                 key={tile.num}
                 className="flex flex-col gap-4 px-6 py-10 sm:first:pl-0 lg:first:pl-0"
               >
-                <span className="text-xs font-semibold tracking-widest text-[#A99985]">
+                <span className="text-xs font-semibold tracking-widest text-[#6B6460]">
                   {tile.num}
                 </span>
                 <h3 className="font-['Playfair_Display',Georgia,serif] text-lg font-bold leading-snug text-[#092D3D]">
@@ -142,7 +142,7 @@ export default function StarterLanding() {
         <div className="mx-auto max-w-5xl px-6 py-20">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#70798C]">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#3B6D11]">
                 AI trip builder
               </p>
               <h2 className="font-['Playfair_Display',Georgia,serif] mb-6 text-4xl font-bold leading-tight text-[#092D3D] sm:text-5xl">
@@ -161,12 +161,12 @@ export default function StarterLanding() {
                   key={prompt}
                   className="rounded-[5px] border border-[#DAD2BC] bg-[#F5F1ED] px-5 py-4"
                 >
-                  <p className="font-mono text-xs leading-relaxed text-[#70798C]">
+                  <p className="font-mono text-xs leading-relaxed text-[#3B6D11]">
                     {prompt}
                   </p>
                 </div>
               ))}
-              <p className="pt-1 text-xs text-[#A99985]">
+              <p className="pt-1 text-xs text-[#6B6460]">
                 The Starter turns this into a full trip draft. You adjust, share, and go.
               </p>
             </div>
@@ -189,17 +189,17 @@ export default function StarterLanding() {
                     <p className="font-['Playfair_Display',Georgia,serif] text-3xl font-bold text-[#092D3D]">
                       {item.stat}
                     </p>
-                    <p className="mt-1 text-xs text-[#A99985]">{item.label}</p>
+                    <p className="mt-1 text-xs text-[#6B6460]">{item.label}</p>
                   </div>
                 ))}
               </div>
             </div>
             <div className="sm:col-span-1">
-              <p className="text-sm italic leading-relaxed text-[#70798C]">
+              <p className="text-sm italic leading-relaxed text-[#3B6D11]">
                 &ldquo;Saved me six group texts and one very uncomfortable
                 Venmo request.&rdquo;
               </p>
-              <p className="mt-2 text-xs text-[#A99985]">
+              <p className="mt-2 text-xs text-[#6B6460]">
                 — Trip organizer, Pinehurst trip. 2024
               </p>
             </div>
@@ -214,7 +214,7 @@ export default function StarterLanding() {
 
             {/* Left copy */}
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#70798C]">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#3B6D11]">
                 The viral entry point
               </p>
               <h2 className="font-['Playfair_Display',Georgia,serif] mb-6 text-4xl font-bold leading-tight text-[#092D3D] sm:text-5xl">
@@ -229,7 +229,7 @@ export default function StarterLanding() {
 
             {/* Invite card mockup */}
             <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-8 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#70798C]">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#3B6D11]">
                 You&apos;ve been sent off
               </p>
               <h3 className="font-['Playfair_Display',Georgia,serif] mb-1 text-2xl font-bold text-[#092D3D]">
@@ -249,7 +249,7 @@ export default function StarterLanding() {
                     key={item.label}
                     className="rounded-[5px] bg-[#F5F1ED] p-3"
                   >
-                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#A99985]">
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-[#6B6460]">
                       {item.label}
                     </p>
                     <p className="mt-0.5 text-sm font-semibold text-[#092D3D]">

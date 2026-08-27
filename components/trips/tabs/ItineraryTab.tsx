@@ -14,7 +14,7 @@ function EventTypeBadge({ type }: { type?: string }) {
   const label = type ? EVENT_TYPE_LABELS[type] : null
   if (!label) return null
   return (
-    <span className="shrink-0 rounded-full bg-[#F5F1ED] px-2 py-0.5 text-[10px] font-medium text-[#70798C]">
+    <span className="shrink-0 rounded-full bg-[#F5F1ED] px-2 py-0.5 text-[10px] font-medium text-[#3B6D11]">
       {label}
     </span>
   )
@@ -83,7 +83,7 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
   const dates = Object.keys(itemsByDate).sort()
 
   if (loading) {
-    return <p className="text-[#A99985]">Loading itinerary...</p>
+    return <p className="text-[#6B6460]">Loading itinerary...</p>
   }
 
   if (error) {
@@ -99,8 +99,8 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-[#252323]">Itinerary</h2>
-          <p className="text-[#A99985]">Plan your day-by-day schedule for {trip.title}</p>
+          <h2 className="text-2xl font-bold tracking-tight text-[#1C1A17]">Itinerary</h2>
+          <p className="text-[#6B6460]">Plan your day-by-day schedule for {trip.title}</p>
         </div>
         <div className="flex items-center gap-2">
           <SuggestActivityDialog tripId={tripId} />
@@ -141,12 +141,12 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
       {dates.length === 0 ? (
         <div className="rounded-[5px] border-2 border-dashed border-[#DAD2BC] p-12 text-center">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F1ED]">
-            <svg className="h-6 w-6 text-[#A99985]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-6 w-6 text-[#6B6460]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
             </svg>
           </div>
-          <h3 className="text-base font-semibold text-[#252323]">No activities planned yet</h3>
-          <p className="mt-1 mb-4 text-sm text-[#A99985]">
+          <h3 className="text-base font-semibold text-[#1C1A17]">No activities planned yet</h3>
+          <p className="mt-1 mb-4 text-sm text-[#6B6460]">
             Build out the day-by-day schedule — tee times, dinners, check-ins, activities.
           </p>
           {isOrganizer && <AddItemDialog tripId={tripId} onSuccess={() => {}} />}
@@ -155,7 +155,7 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
         <div className="space-y-8">
           {dates.map((date) => (
             <div key={date}>
-              <h3 className="mb-4 text-xl font-bold text-[#252323]">
+              <h3 className="mb-4 text-xl font-bold text-[#1C1A17]">
                 {parseLocalDate(date).toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
@@ -208,7 +208,7 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
                     </CardHeader>
                     <CardContent>
                       {item.description && (
-                        <p className="mb-4 text-[#A99985]">{item.description}</p>
+                        <p className="mb-4 text-[#6B6460]">{item.description}</p>
                       )}
 
                       {/* Comments toggle */}

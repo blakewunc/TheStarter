@@ -25,7 +25,7 @@ export default function Error({
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-center text-sm text-[#A99985]">
+          <p className="text-center text-sm text-[#6B6460]">
             We encountered an unexpected error. Please try again.
           </p>
 

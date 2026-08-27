@@ -33,12 +33,12 @@ export function ExpenseList({ expenses, currentUserId, onDelete }: ExpenseListPr
     return (
       <div className="rounded-[5px] border-2 border-dashed border-[#DAD2BC] p-12 text-center">
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F1ED]">
-          <svg className="h-6 w-6 text-[#A99985]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="h-6 w-6 text-[#6B6460]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
           </svg>
         </div>
-        <h3 className="text-base font-semibold text-[#252323]">No expenses logged</h3>
-        <p className="mt-1 text-sm text-[#A99985]">
+        <h3 className="text-base font-semibold text-[#1C1A17]">No expenses logged</h3>
+        <p className="mt-1 text-sm text-[#6B6460]">
           Track what everyone pays for — Uber, dinner, green fees — and split it automatically.
         </p>
       </div>
@@ -71,7 +71,7 @@ export function ExpenseList({ expenses, currentUserId, onDelete }: ExpenseListPr
               </div>
               <div className="flex items-start gap-3">
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-[#252323]">${expense.amount.toFixed(2)}</p>
+                  <p className="text-2xl font-bold text-[#1C1A17]">${expense.amount.toFixed(2)}</p>
                 </div>
                 <Button
                   variant="ghost"
@@ -86,15 +86,15 @@ export function ExpenseList({ expenses, currentUserId, onDelete }: ExpenseListPr
           </CardHeader>
           <CardContent>
             <div className="rounded-lg bg-[#F5F1ED] p-3">
-              <p className="mb-2 text-xs font-medium text-[#A99985]">SPLIT BREAKDOWN</p>
+              <p className="mb-2 text-xs font-medium text-[#6B6460]">SPLIT BREAKDOWN</p>
               <div className="space-y-1">
                 {expense.expense_splits.map((split) => (
                   <div key={split.id} className="flex justify-between text-sm">
-                    <span className="text-[#252323]">
+                    <span className="text-[#1C1A17]">
                       {split.profiles.display_name || split.profiles.email}
                       {split.user_id === currentUserId && ' (You)'}
                     </span>
-                    <span className="font-medium text-[#252323]">${split.amount.toFixed(2)}</span>
+                    <span className="font-medium text-[#1C1A17]">${split.amount.toFixed(2)}</span>
                   </div>
                 ))}
               </div>

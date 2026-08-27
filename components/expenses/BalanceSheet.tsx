@@ -70,7 +70,7 @@ export function BalanceSheet({ expenses, members, currentUserId, tripTitle }: Ba
   return (
     <div className="space-y-6">
       {/* Your Balance */}
-      <Card className="border-2 border-[#70798C]">
+      <Card className="border-2 border-[#3B6D11]">
         <CardHeader>
           <CardTitle>Your Balance</CardTitle>
           <CardDescription>Your net position for this trip</CardDescription>
@@ -83,11 +83,11 @@ export function BalanceSheet({ expenses, members, currentUserId, tripTitle }: Ba
                   ? 'text-green-600'
                   : currentUserBalance.netBalance < 0
                     ? 'text-red-600'
-                    : 'text-[#A99985]'
+                    : 'text-[#6B6460]'
               }`}>
                 ${Math.abs(currentUserBalance.netBalance).toFixed(2)}
               </p>
-              <p className="mt-2 text-sm text-[#A99985]">
+              <p className="mt-2 text-sm text-[#6B6460]">
                 {currentUserBalance.netBalance > 0.01
                   ? 'You are owed'
                   : currentUserBalance.netBalance < -0.01
@@ -111,7 +111,7 @@ export function BalanceSheet({ expenses, members, currentUserId, tripTitle }: Ba
           {settlements.length === 0 ? (
             <div className="py-8 text-center">
               <p className="text-lg font-semibold text-green-600">✓ Everyone is settled up!</p>
-              <p className="mt-2 text-sm text-[#A99985]">No outstanding balances</p>
+              <p className="mt-2 text-sm text-[#6B6460]">No outstanding balances</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -126,24 +126,24 @@ export function BalanceSheet({ expenses, members, currentUserId, tripTitle }: Ba
                     key={index}
                     className={`rounded-lg border-2 p-4 ${
                       isCurrentUserInvolved
-                        ? 'border-[#70798C] bg-[#F5F1ED]'
+                        ? 'border-[#3B6D11] bg-[#F5F1ED]'
                         : 'border-[#DAD2BC] bg-white'
                     }`}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-[#252323]">
+                        <p className="text-sm font-medium text-[#1C1A17]">
                           {settlement.fromName}
                           {settlement.from === currentUserId && ' (You)'}
                         </p>
-                        <p className="text-xs text-[#A99985]">pays</p>
-                        <p className="text-sm font-medium text-[#252323]">
+                        <p className="text-xs text-[#6B6460]">pays</p>
+                        <p className="text-sm font-medium text-[#1C1A17]">
                           {settlement.toName}
                           {settlement.to === currentUserId && ' (You)'}
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-[#252323]">
+                        <p className="text-2xl font-bold text-[#1C1A17]">
                           ${settlement.amount.toFixed(2)}
                         </p>
                       </div>
@@ -152,7 +152,7 @@ export function BalanceSheet({ expenses, members, currentUserId, tripTitle }: Ba
                     {/* Payment Buttons - only show if current user is the payer */}
                     {isCurrentUserPayer && paymentMethods.length > 0 && (
                       <div className="mt-4 space-y-2">
-                        <p className="text-xs font-medium text-[#A99985]">QUICK PAY:</p>
+                        <p className="text-xs font-medium text-[#6B6460]">QUICK PAY:</p>
                         <div className="flex flex-wrap gap-2">
                           {paymentMethods.map((method) => (
                             <Button
@@ -170,7 +170,7 @@ export function BalanceSheet({ expenses, members, currentUserId, tripTitle }: Ba
 
                     {/* No payment methods message */}
                     {isCurrentUserPayer && paymentMethods.length === 0 && (
-                      <div className="mt-3 rounded bg-gray-100 p-2 text-xs text-[#A99985]">
+                      <div className="mt-3 rounded bg-gray-100 p-2 text-xs text-[#6B6460]">
                         {settlement.toName} hasn't set up payment methods yet
                       </div>
                     )}
@@ -195,7 +195,7 @@ export function BalanceSheet({ expenses, members, currentUserId, tripTitle }: Ba
                 key={balance.userId}
                 className="flex items-center justify-between rounded-lg border border-[#DAD2BC] p-3"
               >
-                <span className="text-sm font-medium text-[#252323]">
+                <span className="text-sm font-medium text-[#1C1A17]">
                   {balance.userName}
                   {balance.userId === currentUserId && ' (You)'}
                 </span>
@@ -204,7 +204,7 @@ export function BalanceSheet({ expenses, members, currentUserId, tripTitle }: Ba
                     ? 'text-green-600'
                     : balance.netBalance < -0.01
                       ? 'text-red-600'
-                      : 'text-[#A99985]'
+                      : 'text-[#6B6460]'
                 }`}>
                   {balance.netBalance > 0.01 ? '+' : balance.netBalance < -0.01 ? '-' : ''}
                   ${Math.abs(balance.netBalance).toFixed(2)}

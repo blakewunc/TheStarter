@@ -96,11 +96,11 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
       <Dialog open={open} onOpenChange={setOpen}>
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="w-full max-w-lg rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-lg">
-            <h2 className="mb-4 text-2xl font-bold text-[#252323]">Add Expense</h2>
+            <h2 className="mb-4 text-2xl font-bold text-[#1C1A17]">Add Expense</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                   Description*
                 </label>
                 <Input
@@ -113,7 +113,7 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                     Amount*
                   </label>
                   <Input
@@ -128,7 +128,7 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                     Category
                   </label>
                   <Input
@@ -141,7 +141,7 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                     Date*
                   </label>
                   <Input
@@ -153,14 +153,14 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
                 </div>
 
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                     Paid By*
                   </label>
                   <select
                     required
                     value={formData.paid_by}
                     onChange={(e) => setFormData({ ...formData, paid_by: e.target.value })}
-                    className="flex h-12 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-[#252323]"
+                    className="flex h-12 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-[#1C1A17]"
                   >
                     {members.map((member) => (
                       <option key={member.id} value={member.id}>
@@ -172,7 +172,7 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
               </div>
 
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                   Split Type*
                 </label>
                 <div className="flex gap-2">
@@ -197,11 +197,11 @@ export function AddExpenseDialog({ tripId, members, currentUserId, onSuccess }: 
 
               {formData.split_type === 'custom' && (
                 <div className="rounded-lg border border-[#DAD2BC] bg-[#F5F1ED] p-4">
-                  <p className="mb-3 text-sm font-medium text-[#252323]">Enter amount for each person:</p>
+                  <p className="mb-3 text-sm font-medium text-[#1C1A17]">Enter amount for each person:</p>
                   <div className="space-y-2">
                     {members.map((member) => (
                       <div key={member.id} className="flex items-center gap-2">
-                        <span className="flex-1 text-sm text-[#252323]">{member.name}</span>
+                        <span className="flex-1 text-sm text-[#1C1A17]">{member.name}</span>
                         <Input
                           type="number"
                           step="0.01"

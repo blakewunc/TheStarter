@@ -115,11 +115,11 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
       <Dialog open={open} onOpenChange={setOpen}>
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-lg">
-            <h2 className="mb-4 text-2xl font-bold text-[#252323]">Add Activity</h2>
+            <h2 className="mb-4 text-2xl font-bold text-[#1C1A17]">Add Activity</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#252323]">Type</label>
+                <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">Type</label>
                 <div className="flex flex-wrap gap-2">
                   {EVENT_TYPES.map((t) => (
                     <button
@@ -128,8 +128,8 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
                       onClick={() => setItemType(t.value)}
                       className={`rounded-[5px] border px-3 py-1.5 text-sm transition-colors ${
                         itemType === t.value
-                          ? 'border-[#70798C] bg-[#70798C] text-white'
-                          : 'border-[#DAD2BC] bg-white text-[#252323] hover:bg-[#F5F1ED]'
+                          ? 'border-[#3B6D11] bg-[#3B6D11] text-white'
+                          : 'border-[#DAD2BC] bg-white text-[#1C1A17] hover:bg-[#F5F1ED]'
                       }`}
                     >
                       {t.label}
@@ -140,7 +140,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
 
               {isTeeTime ? (
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                     Course*
                   </label>
                   <CoursePicker
@@ -151,7 +151,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
                     required
                     disabled={loading}
                   />
-                  <p className="mt-1 text-xs text-[#A99985]">
+                  <p className="mt-1 text-xs text-[#6B6460]">
                     {course
                       ? [course.city, course.state].filter(Boolean).join(', ') ||
                         'Course selected'
@@ -160,7 +160,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
                 </div>
               ) : (
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                     Activity Name*
                   </label>
                   <Input
@@ -173,7 +173,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
               )}
 
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                   Description
                 </label>
                 <Textarea
@@ -186,7 +186,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
               {/* A matched course supplies its own address, so only ask when it can't. */}
               {(!isTeeTime || !course) && (
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                     Location
                   </label>
                   <Input
@@ -199,7 +199,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
 
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">Date*</label>
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">Date*</label>
                   <Input
                     type="date"
                     required
@@ -208,7 +208,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">Time</label>
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">Time</label>
                   <Input
                     type="time"
                     value={formData.time}
@@ -216,7 +216,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-sm font-medium text-[#252323]">Ends</label>
+                  <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">Ends</label>
                   <Input
                     type="time"
                     value={formData.end_time}
@@ -228,7 +228,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
               {isTeeTime && (
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                    <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                       Players
                     </label>
                     <Input
@@ -242,7 +242,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#252323]">Par</label>
+                    <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">Par</label>
                     <Input
                       type="number"
                       min="60"
@@ -252,7 +252,7 @@ export function AddItemDialog({ tripId, onSuccess, near }: AddItemDialogProps) {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                    <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                       Confirmation
                     </label>
                     <Input

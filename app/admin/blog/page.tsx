@@ -53,12 +53,12 @@ export default function AdminBlogList() {
     setToggling(null)
   }
 
-  const labelStyle: React.CSSProperties = { fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: '#A09890' }
+  const labelStyle: React.CSSProperties = { fontSize: '10px', fontWeight: 600, letterSpacing: '0.10em', textTransform: 'uppercase', color: '#6B6460' }
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
           Blog Posts
         </h1>
         <Link href="/admin/blog/new" style={{ background: '#1C1A17', color: '#F5F1ED', borderRadius: '5px', padding: '10px 20px', fontSize: '12px', fontWeight: 500, textDecoration: 'none', letterSpacing: '0.04em' }}>
@@ -67,10 +67,10 @@ export default function AdminBlogList() {
       </div>
 
       {loading ? (
-        <p style={{ color: '#A09890', fontSize: '13px' }}>Loading…</p>
+        <p style={{ color: '#6B6460', fontSize: '13px' }}>Loading…</p>
       ) : posts.length === 0 ? (
         <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '8px', padding: '48px', textAlign: 'center' }}>
-          <p style={{ fontSize: '14px', color: '#A09890' }}>No posts yet.</p>
+          <p style={{ fontSize: '14px', color: '#6B6460' }}>No posts yet.</p>
           <Link href="/admin/blog/new" style={{ display: 'inline-block', marginTop: '16px', background: '#1C1A17', color: '#F5F1ED', borderRadius: '5px', padding: '10px 20px', fontSize: '12px', textDecoration: 'none' }}>
             Write your first post
           </Link>
@@ -98,7 +98,7 @@ export default function AdminBlogList() {
                 >
                   {post.title}
                 </button>
-                <p style={{ fontSize: '11px', color: '#A09890', marginTop: '1px' }}>/{post.slug}</p>
+                <p style={{ fontSize: '11px', color: '#6B6460', marginTop: '1px' }}>/{post.slug}</p>
               </div>
 
               <span style={{ fontSize: '12px', color: '#6B6460' }}>{post.category || '—'}</span>
@@ -107,17 +107,17 @@ export default function AdminBlogList() {
                 {post.published ? 'Published' : 'Draft'}
               </span>
 
-              <span style={{ fontSize: '11px', color: '#A09890' }}>
+              <span style={{ fontSize: '11px', color: '#6B6460' }}>
                 {new Date(post.updated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
               </span>
 
               <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                <Link href={`/admin/blog/${post.id}/edit`} style={{ fontSize: '12px', color: '#70798C', textDecoration: 'none', fontWeight: 500 }}>Edit</Link>
+                <Link href={`/admin/blog/${post.id}/edit`} style={{ fontSize: '12px', color: '#3B6D11', textDecoration: 'none', fontWeight: 500 }}>Edit</Link>
                 <span style={{ color: '#DAD2BC' }}>·</span>
                 <button
                   onClick={() => handleToggle(post.id, post.published)}
                   disabled={toggling === post.id}
-                  style={{ fontSize: '12px', color: '#70798C', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontWeight: 500 }}
+                  style={{ fontSize: '12px', color: '#3B6D11', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontWeight: 500 }}
                 >
                   {toggling === post.id ? '…' : post.published ? 'Unpublish' : 'Publish'}
                 </button>

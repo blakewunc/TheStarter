@@ -18,10 +18,10 @@ export default function SkiPage({ params }: { params: Promise<{ tripId: string }
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-[#252323]">
+            <h1 className="text-3xl font-bold tracking-tight text-[#1C1A17]">
               ⛷️ Ski Module
             </h1>
-            <p className="text-[#A99985]">Manage lift tickets, abilities, and rentals</p>
+            <p className="text-[#6B6460]">Manage lift tickets, abilities, and rentals</p>
           </div>
           <Button variant="outline" onClick={() => router.back()}>
             ← Back to Trip

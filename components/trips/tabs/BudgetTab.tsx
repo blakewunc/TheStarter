@@ -29,7 +29,7 @@ export function BudgetTab({ tripId, trip, currentUserId, isOrganizer }: BudgetTa
   const splitCount = Math.max(expectedGuests || memberCount, 1)
 
   if (loading) {
-    return <p className="text-[#A99985]">Loading budget...</p>
+    return <p className="text-[#6B6460]">Loading budget...</p>
   }
 
   if (error) {
@@ -43,8 +43,8 @@ export function BudgetTab({ tripId, trip, currentUserId, isOrganizer }: BudgetTa
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-[#252323]">Budget</h2>
-          <p className="text-[#A99985]">Plan and track expenses for {trip.title}</p>
+          <h2 className="text-2xl font-bold tracking-tight text-[#1C1A17]">Budget</h2>
+          <p className="text-[#6B6460]">Plan and track expenses for {trip.title}</p>
         </div>
         {isOrganizer && (
           <Button onClick={() => setAddDialogOpen(true)}>Add Category</Button>

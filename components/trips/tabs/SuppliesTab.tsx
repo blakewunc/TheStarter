@@ -77,7 +77,7 @@ export function SuppliesTab({ tripId, trip, currentUserId }: SuppliesTabProps) {
   const totalCost = supplies.reduce((sum, s) => sum + (s.cost || 0), 0)
 
   if (loading || !currentUserId) {
-    return <p className="text-[#A99985]">Loading supplies...</p>
+    return <p className="text-[#6B6460]">Loading supplies...</p>
   }
 
   if (error) {
@@ -91,8 +91,8 @@ export function SuppliesTab({ tripId, trip, currentUserId }: SuppliesTabProps) {
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-[#252323]">Supplies & Packing</h2>
-          <p className="text-[#A99985]">Shared packing list for {trip.title}</p>
+          <h2 className="text-2xl font-bold tracking-tight text-[#1C1A17]">Supplies & Packing</h2>
+          <p className="text-[#6B6460]">Shared packing list for {trip.title}</p>
         </div>
         <AddSupplyDialog tripId={tripId} onSuccess={() => {}} />
       </div>

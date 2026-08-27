@@ -166,7 +166,7 @@ export default function SettingsPage() {
     return (
       <div className="min-h-screen bg-[#F5F1ED] p-6">
         <div className="mx-auto max-w-2xl">
-          <p className="text-[#A99985]">Loading...</p>
+          <p className="text-[#6B6460]">Loading...</p>
         </div>
       </div>
     )
@@ -176,8 +176,8 @@ export default function SettingsPage() {
     <div className="min-h-screen bg-[#F5F1ED] p-6">
       <div className="mx-auto max-w-2xl">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold tracking-tight text-[#252323]">Settings</h1>
-          <p className="text-[#A99985]">Manage your account and preferences</p>
+          <h1 className="text-3xl font-bold tracking-tight text-[#1C1A17]">Settings</h1>
+          <p className="text-[#6B6460]">Manage your account and preferences</p>
         </div>
 
         <div className="space-y-6">
@@ -198,7 +198,7 @@ export default function SettingsPage() {
                     disabled
                     className="bg-[#F5F1ED] cursor-not-allowed"
                   />
-                  <p className="text-xs text-[#A99985]">
+                  <p className="text-xs text-[#6B6460]">
                     Email cannot be changed
                   </p>
                 </div>
@@ -224,7 +224,7 @@ export default function SettingsPage() {
                     placeholder="(555) 123-4567"
                     disabled={savingProfile}
                   />
-                  <p className="text-xs text-[#A99985]">
+                  <p className="text-xs text-[#6B6460]">
                     Optional - visible to trip organizers
                   </p>
                 </div>
@@ -308,7 +308,7 @@ export default function SettingsPage() {
                     placeholder="e.g. 12"
                     disabled={savingGolf}
                   />
-                  <p className="text-xs text-[#A99985]">
+                  <p className="text-xs text-[#6B6460]">
                     0 = scratch golfer, 54 = maximum. Used for group assignments on golf trips.
                   </p>
                 </div>
@@ -328,8 +328,8 @@ export default function SettingsPage() {
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-[#252323]">Sign Out</p>
-                  <p className="text-sm text-[#A99985]">
+                  <p className="font-medium text-[#1C1A17]">Sign Out</p>
+                  <p className="text-sm text-[#6B6460]">
                     Sign out of your account on this device
                   </p>
                 </div>
@@ -346,7 +346,7 @@ export default function SettingsPage() {
               <CardTitle>About The Starter</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-[#A99985]">
+              <p className="text-sm text-[#6B6460]">
                 Version 1.0.0 - Collaborative trip planning for bachelor parties, golf trips, and group getaways.
               </p>
             </CardContent>

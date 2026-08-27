@@ -39,8 +39,8 @@ export function AlertDialog({
       <div className="fixed left-1/2 top-1/2 z-50 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_2px_6px_rgba(0,0,0,0.08)]">
         <div className="space-y-4">
           <div className="space-y-2">
-            <h2 className="text-lg font-semibold text-[#252323]">{title}</h2>
-            <p className="text-sm text-[#A99985]">{description}</p>
+            <h2 className="text-lg font-semibold text-[#1C1A17]">{title}</h2>
+            <p className="text-sm text-[#6B6460]">{description}</p>
           </div>
 
           <div className="flex justify-end gap-3">

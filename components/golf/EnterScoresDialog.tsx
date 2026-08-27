@@ -32,7 +32,7 @@ type Mode = 'final' | 'hole-by-hole'
 
 function relToPar(score: number, par: number) {
   const diff = score - par
-  if (diff === 0) return { text: 'E', color: '#A09890' }
+  if (diff === 0) return { text: 'E', color: '#6B6460' }
   if (diff > 0) return { text: `+${diff}`, color: '#8B4444' }
   return { text: `${diff}`, color: '#3B6D11' }
 }
@@ -138,7 +138,7 @@ export function EnterScoresDialog({
           <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.45)', marginBottom: '4px' }}>
             Scorecard
           </p>
-          <h2 style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", margin: 0 }}>
+          <h2 style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", margin: 0 }}>
             {teeTime.course_name}
           </h2>
           <p style={{ fontSize: '12px', color: 'rgba(245,241,237,0.50)', marginTop: '4px' }}>
@@ -171,7 +171,7 @@ export function EnterScoresDialog({
               </button>
             ))}
           </div>
-          <p style={{ fontSize: '11px', color: '#A09890', marginTop: '8px', marginBottom: '12px' }}>
+          <p style={{ fontSize: '11px', color: '#6B6460', marginTop: '8px', marginBottom: '12px' }}>
             {mode === 'final'
               ? 'Enter the total gross score for each player'
               : 'Coming soon — enter score per hole as you play'}
@@ -183,10 +183,10 @@ export function EnterScoresDialog({
           <div style={{ padding: '4px 0 0' }}>
             {/* Column headers */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 60px 60px', gap: '0', padding: '8px 24px', borderBottom: '0.5px solid rgba(28,26,23,0.06)' }}>
-              <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#A09890' }}>Player</span>
-              <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#A09890', textAlign: 'center' }}>Gross</span>
-              <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#A09890', textAlign: 'center' }}>HCP</span>
-              <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#A09890', textAlign: 'center' }}>Net</span>
+              <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6B6460' }}>Player</span>
+              <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6B6460', textAlign: 'center' }}>Gross</span>
+              <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6B6460', textAlign: 'center' }}>HCP</span>
+              <span style={{ fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#6B6460', textAlign: 'center' }}>Net</span>
             </div>
 
             <div style={{ maxHeight: '320px', overflowY: 'auto' }}>
@@ -265,7 +265,7 @@ export function EnterScoresDialog({
           </div>
         ) : (
           <div style={{ padding: '24px', textAlign: 'center' }}>
-            <p style={{ fontSize: '13px', color: '#A09890' }}>
+            <p style={{ fontSize: '13px', color: '#6B6460' }}>
               Hole-by-hole entry is coming soon. Use Final Score mode to record your round.
             </p>
           </div>

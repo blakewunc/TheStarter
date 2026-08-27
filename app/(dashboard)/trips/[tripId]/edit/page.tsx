@@ -127,7 +127,7 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
     return (
       <div className="min-h-screen bg-[#F5F1ED] p-6">
         <div className="mx-auto max-w-2xl">
-          <p className="text-[#A99985]">Loading trip...</p>
+          <p className="text-[#6B6460]">Loading trip...</p>
         </div>
       </div>
     )
@@ -152,8 +152,8 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
     <div className="min-h-screen bg-[#F5F1ED] p-6">
       <div className="mx-auto max-w-2xl">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold tracking-tight text-[#252323]">Edit Trip</h1>
-          <p className="text-[#A99985]">Update your trip details</p>
+          <h1 className="text-3xl font-bold tracking-tight text-[#1C1A17]">Edit Trip</h1>
+          <p className="text-[#6B6460]">Update your trip details</p>
         </div>
 
         <Card>
@@ -203,7 +203,7 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
                   value={formData.trip_type}
                   onChange={(e) => setFormData({ ...formData, trip_type: e.target.value })}
                   disabled={submitting}
-                  className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] transition-all duration-200 focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED]"
+                  className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] transition-all duration-200 focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED]"
                 >
                   <option value="general">General Trip</option>
                   <option value="golf">Golf Trip</option>
@@ -211,7 +211,7 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
                   <option value="bachelor_party">Bachelor Party</option>
                   <option value="bachelorette_party">Bachelorette Party</option>
                 </select>
-                <p className="text-xs text-[#A99985]">
+                <p className="text-xs text-[#6B6460]">
                   Golf and ski trips include sport-specific features
                 </p>
               </div>
@@ -255,7 +255,7 @@ export default function EditTripPage({ params }: { params: Promise<{ tripId: str
                     placeholder="e.g., 8"
                     disabled={submitting}
                   />
-                  <p className="text-xs text-[#A99985]">Used to calculate cost per person</p>
+                  <p className="text-xs text-[#6B6460]">Used to calculate cost per person</p>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="budget_total">Estimated Budget (optional)</Label>

@@ -6,8 +6,8 @@
   --cream: #F5F1ED;
   --ink: #1C1A17;
   --muted: #6B6460;
-  --subtle: #A09890;
-  --accent: #70798C;
+  --subtle: #6B6460;  /* strict AA: was #A09890 (2.53) */
+  --accent: #3B6D11;
   --surface: #EDECE6;
   --border: rgba(28, 26, 23, 0.10);
   --border-md: rgba(28, 26, 23, 0.18);
@@ -15,7 +15,7 @@
   --green-bg: #EAF3DE;
 
   /* Font families */
-  --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
   --sans: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
 
   /* Legacy aliases (keep for backward compat with existing components) */
@@ -23,14 +23,63 @@
   --background-card: #ffffff;
   --foreground: #1C1A17;
   --border-input: rgba(28, 26, 23, 0.18);
-  --accent-hover: #5A6270;
-  --accent-active: #4A505C;
+  --accent-hover: #2F5A0E;
+  --accent-active: #264A0B;
   --beige: #EDECE6;
   --taupe: #A09890;
   --success: #3B6D11;
   --warning: #B8956A;
   --error: #8B4444;
   --info: #5A6F7F;
+
+  /* ── Semantic tokens (Phase 0) ─────────────────────────────────────────────
+     Contrast measured against --paper (#F5F1ED). WCAG AA body text needs 4.5:1.
+
+       --ink        #1C1A17  15.45  ✓
+       --ink-soft   #6B6460   5.17  ✓  secondary text AND eyebrows
+       --ink-faint  #A09890   2.53  ✗  NON-TEXT ONLY
+       --pine       #3B6D11   5.53  ✓
+       --clay       #8B4444   6.21  ✓
+       --sand       #B8956A   2.48  ✗  fill/indicator only, never text
+
+     Two constraints worth stating plainly, because both are easy to undo by accident:
+
+     1. --ink-faint fails AA and must never carry text — not body, not helper text,
+        and not eyebrows. Nothing in this warm-grey family passes between #A09890
+        and #6B6460, so eyebrows use --ink-soft. This is a deliberate departure from
+        the original spec, which proposed --ink-faint for eyebrow/label text; that
+        would have failed the spec's own accessibility floor.
+
+     2. --sand cannot be text either. Use --sand-soft as a fill with --ink on top
+        (14.09), or --sand-ink when a sand-toned word is genuinely required.
+
+     The old blue-grey accent (#70798C) is retired. It measured 3.89 on paper and
+     only 4.37 under white, so the previous primary button failed AA on its own
+     label. --accent is now pine. Do not reintroduce #70798C for text or fills.
+     ──────────────────────────────────────────────────────────────────────── */
+
+  --paper: #F5F1ED;
+  --card: #ffffff;
+  --ink-soft: #6B6460;
+  --ink-faint: #A09890;
+  --rule: rgba(28, 26, 23, 0.10);
+  --rule-strong: #D6CFC8;
+
+  --pine: #3B6D11;
+  --pine-soft: #EAF3DE;
+  --sand: #B8956A;
+  --sand-soft: #EDE7DA;
+  --sand-ink: #7A5E38;
+  --clay: #8B4444;
+  --clay-soft: #FEF2F2;
+
+  /* Status semantics — pine means confirmed everywhere, not just in the hero band */
+  --status-confirmed: var(--pine);
+  --status-confirmed-bg: var(--pine-soft);
+  --status-planning: var(--sand);
+  --status-planning-bg: var(--sand-soft);
+  --status-attention: var(--clay);
+  --status-attention-bg: var(--clay-soft);
 
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -53,7 +102,7 @@
   --color-border: var(--border);
   --font-sans: var(--font-dm-sans), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-cormorant);
+  --font-serif: var(--font-playfair);
 
   /* Custom shadows */
   --shadow-card: var(--shadow);
@@ -65,8 +114,8 @@
   --cream: #F5F1ED;
   --ink: #1C1A17;
   --muted: #6B6460;
-  --subtle: #A09890;
-  --accent: #70798C;
+  --subtle: #6B6460;  /* strict AA: was #A09890 (2.53) */
+  --accent: #3B6D11;
   --surface: #EDECE6;
   --border: rgba(28, 26, 23, 0.10);
   --border-md: rgba(28, 26, 23, 0.18);
@@ -78,7 +127,7 @@
   --background-card: #ffffff;
   --foreground: #1C1A17;
   --border-input: rgba(28, 26, 23, 0.18);
-  --accent-hover: #5A6270;
+  --accent-hover: #2F5A0E;
   --beige: #EDECE6;
   --taupe: #A09890;
   --success: #3B6D11;

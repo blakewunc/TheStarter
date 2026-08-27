@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display, DM_Sans } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
@@ -20,10 +20,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+// Playfair Display's weight range starts at 400 — it has no 300, unlike Cormorant.
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["400", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -102,7 +103,7 @@ export default async function RootLayout({
         <meta name="google-adsense-account" content="ca-pub-1500136289047835" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${dmSans.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${dmSans.variable} antialiased`}
       >
         <BrandProvider brand={brand}>
           <Navbar />

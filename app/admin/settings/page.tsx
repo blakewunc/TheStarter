@@ -32,7 +32,7 @@ const labelStyle: React.CSSProperties = {
   fontWeight: 600,
   letterSpacing: '0.10em',
   textTransform: 'uppercase',
-  color: '#A09890',
+  color: '#6B6460',
   display: 'block',
   marginBottom: '6px',
 }
@@ -85,7 +85,7 @@ export default function AdminSettings() {
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 24px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
           Site Settings
         </h1>
         <button
@@ -98,7 +98,7 @@ export default function AdminSettings() {
       </div>
 
       {loading ? (
-        <p style={{ color: '#A09890', fontSize: '13px' }}>Loading…</p>
+        <p style={{ color: '#6B6460', fontSize: '13px' }}>Loading…</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           {/* Logo */}
@@ -114,7 +114,7 @@ export default function AdminSettings() {
             {logoUrl && (
               <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <img src={logoUrl} alt="Logo preview" style={{ height: '40px', objectFit: 'contain', borderRadius: '4px', border: '0.5px solid rgba(28,26,23,0.10)' }} />
-                <span style={{ fontSize: '11px', color: '#A09890' }}>Preview</span>
+                <span style={{ fontSize: '11px', color: '#6B6460' }}>Preview</span>
               </div>
             )}
           </div>
@@ -122,7 +122,7 @@ export default function AdminSettings() {
           {/* Feature Tiles */}
           <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '8px', padding: '24px' }}>
             <h2 style={{ fontSize: '14px', fontWeight: 600, color: '#1C1A17', marginBottom: '4px' }}>Feature Tiles</h2>
-            <p style={{ fontSize: '12px', color: '#A09890', marginBottom: '20px' }}>
+            <p style={{ fontSize: '12px', color: '#6B6460', marginBottom: '20px' }}>
               Displayed on the landing page below the hero section.
             </p>
 
@@ -130,7 +130,7 @@ export default function AdminSettings() {
               {tiles.map((tile, i) => (
                 <div key={i} style={{ padding: '16px', background: '#FDFCFA', border: '0.5px solid rgba(28,26,23,0.08)', borderRadius: '6px' }}>
                   <div style={{ display: 'flex', gap: '8px', marginBottom: '2px' }}>
-                    <span style={{ fontSize: '11px', color: '#A09890', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: '11px', color: '#6B6460', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                       Tile {i + 1}
                     </span>
                   </div>

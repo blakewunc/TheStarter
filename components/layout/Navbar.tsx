@@ -150,7 +150,7 @@ export function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" className="hidden md:block" style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#888780', textDecoration: 'none' }}>Log in</Link>
+              <Link href="/login" className="hidden md:block" style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#6B6460', textDecoration: 'none' }}>Log in</Link>
               <Link href="/signup" style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#F5F1ED', background: '#2C2A26', padding: '7px 16px', borderRadius: '6px', textDecoration: 'none', fontWeight: 500 }}>Sign up</Link>
             </>
           )}
@@ -159,7 +159,7 @@ export function Navbar() {
             <button
               onClick={() => setMenuOpen((v) => !v)}
               className="md:hidden"
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888780', padding: '4px' }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B6460', padding: '4px' }}
               aria-label="Menu"
             >
               <HamburgerIcon open={menuOpen} />
@@ -186,7 +186,7 @@ export function Navbar() {
               {label}
             </Link>
           ))}
-          <button onClick={handleSignOut} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 24px', fontFamily: 'var(--sans)', fontSize: '14px', color: '#888780', background: 'none', border: 'none', cursor: 'pointer' }}>
+          <button onClick={handleSignOut} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '12px 24px', fontFamily: 'var(--sans)', fontSize: '14px', color: '#6B6460', background: 'none', border: 'none', cursor: 'pointer' }}>
             Sign out
           </button>
         </div>
@@ -202,7 +202,7 @@ export function Navbar() {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <svg className="h-8 w-8 text-[#70798C]" viewBox="0 0 32 32" fill="currentColor">
+            <svg className="h-8 w-8 text-[#3B6D11]" viewBox="0 0 32 32" fill="currentColor">
               <path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 28C9.373 28 4 22.627 4 16S9.373 4 16 4s12 5.373 12 12-5.373 12-12 12zm-2-20v12l10 6-10-18z" />
             </svg>
             <span className="text-xl font-bold text-[#1C1A17]">{brand.name}</span>
@@ -212,21 +212,21 @@ export function Navbar() {
           <div className="flex items-center space-x-4">
             {user ? (
               <>
-                <Link href="/trips" className={`hidden text-sm font-medium transition-colors md:block ${isActive('/trips') ? 'text-[#1C1A17]' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                <Link href="/trips" className={`hidden text-sm font-medium transition-colors md:block ${isActive('/trips') ? 'text-[#1C1A17]' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                   My Trips
                 </Link>
-                <Link href="/trips/new" className={`hidden text-sm font-medium transition-colors md:block ${isActive('/trips/new') ? 'text-[#1C1A17]' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                <Link href="/trips/new" className={`hidden text-sm font-medium transition-colors md:block ${isActive('/trips/new') ? 'text-[#1C1A17]' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                   Create Trip
                 </Link>
-                <span className="hidden text-sm text-[#A09890] sm:block">{user.email}</span>
-                <Link href="/settings" className="text-sm text-[#A09890] hover:text-[#1C1A17] transition-colors">Settings</Link>
-                <button onClick={handleSignOut} className="text-sm text-[#A09890] hover:text-[#1C1A17] transition-colors">
+                <span className="hidden text-sm text-[#6B6460] sm:block">{user.email}</span>
+                <Link href="/settings" className="text-sm text-[#6B6460] hover:text-[#1C1A17] transition-colors">Settings</Link>
+                <button onClick={handleSignOut} className="text-sm text-[#6B6460] hover:text-[#1C1A17] transition-colors">
                   Sign Out
                 </button>
               </>
             ) : (
               <>
-                <Link href="/login" className="text-sm text-[#A09890] hover:text-[#1C1A17] transition-colors">
+                <Link href="/login" className="text-sm text-[#6B6460] hover:text-[#1C1A17] transition-colors">
                   Log In
                 </Link>
                 <Link href="/signup" className="rounded-[5px] bg-[#1C1A17] px-4 py-2 text-sm font-medium text-white hover:opacity-80 transition-opacity">

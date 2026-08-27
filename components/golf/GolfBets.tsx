@@ -177,19 +177,19 @@ function BetCard({
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="text-xl">{meta.emoji}</span>
-            <span className="font-semibold text-[#252323]">{meta.label}</span>
+            <span className="font-semibold text-[#1C1A17]">{meta.label}</span>
           </div>
           <span className="rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs text-[#4A7C59]">
             ${bet.amount}/person
           </span>
         </div>
-        <p className="mt-1.5 text-sm text-[#A99985]">{bet.description}</p>
+        <p className="mt-1.5 text-sm text-[#6B6460]">{bet.description}</p>
 
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <span className="rounded-full bg-[#B8956A]/10 px-2.5 py-0.5 text-xs text-[#B8956A]">
             🏆 {getWinnerName()} won
           </span>
-          <span className="text-xs text-[#A99985]">
+          <span className="text-xs text-[#6B6460]">
             +${pot.toFixed(2)} added to expenses
           </span>
         </div>
@@ -204,22 +204,22 @@ function BetCard({
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="text-xl">{meta.emoji}</span>
-          <span className="font-semibold text-[#252323]">{meta.label}</span>
+          <span className="font-semibold text-[#1C1A17]">{meta.label}</span>
         </div>
         <span className="rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs text-[#4A7C59]">
           ${bet.amount}/person
         </span>
       </div>
 
-      <p className="mt-1.5 text-sm text-[#A99985]">{bet.description}</p>
+      <p className="mt-1.5 text-sm text-[#6B6460]">{bet.description}</p>
 
       {bet.tee_time && (
-        <p className="mt-1 text-xs text-[#A99985]">
+        <p className="mt-1 text-xs text-[#6B6460]">
           📅 {bet.tee_time.course_name} · {formatTeeTime(bet.tee_time)}
         </p>
       )}
 
-      <p className="mt-1 text-xs text-[#A99985]">
+      <p className="mt-1 text-xs text-[#6B6460]">
         👤 {bet.participants.length} players · ${bet.amount}/person · ${pot2.toFixed(2)} pot
       </p>
 
@@ -255,7 +255,7 @@ function BetCard({
           </Button>
           <button
             onClick={() => onDeleteRequest(bet.id)}
-            className="ml-auto p-1.5 text-[#A99985] transition-colors hover:text-[#8B4444]"
+            className="ml-auto p-1.5 text-[#6B6460] transition-colors hover:text-[#8B4444]"
             aria-label="Delete bet"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -369,7 +369,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
         <div className="space-y-5">
           {/* Bet type grid */}
           <div>
-            <Label className="mb-2 block text-xs font-medium uppercase tracking-wider text-[#A99985]">
+            <Label className="mb-2 block text-xs font-medium uppercase tracking-wider text-[#6B6460]">
               Bet Type
             </Label>
             <div className="grid grid-cols-4 gap-2">
@@ -385,12 +385,12 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
                   }`}
                 >
                   <span className="text-2xl">{info.emoji}</span>
-                  <span className="text-xs font-medium text-[#252323] leading-tight">{info.label}</span>
+                  <span className="text-xs font-medium text-[#1C1A17] leading-tight">{info.label}</span>
                 </button>
               ))}
             </div>
             {meta && (
-              <p className="mt-2 text-sm italic text-[#A99985]">{meta.desc}</p>
+              <p className="mt-2 text-sm italic text-[#6B6460]">{meta.desc}</p>
             )}
           </div>
 
@@ -410,7 +410,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
           <div>
             <Label htmlFor="bet-amount">Amount</Label>
             <div className="relative mt-1">
-              <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#A99985]">
+              <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#6B6460]">
                 $
               </span>
               <Input
@@ -424,7 +424,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
                 className="pl-7"
               />
             </div>
-            <p className="mt-1 text-xs text-[#A99985]">per person</p>
+            <p className="mt-1 text-xs text-[#6B6460]">per person</p>
           </div>
 
           {/* Tee Time */}
@@ -434,7 +434,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
               id="bet-tee-time"
               value={teeTimeId}
               onChange={(e) => setTeeTimeId(e.target.value)}
-              className="mt-1 flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15"
+              className="mt-1 flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15"
             >
               <option value="">None (applies to full trip)</option>
               {teeTimes.map((tt) => (
@@ -457,7 +457,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
                     onChange={() => toggleParticipant(m.user_id)}
                     className="h-4 w-4 rounded accent-[#4A7C59]"
                   />
-                  <span className="text-sm text-[#252323]">
+                  <span className="text-sm text-[#1C1A17]">
                     {m.display_name || m.email}
                   </span>
                 </label>
@@ -574,9 +574,9 @@ function SettleBetDialog({ bet, onClose, tripId, members, scores, onSettled }: S
           <div className="rounded-[5px] border border-[#DAD2BC] bg-[#F5F1ED]/50 p-4">
             <div className="flex items-center gap-2">
               <span className="text-xl">{meta.emoji}</span>
-              <span className="font-semibold text-[#252323]">{meta.label}</span>
+              <span className="font-semibold text-[#1C1A17]">{meta.label}</span>
             </div>
-            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#A99985]">
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#6B6460]">
               <span>${bet.amount}/person</span>
               <span>{bet.participants.length} participants</span>
               <span>${(bet.amount * (bet.participants.length - 1)).toFixed(2)} total pot</span>
@@ -596,7 +596,7 @@ function SettleBetDialog({ bet, onClose, tripId, members, scores, onSettled }: S
                   </span>
                 )}
               </p>
-              <p className="mt-0.5 text-xs text-[#A99985]">
+              <p className="mt-0.5 text-xs text-[#6B6460]">
                 Based on {bet.tee_time?.course_name || 'round'} scores — override below if needed.
               </p>
             </div>
@@ -609,7 +609,7 @@ function SettleBetDialog({ bet, onClose, tripId, members, scores, onSettled }: S
               id="settle-winner"
               value={winnerId}
               onChange={(e) => setWinnerId(e.target.value)}
-              className="mt-1 flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15"
+              className="mt-1 flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15"
             >
               <option value="">— Select a winner —</option>
               {participants.map((p) => (
@@ -624,10 +624,10 @@ function SettleBetDialog({ bet, onClose, tripId, members, scores, onSettled }: S
           {winnerId && (
             <div className="rounded-[5px] border border-[#4A7C59]/20 bg-[#4A7C59]/5 p-4 space-y-1">
               <p className="font-medium text-[#4A7C59]">🏆 {winnerName} wins ${pot.toFixed(2)}</p>
-              <p className="text-sm text-[#252323]">
+              <p className="text-sm text-[#1C1A17]">
                 {losers.length} {losers.length === 1 ? 'player' : 'players'} each owe ${bet.amount.toFixed(2)}
               </p>
-              <p className="text-xs text-[#A99985]">→ Added to Expenses tab automatically</p>
+              <p className="text-xs text-[#6B6460]">→ Added to Expenses tab automatically</p>
             </div>
           )}
 
@@ -741,7 +741,7 @@ export function GolfBets({ tripId, settleOnly = false }: GolfBetsProps) {
       {/* Add Bet button — hidden in settleOnly mode */}
       {!settleOnly && (
         <div className="mb-5 flex items-center justify-between">
-          <p className="text-sm text-[#A09890]">Track side action before the round</p>
+          <p className="text-sm text-[#6B6460]">Track side action before the round</p>
           <Button
             size="sm"
             onClick={() => setShowAdd(true)}
@@ -769,7 +769,7 @@ export function GolfBets({ tripId, settleOnly = false }: GolfBetsProps) {
             {settleOnly ? 'No open bets to settle' : 'No bets yet'}
           </p>
           {!settleOnly && (
-            <p className="mt-1 text-xs text-[#A09890]">
+            <p className="mt-1 text-xs text-[#6B6460]">
               Add a bet before the round and settle up after.
             </p>
           )}
@@ -778,7 +778,7 @@ export function GolfBets({ tripId, settleOnly = false }: GolfBetsProps) {
         <div className="space-y-6">
           {openBets.length > 0 && (
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#A09890]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#6B6460]">
                 {settleOnly ? 'Open — needs a winner' : 'Open'}
               </p>
               <div className="space-y-3">
@@ -803,7 +803,7 @@ export function GolfBets({ tripId, settleOnly = false }: GolfBetsProps) {
 
           {settledBets.length > 0 && (
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#A09890]">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#6B6460]">
                 Settled
               </p>
               <div className="space-y-3">

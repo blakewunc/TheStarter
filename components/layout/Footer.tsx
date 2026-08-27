@@ -26,10 +26,10 @@ export function Footer() {
     return (
       <footer style={{ borderTop: '0.5px solid #D6CFC8', background: '#F5F1ED', padding: '12px 40px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: 0 }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', margin: 0 }}>
             © {new Date().getFullYear()} The Starter. All rights reserved.
           </p>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: 0 }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', margin: 0 }}>
             thestarter.app
           </p>
         </div>
@@ -52,7 +52,7 @@ export function Footer() {
                 <StarterLogo className="h-10 w-auto" />
               ) : (
                 <>
-                  <svg className="h-6 w-6 text-[#70798C]" viewBox="0 0 32 32" fill="currentColor">
+                  <svg className="h-6 w-6 text-[#3B6D11]" viewBox="0 0 32 32" fill="currentColor">
                     <path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 28C9.373 28 4 22.627 4 16S9.373 4 16 4s12 5.373 12 12-5.373 12-12 12zm-2-20v12l10 6-10-18z" />
                   </svg>
                   <span className="text-lg font-bold text-[#1C1A17]">
@@ -61,7 +61,7 @@ export function Footer() {
                 </>
               )}
             </div>
-            <p className={`mt-2 text-sm ${isBackNine ? 'text-[#B8D4C4]' : 'text-[#A09890]'}`}>
+            <p className={`mt-2 text-sm ${isBackNine ? 'text-[#B8D4C4]' : 'text-[#6B6460]'}`}>
               {brand.description}
             </p>
           </div>
@@ -74,22 +74,22 @@ export function Footer() {
               </h4>
               <ul className="mt-3 space-y-2">
                 <li>
-                  <Link href="/trips" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                  <Link href="/trips" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                     {isBackNine ? 'My Golf Trips' : 'My Trips'}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/trips/new" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                  <Link href="/trips/new" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                     {isBackNine ? 'Plan a Trip' : 'Create Trip'}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                  <Link href="/blog" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                     {isBackNine ? 'Golf Trip Guides' : 'Blog'}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/settings" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                  <Link href="/settings" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                     Settings
                   </Link>
                 </li>
@@ -101,17 +101,17 @@ export function Footer() {
               </h4>
               <ul className="mt-3 space-y-2">
                 <li>
-                  <Link href="/about" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                  <Link href="/about" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                  <Link href="/contact" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                     Contact
                   </Link>
                 </li>
                 <li>
-                  <Link href="/privacy" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#A09890] hover:text-[#1C1A17]'}`}>
+                  <Link href="/privacy" className={`text-sm transition-colors ${isBackNine ? 'text-[#B8D4C4] hover:text-white' : 'text-[#6B6460] hover:text-[#1C1A17]'}`}>
                     Privacy Policy
                   </Link>
                 </li>
@@ -124,10 +124,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className={`mt-8 border-t pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between ${isBackNine ? 'border-[#B8D4C4]/20' : 'border-[#F5F1ED]'}`}>
-          <p className={`text-xs ${isBackNine ? 'text-[#5A7A6B]' : 'text-[#A09890]'}`}>
+          <p className={`text-xs ${isBackNine ? 'text-[#5A7A6B]' : 'text-[#6B6460]'}`}>
             &copy; {new Date().getFullYear()} {brand.name}. All rights reserved.
           </p>
-          <p className={`text-xs ${isBackNine ? 'text-[#5A7A6B]' : 'text-[#A09890]'}`}>
+          <p className={`text-xs ${isBackNine ? 'text-[#5A7A6B]' : 'text-[#6B6460]'}`}>
             thestarter.app
           </p>
         </div>

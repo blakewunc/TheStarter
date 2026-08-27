@@ -147,7 +147,7 @@ export function MemberList({
       case 'pending':
         return 'bg-yellow-50 text-yellow-700'
       default:
-        return 'bg-[#F5F1ED] text-[#A99985]'
+        return 'bg-[#F5F1ED] text-[#6B6460]'
     }
   }
 
@@ -161,8 +161,8 @@ export function MemberList({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-[#252323]">Trip Members</h3>
-          <p className="text-sm text-[#A99985]">
+          <h3 className="text-lg font-semibold text-[#1C1A17]">Trip Members</h3>
+          <p className="text-sm text-[#6B6460]">
             {members.length} {members.length === 1 ? 'person' : 'people'} in this trip
             {pendingInvites.length > 0 && ` + ${pendingInvites.length} pending`}
           </p>
@@ -171,14 +171,14 @@ export function MemberList({
           {isOrganizer && (
             <button
               onClick={() => setShowAddForm(!showAddForm)}
-              className="rounded-[5px] bg-[#70798C] px-4 py-2 text-sm font-medium text-white hover:bg-[#5A6270] transition-colors"
+              className="rounded-[5px] bg-[#3B6D11] px-4 py-2 text-sm font-medium text-white hover:bg-[#2F5A0E] transition-colors"
             >
               Add Member
             </button>
           )}
           <button
             onClick={copyInviteLink}
-            className="rounded-[5px] border border-[#DAD2BC] bg-white px-4 py-2 text-sm font-medium text-[#252323] hover:bg-[#F5F1ED] transition-colors"
+            className="rounded-[5px] border border-[#DAD2BC] bg-white px-4 py-2 text-sm font-medium text-[#1C1A17] hover:bg-[#F5F1ED] transition-colors"
           >
             Copy Invite Link
           </button>
@@ -188,7 +188,7 @@ export function MemberList({
       {/* Add Member Form */}
       {showAddForm && isOrganizer && (
         <form onSubmit={handleAddMember} className="rounded-[5px] border border-[#DAD2BC] bg-[#F5F1ED] p-4">
-          <p className="mb-3 text-sm font-medium text-[#252323]">Add member by email</p>
+          <p className="mb-3 text-sm font-medium text-[#1C1A17]">Add member by email</p>
           <div className="space-y-3">
             <input
               type="email"
@@ -196,14 +196,14 @@ export function MemberList({
               value={addEmail}
               onChange={(e) => setAddEmail(e.target.value)}
               required
-              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none focus:ring-1 focus:ring-[#70798C]"
+              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none focus:ring-1 focus:ring-[#1C1A17]"
             />
             <input
               type="text"
               placeholder="Name (optional)"
               value={addName}
               onChange={(e) => setAddName(e.target.value)}
-              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none focus:ring-1 focus:ring-[#70798C]"
+              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none focus:ring-1 focus:ring-[#1C1A17]"
             />
             <div className="flex gap-2">
               <Button type="submit" disabled={adding} size="sm">
@@ -214,7 +214,7 @@ export function MemberList({
               </Button>
             </div>
           </div>
-          <p className="mt-2 text-xs text-[#A99985]">
+          <p className="mt-2 text-xs text-[#6B6460]">
             If they don&apos;t have an account yet, they&apos;ll be added automatically when they sign up.
           </p>
         </form>
@@ -232,18 +232,18 @@ export function MemberList({
               className="flex items-center justify-between rounded-[5px] border border-[#DAD2BC] bg-white p-4"
             >
               <div className="flex items-center space-x-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#70798C]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#3B6D11]">
                   <span className="text-sm font-semibold text-white">
                     {displayName.charAt(0).toUpperCase()}
                   </span>
                 </div>
                 <div>
-                  <p className="font-medium text-[#252323]">
+                  <p className="font-medium text-[#1C1A17]">
                     {displayName}
-                    {isCurrentUser && <span className="ml-1 text-xs text-[#A99985]">(you)</span>}
+                    {isCurrentUser && <span className="ml-1 text-xs text-[#6B6460]">(you)</span>}
                   </p>
                   {member.profiles.display_name && (
-                    <p className="text-sm text-[#A99985]">{member.profiles.email}</p>
+                    <p className="text-sm text-[#6B6460]">{member.profiles.email}</p>
                   )}
                 </div>
               </div>
@@ -269,7 +269,7 @@ export function MemberList({
                   <div className="flex items-center gap-1 ml-2">
                     <button
                       onClick={() => handleRoleChange(member.id, member.role === 'organizer' ? 'member' : 'organizer')}
-                      className="rounded-[5px] px-2 py-1 text-xs text-[#70798C] hover:bg-[#F5F1ED] transition-colors"
+                      className="rounded-[5px] px-2 py-1 text-xs text-[#3B6D11] hover:bg-[#F5F1ED] transition-colors"
                       title={member.role === 'organizer' ? 'Demote to member' : 'Promote to organizer'}
                     >
                       {member.role === 'organizer' ? 'Demote' : 'Promote'}
@@ -292,7 +292,7 @@ export function MemberList({
       {/* Pending Invites */}
       {pendingInvites.length > 0 && (
         <div className="space-y-2">
-          <h4 className="text-sm font-medium text-[#A99985]">Pending Invites</h4>
+          <h4 className="text-sm font-medium text-[#6B6460]">Pending Invites</h4>
           {pendingInvites.map((invite) => (
             <div
               key={invite.id}
@@ -300,16 +300,16 @@ export function MemberList({
             >
               <div className="flex items-center space-x-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#DAD2BC]">
-                  <span className="text-sm font-semibold text-[#A99985]">
+                  <span className="text-sm font-semibold text-[#6B6460]">
                     {(invite.name || invite.email).charAt(0).toUpperCase()}
                   </span>
                 </div>
                 <div>
-                  <p className="font-medium text-[#252323]">
+                  <p className="font-medium text-[#1C1A17]">
                     {invite.name || invite.email}
                   </p>
                   {invite.name && (
-                    <p className="text-sm text-[#A99985]">{invite.email}</p>
+                    <p className="text-sm text-[#6B6460]">{invite.email}</p>
                   )}
                 </div>
               </div>
@@ -333,7 +333,7 @@ export function MemberList({
 
       {members.length === 0 && pendingInvites.length === 0 && (
         <div className="rounded-[5px] border border-dashed border-[#DAD2BC] p-8 text-center">
-          <p className="text-sm text-[#A99985]">No members yet. Share the invite link to get started!</p>
+          <p className="text-sm text-[#6B6460]">No members yet. Share the invite link to get started!</p>
         </div>
       )}
     </div>

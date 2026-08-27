@@ -48,7 +48,7 @@ export function Leaderboard({ tripId }: LeaderboardProps) {
   const header = (
     <div className="flex items-center gap-2">
       <TrophyIcon />
-      <h3 className="text-lg font-semibold text-[#252323]">Leaderboard</h3>
+      <h3 className="text-lg font-semibold text-[#1C1A17]">Leaderboard</h3>
     </div>
   )
 
@@ -66,8 +66,8 @@ export function Leaderboard({ tripId }: LeaderboardProps) {
       <div className="space-y-4">
         {header}
         <div className="flex flex-col items-center justify-center rounded-[5px] border border-dashed border-[#DAD2BC] bg-white py-10 text-center">
-          <p className="text-sm font-medium text-[#252323]">No scores recorded yet</p>
-          <p className="mt-1 text-xs text-[#A99985]">Scores appear here after rounds are entered</p>
+          <p className="text-sm font-medium text-[#1C1A17]">No scores recorded yet</p>
+          <p className="mt-1 text-xs text-[#6B6460]">Scores appear here after rounds are entered</p>
         </div>
       </div>
     )
@@ -75,7 +75,7 @@ export function Leaderboard({ tripId }: LeaderboardProps) {
 
   const getRelativeToPar = (score: number, par: number) => {
     const diff = score - par
-    if (diff === 0) return { text: 'E', color: 'text-[#A99985]' }
+    if (diff === 0) return { text: 'E', color: 'text-[#6B6460]' }
     if (diff > 0) return { text: `+${diff}`, color: 'text-[#8B4444]' }
     return { text: `${diff}`, color: 'text-[#4A7C59]' }
   }
@@ -106,26 +106,26 @@ export function Leaderboard({ tripId }: LeaderboardProps) {
             >
               <div className="flex items-center gap-3">
                 <div className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
-                  isFirst ? 'bg-[#B8956A] text-white' : 'bg-[#F5F1ED] text-[#252323]'
+                  isFirst ? 'bg-[#B8956A] text-white' : 'bg-[#F5F1ED] text-[#1C1A17]'
                 }`}>
                   {index + 1}
                 </div>
                 <div>
-                  <p className={`${isFirst ? 'font-semibold' : 'font-medium'} text-[#252323]`}>
+                  <p className={`${isFirst ? 'font-semibold' : 'font-medium'} text-[#1C1A17]`}>
                     {score.user_name}
                   </p>
-                  <p className="text-xs text-[#A99985]">{score.course_name} &middot; Par {par}</p>
+                  <p className="text-xs text-[#6B6460]">{score.course_name} &middot; Par {par}</p>
                 </div>
               </div>
               <div className="text-right">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-lg font-bold text-[#252323]">{score.score}</span>
+                  <span className="text-lg font-bold text-[#1C1A17]">{score.score}</span>
                   <span className={`text-sm font-semibold ${relative.color}`}>
                     {relative.text}
                   </span>
                 </div>
                 {score.handicap !== null && (
-                  <p className="text-xs text-[#A99985]">HCP: {score.handicap}</p>
+                  <p className="text-xs text-[#6B6460]">HCP: {score.handicap}</p>
                 )}
               </div>
             </div>

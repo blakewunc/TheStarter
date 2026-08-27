@@ -119,7 +119,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
     fontWeight: 500,
     letterSpacing: '0.12em',
     textTransform: 'uppercase',
-    color: '#888780',
+    color: '#6B6460',
     marginBottom: '10px',
   }
 
@@ -155,7 +155,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
             {itineraryItems.length > 0 && (
               <button
                 onClick={() => onSwitchTab('itinerary')}
-                style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#70798C', background: 'none', border: 'none', cursor: 'pointer' }}
+                style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#3B6D11', background: 'none', border: 'none', cursor: 'pointer' }}
               >
                 View full itinerary →
               </button>
@@ -164,7 +164,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
 
           {upcomingItems.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '20px 0' }}>
-              <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#888780', marginBottom: '12px' }}>
+              <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460', marginBottom: '12px' }}>
                 {itineraryItems.length === 0 ? 'No activities planned yet' : 'All activities are in the past'}
               </p>
               <button
@@ -188,7 +188,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
                     </div>
                     <div style={{ flex: 1, paddingBottom: '4px' }}>
                       <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#2C2A26', margin: 0, fontWeight: 500 }}>{item.title}</p>
-                      <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: '2px 0 0' }}>
+                      <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', margin: '2px 0 0' }}>
                         {formatDate(item.date)}{item.time ? ` · ${formatTime(item.time)}` : ''}{item.location ? ` · ${item.location}` : ''}
                       </p>
                     </div>
@@ -279,7 +279,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
           <div style={{ height: '2px', background: '#EAE6E1', borderRadius: '2px', overflow: 'hidden', marginBottom: '8px' }}>
             <div style={{ height: '100%', background: '#3B6D11', borderRadius: '2px', width: `${progressPercent}%`, transition: 'width 0.5s' }} />
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460' }}>
             <span>{progressPercent}% planned</span>
             {trip.start_date && (() => {
               const [sy, sm, sd] = trip.start_date.split('-').map(Number)
@@ -287,7 +287,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
               return daysAway > 0 ? <span>{daysAway} days out</span> : null
             })()}
           </div>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', marginTop: '8px' }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', marginTop: '8px' }}>
             {respondedCount}/{memberCount} responded
             {itineraryItems.length > 0 && ` · ${itineraryItems.length} ${itineraryItems.length === 1 ? 'activity' : 'activities'}`}
           </p>
@@ -298,7 +298,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
           <p style={eyebrow}>Budget snapshot</p>
           {budgetTotal === 0 ? (
             <div style={{ textAlign: 'center', padding: '12px 0' }}>
-              <p style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#888780', marginBottom: '10px' }}>No budget yet</p>
+              <p style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#6B6460', marginBottom: '10px' }}>No budget yet</p>
               <button
                 onClick={() => onSwitchTab('financials')}
                 style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#2C2A26', background: 'transparent', border: '0.5px solid #D6CFC8', borderRadius: '6px', padding: '6px 12px', cursor: 'pointer' }}
@@ -310,18 +310,18 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
             <>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '12px' }}>
                 <div style={{ background: '#F5F1ED', borderRadius: '8px', padding: '10px 12px' }}>
-                  <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#888780', margin: '0 0 2px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Total est.</p>
+                  <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#6B6460', margin: '0 0 2px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Total est.</p>
                   <p style={{ fontFamily: 'var(--serif)', fontSize: '20px', color: '#2C2A26', margin: 0 }}>${budgetTotal.toLocaleString()}</p>
                 </div>
                 <div style={{ background: '#F5F1ED', borderRadius: '8px', padding: '10px 12px' }}>
-                  <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#888780', margin: '0 0 2px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Per person</p>
+                  <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#6B6460', margin: '0 0 2px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Per person</p>
                   <p style={{ fontFamily: 'var(--serif)', fontSize: '20px', color: '#2C2A26', margin: 0 }}>${Math.round(perPerson).toLocaleString()}</p>
                 </div>
               </div>
               <div style={{ borderTop: '0.5px solid #EAE6E1', paddingTop: '10px' }}>
                 <button
                   onClick={() => onSwitchTab('financials')}
-                  style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#70798C', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                  style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#3B6D11', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
                 >
                   View full budget →
                 </button>
@@ -348,13 +348,13 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
               <div>
                 <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#2C2A26', margin: 0, fontWeight: 500 }}>Trip Proposal</p>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: '2px 0 0' }}>Share a public pitch page</p>
+                <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', margin: '2px 0 0' }}>Share a public pitch page</p>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 {proposalEnabled && (
                   <button
                     onClick={copyProposalLink}
-                    style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#70798C', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                    style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#3B6D11', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
                   >
                     Copy link
                   </button>
@@ -392,13 +392,13 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
             <div style={{ borderTop: '0.5px solid #EAE6E1', paddingTop: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
                 <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#2C2A26', margin: 0, fontWeight: 500 }}>Availability</p>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: '2px 0 0' }}>
+                <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', margin: '2px 0 0' }}>
                   {availabilityCount > 0 ? `${availabilityCount} of ${memberCount} submitted` : 'No submissions yet'}
                 </p>
               </div>
               <button
                 onClick={() => onSwitchTab('availability')}
-                style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#70798C', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#3B6D11', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               >
                 View
               </button>

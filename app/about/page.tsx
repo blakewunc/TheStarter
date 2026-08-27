@@ -10,10 +10,10 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#F5F1ED]">
       <div className="mx-auto max-w-2xl px-6 py-16">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[#70798C]">About</p>
-        <h1 className="mb-8 text-3xl font-bold tracking-tight text-[#252323]">Built for golf trips. Actually.</h1>
+        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">About</p>
+        <h1 className="mb-8 text-3xl font-bold tracking-tight text-[#1C1A17]">Built for golf trips. Actually.</h1>
 
-        <div className="space-y-6 text-base leading-relaxed text-[#252323]">
+        <div className="space-y-6 text-base leading-relaxed text-[#1C1A17]">
           <p>
             The Starter is a golf trip planning app built for groups. We handle the logistics so you can focus on the golf — tee time coordination, cost splitting, handicap-adjusted betting formats, live scoring, and payout calculations, all in one place.
           </p>
@@ -27,7 +27,7 @@ export default function AboutPage() {
           </p>
 
           <div className="my-8 rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#70798C]">What We Handle</h2>
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">What We Handle</h2>
             <ul className="space-y-3">
               {[
                 ['⛳', 'Tee Times', 'Schedule rounds, assign foursomes, and send confirmations to everyone'],
@@ -40,8 +40,8 @@ export default function AboutPage() {
                 <li key={title as string} className="flex items-start gap-3">
                   <span className="mt-0.5 text-lg">{emoji}</span>
                   <div>
-                    <p className="font-medium text-[#252323]">{title}</p>
-                    <p className="text-sm text-[#A99985]">{desc}</p>
+                    <p className="font-medium text-[#1C1A17]">{title}</p>
+                    <p className="text-sm text-[#6B6460]">{desc}</p>
                   </div>
                 </li>
               ))}
@@ -52,11 +52,11 @@ export default function AboutPage() {
             The Starter is purpose-built for golf trips — tee times, scorecards, betting, and the logistics that come with getting a group to a course.
           </p>
 
-          <p className="font-medium text-[#252323]">
+          <p className="font-medium text-[#1C1A17]">
             thestarter.app — Golf trips, handled.
           </p>
 
-          <p className="text-xs text-[#A99985]">
+          <p className="text-xs text-[#6B6460]">
             Golf course location data ©{' '}
             <a
               href="https://www.openstreetmap.org/copyright"
@@ -79,7 +79,7 @@ export default function AboutPage() {
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-[5px] border border-[#DAD2BC] bg-white px-6 py-2.5 text-sm font-medium text-[#252323] transition-colors hover:border-[#A99985]"
+            className="inline-flex items-center gap-2 rounded-[5px] border border-[#DAD2BC] bg-white px-6 py-2.5 text-sm font-medium text-[#1C1A17] transition-colors hover:border-[#A99985]"
           >
             Get in Touch
           </Link>

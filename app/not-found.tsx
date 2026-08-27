@@ -11,7 +11,7 @@ export default function NotFound() {
           <CardTitle>Page Not Found</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm text-[#A99985]">
+          <p className="text-sm text-[#6B6460]">
             Sorry, we couldn't find the page you're looking for.
           </p>
 

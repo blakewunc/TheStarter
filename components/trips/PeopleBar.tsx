@@ -81,15 +81,15 @@ export function PeopleBar({ tripId, members, currentUserId, inviteCode }: People
   const pillStyles = {
     accepted: {
       active: { background: '#EAF3DE', color: '#3B6D11', outline: '1.5px solid #97C459' } as React.CSSProperties,
-      inactive: { background: 'transparent', color: '#888780', outline: '1px solid #D6CFC8' } as React.CSSProperties,
+      inactive: { background: 'transparent', color: '#6B6460', outline: '1px solid #D6CFC8' } as React.CSSProperties,
     },
     maybe: {
       active: { background: '#FAEEDA', color: '#854F0B', outline: '1.5px solid #FAC775' } as React.CSSProperties,
-      inactive: { background: 'transparent', color: '#888780', outline: '1px solid #D6CFC8' } as React.CSSProperties,
+      inactive: { background: 'transparent', color: '#6B6460', outline: '1px solid #D6CFC8' } as React.CSSProperties,
     },
     declined: {
       active: { background: '#FDE8E8', color: '#8B4444', outline: '1.5px solid #F3B8B8' } as React.CSSProperties,
-      inactive: { background: 'transparent', color: '#888780', outline: '1px solid #D6CFC8' } as React.CSSProperties,
+      inactive: { background: 'transparent', color: '#6B6460', outline: '1px solid #D6CFC8' } as React.CSSProperties,
     },
   }
 
@@ -144,13 +144,13 @@ export function PeopleBar({ tripId, members, currentUserId, inviteCode }: People
                 zIndex: 0,
                 position: 'relative',
               }}>
-                <span style={{ fontSize: '9px', fontWeight: 600, color: '#888780', fontFamily: 'var(--sans)' }}>+{extraCount}</span>
+                <span style={{ fontSize: '9px', fontWeight: 600, color: '#6B6460', fontFamily: 'var(--sans)' }}>+{extraCount}</span>
               </div>
             )}
           </div>
 
           {/* RSVP counts */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--sans)', fontSize: '12px', color: '#888780' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--sans)', fontSize: '12px', color: '#6B6460' }}>
             {goingCount > 0 && (
               <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3B6D11', display: 'inline-block' }} />
@@ -176,7 +176,7 @@ export function PeopleBar({ tripId, members, currentUserId, inviteCode }: People
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {currentMember && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', marginRight: '2px' }}>Your RSVP</span>
+              <span style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', marginRight: '2px' }}>Your RSVP</span>
               <button
                 onClick={() => updateRsvp('accepted')}
                 disabled={updating}
@@ -222,7 +222,7 @@ export function PeopleBar({ tripId, members, currentUserId, inviteCode }: People
               borderRadius: '6px',
               fontFamily: 'var(--sans)',
               fontSize: '11px',
-              color: '#888780',
+              color: '#6B6460',
               cursor: 'pointer',
               marginLeft: '4px',
             }}

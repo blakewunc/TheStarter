@@ -99,12 +99,12 @@ export function AddTeeTimeDialog({ tripId, open, onOpenChange, near }: AddTeeTim
               disabled={loading}
             />
             {course ? (
-              <p className="text-xs text-[#A99985]">
+              <p className="text-xs text-[#6B6460]">
                 {[course.city, course.state].filter(Boolean).join(', ')}
                 {course.address ? ` · ${course.address}` : ''}
               </p>
             ) : (
-              <p className="text-xs text-[#A99985]">
+              <p className="text-xs text-[#6B6460]">
                 Not finding it? Just type the name — it saves either way.
               </p>
             )}

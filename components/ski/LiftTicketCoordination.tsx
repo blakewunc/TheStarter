@@ -86,21 +86,21 @@ export function LiftTicketCoordination({ tripId }: LiftTicketCoordinationProps) 
   }
 
   if (loading) {
-    return <p className="text-sm text-[#A99985]">Loading...</p>
+    return <p className="text-sm text-[#6B6460]">Loading...</p>
   }
 
   return (
     <div className="space-y-6">
       {/* My Lift Ticket */}
       <div>
-        <h4 className="font-medium text-[#252323] mb-3">My Lift Ticket</h4>
+        <h4 className="font-medium text-[#1C1A17] mb-3">My Lift Ticket</h4>
         <form onSubmit={handleSave} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="ticket_type">Ticket Type*</Label>
             <select
               id="ticket_type"
               name="ticket_type"
-              className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] transition-all duration-200 focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15"
+              className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] transition-all duration-200 focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15"
               defaultValue={myTicket?.ticket_type || 'none'}
               required
             >
@@ -144,9 +144,9 @@ export function LiftTicketCoordination({ tripId }: LiftTicketCoordinationProps) 
                 type="checkbox"
                 name="purchased"
                 defaultChecked={myTicket?.purchased}
-                className="h-4 w-4 rounded border-[#CEC5B0] text-[#70798C] focus:ring-[#70798C]"
+                className="h-4 w-4 rounded border-[#CEC5B0] text-[#3B6D11] focus:ring-[#1C1A17]"
               />
-              <span className="text-sm text-[#252323]">Already purchased</span>
+              <span className="text-sm text-[#1C1A17]">Already purchased</span>
             </label>
           </div>
 
@@ -159,7 +159,7 @@ export function LiftTicketCoordination({ tripId }: LiftTicketCoordinationProps) 
       {/* Group Summary */}
       {tickets.length > 0 && (
         <div className="pt-4 border-t border-[#DAD2BC]">
-          <h4 className="font-medium text-[#252323] mb-3">Group Summary</h4>
+          <h4 className="font-medium text-[#1C1A17] mb-3">Group Summary</h4>
           <div className="space-y-2">
             {tickets.map((ticket) => (
               <div
@@ -168,8 +168,8 @@ export function LiftTicketCoordination({ tripId }: LiftTicketCoordinationProps) 
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="font-medium text-[#252323]">{ticket.user_name}</p>
-                    <p className="text-sm text-[#A99985]">
+                    <p className="font-medium text-[#1C1A17]">{ticket.user_name}</p>
+                    <p className="text-sm text-[#6B6460]">
                       {ticket.ticket_type === 'none' && 'No ticket yet'}
                       {ticket.ticket_type === 'single_day' && 'Single Day'}
                       {ticket.ticket_type === 'multi_day' && `${ticket.num_days || '?'} Days`}
@@ -178,7 +178,7 @@ export function LiftTicketCoordination({ tripId }: LiftTicketCoordinationProps) 
                   </div>
                   <div className="text-right">
                     {ticket.cost && (
-                      <p className="text-sm font-medium text-[#252323]">
+                      <p className="text-sm font-medium text-[#1C1A17]">
                         ${ticket.cost.toFixed(2)}
                       </p>
                     )}
@@ -194,12 +194,12 @@ export function LiftTicketCoordination({ tripId }: LiftTicketCoordinationProps) 
           {/* Total Cost */}
           <div className="mt-4 rounded-[5px] bg-[#F5F1ED] p-3">
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium text-[#252323]">Total Group Cost</span>
-              <span className="text-lg font-bold text-[#252323]">
+              <span className="text-sm font-medium text-[#1C1A17]">Total Group Cost</span>
+              <span className="text-lg font-bold text-[#1C1A17]">
                 ${tickets.reduce((sum, t) => sum + (t.cost || 0), 0).toFixed(2)}
               </span>
             </div>
-            <p className="text-xs text-[#A99985] mt-1">
+            <p className="text-xs text-[#6B6460] mt-1">
               {tickets.filter(t => t.purchased).length} / {tickets.length} purchased
             </p>
           </div>

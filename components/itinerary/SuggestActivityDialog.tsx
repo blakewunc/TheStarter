@@ -65,7 +65,7 @@ export function SuggestActivityDialog({ tripId, onSuccess }: SuggestActivityDial
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-[#252323]">
+            <label className="mb-1 block text-sm font-medium text-[#1C1A17]">
               Activity Name <span className="text-[#8B4444]">*</span>
             </label>
             <input
@@ -74,50 +74,50 @@ export function SuggestActivityDialog({ tripId, onSuccess }: SuggestActivityDial
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="e.g. Beach volleyball"
               required
-              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none focus:ring-1 focus:ring-[#70798C]"
+              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none focus:ring-1 focus:ring-[#1C1A17]"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-[#252323]">Description</label>
+            <label className="mb-1 block text-sm font-medium text-[#1C1A17]">Description</label>
             <textarea
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               placeholder="Optional details about the activity..."
               rows={3}
-              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none focus:ring-1 focus:ring-[#70798C]"
+              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none focus:ring-1 focus:ring-[#1C1A17]"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-sm font-medium text-[#252323]">Date</label>
+              <label className="mb-1 block text-sm font-medium text-[#1C1A17]">Date</label>
               <input
                 type="date"
                 value={formData.date}
                 onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] focus:border-[#70798C] focus:outline-none focus:ring-1 focus:ring-[#70798C]"
+                className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] focus:border-[#3B6D11] focus:outline-none focus:ring-1 focus:ring-[#1C1A17]"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-[#252323]">Time</label>
+              <label className="mb-1 block text-sm font-medium text-[#1C1A17]">Time</label>
               <input
                 type="time"
                 value={formData.time}
                 onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] focus:border-[#70798C] focus:outline-none focus:ring-1 focus:ring-[#70798C]"
+                className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] focus:border-[#3B6D11] focus:outline-none focus:ring-1 focus:ring-[#1C1A17]"
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium text-[#252323]">Location</label>
+            <label className="mb-1 block text-sm font-medium text-[#1C1A17]">Location</label>
             <input
               type="text"
               value={formData.location}
               onChange={(e) => setFormData({ ...formData, location: e.target.value })}
               placeholder="Optional location"
-              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none focus:ring-1 focus:ring-[#70798C]"
+              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none focus:ring-1 focus:ring-[#1C1A17]"
             />
           </div>
 

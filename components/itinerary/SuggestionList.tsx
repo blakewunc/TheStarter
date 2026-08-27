@@ -81,7 +81,7 @@ export function SuggestionList({ suggestions, tripId, isOrganizer, currentUserId
   if (suggestions.length === 0) {
     return (
       <div className="rounded-[5px] border border-dashed border-[#DAD2BC] p-6 text-center">
-        <p className="text-sm text-[#A99985]">No activity suggestions yet. Be the first to suggest one!</p>
+        <p className="text-sm text-[#6B6460]">No activity suggestions yet. Be the first to suggest one!</p>
       </div>
     )
   }
@@ -91,7 +91,7 @@ export function SuggestionList({ suggestions, tripId, isOrganizer, currentUserId
       {/* Pending Suggestions */}
       {pendingSuggestions.length > 0 && (
         <div className="space-y-3">
-          <h4 className="text-sm font-medium text-[#A99985]">
+          <h4 className="text-sm font-medium text-[#6B6460]">
             Pending Suggestions ({pendingSuggestions.length})
           </h4>
           {pendingSuggestions.map((suggestion) => (
@@ -112,7 +112,7 @@ export function SuggestionList({ suggestions, tripId, isOrganizer, currentUserId
       {/* Decided Suggestions */}
       {decidedSuggestions.length > 0 && (
         <div className="space-y-3">
-          <h4 className="text-sm font-medium text-[#A99985]">
+          <h4 className="text-sm font-medium text-[#6B6460]">
             Reviewed ({decidedSuggestions.length})
           </h4>
           {decidedSuggestions.map((suggestion) => (
@@ -158,17 +158,17 @@ function SuggestionCard({
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <h5 className="font-medium text-[#252323]">{suggestion.title}</h5>
+            <h5 className="font-medium text-[#1C1A17]">{suggestion.title}</h5>
             <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${statusBadgeClass}`}>
               {suggestion.status}
             </span>
           </div>
 
           {suggestion.description && (
-            <p className="text-sm text-[#A99985] mb-2">{suggestion.description}</p>
+            <p className="text-sm text-[#6B6460] mb-2">{suggestion.description}</p>
           )}
 
-          <div className="flex flex-wrap gap-3 text-xs text-[#A99985]">
+          <div className="flex flex-wrap gap-3 text-xs text-[#6B6460]">
             {suggestion.date && (
               <span>
                 {parseLocalDate(suggestion.date).toLocaleDateString('en-US', {
