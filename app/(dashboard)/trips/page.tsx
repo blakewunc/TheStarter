@@ -264,9 +264,12 @@ export default async function TripsPage() {
           profiles(display_name, email)
         ),
         budget_categories(estimated_cost),
-        golf_tee_times(id)
+        rounds:itinerary_items(id, item_type)
       `)
       .in('id', tripIds)
+      // Filters an embedded resource without !inner, so trips with no tee times
+      // are still returned — just with an empty rounds array.
+      .eq('rounds.item_type', 'tee_time')
       .order('created_at', { ascending: false })
 
     trips = (tripData ?? []).map((t: any) => ({
@@ -282,7 +285,7 @@ export default async function TripsPage() {
         rsvp_status: m.rsvp_status,
       })),
       budgetTotal: (t.budget_categories ?? []).reduce((sum: number, c: any) => sum + (c.estimated_cost ?? 0), 0),
-      roundsCount: (t.golf_tee_times ?? []).length,
+      roundsCount: (t.rounds ?? []).length,
     }))
   }
 

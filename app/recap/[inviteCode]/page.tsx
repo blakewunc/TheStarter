@@ -27,10 +27,12 @@ async function fetchRecap(inviteCode: string) {
       .order('time', { ascending: true }),
     trip.trip_type === 'golf'
       ? supabase
-          .from('golf_tee_times')
-          .select('id, course_name, tee_time, par, golf_scores(user_id, score, profiles(display_name, email))')
+          .from('itinerary_items')
+          .select('id, course_name, date, time, par, golf_scores(user_id, score, profiles(display_name, email))')
           .eq('trip_id', trip.id)
-          .order('tee_time', { ascending: true })
+          .eq('item_type', 'tee_time')
+          .order('date', { ascending: true })
+          .order('time', { ascending: true, nullsFirst: false })
       : Promise.resolve({ data: null }),
   ])
 

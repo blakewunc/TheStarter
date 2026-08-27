@@ -6,7 +6,7 @@ import { SkeletonList } from '@/components/ui/skeleton'
 import { AddTeeTimeDialog } from './AddTeeTimeDialog'
 import { EnterScoresDialog } from './EnterScoresDialog'
 import { useGolfTeeTimes } from '@/lib/hooks/useGolfTeeTimes'
-import { format } from 'date-fns'
+import { formatDate, formatTime } from '@/lib/dates'
 
 interface TeeTimeListProps {
   tripId: string
@@ -22,7 +22,13 @@ interface Member {
 
 export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTimeListProps) {
   const [showAddDialog, setShowAddDialog] = useState(false)
-  const [scoreTeeTime, setScoreTeeTime] = useState<{ id: string; course_name: string; par: number } | null>(null)
+  const [scoreTeeTime, setScoreTeeTime] = useState<{
+    id: string
+    course_name: string
+    par: number
+    date?: string
+    time?: string | null
+  } | null>(null)
   const [members, setMembers] = useState<Member[]>([])
   const { teeTimes, loading, error } = useGolfTeeTimes(tripId)
 
@@ -102,18 +108,21 @@ export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTim
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-semibold" style={{ color: scoreOnly ? '#F5F1ED' : '#1C1A17' }}>
-                    {teeTime.course_name}
+                    {teeTime.course_name || teeTime.title}
                   </p>
                   <p className="text-xs mt-0.5" style={{ color: scoreOnly ? 'rgba(245,241,237,0.50)' : '#A09890' }}>
-                    {format(new Date(teeTime.tee_time), 'MMM d · h:mm a')} · Par {teeTime.par || 72}
+                    {formatDate(teeTime.date, { month: 'short', day: 'numeric' })}
+                    {teeTime.time ? ` · ${formatTime(teeTime.time)}` : ''} · Par {teeTime.par || 72}
                   </p>
                 </div>
                 <button
                   onClick={() =>
                     setScoreTeeTime({
                       id: teeTime.id,
-                      course_name: teeTime.course_name,
+                      course_name: teeTime.course_name || teeTime.title,
                       par: teeTime.par || 72,
+                      date: teeTime.date,
+                      time: teeTime.time,
                     })
                   }
                   style={{
@@ -135,8 +144,8 @@ export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTim
               {/* Player dots + meta — only in full mode */}
               {!scoreOnly && (
                 <>
-                  {teeTime.notes && (
-                    <p className="text-xs text-[#A09890] mt-1">{teeTime.notes}</p>
+                  {teeTime.description && (
+                    <p className="text-xs text-[#A09890] mt-1">{teeTime.description}</p>
                   )}
                   <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-[rgba(28,26,23,0.07)]">
                     {Array.from({ length: teeTime.num_players || 4 }).map((_: unknown, i: number) => (

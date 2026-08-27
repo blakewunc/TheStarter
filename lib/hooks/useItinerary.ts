@@ -14,6 +14,21 @@ export interface ItineraryItem {
   location: string | null
   date: string
   time: string | null
+  end_time: string | null
+  all_day: boolean
+  /** 'tee_time' | 'lodging' | 'meal' | 'travel' | 'other' */
+  item_type: string
+  /** Null when the course was entered as free text rather than picked. */
+  course_id: string | null
+  course_name: string | null
+  address: string | null
+  lat: number | null
+  lng: number | null
+  timezone: string | null
+  num_players: number | null
+  players: string[] | null
+  par: number | null
+  booking_confirmation: string | null
   sort_order: number
   created_at: string
   created_by: string

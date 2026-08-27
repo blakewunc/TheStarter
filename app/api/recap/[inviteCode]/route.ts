@@ -36,10 +36,12 @@ export async function GET(
     let golfScores: any[] = []
     if (trip.trip_type === 'golf') {
       const { data: teeTimes } = await supabase
-        .from('golf_tee_times')
-        .select('id, course_name, tee_time, par, golf_scores(user_id, score, profiles(display_name, email))')
+        .from('itinerary_items')
+        .select('id, course_name, date, time, par, golf_scores(user_id, score, profiles(display_name, email))')
         .eq('trip_id', trip.id)
-        .order('tee_time', { ascending: true })
+        .eq('item_type', 'tee_time')
+        .order('date', { ascending: true })
+        .order('time', { ascending: true, nullsFirst: false })
       golfScores = teeTimes || []
     }
 

@@ -1,16 +1,30 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
-interface TeeTime {
+export interface TeeTime {
   id: string
   trip_id: string
-  course_name: string
-  course_location: string | null
-  tee_time: string
-  num_players: number
+  /** YYYY-MM-DD calendar day at the course. No timezone. */
+  date: string
+  /** HH:MM:SS wall clock at the course, or null. */
+  time: string | null
+  end_time: string | null
+  title: string
+  description: string | null
+  location: string | null
+  item_type: string
+  /** Null when the organizer typed a course that isn't in the courses table. */
+  course_id: string | null
+  course_name: string | null
+  address: string | null
+  lat: number | null
+  lng: number | null
+  timezone: string | null
+  num_players: number | null
   players: string[] | null
-  notes: string | null
-  created_by: string
+  par: number | null
+  booking_confirmation: string | null
+  created_by: string | null
   created_at: string
   updated_at: string
 }
@@ -22,7 +36,6 @@ export function useGolfTeeTimes(tripId: string) {
   const supabase = createClient()
 
   useEffect(() => {
-    // Fetch initial tee times
     async function fetchTeeTimes() {
       try {
         const response = await fetch(`/api/trips/${tripId}/golf/tee-times`)
@@ -41,25 +54,24 @@ export function useGolfTeeTimes(tripId: string) {
 
     fetchTeeTimes()
 
-    // Set up real-time subscription
+    // itinerary_items is in the supabase_realtime publication, so unlike the old
+    // golf_tee_times subscription this one actually fires.
     const channel = supabase
-      .channel(`golf_tee_times_${tripId}`)
+      .channel(`tee_times_${tripId}`)
       .on(
         'postgres_changes',
         {
           event: '*',
           schema: 'public',
-          table: 'golf_tee_times',
+          table: 'itinerary_items',
           filter: `trip_id=eq.${tripId}`,
         },
         async () => {
-          // Refetch tee times when they change
           fetchTeeTimes()
         }
       )
       .subscribe()
 
-    // Cleanup subscription on unmount
     return () => {
       channel.unsubscribe()
     }

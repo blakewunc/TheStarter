@@ -118,7 +118,7 @@ export async function PATCH(
       .select(`
         *,
         winner:winner_id (id, display_name, email),
-        tee_time:tee_time_id (id, course_name, tee_time)
+        tee_time:tee_time_id (id, course_name, date, time)
       `)
       .single()
 

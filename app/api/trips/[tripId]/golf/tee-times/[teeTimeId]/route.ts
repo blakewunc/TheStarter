@@ -35,10 +35,11 @@ export async function PATCH(
     }
 
     const { data: teeTime, error } = await supabase
-      .from('golf_tee_times')
+      .from('itinerary_items')
       .update({ players })
       .eq('id', teeTimeId)
       .eq('trip_id', tripId)
+      .eq('item_type', 'tee_time')
       .select()
       .single()
 
@@ -79,9 +80,11 @@ export async function DELETE(
     }
 
     const { data: teeTime } = await supabase
-      .from('golf_tee_times')
+      .from('itinerary_items')
       .select('created_by')
       .eq('id', teeTimeId)
+      .eq('trip_id', tripId)
+      .eq('item_type', 'tee_time')
       .single()
 
     if (!teeTime) {
@@ -93,9 +96,11 @@ export async function DELETE(
     }
 
     const { error } = await supabase
-      .from('golf_tee_times')
+      .from('itinerary_items')
       .delete()
       .eq('id', teeTimeId)
+      .eq('trip_id', tripId)
+      .eq('item_type', 'tee_time')
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 })

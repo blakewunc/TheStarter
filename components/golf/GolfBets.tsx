@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { formatDate, formatTime } from '@/lib/dates'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -27,7 +28,7 @@ interface BetEntry {
   created_by: string
   created_at: string
   winner?: { id: string; display_name: string | null; email: string }
-  tee_time?: { id: string; course_name: string; tee_time: string }
+  tee_time?: { id: string; course_name: string; date: string; time: string | null }
 }
 
 interface Member {
@@ -39,7 +40,8 @@ interface Member {
 interface TeeTimeOption {
   id: string
   course_name: string
-  tee_time: string
+  date: string
+  time: string | null
 }
 
 interface Score {
@@ -109,13 +111,10 @@ const AUTO_DESCRIPTIONS: Record<string, string> = {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function formatTeeTime(isoString: string): string {
-  try {
-    const d = new Date(isoString)
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-  } catch {
-    return isoString
-  }
+function formatTeeTime(tt: { date: string; time: string | null }): string {
+  if (!tt?.date) return ''
+  const day = formatDate(tt.date, { month: 'short', day: 'numeric', year: 'numeric' })
+  return tt.time ? `${day} · ${formatTime(tt.time)}` : day
 }
 
 // ─── Auto-winner logic ────────────────────────────────────────────────────────
@@ -216,7 +215,7 @@ function BetCard({
 
       {bet.tee_time && (
         <p className="mt-1 text-xs text-[#A99985]">
-          📅 {bet.tee_time.course_name} · {formatTeeTime(bet.tee_time.tee_time)}
+          📅 {bet.tee_time.course_name} · {formatTeeTime(bet.tee_time)}
         </p>
       )}
 
@@ -440,7 +439,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
               <option value="">None (applies to full trip)</option>
               {teeTimes.map((tt) => (
                 <option key={tt.id} value={tt.id}>
-                  {tt.course_name} — {formatTeeTime(tt.tee_time)}
+                  {tt.course_name} — {formatTeeTime(tt)}
                 </option>
               ))}
             </select>

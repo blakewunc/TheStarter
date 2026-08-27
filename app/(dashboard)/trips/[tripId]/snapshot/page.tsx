@@ -103,7 +103,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
           const teeRes = await fetch(`/api/trips/${tripId}/golf/tee-times`)
           if (teeRes.ok) {
             const teeData = await teeRes.json()
-            teeTimes = teeData.tee_times || []
+            teeTimes = teeData.teeTimes || []
           }
         }
 
@@ -317,18 +317,20 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
           <Section title="⛳ Tee Times">
             <div className="space-y-3">
               {teeTimes.map((tt: any) => {
-                const teeDate = new Date(tt.tee_time)
+                const venue = tt.address || tt.location
                 return (
                   <div key={tt.id} className="rounded-[5px] border border-[#DAD2BC] p-3">
-                    <p className="font-medium text-[#252323]">{tt.course_name}</p>
-                    {tt.course_location && <p className="text-xs text-[#A99985]">📍 {tt.course_location}</p>}
+                    <p className="font-medium text-[#252323]">{tt.course_name || tt.title}</p>
+                    {venue && <p className="text-xs text-[#A99985]">📍 {venue}</p>}
                     <p className="mt-1 text-sm text-[#70798C]">
-                      {teeDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
-                      {' at '}
-                      {teeDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}
+                      {formatDate(tt.date)}
+                      {tt.time ? ` at ${formatTime(tt.time)}` : ''}
                     </p>
                     {tt.par && <p className="text-xs text-[#A99985]">Par {tt.par}</p>}
-                    {tt.notes && <p className="mt-1 text-xs text-[#A99985]">{tt.notes}</p>}
+                    {tt.booking_confirmation && (
+                      <p className="text-xs text-[#A99985]">Confirmation {tt.booking_confirmation}</p>
+                    )}
+                    {tt.description && <p className="mt-1 text-xs text-[#A99985]">{tt.description}</p>}
                   </div>
                 )
               })}

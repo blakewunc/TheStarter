@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { toast } from 'sonner'
-import { format } from 'date-fns'
+import { formatDate, formatTime } from '@/lib/dates'
 
 interface TeeTime {
   id: string
   course_name: string
   par: number
-  tee_time?: string
+  date?: string
+  time?: string | null
 }
 
 interface Member {
@@ -141,7 +142,9 @@ export function EnterScoresDialog({
             {teeTime.course_name}
           </h2>
           <p style={{ fontSize: '12px', color: 'rgba(245,241,237,0.50)', marginTop: '4px' }}>
-            Par {par}{teeTime.tee_time ? ` · ${format(new Date(teeTime.tee_time), 'MMM d, h:mm a')}` : ''}
+            Par {par}
+            {teeTime.date ? ` · ${formatDate(teeTime.date, { month: 'short', day: 'numeric' })}` : ''}
+            {teeTime.time ? `, ${formatTime(teeTime.time)}` : ''}
           </p>
         </div>
 
