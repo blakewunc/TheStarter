@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
 import { TripMembersCard } from '@/components/trips/overview/TripMembersCard'
 import { AnnouncementsCard } from '@/components/trips/overview/AnnouncementsCard'
+import { LodgingCard } from '@/components/trips/overview/LodgingCard'
 import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
 import { useBudget } from '@/lib/hooks/useBudget'
 import { useItinerary } from '@/lib/hooks/useItinerary'
@@ -26,6 +27,8 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
 
   const members = trip.trip_members || []
   const memberCount = members.length
+  // Must match BudgetTab's basis or the same cost reads differently on two tabs.
+  const splitCount = Math.max(trip.expected_guests || memberCount, 1)
 
   useEffect(() => {
     async function fetchAvailability() {
@@ -260,7 +263,10 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
           </div>
         )}
 
-        {/* 4. Announcements */}
+        {/* 4. Lodging — where you're staying, door code, and the linked cost */}
+        <LodgingCard tripId={tripId} isOrganizer={isOrganizer} splitCount={splitCount} />
+
+        {/* 5. Announcements */}
         <AnnouncementsCard tripId={tripId} isOrganizer={isOrganizer} />
       </div>
 
