@@ -11,6 +11,15 @@ export const createTripSchema = z.object({
   description: z.string().max(1000, 'Description must be less than 1000 characters').optional(),
   budget_total: z.number().min(0).optional(),
   expected_guests: z.number().int().min(1).max(500).optional(),
+  // trip_type was missing from this schema, and zod strips unknown keys — so the
+  // create form has been sending 'golf' and having it silently dropped, leaving every
+  // trip on the 'general' default and hiding the golf features from it entirely.
+  trip_type: z.enum(['general', 'golf', 'ski', 'bachelor_party', 'bachelorette_party']).optional(),
+  // The golf shape captured at creation (migration 023).
+  rounds_planned: z.number().int().min(0).max(20).optional(),
+  target_courses: z.array(z.string().min(1).max(120)).max(20).optional(),
+  default_format: z.enum(['nassau', 'skins', 'wolf', 'stroke_play']).optional(),
+  stakes: z.string().max(120).optional(),
 }).refine((data) => {
   const start = new Date(data.start_date)
   const end = new Date(data.end_date)

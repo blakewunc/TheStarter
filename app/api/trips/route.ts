@@ -68,7 +68,10 @@ export async function POST(request: Request) {
       )
     }
 
-    const { title, destination, start_date, end_date, description, budget_total, expected_guests } = validation.data
+    const {
+      title, destination, start_date, end_date, description, budget_total,
+      expected_guests, trip_type, rounds_planned, target_courses, default_format, stakes,
+    } = validation.data
 
     // Generate invite code
     const invite_code = generateInviteCode()
@@ -84,6 +87,11 @@ export async function POST(request: Request) {
         description,
         budget_total,
         expected_guests,
+        trip_type: trip_type || 'golf',
+        rounds_planned: rounds_planned ?? null,
+        target_courses: target_courses ?? [],
+        default_format: default_format ?? null,
+        stakes: stakes ?? null,
         created_by: user.id,
         invite_code,
         status: 'planning',
