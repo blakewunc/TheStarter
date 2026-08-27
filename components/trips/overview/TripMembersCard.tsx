@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
+import { fetchErrorMessage } from '@/lib/hooks/fetchError'
 
 interface Member {
   id: string
@@ -35,6 +36,8 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
   const [addName, setAddName] = useState('')
   const [adding, setAdding] = useState(false)
   const [pendingInvites, setPendingInvites] = useState<PendingInvite[]>([])
+  const [drafting, setDrafting] = useState(false)
+  const [groupText, setGroupText] = useState('')
 
   const inviteLink = typeof window !== 'undefined' ? `${window.location.origin}/invite/${inviteCode}` : ''
 
@@ -56,7 +59,30 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
 
   const copyInviteLink = () => {
     navigator.clipboard.writeText(inviteLink)
-    toast.success('Invite link copied!')
+    toast.success('Invite link copied')
+  }
+
+  // A.3 — bounded action on the surface where the work is. The organiser is already
+  // here to invite people; the hard part is writing the message, not copying the link.
+  const draftGroupText = async () => {
+    setDrafting(true)
+    try {
+      const res = await fetch(`/api/trips/${tripId}/ai/group-text`, { method: 'POST' })
+      if (!res.ok) throw new Error(await fetchErrorMessage(res, 'Could not draft that'))
+      const { message } = await res.json()
+      // The link is appended here rather than asked of the model, so it is always the
+      // real one and can never be hallucinated.
+      setGroupText(`${message}\n\n${inviteLink}`)
+    } catch (err: any) {
+      toast.error(err.message)
+    } finally {
+      setDrafting(false)
+    }
+  }
+
+  const copyGroupText = () => {
+    navigator.clipboard.writeText(groupText)
+    toast.success('Message copied — paste it in the group chat')
   }
 
   const handleAddMember = async (e: React.FormEvent) => {
@@ -151,6 +177,52 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
           Invite More
         </button>
       </div>
+
+      {/* A.3 — organiser-only: drafting the message is the actual friction in
+          inviting people, not copying the link. */}
+      {isOrganizer && (
+        <div className="mb-4 rounded-[5px] border border-[#DAD2BC] bg-[#F5F1ED] p-3">
+          {groupText ? (
+            <div className="space-y-2">
+              <textarea
+                value={groupText}
+                onChange={(e) => setGroupText(e.target.value)}
+                rows={5}
+                className="w-full rounded-[5px] border border-[#DAD2BC] bg-white p-2.5 text-sm text-[#1C1A17] outline-none focus:border-[#3B6D11]"
+              />
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={copyGroupText}
+                  className="min-h-11 rounded-[5px] bg-[#1C1A17] px-4 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                >
+                  Copy message
+                </button>
+                <button
+                  onClick={draftGroupText}
+                  disabled={drafting}
+                  className="min-h-11 rounded-[5px] border border-[#DAD2BC] bg-white px-4 text-sm text-[#1C1A17] transition-colors hover:bg-[#F5F1ED] disabled:opacity-50"
+                >
+                  {drafting ? 'Drafting…' : 'Try again'}
+                </button>
+              </div>
+              <p className="text-xs text-[#6B6460]">Edit it before you send — it&apos;s your group.</p>
+            </div>
+          ) : (
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={draftGroupText}
+                disabled={drafting}
+                className="min-h-11 rounded-[5px] border border-[#DAD2BC] bg-white px-4 text-sm font-medium text-[#1C1A17] transition-colors hover:bg-white disabled:opacity-50"
+              >
+                {drafting ? 'Drafting…' : 'Draft the group text'}
+              </button>
+              <span className="text-xs text-[#6B6460]">
+                Two lines to paste in the group chat, link included.
+              </span>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Active Members */}
       <div className="space-y-3">

@@ -36,17 +36,11 @@ function TripDetailContent({ tripId }: { tripId: string }) {
   const [aiPanelOpen, setAiPanelOpen] = useState(false)
   const [aiHovered, setAiHovered] = useState(false)
 
-  // trip_type was silently dropped on create for a long stretch (createTripSchema had
-  // no trip_type and zod strips unknown keys), so trips that are plainly golf trips are
-  // stored as 'general' and lost their Golf tab. A trip with tee times on it is a golf
-  // trip regardless of what the column says, so the tab follows the evidence too.
-  const hasTeeTimes = ((trip as any)?.tee_time_count ?? 0) > 0
-  const sportTab =
-    trip?.trip_type === 'golf' || hasTeeTimes
-      ? 'golf'
-      : trip?.trip_type === 'ski'
-      ? 'ski'
-      : null
+  // The Starter is golf-only: every trip here is a golf trip, so the Golf tab is not
+  // conditional. trip_type survives for the ski trips inherited from when this codebase
+  // served several trip types, and those still get their tab — but golf is the default
+  // and the absence of a trip_type never hides it again.
+  const sportTab = trip?.trip_type === 'ski' ? 'ski' : 'golf'
   const validTabs: string[] = sportTab
     ? [...BASE_TABS, sportTab]
     : [...BASE_TABS]
@@ -214,6 +208,7 @@ function TripDetailContent({ tripId }: { tripId: string }) {
       >
         <button
           onClick={() => setAiPanelOpen(true)}
+          aria-label="Ask about this trip"
           onMouseEnter={() => setAiHovered(true)}
           onMouseLeave={() => setAiHovered(false)}
           style={{
@@ -235,10 +230,10 @@ function TripDetailContent({ tripId }: { tripId: string }) {
             justifyContent: 'center',
           }}
         >
-          <Sparkles size={16} style={{ flexShrink: 0 }} />
+          <Sparkles size={16} style={{ flexShrink: 0 }} aria-hidden="true" />
           {aiHovered && (
             <span style={{ fontFamily: 'var(--sans)', fontSize: '12px', fontWeight: 500 }}>
-              Ask the AI planner
+              Ask about this trip
             </span>
           )}
         </button>
