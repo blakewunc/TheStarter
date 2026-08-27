@@ -9,6 +9,10 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent } from '@/components/ui/card'
 import { DestinationPicker, type Destination } from '@/components/trips/DestinationPicker'
 import { CoursePicker, type Course } from '@/components/golf/CoursePicker'
+import { fetchErrorMessage } from '@/lib/hooks/fetchError'
+
+const EXAMPLE_PROMPT =
+  '8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head.'
 
 // Reuses the exact chips from The Club's round modal, so a format means the same
 // thing whether it is set at trip creation or at the first tee.
@@ -39,6 +43,60 @@ export default function NewTripPage() {
   const [destination, setDestination] = useState<Destination | null>(null)
   const [courses, setCourses] = useState<string[]>([])
   const [courseDraft, setCourseDraft] = useState('')
+
+  // Prompt-first is the default path, matching what the homepage promises. The form
+  // stays one click away and is never replaced — it is the fallback for every failure
+  // mode, and the only path for anyone who would rather just fill it in.
+  const [prompt, setPrompt] = useState('')
+  const [drafting, setDrafting] = useState(false)
+  const [draftError, setDraftError] = useState<string | null>(null)
+  const [formOpen, setFormOpen] = useState(false)
+  const [draftApplied, setDraftApplied] = useState(false)
+
+  const handleDraft = async () => {
+    if (!prompt.trim()) return
+    setDrafting(true)
+    setDraftError(null)
+    try {
+      const res = await fetch('/api/trips/draft', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      })
+      if (!res.ok) throw new Error(await fetchErrorMessage(res, 'Drafting failed'))
+      const { draft } = await res.json()
+
+      // Only fields the model actually filled are applied; null means "not stated",
+      // and overwriting a value with null would quietly erase the user's own typing.
+      setFormData((prev) => ({
+        ...prev,
+        title: draft.title ?? prev.title,
+        destination: draft.destination ?? prev.destination,
+        start_date: draft.start_date ?? prev.start_date,
+        end_date: draft.end_date ?? prev.end_date,
+        description: draft.description ?? prev.description,
+        budget_total: draft.budget_total != null ? String(draft.budget_total) : prev.budget_total,
+        expected_guests:
+          draft.expected_guests != null ? String(draft.expected_guests) : prev.expected_guests,
+        rounds_planned:
+          draft.rounds_planned != null ? String(draft.rounds_planned) : prev.rounds_planned,
+        default_format: draft.default_format ?? prev.default_format,
+        stakes: draft.stakes ?? prev.stakes,
+      }))
+      if (Array.isArray(draft.target_courses) && draft.target_courses.length > 0) {
+        setCourses((prev) => Array.from(new Set([...prev, ...draft.target_courses])))
+      }
+
+      setDraftApplied(true)
+      setFormOpen(true)
+    } catch (err: any) {
+      // Never a blocking error: a failed draft opens the manual form instead.
+      setDraftError(err.message)
+      setFormOpen(true)
+    } finally {
+      setDrafting(false)
+    }
+  }
 
   // Course search biases toward the destination once one is resolved, so typing
   // "pine" in Southern Pines surfaces the right Pinehurst courses first.
@@ -106,7 +164,51 @@ export default function NewTripPage() {
           <p className="mt-1 text-[#6B6460]">Where&apos;s the crew headed?</p>
         </div>
 
-        <Card id="trip-form">
+        {/* Prompt-first */}
+        {!formOpen && (
+          <Card className="mb-4">
+            <CardContent className="space-y-3 pt-6">
+              <Label htmlFor="prompt">Describe the trip</Label>
+              <Textarea
+                id="prompt"
+                rows={3}
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder={EXAMPLE_PROMPT}
+                disabled={drafting}
+              />
+              <div className="flex flex-wrap items-center gap-3">
+                <Button type="button" onClick={handleDraft} disabled={drafting || !prompt.trim()}>
+                  {drafting ? 'Drafting…' : 'Draft my trip'}
+                </Button>
+                <button
+                  type="button"
+                  onClick={() => setFormOpen(true)}
+                  className="text-sm text-[#6B6460] underline-offset-2 hover:text-[#1C1A17] hover:underline"
+                >
+                  or fill it in manually
+                </button>
+              </div>
+              <p className="text-xs text-[#6B6460]">
+                You&apos;ll review everything before the trip is created.
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
+        {draftError && (
+          <div className="mb-4 rounded-[5px] bg-[#FEF2F2] p-3 text-sm text-[#8B4444]">
+            {draftError}
+          </div>
+        )}
+
+        {draftApplied && (
+          <div className="mb-4 rounded-[5px] bg-[#EAF3DE] p-3 text-sm text-[#3B6D11]">
+            Here&apos;s the draft — check it over and change anything before creating.
+          </div>
+        )}
+
+        <Card id="trip-form" className={formOpen ? '' : 'hidden'}>
           <CardContent className="pt-6">
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
