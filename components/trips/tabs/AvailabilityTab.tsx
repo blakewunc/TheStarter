@@ -1,6 +1,5 @@
 'use client'
 
-import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
 
 import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
@@ -441,18 +440,6 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
           </div>
         )}
       </div>
-
-      {trip.start_date && (
-        <PuttingCountdown
-          tripStart={trip.start_date}
-          tripLabel={[
-            trip.end_date
-              ? `${new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(trip.end_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
-              : new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-            trip.destination,
-          ].filter(Boolean).join(' · ')}
-        />
-      )}
     </div>
   )
 }

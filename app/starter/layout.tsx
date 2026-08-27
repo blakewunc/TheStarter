@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'The Starter — Golf Trip Planner for Your Crew',
+  // absolute, or the root template appends the brand a second time.
+  title: { absolute: 'The Starter — Golf Trip Planner for Your Crew' },
   description: 'Plan your golf trip with your crew. Tee times, scorecards, expense splitting, Nassau & skins, group availability — everything your crew needs in one place.',
   keywords: ['golf trip planner', 'golf group planner', 'tee time planner', 'golf scorecard app', 'golf trip organizer', 'golf vacation planner', 'nassau skins golf', 'golf trip expense split'],
   openGraph: {

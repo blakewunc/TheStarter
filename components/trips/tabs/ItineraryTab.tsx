@@ -1,6 +1,5 @@
 'use client'
 
-import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
 import { parseLocalDate, formatTime } from '@/lib/dates'
 
 const EVENT_TYPE_LABELS: Record<string, string> = {
@@ -253,18 +252,6 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
             </div>
           ))}
         </div>
-      )}
-
-      {trip.start_date && (
-        <PuttingCountdown
-          tripStart={trip.start_date}
-          tripLabel={[
-            trip.end_date
-              ? `${new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(trip.end_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
-              : new Date(trip.start_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-            trip.destination,
-          ].filter(Boolean).join(' · ')}
-        />
       )}
     </div>
   )

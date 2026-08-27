@@ -61,12 +61,18 @@ interface TripCardData {
   members: { display_name?: string | null; email?: string | null; rsvp_status?: string | null }[]
   budgetTotal: number
   roundsCount: number
+  expectedGuests: number | null
 }
 
 function TripCard({ trip }: { trip: TripCardData }) {
   const memberCount = trip.members.length
-  const perPerson = memberCount > 0 && trip.budgetTotal > 0
-    ? Math.round(trip.budgetTotal / memberCount)
+  // Must match BudgetTab and OverviewTab, or the same trip reports a different
+  // per-person cost depending on which screen you are looking at.
+  const splitCount = trip.expectedGuests || memberCount
+  // No headcount to divide by means we do not know the per-person cost. Showing a
+  // number derived from a guess is worse than showing nothing.
+  const perPerson = splitCount > 0 && trip.budgetTotal > 0
+    ? Math.round(trip.budgetTotal / splitCount)
     : null
   const respondedCount = trip.members.filter(m => m.rsvp_status && m.rsvp_status !== 'pending').length
   const allResponded = respondedCount === memberCount && memberCount > 0
@@ -114,8 +120,13 @@ function TripCard({ trip }: { trip: TripCardData }) {
                 Per person
               </p>
               <p style={{ fontSize: '15px', fontWeight: 500, color: '#1C1A17' }}>
-                {perPerson ? `$${perPerson.toLocaleString()}` : 'Not set'}
+                {perPerson ? `$${perPerson.toLocaleString()}` : '—'}
               </p>
+              {perPerson && (
+                <p style={{ fontSize: '10px', color: '#A09890', marginTop: '2px' }}>
+                  est. across {splitCount}
+                </p>
+              )}
             </div>
             <div style={{ background: '#F5F1ED', borderRadius: '6px', padding: '10px 12px' }}>
               <p style={{ fontSize: '10px', color: '#A09890', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '4px' }}>
@@ -192,6 +203,7 @@ export default async function TripsPage() {
         rsvp_status: 'confirmed',
       })),
       budgetTotal: DEMO_TRIP.totalPerPerson * DEMO_TRIP.players,
+      expectedGuests: DEMO_TRIP.players,
       roundsCount: DEMO_TRIP.rounds.length,
     }
 
@@ -258,7 +270,7 @@ export default async function TripsPage() {
     const { data: tripData, error: tripError } = await supabase
       .from('trips')
       .select(`
-        id, title, destination, start_date, end_date, status,
+        id, title, destination, start_date, end_date, status, expected_guests,
         trip_members(
           user_id, rsvp_status,
           profiles(display_name, email)
@@ -302,6 +314,7 @@ export default async function TripsPage() {
         rsvp_status: m.rsvp_status,
       })),
       budgetTotal: (t.budget_categories ?? []).reduce((sum: number, c: any) => sum + (c.estimated_cost ?? 0), 0),
+      expectedGuests: t.expected_guests ?? null,
       roundsCount: roundsByTrip.get(t.id) ?? 0,
     }))
   }

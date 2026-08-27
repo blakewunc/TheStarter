@@ -3,8 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useBrand } from '@/lib/BrandProvider'
-import { brands } from '@/lib/brand'
-import { AdSlot } from '@/components/ads/AdSlot'
 import { StarterLogo } from '@/components/StarterLogo'
 
 export function Footer() {
@@ -123,27 +121,15 @@ export function Footer() {
         </div>
 
         {/* Ad Banner (Back Nine only) */}
-        <AdSlot position="footer-banner" className="mt-8" />
 
         {/* Bottom bar */}
         <div className={`mt-8 border-t pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between ${isBackNine ? 'border-[#B8D4C4]/20' : 'border-[#F5F1ED]'}`}>
           <p className={`text-xs ${isBackNine ? 'text-[#5A7A6B]' : 'text-[#A09890]'}`}>
             &copy; {new Date().getFullYear()} {brand.name}. All rights reserved.
           </p>
-          {/* Brand switcher */}
-          <a
-            href={brands[brand.otherBrand].domain}
-            className={`inline-flex items-center gap-1.5 text-xs transition-colors ${
-              isBackNine
-                ? 'text-[#5A7A6B] hover:text-[#B8D4C4]'
-                : 'text-[#A09890] hover:text-[#1C1A17]'
-            }`}
-          >
-            <svg className="h-3 w-3" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8 3l-5 5 5 5M3 8h10" />
-            </svg>
-            Switch to {brands[brand.otherBrand].name}
-          </a>
+          <p className={`text-xs ${isBackNine ? 'text-[#5A7A6B]' : 'text-[#A09890]'}`}>
+            thestarter.app
+          </p>
         </div>
       </div>
     </footer>
