@@ -12,18 +12,18 @@ export default async function WelcomePage() {
     <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED] p-4">
       <div className="w-full max-w-sm text-center">
         <p
-          className="mb-4 text-[12px] uppercase tracking-[0.1em] text-[#888780]"
+          className="mb-4 text-[12px] uppercase tracking-[0.1em] text-[#6B6460]"
           style={{ fontFamily: 'DM Sans, sans-serif' }}
         >
           The Starter
         </p>
 
-        <h1 className="mb-4 font-['Cormorant_Garamond',serif] text-[48px] font-semibold leading-tight text-[#1a1a1a]">
+        <h1 className="mb-4 font-['Playfair_Display',serif] text-[48px] font-semibold leading-tight text-[#1a1a1a]">
           You&apos;re on the tee.
         </h1>
 
         <p
-          className="mx-auto mb-8 max-w-[380px] text-[16px] leading-relaxed text-[#70798C]"
+          className="mx-auto mb-8 max-w-[380px] text-[16px] leading-relaxed text-[#3B6D11]"
           style={{ fontFamily: 'DM Sans, sans-serif' }}
         >
           Plan your trip, track your bets, settle up after the round.
@@ -32,7 +32,7 @@ export default async function WelcomePage() {
 
         <Link
           href="/trips/new"
-          className="mb-3 flex w-full items-center justify-center rounded-[5px] bg-[#70798C] px-4 py-3 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
+          className="mb-3 flex w-full items-center justify-center rounded-[5px] bg-[#3B6D11] px-4 py-3 text-[14px] font-medium text-white transition-opacity hover:opacity-90"
           style={{ fontFamily: 'DM Sans, sans-serif' }}
         >
           Plan a trip
@@ -40,7 +40,7 @@ export default async function WelcomePage() {
 
         <Link
           href="/trips"
-          className="text-[13px] text-[#888780] underline-offset-2 hover:underline"
+          className="text-[13px] text-[#6B6460] underline-offset-2 hover:underline"
           style={{ fontFamily: 'DM Sans, sans-serif' }}
         >
           Browse my trips

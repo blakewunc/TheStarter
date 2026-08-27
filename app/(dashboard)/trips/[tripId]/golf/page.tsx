@@ -17,10 +17,10 @@ function SectionHeader({ label, sublabel }: { label: string; sublabel: string })
   return (
     <div className="flex items-center gap-4 py-2">
       <div>
-        <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: '2px' }}>
+        <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: '2px' }}>
           {sublabel}
         </p>
-        <h2 style={{ fontSize: '18px', fontWeight: 500, color: '#1C1A17', fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        <h2 style={{ fontSize: '18px', fontWeight: 500, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
           {label}
         </h2>
       </div>
@@ -44,10 +44,10 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
         {/* Page header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: '6px' }}>
+            <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: '6px' }}>
               Golf Planner
             </p>
-            <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+            <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
               ⛳ On the Course
             </h1>
           </div>
@@ -65,7 +65,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
               alignItems: 'center',
               gap: '6px',
               fontSize: '12px',
-              color: '#70798C',
+              color: '#3B6D11',
               fontWeight: 500,
               letterSpacing: '0.04em',
               background: 'none',
@@ -122,7 +122,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
           >
             <div style={{ marginBottom: '16px' }}>
               <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#1C1A17', marginBottom: '2px' }}>Group Maker</h3>
-              <p style={{ fontSize: '12px', color: '#A09890' }}>Assign foursomes by skill level</p>
+              <p style={{ fontSize: '12px', color: '#6B6460' }}>Assign foursomes by skill level</p>
             </div>
             <GroupMaker tripId={tripId} />
           </div>
@@ -150,7 +150,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
             >
               <div style={{ marginBottom: '16px' }}>
                 <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#1C1A17', marginBottom: '2px' }}>Set Bets</h3>
-                <p style={{ fontSize: '12px', color: '#A09890' }}>Low gross, skins, Nassau and more</p>
+                <p style={{ fontSize: '12px', color: '#6B6460' }}>Low gross, skins, Nassau and more</p>
               </div>
               <GolfBets tripId={tripId} />
             </div>
@@ -181,7 +181,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
                 </Link>
                 <button
                   onClick={() => setRoundBanner(null)}
-                  style={{ background: 'none', border: 'none', color: '#A09890', fontSize: '18px', cursor: 'pointer', lineHeight: 1 }}
+                  style={{ background: 'none', border: 'none', color: '#6B6460', fontSize: '18px', cursor: 'pointer', lineHeight: 1 }}
                 >
                   ×
                 </button>
@@ -202,7 +202,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
               <p style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.45)', marginBottom: '8px' }}>
                 Enter Scores
               </p>
-              <p style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", marginBottom: '4px' }}>
+              <p style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '4px' }}>
                 How's everyone doing?
               </p>
               <p style={{ fontSize: '12px', color: 'rgba(245,241,237,0.50)', marginBottom: '20px' }}>
@@ -222,7 +222,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
             >
               <div style={{ marginBottom: '16px' }}>
                 <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#1C1A17', marginBottom: '2px' }}>Live Leaderboard</h3>
-                <p style={{ fontSize: '12px', color: '#A09890' }}>Scores from all rounds</p>
+                <p style={{ fontSize: '12px', color: '#6B6460' }}>Scores from all rounds</p>
               </div>
               <Leaderboard tripId={tripId} />
             </div>
@@ -245,7 +245,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
             >
               <div style={{ marginBottom: '16px' }}>
                 <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#1C1A17', marginBottom: '2px' }}>Settle Bets</h3>
-                <p style={{ fontSize: '12px', color: '#A09890' }}>Declare winners and add to expenses</p>
+                <p style={{ fontSize: '12px', color: '#6B6460' }}>Declare winners and add to expenses</p>
               </div>
               <GolfBets tripId={tripId} settleOnly />
             </div>
@@ -261,7 +261,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
             >
               <div style={{ marginBottom: '16px' }}>
                 <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#1C1A17', marginBottom: '2px' }}>Rate the Course</h3>
-                <p style={{ fontSize: '12px', color: '#A09890' }}>How did it play? Help your group remember</p>
+                <p style={{ fontSize: '12px', color: '#6B6460' }}>How did it play? Help your group remember</p>
               </div>
               <CourseRatings tripId={tripId} />
             </div>

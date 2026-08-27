@@ -83,7 +83,7 @@ function EmptyClub({ onCreate }: { onCreate: () => void }) {
         <p style={{ fontFamily: 'var(--serif)', fontSize: '24px', fontStyle: 'italic', color: '#B4B2A9', marginBottom: '16px' }}>
           No club yet. Your crew is waiting.
         </p>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#888780', marginBottom: '24px', lineHeight: 1.6 }}>
+        <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460', marginBottom: '24px', lineHeight: 1.6 }}>
           Create a club to track matches, manage a season, and see who&apos;s actually the best golfer in the group.
         </p>
         <button onClick={onCreate} style={btnDark}>Create your club</button>
@@ -111,7 +111,7 @@ const card: React.CSSProperties = {
 }
 const eyebrow: React.CSSProperties = {
   fontFamily: 'var(--sans)', fontSize: '10px', fontWeight: 500,
-  letterSpacing: '0.12em', textTransform: 'uppercase', color: '#888780',
+  letterSpacing: '0.12em', textTransform: 'uppercase', color: '#6B6460',
 }
 
 // ─── Season Banner ────────────────────────────────────────────────────────────
@@ -197,7 +197,7 @@ function MatchRow({
 
   const resultLabel = () => {
     if (!result) return null
-    if (result.winner === 'tie') return { text: 'Draw', color: '#888780' }
+    if (result.winner === 'tie') return { text: 'Draw', color: '#6B6460' }
     const winSide = result.winner === 'a' ? sideLabel(sideA) : sideLabel(sideB)
     return { text: `${winSide} win`, color: '#3B6D11' }
   }
@@ -225,7 +225,7 @@ function MatchRow({
           </div>
           {/* Teams */}
           {(sideA.length > 0 || sideB.length > 0) && (
-            <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: '0 0 8px' }}>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', margin: '0 0 8px' }}>
               {sideLabel(sideA)} vs {sideLabel(sideB)}
             </p>
           )}
@@ -352,7 +352,7 @@ function LogMatchDialog({
               {step === 1 ? 'Round details' : 'Result'}
             </h2>
           </div>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888780', fontSize: '20px' }}>×</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B6460', fontSize: '20px' }}>×</button>
         </div>
 
         {step === 1 && (
@@ -436,7 +436,7 @@ function LogMatchDialog({
                   onChange={(e) => setPointsA(Number(e.target.value))}
                   style={{ border: '0.5px solid #D6CFC8', borderRadius: '8px', padding: '10px 12px', fontFamily: 'var(--sans)', fontSize: '20px', textAlign: 'center', background: '#fff', color: '#2C2A26' }}
                 />
-                <span style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#888780', textAlign: 'center' }}>–</span>
+                <span style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460', textAlign: 'center' }}>–</span>
                 <input
                   type="number" step="0.5" min="0" value={pointsB}
                   onChange={(e) => setPointsB(Number(e.target.value))}
@@ -444,9 +444,9 @@ function LogMatchDialog({
                 />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '10px', marginTop: '4px' }}>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', textAlign: 'center' }}>{teamA?.name || 'Side A'}</p>
+                <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', textAlign: 'center' }}>{teamA?.name || 'Side A'}</p>
                 <span />
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', textAlign: 'center' }}>{teamB?.name || 'Side B'}</p>
+                <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', textAlign: 'center' }}>{teamB?.name || 'Side B'}</p>
               </div>
             </div>
             <div style={{ display: 'flex', gap: '10px', marginTop: '8px' }}>
@@ -490,8 +490,8 @@ function CreateGroupDialog({ onClose, onCreated }: { onClose: () => void; onCrea
           format: 'ryder_cup',
           season_year: new Date().getFullYear(),
           teams: [
-            { name: teamA.trim() || 'The Fliers', color: '#70798C' },
-            { name: teamB.trim() || 'The Drifters', color: '#A99985' },
+            { name: teamA.trim() || 'The Fliers', color: '#3B6D11' },
+            { name: teamB.trim() || 'The Drifters', color: '#6B6460' },
           ],
         }),
       })
@@ -521,7 +521,7 @@ function CreateGroupDialog({ onClose, onCreated }: { onClose: () => void; onCrea
             <p style={{ ...eyebrow, marginBottom: '4px' }}>New club</p>
             <h2 style={{ fontFamily: 'var(--serif)', fontSize: '28px', color: '#2C2A26', margin: 0 }}>Name your crew</h2>
           </div>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888780', fontSize: '20px' }}>×</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B6460', fontSize: '20px' }}>×</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           <div>
@@ -581,7 +581,7 @@ function HandicapCell({ groupId, userId, initial, isOwn, isOrganizer }: {
           style={{ width: '56px', border: '0.5px solid #70798C', borderRadius: '4px', padding: '3px 6px', fontFamily: 'var(--sans)', fontSize: '13px', textAlign: 'center' }}
         />
         <button onClick={save} disabled={saving} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#3B6D11', fontSize: '16px', padding: '2px' }}>✓</button>
-        <button onClick={() => setEditing(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#888780', fontSize: '14px', padding: '2px' }}>✕</button>
+        <button onClick={() => setEditing(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B6460', fontSize: '14px', padding: '2px' }}>✕</button>
       </div>
     )
   }
@@ -712,7 +712,7 @@ export default function MyGroupPage() {
   if (loading) {
     return (
       <div style={{ minHeight: '100vh', background: '#F5F1ED', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#888780' }}>Loading…</p>
+        <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460' }}>Loading…</p>
       </div>
     )
   }
@@ -731,7 +731,7 @@ export default function MyGroupPage() {
                 <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(28px, 4vw, 38px)', fontWeight: 400, color: '#2C2A26', margin: '0 0 8px' }}>
                   {selectedGroup.name}
                 </h1>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#888780', margin: 0 }}>
+                <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460', margin: 0 }}>
                   {selectedGroup.group_members?.length || 0} members
                   {activeComp && ` · Season ${activeComp.season_year}`}
                   {allMatches.length > 0 && ` · ${allMatches.length} matches played`}
@@ -832,7 +832,7 @@ export default function MyGroupPage() {
                           style={{
                             display: 'flex', width: '100%', justifyContent: 'center', alignItems: 'center',
                             padding: '12px', marginTop: '8px', border: '1px dashed #D6CFC8', borderRadius: '8px',
-                            background: 'transparent', fontFamily: 'var(--sans)', fontSize: '13px', color: '#888780',
+                            background: 'transparent', fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460',
                             cursor: 'pointer',
                           }}
                         >
@@ -916,7 +916,7 @@ export default function MyGroupPage() {
                                   {name}{isOwn && ' (you)'}
                                 </p>
                                 {selectedGroup.created_by === gm.user_id && (
-                                  <span style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#888780' }}>Organizer</span>
+                                  <span style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#6B6460' }}>Organizer</span>
                                 )}
                               </div>
                             </div>
@@ -931,7 +931,7 @@ export default function MyGroupPage() {
                             </div>
                             <div style={{ textAlign: 'right' }}>
                               {teamTag && (
-                                <span style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', background: '#EAE6E1', padding: '2px 8px', borderRadius: '10px' }}>
+                                <span style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', background: '#EAE6E1', padding: '2px 8px', borderRadius: '10px' }}>
                                   {teamTag}
                                 </span>
                               )}
@@ -965,7 +965,7 @@ export default function MyGroupPage() {
                         { label: 'Leading', value: leading?.team.name.split(' ')[1] || '—' },
                       ].map(({ label, value }) => (
                         <div key={label} style={{ background: '#F5F1ED', borderRadius: '8px', padding: '10px 12px' }}>
-                          <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#888780', margin: '0 0 2px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{label}</p>
+                          <p style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#6B6460', margin: '0 0 2px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{label}</p>
                           <p style={{ fontFamily: 'var(--serif)', fontSize: '22px', color: '#2C2A26', margin: 0 }}>{value}</p>
                         </div>
                       ))}
@@ -990,7 +990,7 @@ export default function MyGroupPage() {
                         <span style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#2C2A26' }}>{name}</span>
                       </div>
                       {hcp !== null && hcp !== undefined ? (
-                        <span style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#888780' }}>+{hcp}</span>
+                        <span style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#6B6460' }}>+{hcp}</span>
                       ) : (
                         <span style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#854F0B', background: '#FAEEDA', border: '0.5px solid #FAC775', borderRadius: '4px', padding: '1px 6px' }}>HCP —</span>
                       )}
@@ -999,7 +999,7 @@ export default function MyGroupPage() {
                 })}
                 <button
                   onClick={() => toast.info('Share your club invite link to add members')}
-                  style={{ display: 'flex', width: '100%', justifyContent: 'center', padding: '10px', marginTop: '12px', border: '1px dashed #D6CFC8', borderRadius: '8px', background: 'transparent', fontFamily: 'var(--sans)', fontSize: '12px', color: '#888780', cursor: 'pointer' }}
+                  style={{ display: 'flex', width: '100%', justifyContent: 'center', padding: '10px', marginTop: '12px', border: '1px dashed #D6CFC8', borderRadius: '8px', background: 'transparent', fontFamily: 'var(--sans)', fontSize: '12px', color: '#6B6460', cursor: 'pointer' }}
                 >
                   + Invite member
                 </button>
@@ -1020,7 +1020,7 @@ export default function MyGroupPage() {
                       }}
                     >
                       <span style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#2C2A26' }}>{g.name}</span>
-                      {g.id === selectedGroupId && <span style={{ fontSize: '10px', color: '#70798C' }}>✓</span>}
+                      {g.id === selectedGroupId && <span style={{ fontSize: '10px', color: '#3B6D11' }}>✓</span>}
                     </button>
                   ))}
                 </div>

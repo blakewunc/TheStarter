@@ -67,7 +67,7 @@ export default function PaymentSettingsPage() {
     return (
       <div className="min-h-screen bg-[#F5F1ED] p-6">
         <div className="mx-auto max-w-2xl">
-          <p className="text-[#A99985]">Loading...</p>
+          <p className="text-[#6B6460]">Loading...</p>
         </div>
       </div>
     )
@@ -85,8 +85,8 @@ export default function PaymentSettingsPage() {
         </Button>
 
         <div className="mb-6">
-          <h1 className="text-4xl font-bold tracking-tight text-[#252323]">Payment Settings</h1>
-          <p className="mt-2 text-[#A99985]">
+          <h1 className="text-4xl font-bold tracking-tight text-[#1C1A17]">Payment Settings</h1>
+          <p className="mt-2 text-[#6B6460]">
             Add your payment handles so friends can easily send you money
           </p>
         </div>
@@ -102,11 +102,11 @@ export default function PaymentSettingsPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Venmo */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                   Venmo Handle
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#A99985]">@</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6B6460]">@</span>
                   <Input
                     placeholder="username"
                     value={formData.venmo_handle}
@@ -114,14 +114,14 @@ export default function PaymentSettingsPage() {
                     className="pl-8"
                   />
                 </div>
-                <p className="mt-1 text-xs text-[#A99985]">
+                <p className="mt-1 text-xs text-[#6B6460]">
                   Your Venmo username (e.g., @john-doe)
                 </p>
               </div>
 
               {/* Zelle */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                   Zelle Email or Phone
                 </label>
                 <Input
@@ -130,18 +130,18 @@ export default function PaymentSettingsPage() {
                   value={formData.zelle_email}
                   onChange={(e) => setFormData({ ...formData, zelle_email: e.target.value })}
                 />
-                <p className="mt-1 text-xs text-[#A99985]">
+                <p className="mt-1 text-xs text-[#6B6460]">
                   The email or phone number linked to your Zelle account
                 </p>
               </div>
 
               {/* Cash App */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#252323]">
+                <label className="mb-1.5 block text-sm font-medium text-[#1C1A17]">
                   Cash App Handle
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#A99985]">$</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6B6460]">$</span>
                   <Input
                     placeholder="username"
                     value={formData.cashapp_handle}
@@ -149,16 +149,16 @@ export default function PaymentSettingsPage() {
                     className="pl-8"
                   />
                 </div>
-                <p className="mt-1 text-xs text-[#A99985]">
+                <p className="mt-1 text-xs text-[#6B6460]">
                   Your Cash App $Cashtag (e.g., $johndoe)
                 </p>
               </div>
 
               {/* Preview */}
               {(formData.venmo_handle || formData.zelle_email || formData.cashapp_handle) && (
-                <div className="rounded-[5px] border-2 border-[#70798C] bg-[#F5F1ED] p-4">
-                  <p className="mb-2 text-sm font-semibold text-[#252323]">Preview:</p>
-                  <div className="space-y-1 text-sm text-[#A99985]">
+                <div className="rounded-[5px] border-2 border-[#3B6D11] bg-[#F5F1ED] p-4">
+                  <p className="mb-2 text-sm font-semibold text-[#1C1A17]">Preview:</p>
+                  <div className="space-y-1 text-sm text-[#6B6460]">
                     {formData.venmo_handle && (
                       <p>Venmo: @{formData.venmo_handle}</p>
                     )}

@@ -95,14 +95,14 @@ export function EquipmentRentals({ tripId }: EquipmentRentalsProps) {
   }
 
   if (loading) {
-    return <p className="text-sm text-[#A99985]">Loading...</p>
+    return <p className="text-sm text-[#6B6460]">Loading...</p>
   }
 
   return (
     <div className="space-y-6">
       {/* My Equipment Rentals */}
       <div>
-        <h4 className="font-medium text-[#252323] mb-3">My Rental Needs</h4>
+        <h4 className="font-medium text-[#1C1A17] mb-3">My Rental Needs</h4>
         <form onSubmit={handleSave} className="space-y-4">
           <div className="space-y-2">
             <label className="flex items-center gap-2 cursor-pointer">
@@ -110,9 +110,9 @@ export function EquipmentRentals({ tripId }: EquipmentRentalsProps) {
                 type="checkbox"
                 name="needs_skis"
                 defaultChecked={myRental?.needs_skis}
-                className="h-4 w-4 rounded border-[#CEC5B0] text-[#70798C] focus:ring-[#70798C]"
+                className="h-4 w-4 rounded border-[#CEC5B0] text-[#3B6D11] focus:ring-[#1C1A17]"
               />
-              <span className="text-sm text-[#252323]">Need skis</span>
+              <span className="text-sm text-[#1C1A17]">Need skis</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -120,9 +120,9 @@ export function EquipmentRentals({ tripId }: EquipmentRentalsProps) {
                 type="checkbox"
                 name="needs_snowboard"
                 defaultChecked={myRental?.needs_snowboard}
-                className="h-4 w-4 rounded border-[#CEC5B0] text-[#70798C] focus:ring-[#70798C]"
+                className="h-4 w-4 rounded border-[#CEC5B0] text-[#3B6D11] focus:ring-[#1C1A17]"
               />
-              <span className="text-sm text-[#252323]">Need snowboard</span>
+              <span className="text-sm text-[#1C1A17]">Need snowboard</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -130,9 +130,9 @@ export function EquipmentRentals({ tripId }: EquipmentRentalsProps) {
                 type="checkbox"
                 name="needs_boots"
                 defaultChecked={myRental?.needs_boots}
-                className="h-4 w-4 rounded border-[#CEC5B0] text-[#70798C] focus:ring-[#70798C]"
+                className="h-4 w-4 rounded border-[#CEC5B0] text-[#3B6D11] focus:ring-[#1C1A17]"
               />
-              <span className="text-sm text-[#252323]">Need boots</span>
+              <span className="text-sm text-[#1C1A17]">Need boots</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -140,9 +140,9 @@ export function EquipmentRentals({ tripId }: EquipmentRentalsProps) {
                 type="checkbox"
                 name="needs_helmet"
                 defaultChecked={myRental?.needs_helmet}
-                className="h-4 w-4 rounded border-[#CEC5B0] text-[#70798C] focus:ring-[#70798C]"
+                className="h-4 w-4 rounded border-[#CEC5B0] text-[#3B6D11] focus:ring-[#1C1A17]"
               />
-              <span className="text-sm text-[#252323]">Need helmet</span>
+              <span className="text-sm text-[#1C1A17]">Need helmet</span>
             </label>
           </div>
 
@@ -205,40 +205,40 @@ export function EquipmentRentals({ tripId }: EquipmentRentalsProps) {
       {/* Group Summary */}
       {rentals.length > 0 && (
         <div className="pt-4 border-t border-[#DAD2BC]">
-          <h4 className="font-medium text-[#252323] mb-3">Group Summary</h4>
+          <h4 className="font-medium text-[#1C1A17] mb-3">Group Summary</h4>
           <div className="space-y-2">
             {rentals.map((rental) => (
               <div
                 key={rental.id}
                 className="rounded-[5px] border border-[#DAD2BC] bg-white p-3"
               >
-                <p className="font-medium text-[#252323] mb-1">{rental.user_name}</p>
+                <p className="font-medium text-[#1C1A17] mb-1">{rental.user_name}</p>
                 <div className="flex flex-wrap gap-2 text-xs mb-2">
                   {rental.needs_skis && (
-                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#252323]">
+                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#1C1A17]">
                       Skis
                     </span>
                   )}
                   {rental.needs_snowboard && (
-                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#252323]">
+                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#1C1A17]">
                       Snowboard
                     </span>
                   )}
                   {rental.needs_boots && (
-                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#252323]">
+                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#1C1A17]">
                       Boots
                     </span>
                   )}
                   {rental.needs_helmet && (
-                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#252323]">
+                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#1C1A17]">
                       Helmet
                     </span>
                   )}
                   {!rental.needs_skis && !rental.needs_snowboard && !rental.needs_boots && !rental.needs_helmet && (
-                    <span className="text-[#A99985]">No rentals needed</span>
+                    <span className="text-[#6B6460]">No rentals needed</span>
                   )}
                 </div>
-                <div className="text-xs text-[#A99985] space-y-1">
+                <div className="text-xs text-[#6B6460] space-y-1">
                   {rental.boot_size && <p>Boot: US {rental.boot_size}</p>}
                   {rental.height_cm && <p>Height: {rental.height_cm} cm</p>}
                   {rental.weight_kg && <p>Weight: {rental.weight_kg} kg</p>}

@@ -122,13 +122,13 @@ export default function NewTripPage() {
       <div className="mx-auto max-w-2xl">
         <div className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight text-[#1C1A17]">Create a New Trip</h1>
-          <p className="mt-1 text-[#A09890]">Start planning your next group adventure</p>
+          <p className="mt-1 text-[#6B6460]">Start planning your next group adventure</p>
         </div>
 
         {/* Template Picker */}
         {!isBackNine && (
           <div className="mb-8">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#70798C]">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#3B6D11]">
               Start from a template
             </p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -139,13 +139,13 @@ export default function NewTripPage() {
                   onClick={() => applyTemplate(template)}
                   className={`rounded-[8px] border p-4 text-left transition-all ${
                     selectedTemplate === template.id
-                      ? 'border-[#70798C] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.08)]'
-                      : 'border-[#DAD2BC] bg-white hover:border-[#70798C] hover:shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
+                      ? 'border-[#3B6D11] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.08)]'
+                      : 'border-[#DAD2BC] bg-white hover:border-[#3B6D11] hover:shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
                   }`}
                 >
                   <span className="text-2xl">{template.icon}</span>
                   <p className="mt-2 text-sm font-semibold text-[#1C1A17]">{template.name}</p>
-                  <p className="mt-0.5 text-xs text-[#A09890]">{template.description}</p>
+                  <p className="mt-0.5 text-xs text-[#6B6460]">{template.description}</p>
                 </button>
               ))}
             </div>
@@ -196,7 +196,7 @@ export default function NewTripPage() {
                     value={formData.trip_type}
                     onChange={(e) => setFormData({ ...formData, trip_type: e.target.value })}
                     disabled={loading}
-                    className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] transition-all focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED]"
+                    className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] transition-all focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED]"
                   >
                     <option value="general">General Trip</option>
                     <option value="golf">⛳ Golf Trip</option>
@@ -204,7 +204,7 @@ export default function NewTripPage() {
                     <option value="bachelor_party">🎉 Bachelor Party</option>
                     <option value="bachelorette_party">💃 Bachelorette Party</option>
                   </select>
-                  <p className="text-xs text-[#A09890]">
+                  <p className="text-xs text-[#6B6460]">
                     Golf and ski trips unlock sport-specific features
                   </p>
                 </div>
@@ -249,7 +249,7 @@ export default function NewTripPage() {
                     required
                     disabled={loading}
                   />
-                  <p className="text-xs text-[#A09890]">Used to calculate cost per person</p>
+                  <p className="text-xs text-[#6B6460]">Used to calculate cost per person</p>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="budget_total">Total Budget (optional)</Label>

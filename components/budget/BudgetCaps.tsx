@@ -63,8 +63,8 @@ export function BudgetCaps({ tripId, members, currentUserId, isOrganizer }: Budg
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-semibold text-[#252323]">Personal Budget Caps</h3>
-          <p className="text-sm text-[#A99985]">
+          <h3 className="text-base font-semibold text-[#1C1A17]">Personal Budget Caps</h3>
+          <p className="text-sm text-[#6B6460]">
             Set your maximum spend for this trip
           </p>
         </div>
@@ -75,8 +75,8 @@ export function BudgetCaps({ tripId, members, currentUserId, isOrganizer }: Budg
         <div className="rounded-[5px] border border-[#DAD2BC] bg-[#F5F1ED] p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-[#252323]">Your budget cap</p>
-              <p className="text-lg font-bold text-[#252323]">
+              <p className="text-sm font-medium text-[#1C1A17]">Your budget cap</p>
+              <p className="text-lg font-bold text-[#1C1A17]">
                 {currentMember.budget_cap
                   ? `$${currentMember.budget_cap.toLocaleString()}`
                   : 'Not set'}
@@ -96,7 +96,7 @@ export function BudgetCaps({ tripId, members, currentUserId, isOrganizer }: Budg
             ) : (
               <div className="flex items-center gap-2">
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#A99985]">$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#6B6460]">$</span>
                   <input
                     type="number"
                     min="0"
@@ -104,7 +104,7 @@ export function BudgetCaps({ tripId, members, currentUserId, isOrganizer }: Budg
                     placeholder="0"
                     value={capValue}
                     onChange={(e) => setCapValue(e.target.value)}
-                    className="w-28 rounded-[5px] border border-[#DAD2BC] bg-white py-1.5 pl-7 pr-3 text-sm text-[#252323] focus:border-[#70798C] focus:outline-none focus:ring-1 focus:ring-[#70798C]"
+                    className="w-28 rounded-[5px] border border-[#DAD2BC] bg-white py-1.5 pl-7 pr-3 text-sm text-[#1C1A17] focus:border-[#3B6D11] focus:outline-none focus:ring-1 focus:ring-[#1C1A17]"
                   />
                 </div>
                 <Button size="sm" onClick={handleSaveCap} disabled={saving}>
@@ -122,16 +122,16 @@ export function BudgetCaps({ tripId, members, currentUserId, isOrganizer }: Budg
       {/* All members' caps (visible to organizer, or show summary to all) */}
       {isOrganizer && membersWithCaps.length > 0 && (
         <div className="space-y-2">
-          <h4 className="text-sm font-medium text-[#A99985]">Team Budget Caps</h4>
+          <h4 className="text-sm font-medium text-[#6B6460]">Team Budget Caps</h4>
           {members.map((member) => (
             <div
               key={member.id}
               className="flex items-center justify-between rounded-[5px] border border-[#DAD2BC] bg-white px-4 py-3"
             >
-              <span className="text-sm text-[#252323]">
+              <span className="text-sm text-[#1C1A17]">
                 {member.profiles.display_name || member.profiles.email}
               </span>
-              <span className={`text-sm font-medium ${member.budget_cap ? 'text-[#252323]' : 'text-[#A99985]'}`}>
+              <span className={`text-sm font-medium ${member.budget_cap ? 'text-[#1C1A17]' : 'text-[#6B6460]'}`}>
                 {member.budget_cap ? `$${member.budget_cap.toLocaleString()}` : 'No cap set'}
               </span>
             </div>
@@ -140,7 +140,7 @@ export function BudgetCaps({ tripId, members, currentUserId, isOrganizer }: Budg
       )}
 
       {!isOrganizer && membersWithCaps.length > 0 && (
-        <p className="text-xs text-[#A99985]">
+        <p className="text-xs text-[#6B6460]">
           {membersWithCaps.length} of {members.length} members have set a budget cap
         </p>
       )}

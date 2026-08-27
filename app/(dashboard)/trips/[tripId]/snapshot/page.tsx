@@ -46,7 +46,7 @@ const transportTypeLabels: Record<string, string> = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-[8px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-      <h2 className="mb-4 border-b border-[#F5F1ED] pb-2 text-lg font-bold text-[#252323]">{title}</h2>
+      <h2 className="mb-4 border-b border-[#F5F1ED] pb-2 text-lg font-bold text-[#1C1A17]">{title}</h2>
       {children}
     </div>
   )
@@ -55,8 +55,8 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="flex items-start gap-3 py-1.5">
-      <span className="w-32 shrink-0 text-xs font-semibold uppercase tracking-wide text-[#A99985]">{label}</span>
-      <span className="text-sm text-[#252323]">{value}</span>
+      <span className="w-32 shrink-0 text-xs font-semibold uppercase tracking-wide text-[#6B6460]">{label}</span>
+      <span className="text-sm text-[#1C1A17]">{value}</span>
     </div>
   )
 }
@@ -130,7 +130,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED]">
-        <p className="text-[#A99985]">Loading trip brief...</p>
+        <p className="text-[#6B6460]">Loading trip brief...</p>
       </div>
     )
   }
@@ -140,7 +140,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
       <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED]">
         <div className="text-center">
           <p className="text-[#8B4444]">{error || 'Something went wrong'}</p>
-          <button onClick={() => router.back()} className="mt-4 text-sm text-[#70798C] hover:underline">
+          <button onClick={() => router.back()} className="mt-4 text-sm text-[#3B6D11] hover:underline">
             Go back
           </button>
         </div>
@@ -184,16 +184,16 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
           <div>
             <button
               onClick={() => router.push(`/trips/${tripId}`)}
-              className="mb-1 text-sm text-[#A99985] hover:text-[#252323] print:hidden"
+              className="mb-1 text-sm text-[#6B6460] hover:text-[#1C1A17] print:hidden"
             >
               ← Back to trip
             </button>
-            <h1 className="text-xl font-bold text-[#252323]">{trip.title} — Trip Brief</h1>
-            <p className="text-sm text-[#A99985]">{trip.destination} · {startStr} – {endStr}</p>
+            <h1 className="text-xl font-bold text-[#1C1A17]">{trip.title} — Trip Brief</h1>
+            <p className="text-sm text-[#6B6460]">{trip.destination} · {startStr} – {endStr}</p>
           </div>
           <button
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 rounded-[5px] border border-[#DAD2BC] bg-white px-4 py-2 text-sm font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED] print:hidden"
+            className="inline-flex items-center gap-2 rounded-[5px] border border-[#DAD2BC] bg-white px-4 py-2 text-sm font-medium text-[#1C1A17] transition-colors hover:bg-[#F5F1ED] print:hidden"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -207,19 +207,19 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
         {/* Who's Coming */}
         <Section title={`Who's Coming (${confirmedMembers.length} confirmed)`}>
           {confirmedMembers.length === 0 ? (
-            <p className="text-sm text-[#A99985]">No confirmed members yet.</p>
+            <p className="text-sm text-[#6B6460]">No confirmed members yet.</p>
           ) : (
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {confirmedMembers.map((m: any) => (
                 <div key={m.id} className="flex items-center gap-2 rounded-[5px] bg-[#F5F1ED] px-3 py-2">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#70798C] text-xs font-bold text-white">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#3B6D11] text-xs font-bold text-white">
                     {(m.profiles?.display_name || m.profiles?.email || '?')[0].toUpperCase()}
                   </div>
-                  <span className="truncate text-sm text-[#252323]">
+                  <span className="truncate text-sm text-[#1C1A17]">
                     {m.profiles?.display_name || m.profiles?.email}
                   </span>
                   {m.role === 'organizer' && (
-                    <span className="ml-auto shrink-0 text-xs text-[#A99985]">org</span>
+                    <span className="ml-auto shrink-0 text-xs text-[#6B6460]">org</span>
                   )}
                 </div>
               ))}
@@ -240,7 +240,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
                       href={`https://maps.google.com/?q=${encodeURIComponent(accommodation.address)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#70798C] hover:underline"
+                      className="text-[#3B6D11] hover:underline"
                     >
                       {accommodation.address}
                     </a>
@@ -266,7 +266,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
                     <span>
                       {accommodation.wifi_name}
                       {accommodation.wifi_password && (
-                        <span className="ml-2 font-mono text-[#70798C]">· {accommodation.wifi_password}</span>
+                        <span className="ml-2 font-mono text-[#3B6D11]">· {accommodation.wifi_password}</span>
                       )}
                     </span>
                   }
@@ -288,24 +288,24 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
             <div className="space-y-3">
               {transportation.map((t: any) => (
                 <div key={t.id} className="rounded-[5px] border border-[#DAD2BC] p-3">
-                  <p className="text-sm font-semibold text-[#252323]">{transportTypeLabels[t.type] || t.type}</p>
+                  <p className="text-sm font-semibold text-[#1C1A17]">{transportTypeLabels[t.type] || t.type}</p>
                   {(t.departure_location || t.arrival_location) && (
-                    <p className="mt-0.5 text-sm text-[#A99985]">
+                    <p className="mt-0.5 text-sm text-[#6B6460]">
                       {t.departure_location}
                       {t.departure_location && t.arrival_location && ' → '}
                       {t.arrival_location}
                     </p>
                   )}
                   {t.departure_time && (
-                    <p className="mt-0.5 text-xs text-[#A99985]">
+                    <p className="mt-0.5 text-xs text-[#6B6460]">
                       Departs {formatDateTime(t.departure_time)}
                       {t.arrival_time && ` · Arrives ${formatDateTime(t.arrival_time)}`}
                     </p>
                   )}
                   {t.seats_available != null && (
-                    <p className="mt-0.5 text-xs text-[#A99985]">{t.seats_available} seats available</p>
+                    <p className="mt-0.5 text-xs text-[#6B6460]">{t.seats_available} seats available</p>
                   )}
-                  {t.notes && <p className="mt-0.5 text-xs text-[#70798C]">{t.notes}</p>}
+                  {t.notes && <p className="mt-0.5 text-xs text-[#3B6D11]">{t.notes}</p>}
                 </div>
               ))}
             </div>
@@ -320,17 +320,17 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
                 const venue = tt.address || tt.location
                 return (
                   <div key={tt.id} className="rounded-[5px] border border-[#DAD2BC] p-3">
-                    <p className="font-medium text-[#252323]">{tt.course_name || tt.title}</p>
-                    {venue && <p className="text-xs text-[#A99985]">📍 {venue}</p>}
-                    <p className="mt-1 text-sm text-[#70798C]">
+                    <p className="font-medium text-[#1C1A17]">{tt.course_name || tt.title}</p>
+                    {venue && <p className="text-xs text-[#6B6460]">📍 {venue}</p>}
+                    <p className="mt-1 text-sm text-[#3B6D11]">
                       {formatDate(tt.date)}
                       {tt.time ? ` at ${formatTime(tt.time)}` : ''}
                     </p>
-                    {tt.par && <p className="text-xs text-[#A99985]">Par {tt.par}</p>}
+                    {tt.par && <p className="text-xs text-[#6B6460]">Par {tt.par}</p>}
                     {tt.booking_confirmation && (
-                      <p className="text-xs text-[#A99985]">Confirmation {tt.booking_confirmation}</p>
+                      <p className="text-xs text-[#6B6460]">Confirmation {tt.booking_confirmation}</p>
                     )}
-                    {tt.description && <p className="mt-1 text-xs text-[#A99985]">{tt.description}</p>}
+                    {tt.description && <p className="mt-1 text-xs text-[#6B6460]">{tt.description}</p>}
                   </div>
                 )
               })}
@@ -344,7 +344,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
             <div className="space-y-5">
               {Object.keys(byDate).sort().map((date) => (
                 <div key={date}>
-                  <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#A99985]">
+                  <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#6B6460]">
                     {formatDate(date)}
                   </p>
                   <div className="space-y-2">
@@ -357,13 +357,13 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
                             {i < byDate[date].length - 1 && <div className="mt-1 h-6 w-px bg-[#DAD2BC]" />}
                           </div>
                           <div className="min-w-0 flex-1 pb-1">
-                            <p className="text-sm font-medium text-[#252323]">{item.title}</p>
-                            <div className="mt-0.5 flex flex-wrap gap-x-3 text-xs text-[#A99985]">
+                            <p className="text-sm font-medium text-[#1C1A17]">{item.title}</p>
+                            <div className="mt-0.5 flex flex-wrap gap-x-3 text-xs text-[#6B6460]">
                               {item.time && <span>{formatTime(item.time)}</span>}
                               {item.location && <span>📍 {item.location}</span>}
                             </div>
                             {item.description && (
-                              <p className="mt-0.5 text-xs text-[#A99985]">{item.description}</p>
+                              <p className="mt-0.5 text-xs text-[#6B6460]">{item.description}</p>
                             )}
                           </div>
                         </div>
@@ -379,27 +379,27 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
         {isOrganizer && expenses.length > 0 && (
           <Section title="Expense Summary (Organizer View)">
             <div className="mb-4 flex items-center justify-between rounded-[5px] bg-[#F5F1ED] px-4 py-3">
-              <span className="text-sm font-medium text-[#252323]">Total tracked expenses</span>
-              <span className="text-lg font-bold text-[#252323]">${totalExpenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+              <span className="text-sm font-medium text-[#1C1A17]">Total tracked expenses</span>
+              <span className="text-lg font-bold text-[#1C1A17]">${totalExpenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
             <div className="space-y-2">
               {expenses.slice(0, 10).map((exp: any) => (
                 <div key={exp.id} className="flex items-center justify-between text-sm">
                   <div className="min-w-0 flex-1">
-                    <span className="text-[#252323]">{exp.title || exp.description}</span>
+                    <span className="text-[#1C1A17]">{exp.title || exp.description}</span>
                     {exp.paid_by_profile && (
-                      <span className="ml-2 text-xs text-[#A99985]">
+                      <span className="ml-2 text-xs text-[#6B6460]">
                         paid by {exp.paid_by_profile.display_name || exp.paid_by_profile.email}
                       </span>
                     )}
                   </div>
-                  <span className="shrink-0 font-medium text-[#252323]">
+                  <span className="shrink-0 font-medium text-[#1C1A17]">
                     ${(exp.amount || 0).toFixed(2)}
                   </span>
                 </div>
               ))}
               {expenses.length > 10 && (
-                <p className="text-xs text-[#A99985]">+ {expenses.length - 10} more expenses</p>
+                <p className="text-xs text-[#6B6460]">+ {expenses.length - 10} more expenses</p>
               )}
             </div>
           </Section>
@@ -408,20 +408,20 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
         {/* Empty state */}
         {!accommodation && transportation.length === 0 && itinerary.length === 0 && (
           <div className="rounded-[8px] border border-[#DAD2BC] bg-white p-12 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-            <p className="text-[#A99985]">No details have been added yet.</p>
-            <p className="mt-1 text-sm text-[#A99985]">
+            <p className="text-[#6B6460]">No details have been added yet.</p>
+            <p className="mt-1 text-sm text-[#6B6460]">
               Fill in accommodation, transportation, and itinerary to see your trip brief.
             </p>
             <button
               onClick={() => router.push(`/trips/${tripId}`)}
-              className="mt-4 inline-flex items-center gap-1.5 rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+              className="mt-4 inline-flex items-center gap-1.5 rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#1C1A17] transition-colors hover:bg-[#F5F1ED]"
             >
               Go to trip planner
             </button>
           </div>
         )}
 
-        <p className="pb-8 text-center text-xs text-[#A99985] print:hidden">
+        <p className="pb-8 text-center text-xs text-[#6B6460] print:hidden">
           This brief was generated from your The Starter trip plan.
         </p>
       </div>

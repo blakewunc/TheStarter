@@ -50,7 +50,7 @@ const labelStyle: React.CSSProperties = {
   fontWeight: 600,
   letterSpacing: '0.10em',
   textTransform: 'uppercase',
-  color: '#A09890',
+  color: '#6B6460',
   display: 'block',
   marginBottom: '6px',
 }
@@ -142,11 +142,11 @@ export default function PostEditor({ initialData, mode }: PostEditorProps) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <button
             onClick={() => router.push('/admin/blog')}
-            style={{ fontSize: '13px', color: '#A09890', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+            style={{ fontSize: '13px', color: '#6B6460', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
           >
             ← Back
           </button>
-          <h1 style={{ fontSize: '22px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+          <h1 style={{ fontSize: '22px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
             {mode === 'new' ? 'New Post' : 'Edit Post'}
           </h1>
         </div>
@@ -195,7 +195,7 @@ export default function PostEditor({ initialData, mode }: PostEditorProps) {
           <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '8px', padding: '20px' }}>
             <label style={labelStyle}>Slug *</label>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <span style={{ fontSize: '12px', color: '#A09890', whiteSpace: 'nowrap' }}>/blog/</span>
+              <span style={{ fontSize: '12px', color: '#6B6460', whiteSpace: 'nowrap' }}>/blog/</span>
               <input
                 style={inputStyle}
                 placeholder="post-slug"
@@ -228,7 +228,7 @@ export default function PostEditor({ initialData, mode }: PostEditorProps) {
           <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '8px', padding: '20px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
               <label style={{ ...labelStyle, marginBottom: 0 }}>Content (Markdown)</label>
-              <span style={{ fontSize: '10px', color: '#A09890' }}>
+              <span style={{ fontSize: '10px', color: '#6B6460' }}>
                 ~{Math.max(1, Math.ceil(form.content.split(/\s+/).filter(Boolean).length / 200))} min read
               </span>
             </div>

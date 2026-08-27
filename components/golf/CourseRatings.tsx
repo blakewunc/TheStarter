@@ -188,7 +188,7 @@ export function CourseRatings({ tripId }: CourseRatingsProps) {
       {/* Rate Courses Played on This Trip */}
       {courses.length > 0 && (
         <div>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#A99985]">
+          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#6B6460]">
             Rate Courses
           </h3>
           <div className="space-y-3">
@@ -203,9 +203,9 @@ export function CourseRatings({ tripId }: CourseRatingsProps) {
                   className="rounded-[5px] border border-[#DAD2BC] bg-white p-3 space-y-2"
                 >
                   <div>
-                    <p className="text-sm font-medium text-[#252323]">{course.name}</p>
+                    <p className="text-sm font-medium text-[#1C1A17]">{course.name}</p>
                     {course.location && (
-                      <p className="text-xs text-[#A99985]">{course.location}</p>
+                      <p className="text-xs text-[#6B6460]">{course.location}</p>
                     )}
                   </div>
 
@@ -250,7 +250,7 @@ export function CourseRatings({ tripId }: CourseRatingsProps) {
       {/* Top Rated Courses (Global) */}
       {topCourses.length > 0 && (
         <div>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#A99985]">
+          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[#6B6460]">
             Top Rated Courses
           </h3>
           <div className="space-y-2">
@@ -261,16 +261,16 @@ export function CourseRatings({ tripId }: CourseRatingsProps) {
               >
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-[#A99985]">#{i + 1}</span>
-                    <p className="truncate text-sm font-medium text-[#252323]">{course.course_name}</p>
+                    <span className="text-xs font-bold text-[#6B6460]">#{i + 1}</span>
+                    <p className="truncate text-sm font-medium text-[#1C1A17]">{course.course_name}</p>
                   </div>
                   {course.course_location && (
-                    <p className="ml-6 text-xs text-[#A99985]">{course.course_location}</p>
+                    <p className="ml-6 text-xs text-[#6B6460]">{course.course_location}</p>
                   )}
                 </div>
                 <div className="flex flex-col items-end">
                   {renderAvgStars(course.average_rating)}
-                  <span className="text-[10px] text-[#A99985]">
+                  <span className="text-[10px] text-[#6B6460]">
                     {course.average_rating} ({course.total_ratings})
                   </span>
                 </div>
@@ -282,8 +282,8 @@ export function CourseRatings({ tripId }: CourseRatingsProps) {
 
       {courses.length === 0 && topCourses.length === 0 && (
         <div className="py-6 text-center">
-          <p className="text-sm text-[#A99985]">No courses to rate yet</p>
-          <p className="mt-1 text-xs text-[#A99985]">
+          <p className="text-sm text-[#6B6460]">No courses to rate yet</p>
+          <p className="mt-1 text-xs text-[#6B6460]">
             Schedule tee times to rate courses
           </p>
         </div>

@@ -87,7 +87,7 @@ export function AddSupplyDialog({ tripId, onSuccess }: AddSupplyDialogProps) {
     <>
       <Button
         onClick={() => setOpen(true)}
-        className="bg-[#70798C] hover:bg-[#D01043]"
+        className="bg-[#3B6D11] hover:bg-[#D01043]"
       >
         + Add Item
       </Button>

@@ -145,8 +145,8 @@ export function LoginForm() {
             onClick={() => setAuthMethod('password')}
             className={`flex-1 rounded-[3px] px-3 py-2 text-sm font-medium transition-colors ${
               authMethod === 'password'
-                ? 'bg-[#70798C] text-white'
-                : 'text-[#A99985] hover:text-[#252323]'
+                ? 'bg-[#3B6D11] text-white'
+                : 'text-[#6B6460] hover:text-[#1C1A17]'
             }`}
           >
             Email & Password
@@ -156,8 +156,8 @@ export function LoginForm() {
             onClick={() => setAuthMethod('magic-link')}
             className={`flex-1 rounded-[3px] px-3 py-2 text-sm font-medium transition-colors ${
               authMethod === 'magic-link'
-                ? 'bg-[#70798C] text-white'
-                : 'text-[#A99985] hover:text-[#252323]'
+                ? 'bg-[#3B6D11] text-white'
+                : 'text-[#6B6460] hover:text-[#1C1A17]'
             }`}
           >
             Magic Link
@@ -210,7 +210,7 @@ export function LoginForm() {
             )}
             {authMode === 'login' && (
               <div className="text-right">
-                <a href="/forgot-password" className="text-sm text-[#70798C] hover:underline">
+                <a href="/forgot-password" className="text-sm text-[#3B6D11] hover:underline">
                   Forgot password?
                 </a>
               </div>
@@ -243,7 +243,7 @@ export function LoginForm() {
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? 'Sending...' : 'Send Magic Link'}
             </Button>
-            <p className="text-center text-xs text-[#A99985]">
+            <p className="text-center text-xs text-[#6B6460]">
               We&apos;ll send a sign-in link to your email
             </p>
           </form>
@@ -255,7 +255,7 @@ export function LoginForm() {
             <span className="w-full border-t border-[#DAD2BC]" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-white px-2 text-[#A99985]">Or continue with</span>
+            <span className="bg-white px-2 text-[#6B6460]">Or continue with</span>
           </div>
         </div>
 
@@ -302,14 +302,14 @@ export function LoginForm() {
         )}
       </CardContent>
       <CardFooter className="flex justify-center">
-        <p className="text-sm text-[#A99985]">
+        <p className="text-sm text-[#6B6460]">
           {authMode === 'login' ? (
             <>
               Don&apos;t have an account?{' '}
               <button
                 type="button"
                 onClick={() => switchMode('signup')}
-                className="font-medium text-[#252323] hover:underline"
+                className="font-medium text-[#1C1A17] hover:underline"
               >
                 Sign up
               </button>
@@ -320,7 +320,7 @@ export function LoginForm() {
               <button
                 type="button"
                 onClick={() => switchMode('login')}
-                className="font-medium text-[#252323] hover:underline"
+                className="font-medium text-[#1C1A17] hover:underline"
               >
                 Sign in
               </button>

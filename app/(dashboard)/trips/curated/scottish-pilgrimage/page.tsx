@@ -325,7 +325,7 @@ export default function ScottishPilgrimagePage() {
             Back to trips
           </Link>
           <p style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.55)', marginBottom: 8 }}>Curated Golf Package · International</p>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 40, fontWeight: 300, color: '#F5F1ED', lineHeight: 1.05, margin: 0 }}>
+          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 40, fontWeight: 300, color: '#F5F1ED', lineHeight: 1.05, margin: 0 }}>
             Scottish Links<br /><em style={{ fontStyle: 'italic' }}>Pilgrimage</em>
           </h1>
           <p style={{ fontSize: 13, color: 'rgba(245,241,237,0.7)', marginTop: 10 }}>
@@ -357,15 +357,15 @@ export default function ScottishPilgrimagePage() {
           <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: 8, padding: 28, marginBottom: 36 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
               <div>
-                <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 4 }}>The Old Course Reality Check</p>
-                <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 24, fontWeight: 300, color: '#1C1A17', margin: 0 }}>
+                <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 4 }}>The Old Course Reality Check</p>
+                <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 300, color: '#1C1A17', margin: 0 }}>
                   The Old Course is a ballot, not a booking
                 </h2>
                 <p style={{ fontSize: 13, color: '#6B6460', marginTop: 6 }}>
                   This itinerary gives you the best possible odds — with a world-class backup so no day is wasted regardless.
                 </p>
               </div>
-              <button onClick={() => setBallotOpen(false)} style={{ fontSize: 12, color: '#A09890', background: 'transparent', border: 'none', cursor: 'pointer', padding: 4, flexShrink: 0 }}>Hide ↑</button>
+              <button onClick={() => setBallotOpen(false)} style={{ fontSize: 12, color: '#6B6460', background: 'transparent', border: 'none', cursor: 'pointer', padding: 4, flexShrink: 0 }}>Hide ↑</button>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
@@ -396,8 +396,8 @@ export default function ScottishPilgrimagePage() {
 
             {/* Course Lineup */}
             <div style={{ marginBottom: 40 }}>
-              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 6 }}>The Courses</p>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 20px' }}>
+              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>The Courses</p>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 20px' }}>
                 Five rounds. All legitimate.
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -421,7 +421,7 @@ export default function ScottishPilgrimagePage() {
                       <p style={{ fontSize: 13, color: '#6B6460', margin: '0 0 6px', lineHeight: 1.55 }}>{course.description}</p>
                       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                         <span style={{ fontSize: 11, color: '#1C1A17', fontWeight: 500 }}>{course.fee}</span>
-                        <span style={{ fontSize: 11, color: '#A09890' }}>{course.notes}</span>
+                        <span style={{ fontSize: 11, color: '#6B6460' }}>{course.notes}</span>
                       </div>
                     </div>
                   </div>
@@ -431,8 +431,8 @@ export default function ScottishPilgrimagePage() {
 
             {/* Itinerary */}
             <div style={{ marginBottom: 40 }}>
-              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 6 }}>The Itinerary</p>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 24px' }}>
+              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>The Itinerary</p>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 24px' }}>
                 8 days. Built around the ballot.
               </h2>
 
@@ -442,7 +442,7 @@ export default function ScottishPilgrimagePage() {
                     {/* Header */}
                     <div style={{ padding: '14px 20px', borderBottom: '0.5px solid rgba(28,26,23,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                        <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 20, fontWeight: 300, color: '#1C1A17' }}>{day.label}</span>
+                        <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 300, color: '#1C1A17' }}>{day.label}</span>
                         <span style={{ width: 1, height: 14, background: 'rgba(28,26,23,0.15)' }} />
                         <span style={{ fontSize: 12, color: '#6B6460' }}>{day.theme}</span>
                         {(day as any).ballotDay && (
@@ -453,7 +453,7 @@ export default function ScottishPilgrimagePage() {
                         )}
                       </div>
                       {startDate && (
-                        <span style={{ fontSize: 11, color: '#A09890' }}>
+                        <span style={{ fontSize: 11, color: '#6B6460' }}>
                           {formatDate(addDays(startDate, day.day - 1))}
                         </span>
                       )}
@@ -503,7 +503,7 @@ export default function ScottishPilgrimagePage() {
                             <div style={{ flex: 1 }}>
                               <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
                                 <span style={{ fontSize: 13, fontWeight: 500, color: '#1C1A17' }}>{item.title}</span>
-                                <span style={{ fontSize: 11, color: '#A09890' }}>{item.time}</span>
+                                <span style={{ fontSize: 11, color: '#6B6460' }}>{item.time}</span>
                               </div>
                               <p style={{ fontSize: 12, color: '#6B6460', margin: '2px 0 0', lineHeight: 1.5 }}>{item.sub}</p>
                             </div>
@@ -518,8 +518,8 @@ export default function ScottishPilgrimagePage() {
 
             {/* Accommodation */}
             <div>
-              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 6 }}>Where to Stay</p>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 20px' }}>
+              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>Where to Stay</p>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 20px' }}>
                 Stay in St Andrews all week.
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -531,11 +531,11 @@ export default function ScottishPilgrimagePage() {
                         <span style={{ fontSize: 14, fontWeight: 500, color: '#1C1A17' }}>{opt.name}</span>
                         {opt.badge && <span style={{ fontSize: 10, background: '#EAF3DE', color: '#3B6D11', padding: '2px 8px', borderRadius: 10 }}>{opt.badge}</span>}
                       </div>
-                      <p style={{ fontSize: 11, color: '#A09890', marginBottom: 6, letterSpacing: '0.04em' }}>{opt.type}</p>
+                      <p style={{ fontSize: 11, color: '#6B6460', marginBottom: 6, letterSpacing: '0.04em' }}>{opt.type}</p>
                       <p style={{ fontSize: 13, color: '#6B6460', margin: '0 0 10px', lineHeight: 1.55 }}>{opt.description}</p>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
                         <span style={{ fontSize: 12, fontWeight: 500, color: '#1C1A17' }}>{opt.priceRange}</span>
-                        <a href={opt.bookingUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: '#70798C', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                        <a href={opt.bookingUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: '#3B6D11', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
                           Check availability
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 8L8 2M8 2H4M8 2V6"/></svg>
                         </a>
@@ -550,7 +550,7 @@ export default function ScottishPilgrimagePage() {
           {/* RIGHT: Sticky panel */}
           <div style={{ position: 'sticky', top: 24 }}>
             <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: 8, padding: 24, marginBottom: 16 }}>
-              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 16 }}>Plan your trip</p>
+              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 16 }}>Plan your trip</p>
 
               <div style={{ marginBottom: 14 }}>
                 <label style={{ display: 'block', fontSize: 11, color: '#6B6460', marginBottom: 5, letterSpacing: '0.04em' }}>ARRIVAL DATE</label>
@@ -573,11 +573,11 @@ export default function ScottishPilgrimagePage() {
               </div>
 
               <div style={{ background: '#F5F1ED', borderRadius: 6, padding: 16, marginBottom: 20 }}>
-                <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 4 }}>Estimated per person</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 44, fontWeight: 300, color: '#1C1A17', lineHeight: 1, margin: '0 0 4px', letterSpacing: '-0.02em' }}>
+                <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 4 }}>Estimated per person</p>
+                <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 44, fontWeight: 300, color: '#1C1A17', lineHeight: 1, margin: '0 0 4px', letterSpacing: '-0.02em' }}>
                   ${totalPerPerson.toLocaleString()}
                 </p>
-                <p style={{ fontSize: 11, color: '#A09890' }}>${totalTrip.toLocaleString()} total for {guests} players</p>
+                <p style={{ fontSize: 11, color: '#6B6460' }}>${totalTrip.toLocaleString()} total for {guests} players</p>
               </div>
 
               <div style={{ marginBottom: 20 }}>
@@ -607,7 +607,7 @@ export default function ScottishPilgrimagePage() {
                 {loading ? 'Building your trip...' : 'Build This Trip →'}
               </button>
 
-              <p style={{ fontSize: 11, color: '#A09890', textAlign: 'center', marginTop: 10 }}>Full itinerary pre-loaded. Edit anything after.</p>
+              <p style={{ fontSize: 11, color: '#6B6460', textAlign: 'center', marginTop: 10 }}>Full itinerary pre-loaded. Edit anything after.</p>
             </div>
 
             <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: 8, padding: 20 }}>
@@ -632,7 +632,7 @@ export default function ScottishPilgrimagePage() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
       `}</style>
     </div>
   )

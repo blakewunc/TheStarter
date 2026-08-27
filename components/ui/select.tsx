@@ -46,7 +46,7 @@ export const SelectTrigger = React.forwardRef<HTMLButtonElement, SelectTriggerPr
           type="button"
           onClick={() => setOpen(!open)}
           disabled={context.disabled}
-          className={`flex h-11 w-full items-center justify-between rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] transition-all duration-200 focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED] ${className || ''}`}
+          className={`flex h-11 w-full items-center justify-between rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] transition-all duration-200 focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15 disabled:cursor-not-allowed disabled:opacity-40 disabled:bg-[#F5F1ED] ${className || ''}`}
         >
           <span>{children}</span>
           <svg
@@ -131,7 +131,7 @@ export function SelectItem({ value, children, onClose }: SelectItemProps) {
 
   return (
     <div
-      className={`relative flex cursor-pointer select-none items-center rounded-[5px] px-3 py-2 text-sm text-[#252323] outline-none transition-colors hover:bg-[#F5F1ED] ${
+      className={`relative flex cursor-pointer select-none items-center rounded-[5px] px-3 py-2 text-sm text-[#1C1A17] outline-none transition-colors hover:bg-[#F5F1ED] ${
         isSelected ? 'bg-[#F5F1ED] font-medium' : ''
       }`}
       onClick={() => {

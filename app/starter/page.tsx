@@ -104,7 +104,7 @@ export default function StarterLanding() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
         .sl-root {
           --cream: #F5F1ED;
@@ -112,7 +112,7 @@ export default function StarterLanding() {
           --muted: #6B6460;
           --accent: #70798C;
           --border: rgba(28,26,23,0.12);
-          --serif: 'Cormorant Garamond', Georgia, serif;
+          --serif: 'Playfair Display', Georgia, serif;
           --sans: 'DM Sans', system-ui, sans-serif;
           background: var(--cream);
           color: var(--ink);
@@ -1081,14 +1081,14 @@ export default function StarterLanding() {
           <div className="mx-auto max-w-5xl px-6">
             <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '32px' }}>
               <div>
-                <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: '8px', fontWeight: 600 }}>
+                <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: '8px', fontWeight: 600 }}>
                   The Starter · Journal
                 </p>
-                <h2 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+                <h2 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
                   From the blog
                 </h2>
               </div>
-              <Link href="/blog" style={{ fontSize: '12px', color: '#70798C', fontWeight: 500, textDecoration: 'none', letterSpacing: '0.04em' }}>
+              <Link href="/blog" style={{ fontSize: '12px', color: '#3B6D11', fontWeight: 500, textDecoration: 'none', letterSpacing: '0.04em' }}>
                 All guides →
               </Link>
             </div>
@@ -1109,11 +1109,11 @@ export default function StarterLanding() {
                     className="hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                      <span style={{ fontSize: '10px', letterSpacing: '0.10em', textTransform: 'uppercase', color: '#70798C', fontWeight: 600 }}>
+                      <span style={{ fontSize: '10px', letterSpacing: '0.10em', textTransform: 'uppercase', color: '#3B6D11', fontWeight: 600 }}>
                         {post.category || 'Golf'}
                       </span>
                       <span style={{ fontSize: '10px', color: '#DAD2BC' }}>·</span>
-                      <span style={{ fontSize: '10px', color: '#A09890' }}>{calcReadTime(post.content)}</span>
+                      <span style={{ fontSize: '10px', color: '#6B6460' }}>{calcReadTime(post.content)}</span>
                     </div>
                     <h3 style={{ fontSize: '15px', fontWeight: 500, color: '#1C1A17', lineHeight: 1.35, marginBottom: '8px' }}>
                       {post.title}

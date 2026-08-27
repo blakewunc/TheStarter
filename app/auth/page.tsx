@@ -40,10 +40,10 @@ function AuthForm() {
     <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED] p-4">
       <div className="w-full max-w-sm rounded-[5px] bg-white p-8 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
         <div className="mb-6">
-          <h1 className="font-['Cormorant_Garamond',serif] text-[28px] font-semibold text-[#252323]">
+          <h1 className="font-['Playfair_Display',serif] text-[28px] font-semibold text-[#1C1A17]">
             Welcome.
           </h1>
-          <p className="mt-1 text-[14px] text-[#888780]" style={{ fontFamily: 'DM Sans, sans-serif' }}>
+          <p className="mt-1 text-[14px] text-[#6B6460]" style={{ fontFamily: 'DM Sans, sans-serif' }}>
             Sign in to continue.
           </p>
         </div>
@@ -57,7 +57,7 @@ function AuthForm() {
         <button
           type="button"
           onClick={handleGoogle}
-          className="flex w-full items-center justify-center gap-3 rounded-[5px] border border-[#D4CFC9] bg-white px-4 py-2.5 text-sm font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+          className="flex w-full items-center justify-center gap-3 rounded-[5px] border border-[#D4CFC9] bg-white px-4 py-2.5 text-sm font-medium text-[#1C1A17] transition-colors hover:bg-[#F5F1ED]"
         >
           <svg width="18" height="18" viewBox="0 0 24 24">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -73,12 +73,12 @@ function AuthForm() {
             <span className="w-full border-t border-[#DAD2BC]" />
           </div>
           <div className="relative flex justify-center text-xs">
-            <span className="bg-white px-2 text-[#A99985]">or</span>
+            <span className="bg-white px-2 text-[#6B6460]">or</span>
           </div>
         </div>
 
         {submitted ? (
-          <p className="text-center text-[14px] text-[#70798C]">
+          <p className="text-center text-[14px] text-[#3B6D11]">
             Check your inbox. Link expires in 10 minutes.
           </p>
         ) : (
@@ -89,12 +89,12 @@ function AuthForm() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
               required
-              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2.5 text-sm text-[#252323] placeholder-[#A99985] outline-none focus:border-[#70798C] focus:ring-0"
+              className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2.5 text-sm text-[#1C1A17] placeholder-[#6B6460] outline-none focus:border-[#3B6D11] focus:ring-0"
             />
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-[5px] bg-[#70798C] px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="w-full rounded-[5px] bg-[#3B6D11] px-4 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               {loading ? 'Sending…' : 'Send me a link'}
             </button>

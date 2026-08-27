@@ -45,7 +45,7 @@ function AccessBadge({ access }: { access: string | null }) {
   if (!access) return null
   const label = ACCESS_LABELS[access] || access
   return (
-    <span className="shrink-0 rounded-full bg-[#F5F1ED] px-2 py-0.5 text-[10px] font-medium text-[#70798C]">
+    <span className="shrink-0 rounded-full bg-[#F5F1ED] px-2 py-0.5 text-[10px] font-medium text-[#3B6D11]">
       {label}
     </span>
   )
@@ -183,11 +183,11 @@ export function CoursePicker({
         }}
         onKeyDown={handleKeyDown}
         onFocus={() => results.length > 0 && setOpen(true)}
-        className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] placeholder-[#A99985] outline-none focus:border-[#70798C]"
+        className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] placeholder-[#6B6460] outline-none focus:border-[#3B6D11]"
       />
 
       {loading && (
-        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] text-[#A99985]">
+        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] text-[#6B6460]">
           searching…
         </span>
       )}
@@ -205,9 +205,9 @@ export function CoursePicker({
                 }`}
               >
                 <span className="min-w-0">
-                  <span className="block truncate text-sm text-[#252323]">{course.name}</span>
+                  <span className="block truncate text-sm text-[#1C1A17]">{course.name}</span>
                   {(course.city || course.state) && (
-                    <span className="block truncate text-xs text-[#A99985]">
+                    <span className="block truncate text-xs text-[#6B6460]">
                       {[course.city, course.state].filter(Boolean).join(', ')}
                     </span>
                   )}

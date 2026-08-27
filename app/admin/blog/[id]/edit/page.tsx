@@ -24,7 +24,7 @@ export default function EditPostPage() {
   if (loading) {
     return (
       <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px' }}>
-        <p style={{ color: '#A09890', fontSize: '13px' }}>Loading…</p>
+        <p style={{ color: '#6B6460', fontSize: '13px' }}>Loading…</p>
       </div>
     )
   }

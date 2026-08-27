@@ -131,22 +131,22 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
       case 'accepted': return { text: 'Going', color: 'text-[#4A7C59]' }
       case 'declined': return { text: 'Not going', color: 'text-[#8B4444]' }
       case 'maybe': return { text: 'Maybe', color: 'text-[#B8956A]' }
-      default: return { text: 'Not responded', color: 'text-[#A99985]' }
+      default: return { text: 'Not responded', color: 'text-[#6B6460]' }
     }
   }
 
   const getInitialBg = (index: number) => {
-    const colors = ['bg-[#70798C]', 'bg-[#A99985]', 'bg-[#8B7355]', 'bg-[#6B8E7B]', 'bg-[#7C6B8E]']
+    const colors = ['bg-[#3B6D11]', 'bg-[#A99985]', 'bg-[#8B7355]', 'bg-[#6B8E7B]', 'bg-[#7C6B8E]']
     return colors[index % colors.length]
   }
 
   return (
     <div className="rounded-[8px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-[#252323]">Trip Members</h3>
+        <h3 className="text-lg font-semibold text-[#1C1A17]">Trip Members</h3>
         <button
           onClick={copyInviteLink}
-          className="text-sm font-medium text-[#70798C] transition-colors hover:text-[#252323]"
+          className="text-sm font-medium text-[#3B6D11] transition-colors hover:text-[#1C1A17]"
         >
           Invite More
         </button>
@@ -167,9 +167,9 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-[#252323]">{name}</span>
+                  <span className="text-sm font-medium text-[#1C1A17]">{name}</span>
                   {member.role === 'organizer' && (
-                    <span className="rounded-[4px] bg-[#F5F1ED] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#A99985]">
+                    <span className="rounded-[4px] bg-[#F5F1ED] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#6B6460]">
                       Organizer
                     </span>
                   )}
@@ -191,7 +191,7 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
       {/* Pending Invites */}
       {pendingInvites.length > 0 && (
         <div className="mt-4 space-y-2 border-t border-[#F5F1ED] pt-3">
-          <p className="text-xs font-medium uppercase tracking-wide text-[#A99985]">Pending</p>
+          <p className="text-xs font-medium uppercase tracking-wide text-[#6B6460]">Pending</p>
           {pendingInvites.map((invite) => (
             <div key={invite.id} className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -201,7 +201,7 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
                   </span>
                 </div>
                 <div>
-                  <span className="text-sm font-medium text-[#A99985]">{invite.name || invite.email}</span>
+                  <span className="text-sm font-medium text-[#6B6460]">{invite.name || invite.email}</span>
                   {invite.name && (
                     <p className="text-[11px] text-[#DAD2BC]">{invite.email}</p>
                   )}
@@ -212,7 +212,7 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
                 {isOrganizer && (
                   <button
                     onClick={() => handleCancelInvite(invite.id)}
-                    className="text-[10px] text-[#A99985] hover:text-[#8B4444] transition-colors"
+                    className="text-[10px] text-[#6B6460] hover:text-[#8B4444] transition-colors"
                   >
                     &times;
                   </button>
@@ -231,7 +231,7 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
             placeholder="Name"
             value={addName}
             onChange={(e) => setAddName(e.target.value)}
-            className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-1.5 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none"
+            className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-1.5 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none"
           />
           <input
             type="email"
@@ -239,32 +239,32 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
             value={addEmail}
             onChange={(e) => setAddEmail(e.target.value)}
             required
-            className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-1.5 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none"
+            className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-1.5 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none"
           />
           <div className="flex gap-2">
             <button
               type="submit"
               disabled={adding}
-              className="flex-1 rounded-[5px] bg-[#70798C] py-1.5 text-xs font-medium text-white hover:bg-[#5A6270] disabled:opacity-50"
+              className="flex-1 rounded-[5px] bg-[#3B6D11] py-1.5 text-xs font-medium text-white hover:bg-[#2F5A0E] disabled:opacity-50"
             >
               {adding ? 'Adding...' : 'Add & Send Invite'}
             </button>
             <button
               type="button"
               onClick={() => setShowAddForm(false)}
-              className="rounded-[5px] border border-[#DAD2BC] px-3 py-1.5 text-xs text-[#A99985] hover:text-[#252323]"
+              className="rounded-[5px] border border-[#DAD2BC] px-3 py-1.5 text-xs text-[#6B6460] hover:text-[#1C1A17]"
             >
               Cancel
             </button>
           </div>
-          <p className="text-[11px] text-[#A99985]">
+          <p className="text-[11px] text-[#6B6460]">
             They&apos;ll auto-join when they sign up with this email
           </p>
         </form>
       ) : (
         <button
           onClick={isOrganizer ? () => setShowAddForm(true) : copyInviteLink}
-          className="mt-4 flex w-full items-center justify-center gap-2 rounded-[5px] border border-dashed border-[#DAD2BC] py-2.5 text-sm font-medium text-[#A99985] transition-colors hover:border-[#70798C] hover:text-[#252323]"
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-[5px] border border-dashed border-[#DAD2BC] py-2.5 text-sm font-medium text-[#6B6460] transition-colors hover:border-[#3B6D11] hover:text-[#1C1A17]"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />

@@ -64,7 +64,7 @@ export function CommentSection({ tripId, itineraryItemId, currentUserId }: Comme
   }
 
   if (loading) {
-    return <div className="text-sm text-[#A99985]">Loading comments...</div>
+    return <div className="text-sm text-[#6B6460]">Loading comments...</div>
   }
 
   return (
@@ -86,7 +86,7 @@ export function CommentSection({ tripId, itineraryItemId, currentUserId }: Comme
 
       {/* Comments list */}
       {comments.length === 0 ? (
-        <p className="text-sm text-[#A99985]">No comments yet. Be the first to comment!</p>
+        <p className="text-sm text-[#6B6460]">No comments yet. Be the first to comment!</p>
       ) : (
         <div className="space-y-3">
           {comments.map((comment) => (
@@ -96,10 +96,10 @@ export function CommentSection({ tripId, itineraryItemId, currentUserId }: Comme
             >
               <div className="mb-2 flex items-start justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-[#252323]">
+                  <p className="text-sm font-semibold text-[#1C1A17]">
                     {comment.profiles.display_name || comment.profiles.email}
                   </p>
-                  <p className="text-xs text-[#A99985]">
+                  <p className="text-xs text-[#6B6460]">
                     {formatDistanceToNow(new Date(comment.created_at), { addSuffix: true })}
                   </p>
                 </div>
@@ -114,7 +114,7 @@ export function CommentSection({ tripId, itineraryItemId, currentUserId }: Comme
                   </Button>
                 )}
               </div>
-              <p className="text-sm text-[#252323]">{comment.text}</p>
+              <p className="text-sm text-[#1C1A17]">{comment.text}</p>
             </div>
           ))}
         </div>

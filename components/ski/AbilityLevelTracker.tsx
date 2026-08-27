@@ -90,21 +90,21 @@ export function AbilityLevelTracker({ tripId }: AbilityLevelTrackerProps) {
   }, {} as Record<string, Ability[]>)
 
   if (loading) {
-    return <p className="text-sm text-[#A99985]">Loading...</p>
+    return <p className="text-sm text-[#6B6460]">Loading...</p>
   }
 
   return (
     <div className="space-y-6">
       {/* My Ability Level */}
       <div>
-        <h4 className="font-medium text-[#252323] mb-3">My Ability Level</h4>
+        <h4 className="font-medium text-[#1C1A17] mb-3">My Ability Level</h4>
         <form onSubmit={handleSave} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="ski_or_snowboard">Ski or Snowboard*</Label>
             <select
               id="ski_or_snowboard"
               name="ski_or_snowboard"
-              className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] transition-all duration-200 focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15"
+              className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] transition-all duration-200 focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15"
               defaultValue={myAbility?.ski_or_snowboard || 'ski'}
               required
             >
@@ -119,7 +119,7 @@ export function AbilityLevelTracker({ tripId }: AbilityLevelTrackerProps) {
             <select
               id="ability_level"
               name="ability_level"
-              className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#252323] transition-all duration-200 focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15"
+              className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 py-2.5 text-base text-[#1C1A17] transition-all duration-200 focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15"
               defaultValue={myAbility?.ability_level || 'intermediate'}
               required
             >
@@ -139,7 +139,7 @@ export function AbilityLevelTracker({ tripId }: AbilityLevelTrackerProps) {
       {/* Grouped by Level */}
       {abilities.length > 0 && (
         <div className="pt-4 border-t border-[#DAD2BC]">
-          <h4 className="font-medium text-[#252323] mb-3">Group by Ability</h4>
+          <h4 className="font-medium text-[#1C1A17] mb-3">Group by Ability</h4>
           <div className="space-y-3">
             {(['beginner', 'intermediate', 'advanced', 'expert'] as const).map((level) => {
               const members = grouped[level] || []
@@ -148,8 +148,8 @@ export function AbilityLevelTracker({ tripId }: AbilityLevelTrackerProps) {
               return (
                 <div key={level} className="rounded-[5px] border border-[#DAD2BC] bg-white p-3">
                   <div className="flex items-center justify-between mb-2">
-                    <h5 className="font-medium text-[#252323] capitalize">{level}</h5>
-                    <span className="text-xs text-[#A99985]">
+                    <h5 className="font-medium text-[#1C1A17] capitalize">{level}</h5>
+                    <span className="text-xs text-[#6B6460]">
                       {members.length} {members.length === 1 ? 'person' : 'people'}
                     </span>
                   </div>
@@ -157,10 +157,10 @@ export function AbilityLevelTracker({ tripId }: AbilityLevelTrackerProps) {
                     {members.map((member) => (
                       <div
                         key={member.id}
-                        className="inline-flex items-center gap-1 rounded-full bg-[#F5F1ED] px-3 py-1 text-sm text-[#252323]"
+                        className="inline-flex items-center gap-1 rounded-full bg-[#F5F1ED] px-3 py-1 text-sm text-[#1C1A17]"
                       >
                         <span>{member.user_name}</span>
-                        <span className="text-xs text-[#A99985]">
+                        <span className="text-xs text-[#6B6460]">
                           {member.ski_or_snowboard === 'ski' && '⛷️'}
                           {member.ski_or_snowboard === 'snowboard' && '🏂'}
                           {member.ski_or_snowboard === 'both' && '⛷️🏂'}

@@ -82,7 +82,7 @@ export function ExpensesTab({ tripId, trip, currentUserId }: ExpensesTabProps) {
   })
 
   if (loading || !currentUserId) {
-    return <p className="text-[#A99985]">Loading expenses...</p>
+    return <p className="text-[#6B6460]">Loading expenses...</p>
   }
 
   if (error) {
@@ -96,8 +96,8 @@ export function ExpensesTab({ tripId, trip, currentUserId }: ExpensesTabProps) {
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-[#252323]">Expenses</h2>
-          <p className="text-[#A99985]">Track and settle expenses for {trip.title}</p>
+          <h2 className="text-2xl font-bold tracking-tight text-[#1C1A17]">Expenses</h2>
+          <p className="text-[#6B6460]">Track and settle expenses for {trip.title}</p>
         </div>
         <AddExpenseDialog
           tripId={tripId}
@@ -110,7 +110,7 @@ export function ExpensesTab({ tripId, trip, currentUserId }: ExpensesTabProps) {
       {/* Two-column layout */}
       <div className="grid gap-6 lg:grid-cols-2">
         <div>
-          <h3 className="mb-4 text-xl font-bold text-[#252323]">All Expenses</h3>
+          <h3 className="mb-4 text-xl font-bold text-[#1C1A17]">All Expenses</h3>
           <ExpenseList
             expenses={expenses}
             currentUserId={currentUserId}
@@ -119,7 +119,7 @@ export function ExpensesTab({ tripId, trip, currentUserId }: ExpensesTabProps) {
         </div>
 
         <div>
-          <h3 className="mb-4 text-xl font-bold text-[#252323]">Balances</h3>
+          <h3 className="mb-4 text-xl font-bold text-[#1C1A17]">Balances</h3>
           <BalanceSheet
             expenses={expenses}
             members={members}

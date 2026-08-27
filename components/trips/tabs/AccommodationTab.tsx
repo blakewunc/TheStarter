@@ -253,14 +253,14 @@ export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: A
   }
 
   if (loading) {
-    return <p className="text-[#A99985]">Loading...</p>
+    return <p className="text-[#6B6460]">Loading...</p>
   }
 
   return (
     <div>
       <div className="mb-6">
-        <h2 className="text-2xl font-bold tracking-tight text-[#252323]">Accommodation & Logistics</h2>
-        <p className="text-[#A99985]">Manage where you&apos;re staying and how everyone&apos;s getting there</p>
+        <h2 className="text-2xl font-bold tracking-tight text-[#1C1A17]">Accommodation & Logistics</h2>
+        <p className="text-[#6B6460]">Manage where you&apos;re staying and how everyone&apos;s getting there</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -377,20 +377,20 @@ export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: A
                 <div className="space-y-4 text-sm">
                   {accommodation.name && (
                     <div>
-                      <p className="font-semibold text-[#252323]">Property</p>
-                      <p className="text-[#A99985]">{accommodation.name}</p>
+                      <p className="font-semibold text-[#1C1A17]">Property</p>
+                      <p className="text-[#6B6460]">{accommodation.name}</p>
                     </div>
                   )}
                   {accommodation.address && (
                     <div>
-                      <p className="font-semibold text-[#252323]">Address</p>
-                      <p className="text-[#A99985]">{accommodation.address}</p>
+                      <p className="font-semibold text-[#1C1A17]">Address</p>
+                      <p className="text-[#6B6460]">{accommodation.address}</p>
                     </div>
                   )}
                   {(accommodation.check_in || accommodation.check_out) && (
                     <div>
-                      <p className="font-semibold text-[#252323]">Check-in / Check-out</p>
-                      <p className="text-[#A99985]">
+                      <p className="font-semibold text-[#1C1A17]">Check-in / Check-out</p>
+                      <p className="text-[#6B6460]">
                         {accommodation.check_in && new Date(accommodation.check_in).toLocaleString()}
                         {' → '}
                         {accommodation.check_out && new Date(accommodation.check_out).toLocaleString()}
@@ -399,34 +399,34 @@ export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: A
                   )}
                   {accommodation.door_code && (
                     <div>
-                      <p className="font-semibold text-[#252323]">Door Code</p>
-                      <p className="font-mono text-lg text-[#252323]">{accommodation.door_code}</p>
+                      <p className="font-semibold text-[#1C1A17]">Door Code</p>
+                      <p className="font-mono text-lg text-[#1C1A17]">{accommodation.door_code}</p>
                     </div>
                   )}
                   {accommodation.wifi_name && (
                     <div>
-                      <p className="font-semibold text-[#252323]">WiFi</p>
-                      <p className="text-[#A99985]">Network: {accommodation.wifi_name}</p>
+                      <p className="font-semibold text-[#1C1A17]">WiFi</p>
+                      <p className="text-[#6B6460]">Network: {accommodation.wifi_name}</p>
                       {accommodation.wifi_password && (
-                        <p className="font-mono text-[#252323]">Password: {accommodation.wifi_password}</p>
+                        <p className="font-mono text-[#1C1A17]">Password: {accommodation.wifi_password}</p>
                       )}
                     </div>
                   )}
                   {accommodation.house_rules && (
                     <div>
-                      <p className="font-semibold text-[#252323]">House Rules</p>
-                      <p className="text-[#A99985]">{accommodation.house_rules}</p>
+                      <p className="font-semibold text-[#1C1A17]">House Rules</p>
+                      <p className="text-[#6B6460]">{accommodation.house_rules}</p>
                     </div>
                   )}
                   {accommodation.notes && (
                     <div>
-                      <p className="font-semibold text-[#252323]">Notes</p>
-                      <p className="text-[#A99985]">{accommodation.notes}</p>
+                      <p className="font-semibold text-[#1C1A17]">Notes</p>
+                      <p className="text-[#6B6460]">{accommodation.notes}</p>
                     </div>
                   )}
                 </div>
               ) : (
-                <p className="py-8 text-center text-sm text-[#A99985]">
+                <p className="py-8 text-center text-sm text-[#6B6460]">
                   No accommodation details yet. The organizer can add them.
                 </p>
               )}
@@ -539,7 +539,7 @@ export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: A
               )}
 
               {transportation.length === 0 ? (
-                <p className="py-6 text-center text-sm text-[#A99985]">
+                <p className="py-6 text-center text-sm text-[#6B6460]">
                   No transportation added yet. Add flights, carpools, or other details.
                 </p>
               ) : (
@@ -548,25 +548,25 @@ export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: A
                     <div key={entry.id} className="rounded-[5px] border border-[#DAD2BC] p-3">
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex-1">
-                          <p className="text-sm font-medium text-[#252323]">{transportTypeLabels[entry.type]}</p>
+                          <p className="text-sm font-medium text-[#1C1A17]">{transportTypeLabels[entry.type]}</p>
                           {(entry.departure_location || entry.arrival_location) && (
-                            <p className="mt-0.5 text-xs text-[#A99985]">
+                            <p className="mt-0.5 text-xs text-[#6B6460]">
                               {entry.departure_location && <span>{entry.departure_location}</span>}
                               {entry.departure_location && entry.arrival_location && <span> → </span>}
                               {entry.arrival_location && <span>{entry.arrival_location}</span>}
                             </p>
                           )}
                           {entry.departure_time && (
-                            <p className="mt-0.5 text-xs text-[#A99985]">
+                            <p className="mt-0.5 text-xs text-[#6B6460]">
                               Departs: {formatDateTime(entry.departure_time)}
                               {entry.arrival_time && ` · Arrives: ${formatDateTime(entry.arrival_time)}`}
                             </p>
                           )}
                           {entry.seats_available != null && (
-                            <p className="mt-0.5 text-xs text-[#A99985]">{entry.seats_available} seat{entry.seats_available !== 1 ? 's' : ''} available</p>
+                            <p className="mt-0.5 text-xs text-[#6B6460]">{entry.seats_available} seat{entry.seats_available !== 1 ? 's' : ''} available</p>
                           )}
                           {entry.notes && (
-                            <p className="mt-0.5 text-xs text-[#70798C]">{entry.notes}</p>
+                            <p className="mt-0.5 text-xs text-[#3B6D11]">{entry.notes}</p>
                           )}
                           <p className="mt-1 text-xs text-[#DAD2BC]">
                             Added by {(entry.profiles as any)?.display_name || (entry.profiles as any)?.email || 'someone'}
@@ -575,7 +575,7 @@ export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: A
                         {(entry.created_by === currentUserId || isOrganizer) && (
                           <button
                             onClick={() => handleDeleteTransport(entry.id)}
-                            className="shrink-0 text-xs text-[#A99985] transition-colors hover:text-[#8B4444]"
+                            className="shrink-0 text-xs text-[#6B6460] transition-colors hover:text-[#8B4444]"
                           >
                             Remove
                           </button>
@@ -654,7 +654,7 @@ export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: A
               )}
 
               {documents.length === 0 ? (
-                <p className="py-8 text-center text-sm text-[#A99985]">
+                <p className="py-8 text-center text-sm text-[#6B6460]">
                   No links added yet. Add important URLs like Airbnb listings, tee times, flight confirmations, etc.
                 </p>
               ) : (
@@ -665,19 +665,19 @@ export function AccommodationTab({ tripId, trip, currentUserId, isOrganizer }: A
                       className="flex items-start justify-between rounded-[5px] border border-[#DAD2BC] p-3"
                     >
                       <div className="flex-1">
-                        <p className="text-xs text-[#A99985]">{categoryLabels[doc.category]}</p>
+                        <p className="text-xs text-[#6B6460]">{categoryLabels[doc.category]}</p>
                         <a
                           href={doc.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-medium text-[#70798C] hover:underline"
+                          className="font-medium text-[#3B6D11] hover:underline"
                         >
                           {doc.title}
                         </a>
                         {doc.description && (
-                          <p className="mt-1 text-xs text-[#A99985]">{doc.description}</p>
+                          <p className="mt-1 text-xs text-[#6B6460]">{doc.description}</p>
                         )}
-                        <p className="mt-1 text-xs text-[#A99985]">
+                        <p className="mt-1 text-xs text-[#6B6460]">
                           Added by {doc.created_by_profile?.display_name || doc.created_by_profile?.email}
                         </p>
                       </div>

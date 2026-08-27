@@ -161,8 +161,8 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
   if (players.length === 0) {
     return (
       <div className="py-8 text-center">
-        <p className="text-sm text-[#A99985]">No players have set up their golf profile yet</p>
-        <p className="mt-1 text-xs text-[#A99985]">
+        <p className="text-sm text-[#6B6460]">No players have set up their golf profile yet</p>
+        <p className="mt-1 text-xs text-[#6B6460]">
           Players need to save their golf profile with a handicap first
         </p>
       </div>
@@ -177,10 +177,10 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
       {/* Player Overview */}
       <div>
         <div className="mb-3 flex items-center justify-between">
-          <p className="text-sm text-[#A99985]">
-            <span className="font-semibold text-[#252323]">{players.length}</span> players
+          <p className="text-sm text-[#6B6460]">
+            <span className="font-semibold text-[#1C1A17]">{players.length}</span> players
             {playersWithHandicap.length > 0 && (
-              <> &middot; <span className="font-semibold text-[#252323]">{playersWithHandicap.length}</span> with handicaps</>
+              <> &middot; <span className="font-semibold text-[#1C1A17]">{playersWithHandicap.length}</span> with handicaps</>
             )}
           </p>
         </div>
@@ -191,7 +191,7 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
             .sort((a, b) => (a.handicap ?? 99) - (b.handicap ?? 99))
             .map((p) => (
               <div key={p.user_id} className="flex items-center justify-between rounded-[5px] bg-[#F5F1ED] px-3 py-2">
-                <span className="text-sm font-medium text-[#252323]">{p.user_name}</span>
+                <span className="text-sm font-medium text-[#1C1A17]">{p.user_name}</span>
                 <span className="rounded-full bg-[#4A7C59]/10 px-2 py-0.5 text-xs font-semibold text-[#4A7C59]">
                   HCP {p.handicap}
                 </span>
@@ -199,8 +199,8 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
             ))}
           {playersWithoutHandicap.map((p) => (
             <div key={p.user_id} className="flex items-center justify-between rounded-[5px] bg-[#F5F1ED] px-3 py-2">
-              <span className="text-sm font-medium text-[#252323]">{p.user_name}</span>
-              <span className="text-xs text-[#A99985]">No handicap</span>
+              <span className="text-sm font-medium text-[#1C1A17]">{p.user_name}</span>
+              <span className="text-xs text-[#6B6460]">No handicap</span>
             </div>
           ))}
         </div>
@@ -210,14 +210,14 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
       <div className="space-y-3 rounded-[5px] border border-[#DAD2BC] bg-white p-4">
         <div className="flex items-center gap-3">
           <div className="flex-1 space-y-1">
-            <p className="text-xs font-medium uppercase tracking-wide text-[#A99985]">Group Mode</p>
+            <p className="text-xs font-medium uppercase tracking-wide text-[#6B6460]">Group Mode</p>
             <div className="flex rounded-[5px] border border-[#DAD2BC] overflow-hidden">
               <button
                 onClick={() => setMode('balanced')}
                 className={`flex-1 px-3 py-2 text-xs font-medium transition-colors ${
                   mode === 'balanced'
-                    ? 'bg-[#70798C] text-white'
-                    : 'bg-white text-[#252323] hover:bg-[#F5F1ED]'
+                    ? 'bg-[#3B6D11] text-white'
+                    : 'bg-white text-[#1C1A17] hover:bg-[#F5F1ED]'
                 }`}
               >
                 Balanced
@@ -226,8 +226,8 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
                 onClick={() => setMode('competitive')}
                 className={`flex-1 px-3 py-2 text-xs font-medium transition-colors ${
                   mode === 'competitive'
-                    ? 'bg-[#70798C] text-white'
-                    : 'bg-white text-[#252323] hover:bg-[#F5F1ED]'
+                    ? 'bg-[#3B6D11] text-white'
+                    : 'bg-white text-[#1C1A17] hover:bg-[#F5F1ED]'
                 }`}
               >
                 Competitive
@@ -236,7 +236,7 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
           </div>
 
           <div className="space-y-1">
-            <p className="text-xs font-medium uppercase tracking-wide text-[#A99985]">Per Group</p>
+            <p className="text-xs font-medium uppercase tracking-wide text-[#6B6460]">Per Group</p>
             <div className="flex rounded-[5px] border border-[#DAD2BC] overflow-hidden">
               {[2, 3, 4].map((size) => (
                 <button
@@ -244,8 +244,8 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
                   onClick={() => setGroupSize(size)}
                   className={`px-3 py-2 text-xs font-medium transition-colors ${
                     groupSize === size
-                      ? 'bg-[#70798C] text-white'
-                      : 'bg-white text-[#252323] hover:bg-[#F5F1ED]'
+                      ? 'bg-[#3B6D11] text-white'
+                      : 'bg-white text-[#1C1A17] hover:bg-[#F5F1ED]'
                   }`}
                 >
                   {size}
@@ -255,7 +255,7 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
           </div>
         </div>
 
-        <p className="text-[11px] text-[#A99985]">
+        <p className="text-[11px] text-[#6B6460]">
           {mode === 'balanced'
             ? 'Snake draft — spreads skill levels evenly across all groups'
             : 'Sequential — groups the best players together'}
@@ -312,7 +312,7 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
       {/* Generated Groups */}
       {generated && groups.length > 0 && (
         <div className="space-y-3">
-          <h4 className="font-medium text-[#252323]">
+          <h4 className="font-medium text-[#1C1A17]">
             {groups.length} Group{groups.length !== 1 ? 's' : ''}
           </h4>
 
@@ -324,9 +324,9 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
                 className="rounded-[5px] border border-[#DAD2BC] bg-white p-4"
               >
                 <div className="mb-2 flex items-center justify-between">
-                  <p className="text-sm font-semibold text-[#252323]">Group {i + 1}</p>
+                  <p className="text-sm font-semibold text-[#1C1A17]">Group {i + 1}</p>
                   {avg !== null && (
-                    <span className="text-xs text-[#A99985]">Avg HCP: {avg}</span>
+                    <span className="text-xs text-[#6B6460]">Avg HCP: {avg}</span>
                   )}
                 </div>
                 <div className="space-y-1.5">
@@ -335,13 +335,13 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
                       key={player.user_id}
                       className="flex items-center justify-between rounded-[4px] bg-[#F5F1ED] px-3 py-1.5"
                     >
-                      <span className="text-sm text-[#252323]">{player.user_name}</span>
+                      <span className="text-sm text-[#1C1A17]">{player.user_name}</span>
                       {player.handicap !== null ? (
                         <span className="text-xs font-medium text-[#4A7C59]">
                           {player.handicap}
                         </span>
                       ) : (
-                        <span className="text-xs text-[#A99985]">--</span>
+                        <span className="text-xs text-[#6B6460]">--</span>
                       )}
                     </div>
                   ))}

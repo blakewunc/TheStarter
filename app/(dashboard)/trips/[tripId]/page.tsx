@@ -67,7 +67,7 @@ function TripDetailContent({ tripId }: { tripId: string }) {
     return (
       <div style={{ minHeight: '100vh', background: '#F5F1ED', padding: '40px 24px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#888780' }}>Loading trip…</p>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460' }}>Loading trip…</p>
         </div>
       </div>
     )
@@ -254,7 +254,7 @@ export default function TripDetailPage({ params }: { params: Promise<{ tripId: s
     <Suspense fallback={
       <div style={{ minHeight: '100vh', background: '#F5F1ED', padding: '40px 24px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#888780' }}>Loading trip…</p>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460' }}>Loading trip…</p>
         </div>
       </div>
     }>

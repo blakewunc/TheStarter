@@ -172,12 +172,12 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
 
   const field = (key: keyof typeof EMPTY_FORM, label: string, props: any = {}) => (
     <div>
-      <label className="mb-1 block text-xs font-medium text-[#252323]">{label}</label>
+      <label className="mb-1 block text-xs font-medium text-[#1C1A17]">{label}</label>
       <input
         {...props}
         value={form[key]}
         onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-        className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-2.5 py-1.5 text-sm text-[#252323] placeholder-[#A99985] outline-none focus:border-[#70798C]"
+        className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-2.5 py-1.5 text-sm text-[#1C1A17] placeholder-[#6B6460] outline-none focus:border-[#3B6D11]"
       />
     </div>
   )
@@ -185,25 +185,25 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
   return (
     <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-base font-semibold text-[#252323]">Where you&apos;re staying</h3>
+        <h3 className="text-base font-semibold text-[#1C1A17]">Where you&apos;re staying</h3>
         {isOrganizer && !formOpen && (
           <button
             onClick={openAdd}
-            className="rounded-[5px] border border-[#DAD2BC] px-3 py-1.5 text-xs font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+            className="rounded-[5px] border border-[#DAD2BC] px-3 py-1.5 text-xs font-medium text-[#1C1A17] transition-colors hover:bg-[#F5F1ED]"
           >
             {items.length > 0 ? 'Add another' : 'Add lodging'}
           </button>
         )}
       </div>
 
-      {loading && <p className="text-sm text-[#A99985]">Loading…</p>}
+      {loading && <p className="text-sm text-[#6B6460]">Loading…</p>}
 
       {error && (
         <div className="rounded-[5px] bg-red-50 p-3 text-sm text-red-800">{error}</div>
       )}
 
       {!loading && !error && items.length === 0 && !formOpen && (
-        <p className="text-sm text-[#A99985]">
+        <p className="text-sm text-[#6B6460]">
           No lodging yet. Add the rental and its cost lands in the budget automatically.
         </p>
       )}
@@ -216,26 +216,26 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
             <div key={a.id} className="rounded-[5px] border border-[#DAD2BC] p-4">
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="font-medium text-[#252323]">{a.name}</p>
+                  <p className="font-medium text-[#1C1A17]">{a.name}</p>
                   {a.address && (
                     <a
                       href={`https://maps.google.com/?q=${encodeURIComponent(a.address)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-[#70798C] underline-offset-2 hover:underline"
+                      className="text-sm text-[#3B6D11] underline-offset-2 hover:underline"
                     >
                       {a.address}
                     </a>
                   )}
-                  {range && <p className="mt-1 text-sm text-[#A99985]">{range}</p>}
+                  {range && <p className="mt-1 text-sm text-[#6B6460]">{range}</p>}
                 </div>
                 {budget && (
                   <div className="shrink-0 text-right">
-                    <p className="font-semibold text-[#252323]">
+                    <p className="font-semibold text-[#1C1A17]">
                       {formatCurrency(budget.estimated_cost)}
                     </p>
                     {budget.split_type === 'equal' && splitCount > 0 && (
-                      <p className="text-xs text-[#A99985]">
+                      <p className="text-xs text-[#6B6460]">
                         {formatCurrency(budget.estimated_cost / splitCount)} each,{' '}
                         {splitCount} {splitCount === 1 ? 'way' : 'ways'}
                       </p>
@@ -245,22 +245,22 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
               </div>
 
               {(a.door_code || a.wifi_name || a.confirmation_number || a.booking_url) && (
-                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 border-t border-[#DAD2BC] pt-3 text-xs text-[#A99985]">
+                <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 border-t border-[#DAD2BC] pt-3 text-xs text-[#6B6460]">
                   {a.door_code && (
                     <span>
-                      Door <span className="font-medium text-[#252323]">{a.door_code}</span>
+                      Door <span className="font-medium text-[#1C1A17]">{a.door_code}</span>
                     </span>
                   )}
                   {a.wifi_name && (
                     <span>
-                      Wifi <span className="font-medium text-[#252323]">{a.wifi_name}</span>
+                      Wifi <span className="font-medium text-[#1C1A17]">{a.wifi_name}</span>
                       {a.wifi_password ? ` / ${a.wifi_password}` : ''}
                     </span>
                   )}
                   {a.confirmation_number && (
                     <span>
                       Conf{' '}
-                      <span className="font-medium text-[#252323]">
+                      <span className="font-medium text-[#1C1A17]">
                         {a.confirmation_number}
                       </span>
                     </span>
@@ -270,7 +270,7 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
                       href={a.booking_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#70798C] underline-offset-2 hover:underline"
+                      className="text-[#3B6D11] underline-offset-2 hover:underline"
                     >
                       Booking
                     </a>
@@ -278,13 +278,13 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
                 </div>
               )}
 
-              {a.notes && <p className="mt-2 text-xs text-[#A99985]">{a.notes}</p>}
+              {a.notes && <p className="mt-2 text-xs text-[#6B6460]">{a.notes}</p>}
 
               {isOrganizer && (
                 <div className="mt-3 flex gap-3">
                   <button
                     onClick={() => openEdit(a)}
-                    className="text-xs text-[#70798C] underline-offset-2 hover:underline"
+                    className="text-xs text-[#3B6D11] underline-offset-2 hover:underline"
                   >
                     Edit
                   </button>
@@ -322,7 +322,7 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
             })}
             {field('door_code', 'Door code', { placeholder: '8410' })}
           </div>
-          <p className="text-xs text-[#A99985]">
+          <p className="text-xs text-[#6B6460]">
             Entering a cost creates a linked lodging line in the budget. Edit it here or
             there — it&apos;s the same figure.
           </p>
@@ -340,7 +340,7 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
             <button
               type="submit"
               disabled={saving}
-              className="rounded-[5px] bg-[#70798C] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="rounded-[5px] bg-[#3B6D11] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               {saving ? 'Saving…' : editingId ? 'Save changes' : 'Add lodging'}
             </button>
@@ -351,7 +351,7 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
                 setEditingId(null)
               }}
               disabled={saving}
-              className="rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+              className="rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm text-[#1C1A17] transition-colors hover:bg-[#F5F1ED]"
             >
               Cancel
             </button>

@@ -90,12 +90,12 @@ export function SupplyList({
     return (
       <div className="rounded-[5px] border-2 border-dashed border-[#DAD2BC] p-12 text-center">
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#F5F1ED]">
-          <svg className="h-6 w-6 text-[#A99985]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="h-6 w-6 text-[#6B6460]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
           </svg>
         </div>
-        <h3 className="text-base font-semibold text-[#252323]">Packing list is empty</h3>
-        <p className="mt-1 text-sm text-[#A99985]">
+        <h3 className="text-base font-semibold text-[#1C1A17]">Packing list is empty</h3>
+        <p className="mt-1 text-sm text-[#6B6460]">
           Add items so everyone knows what to bring — sunscreen, speakers, golf balls, snacks.
         </p>
       </div>
@@ -129,17 +129,17 @@ export function SupplyList({
                       supply.status === 'packed'
                         ? 'border-green-200 bg-green-50 opacity-75'
                         : supply.claimed_by === currentUserId
-                        ? 'border-[#70798C] bg-[#F5F1ED]'
+                        ? 'border-[#3B6D11] bg-[#F5F1ED]'
                         : 'border-[#DAD2BC] bg-white'
                     }`}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <h4 className="font-semibold text-[#252323]">
+                          <h4 className="font-semibold text-[#1C1A17]">
                             {supply.name}
                             {supply.quantity > 1 && (
-                              <span className="ml-2 text-sm text-[#A99985]">
+                              <span className="ml-2 text-sm text-[#6B6460]">
                                 (x{supply.quantity})
                               </span>
                             )}
@@ -153,19 +153,19 @@ export function SupplyList({
                         </div>
 
                         {supply.description && (
-                          <p className="mt-1 text-sm text-[#A99985]">
+                          <p className="mt-1 text-sm text-[#6B6460]">
                             {supply.description}
                           </p>
                         )}
 
                         {supply.cost && (
-                          <p className="mt-1 text-sm font-medium text-[#252323]">
+                          <p className="mt-1 text-sm font-medium text-[#1C1A17]">
                             ~${supply.cost.toFixed(2)}
                           </p>
                         )}
 
                         {claimerName && supply.status !== 'needed' && (
-                          <p className="mt-2 text-xs text-[#A99985]">
+                          <p className="mt-2 text-xs text-[#6B6460]">
                             {isClaimed ? 'You claimed this' : `Claimed by ${claimerName}`}
                           </p>
                         )}
@@ -180,7 +180,7 @@ export function SupplyList({
                             className={
                               isClaimed
                                 ? ''
-                                : 'bg-[#70798C] hover:bg-[#D01043]'
+                                : 'bg-[#3B6D11] hover:bg-[#D01043]'
                             }
                           >
                             {isClaimed ? 'Unclaim' : 'Claim'}

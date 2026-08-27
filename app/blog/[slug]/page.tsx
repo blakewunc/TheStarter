@@ -69,7 +69,7 @@ export default async function BlogPostPage(
             <span style={{ fontSize: '10px', color: 'rgba(245,241,237,0.35)' }}>{post.author}</span>
           </div>
 
-          <h1 style={{ fontSize: '30px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", lineHeight: 1.2, marginBottom: '14px' }}>
+          <h1 style={{ fontSize: '30px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.2, marginBottom: '14px' }}>
             {post.title}
           </h1>
           {post.excerpt && (
@@ -94,7 +94,7 @@ export default async function BlogPostPage(
             prose-li:text-[#3C3835] prose-li:leading-relaxed
             prose-ul:my-4 prose-ol:my-4
             prose-strong:text-[#1C1A17] prose-strong:font-semibold
-            prose-a:text-[#70798C] prose-a:no-underline hover:prose-a:underline
+            prose-a:text-[#3B6D11] prose-a:no-underline hover:prose-a:underline
             prose-hr:border-[rgba(28,26,23,0.10)] prose-hr:my-10
             prose-blockquote:border-l-[#70798C] prose-blockquote:text-[#6B6460] prose-blockquote:not-italic
           "
@@ -119,7 +119,7 @@ export default async function BlogPostPage(
 
         {/* CTA */}
         <div style={{ margin: '32px 0 0', background: '#1C1A17', borderRadius: '8px', padding: '32px', textAlign: 'center' }}>
-          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", marginBottom: '8px' }}>
+          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '8px' }}>
             Ready to plan your trip?
           </p>
           <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', marginBottom: '20px', lineHeight: 1.6 }}>
@@ -136,7 +136,7 @@ export default async function BlogPostPage(
         {/* Related articles */}
         {related.length > 0 && (
           <div style={{ margin: '48px 0 64px' }}>
-            <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', fontWeight: 600, marginBottom: '16px' }}>
+            <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', fontWeight: 600, marginBottom: '16px' }}>
               More in {post.category}
             </p>
             <div className="space-y-3">
@@ -150,9 +150,9 @@ export default async function BlogPostPage(
                       <p style={{ fontSize: '13px', fontWeight: 500, color: '#1C1A17', marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {rp.title}
                       </p>
-                      <p style={{ fontSize: '11px', color: '#A09890' }}>{rp.readTime}</p>
+                      <p style={{ fontSize: '11px', color: '#6B6460' }}>{rp.readTime}</p>
                     </div>
-                    <span style={{ fontSize: '12px', color: '#70798C', flexShrink: 0 }}>→</span>
+                    <span style={{ fontSize: '12px', color: '#3B6D11', flexShrink: 0 }}>→</span>
                   </div>
                 </Link>
               ))}

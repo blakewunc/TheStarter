@@ -82,7 +82,7 @@ export function ForgotPasswordForm() {
         )}
       </CardContent>
       <CardFooter className="flex justify-center">
-        <a href="/login" className="text-sm text-[#70798C] hover:underline">
+        <a href="/login" className="text-sm text-[#3B6D11] hover:underline">
           Back to sign in
         </a>
       </CardFooter>

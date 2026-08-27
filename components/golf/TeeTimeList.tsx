@@ -55,7 +55,7 @@ export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTim
     return (
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-[#252323]">Tee Times</h3>
+          <h3 className="text-lg font-semibold text-[#1C1A17]">Tee Times</h3>
         </div>
         <SkeletonList count={3} />
       </div>
@@ -65,7 +65,7 @@ export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTim
   if (error) {
     return (
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-[#252323]">Tee Times</h3>
+        <h3 className="text-lg font-semibold text-[#1C1A17]">Tee Times</h3>
         <div className="rounded-[5px] bg-red-50 p-3 text-sm text-[#8B4444]">
           Unable to load tee times. Please refresh the page.
         </div>
@@ -91,7 +91,7 @@ export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTim
             No rounds scheduled yet
           </p>
           {!scoreOnly && (
-            <p className="mt-1 text-xs text-[#A09890]">Add your first tee time to get started</p>
+            <p className="mt-1 text-xs text-[#6B6460]">Add your first tee time to get started</p>
           )}
         </div>
       ) : (
@@ -145,7 +145,7 @@ export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTim
               {!scoreOnly && (
                 <>
                   {teeTime.description && (
-                    <p className="text-xs text-[#A09890] mt-1">{teeTime.description}</p>
+                    <p className="text-xs text-[#6B6460] mt-1">{teeTime.description}</p>
                   )}
                   <div className="flex items-center gap-1.5 mt-2 pt-2 border-t border-[rgba(28,26,23,0.07)]">
                     {Array.from({ length: teeTime.num_players || 4 }).map((_: unknown, i: number) => (
@@ -156,7 +156,7 @@ export function TeeTimeList({ tripId, scoreOnly = false, onScoresSaved }: TeeTim
                         }`}
                       />
                     ))}
-                    <span className="ml-1 text-xs text-[#A09890]">
+                    <span className="ml-1 text-xs text-[#6B6460]">
                       {teeTime.players?.length || 0}/{teeTime.num_players} players
                     </span>
                   </div>

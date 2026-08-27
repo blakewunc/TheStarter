@@ -92,7 +92,7 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED]">
-        <p className="text-[#A99985]">Loading trip details...</p>
+        <p className="text-[#6B6460]">Loading trip details...</p>
       </div>
     )
   }
@@ -130,7 +130,7 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
         <CardContent className="space-y-6">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <p className="text-sm font-medium text-[#A99985]">Start Date</p>
+              <p className="text-sm font-medium text-[#6B6460]">Start Date</p>
               <p className="text-lg font-medium">
                 {parseLocalDate(trip.start_date).toLocaleDateString('en-US', {
                   month: 'long',
@@ -140,7 +140,7 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
               </p>
             </div>
             <div>
-              <p className="text-sm font-medium text-[#A99985]">End Date</p>
+              <p className="text-sm font-medium text-[#6B6460]">End Date</p>
               <p className="text-lg font-medium">
                 {parseLocalDate(trip.end_date).toLocaleDateString('en-US', {
                   month: 'long',
@@ -153,7 +153,7 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
 
           {trip.description && (
             <div>
-              <p className="text-sm font-medium text-[#A99985]">Description</p>
+              <p className="text-sm font-medium text-[#6B6460]">Description</p>
               <p className="mt-1 text-zinc-700 dark:text-zinc-300">{trip.description}</p>
             </div>
           )}
@@ -181,7 +181,7 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
           </Button>
 
           {!user && (
-            <p className="text-center text-sm text-[#A99985]">
+            <p className="text-center text-sm text-[#6B6460]">
               You'll need to sign in or create an account to join this trip
             </p>
           )}

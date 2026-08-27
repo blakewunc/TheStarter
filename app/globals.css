@@ -6,8 +6,8 @@
   --cream: #F5F1ED;
   --ink: #1C1A17;
   --muted: #6B6460;
-  --subtle: #A09890;
-  --accent: #70798C;
+  --subtle: #6B6460;  /* strict AA: was #A09890 (2.53) */
+  --accent: #3B6D11;
   --surface: #EDECE6;
   --border: rgba(28, 26, 23, 0.10);
   --border-md: rgba(28, 26, 23, 0.18);
@@ -15,7 +15,7 @@
   --green-bg: #EAF3DE;
 
   /* Font families */
-  --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
   --sans: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
 
   /* Legacy aliases (keep for backward compat with existing components) */
@@ -23,8 +23,8 @@
   --background-card: #ffffff;
   --foreground: #1C1A17;
   --border-input: rgba(28, 26, 23, 0.18);
-  --accent-hover: #5A6270;
-  --accent-active: #4A505C;
+  --accent-hover: #2F5A0E;
+  --accent-active: #264A0B;
   --beige: #EDECE6;
   --taupe: #A09890;
   --success: #3B6D11;
@@ -53,9 +53,9 @@
      2. --sand cannot be text either. Use --sand-soft as a fill with --ink on top
         (14.09), or --sand-ink when a sand-toned word is genuinely required.
 
-     The old --accent (#70798C) is 3.89 on paper and only 4.37 under white — the
-     previous primary button failed AA on its own label. It is kept for backward
-     compatibility but must not be used for new fills or text.
+     The old blue-grey accent (#70798C) is retired. It measured 3.89 on paper and
+     only 4.37 under white, so the previous primary button failed AA on its own
+     label. --accent is now pine. Do not reintroduce #70798C for text or fills.
      ──────────────────────────────────────────────────────────────────────── */
 
   --paper: #F5F1ED;
@@ -102,7 +102,7 @@
   --color-border: var(--border);
   --font-sans: var(--font-dm-sans), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-cormorant);
+  --font-serif: var(--font-playfair);
 
   /* Custom shadows */
   --shadow-card: var(--shadow);
@@ -114,8 +114,8 @@
   --cream: #F5F1ED;
   --ink: #1C1A17;
   --muted: #6B6460;
-  --subtle: #A09890;
-  --accent: #70798C;
+  --subtle: #6B6460;  /* strict AA: was #A09890 (2.53) */
+  --accent: #3B6D11;
   --surface: #EDECE6;
   --border: rgba(28, 26, 23, 0.10);
   --border-md: rgba(28, 26, 23, 0.18);
@@ -127,7 +127,7 @@
   --background-card: #ffffff;
   --foreground: #1C1A17;
   --border-input: rgba(28, 26, 23, 0.18);
-  --accent-hover: #5A6270;
+  --accent-hover: #2F5A0E;
   --beige: #EDECE6;
   --taupe: #A09890;
   --success: #3B6D11;

@@ -156,7 +156,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
   const memberCount = trip?.trip_members?.length || 0
 
   if (loading) {
-    return <p className="text-sm text-[#A99985]">Loading...</p>
+    return <p className="text-sm text-[#6B6460]">Loading...</p>
   }
 
   return (
@@ -165,15 +165,15 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
       <div className="space-y-6">
         {/* Best Dates */}
         {bestDates.length > 0 && (
-          <div className="rounded-[8px] border-2 border-[#70798C] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-            <h3 className="mb-1 text-lg font-semibold text-[#252323]">Best Dates</h3>
-            <p className="mb-4 text-sm text-[#A99985]">Dates when the most people are free</p>
+          <div className="rounded-[8px] border-2 border-[#3B6D11] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+            <h3 className="mb-1 text-lg font-semibold text-[#1C1A17]">Best Dates</h3>
+            <p className="mb-4 text-sm text-[#6B6460]">Dates when the most people are free</p>
             <div className="space-y-2">
               {bestDates.map((item, idx) => (
                 <div key={item.date} className="flex items-center gap-3 rounded-[5px] border border-[#DAD2BC] p-3">
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-[#252323]">{fmtFull(item.date)}</p>
+                      <p className="text-sm font-medium text-[#1C1A17]">{fmtFull(item.date)}</p>
                       {idx === 0 && (
                         <span className="rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs font-semibold text-[#4A7C59]">
                           Best
@@ -187,7 +187,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
                           style={{ width: `${item.percentage}%` }}
                         />
                       </div>
-                      <span className="text-xs text-[#A99985]">
+                      <span className="text-xs text-[#6B6460]">
                         {item.count}/{memberCount}
                       </span>
                     </div>
@@ -201,11 +201,11 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
         {/* Your Availability */}
         <div className="rounded-[8px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-[#252323]">Your Availability</h3>
+            <h3 className="text-lg font-semibold text-[#1C1A17]">Your Availability</h3>
             {!showAvailForm && (
               <button
                 onClick={() => setShowAvailForm(true)}
-                className="rounded-[5px] bg-[#70798C] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-[#5A6270]"
+                className="rounded-[5px] bg-[#3B6D11] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-[#2F5A0E]"
               >
                 + Add Dates
               </button>
@@ -243,14 +243,14 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="rounded-[5px] bg-[#70798C] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#5A6270] disabled:opacity-50"
+                  className="rounded-[5px] bg-[#3B6D11] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2F5A0E] disabled:opacity-50"
                 >
                   {submitting ? 'Adding...' : 'Add'}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowAvailForm(false)}
-                  className="rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+                  className="rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#1C1A17] transition-colors hover:bg-[#F5F1ED]"
                 >
                   Cancel
                 </button>
@@ -260,7 +260,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
 
           {myAvailability.length === 0 ? (
             <div className="rounded-[5px] border-2 border-dashed border-[#DAD2BC] py-10 text-center">
-              <p className="text-sm text-[#A99985]">You haven't added your availability yet</p>
+              <p className="text-sm text-[#6B6460]">You haven't added your availability yet</p>
               <p className="mt-1 text-xs text-[#DAD2BC]">Let the group know when you're free</p>
             </div>
           ) : (
@@ -270,7 +270,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
                   key={entry.id}
                   className="flex items-center justify-between rounded-[5px] border border-[#DAD2BC] p-3"
                 >
-                  <p className="text-sm font-medium text-[#252323]">
+                  <p className="text-sm font-medium text-[#1C1A17]">
                     {fmt(entry.start_date)} – {fmt(entry.end_date)}
                   </p>
                   <button
@@ -288,18 +288,18 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
         {/* Group Availability */}
         {othersAvailability.length > 0 && (
           <div className="rounded-[8px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-            <h3 className="mb-4 text-lg font-semibold text-[#252323]">Group Availability</h3>
+            <h3 className="mb-4 text-lg font-semibold text-[#1C1A17]">Group Availability</h3>
             <div className="space-y-2">
               {othersAvailability.map((entry) => (
                 <div key={entry.id} className="rounded-[5px] border border-[#DAD2BC] p-3">
-                  <p className="text-xs font-semibold text-[#70798C]">
+                  <p className="text-xs font-semibold text-[#3B6D11]">
                     {entry.user?.display_name || entry.user?.email}
                   </p>
-                  <p className="mt-0.5 text-sm text-[#252323]">
+                  <p className="mt-0.5 text-sm text-[#1C1A17]">
                     {fmt(entry.start_date)} – {fmt(entry.end_date)}
                   </p>
                   {entry.notes && (
-                    <p className="mt-0.5 text-xs text-[#A99985]">{entry.notes}</p>
+                    <p className="mt-0.5 text-xs text-[#6B6460]">{entry.notes}</p>
                   )}
                 </div>
               ))}
@@ -310,7 +310,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
         {/* Empty state for group when no one has submitted */}
         {othersAvailability.length === 0 && myAvailability.length > 0 && (
           <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-6 text-center">
-            <p className="text-sm text-[#A99985]">
+            <p className="text-sm text-[#6B6460]">
               Waiting for others to submit their availability
             </p>
           </div>
@@ -320,11 +320,11 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
       {/* Right: Announcements */}
       <div className="rounded-[8px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-[#252323]">Announcements</h3>
+          <h3 className="text-lg font-semibold text-[#1C1A17]">Announcements</h3>
           {isOrganizer && !showAnnounceForm && (
             <button
               onClick={() => setShowAnnounceForm(true)}
-              className="rounded-[5px] bg-[#70798C] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-[#5A6270]"
+              className="rounded-[5px] bg-[#3B6D11] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-[#2F5A0E]"
             >
               + Post
             </button>
@@ -355,7 +355,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
                 placeholder="Share details with the group..."
                 required
                 rows={3}
-                className="flex w-full rounded-[5px] border border-[#CEC5B0] bg-white px-3 py-2 text-sm focus:border-[#70798C] focus:outline-none focus:ring-2 focus:ring-[#70798C] focus:ring-opacity-15"
+                className="flex w-full rounded-[5px] border border-[#CEC5B0] bg-white px-3 py-2 text-sm focus:border-[#3B6D11] focus:outline-none focus:ring-2 focus:ring-[#1C1A17] focus:ring-opacity-15"
               />
             </div>
             <div className="flex items-center gap-2">
@@ -372,14 +372,14 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
               <button
                 type="submit"
                 disabled={submitting}
-                className="rounded-[5px] bg-[#70798C] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#5A6270] disabled:opacity-50"
+                className="rounded-[5px] bg-[#3B6D11] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2F5A0E] disabled:opacity-50"
               >
                 {submitting ? 'Posting...' : 'Post'}
               </button>
               <button
                 type="button"
                 onClick={() => setShowAnnounceForm(false)}
-                className="rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+                className="rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#1C1A17] transition-colors hover:bg-[#F5F1ED]"
               >
                 Cancel
               </button>
@@ -389,7 +389,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
 
         {announcements.length === 0 ? (
           <div className="py-10 text-center">
-            <p className="text-sm text-[#A99985]">
+            <p className="text-sm text-[#6B6460]">
               {isOrganizer
                 ? 'Post an update to keep the group informed'
                 : 'No announcements yet'}
@@ -401,23 +401,23 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
               <div
                 key={ann.id}
                 className={`rounded-[5px] border p-4 ${
-                  ann.is_pinned ? 'border-[#70798C] bg-[#F5F1ED]' : 'border-[#DAD2BC]'
+                  ann.is_pinned ? 'border-[#3B6D11] bg-[#F5F1ED]' : 'border-[#DAD2BC]'
                 }`}
               >
                 <div className="mb-2 flex items-start justify-between gap-2">
                   <div className="min-w-0">
                     {ann.is_pinned && (
-                      <span className="mb-1 inline-block rounded-full bg-[#70798C] px-2 py-0.5 text-xs font-semibold text-white">
+                      <span className="mb-1 inline-block rounded-full bg-[#3B6D11] px-2 py-0.5 text-xs font-semibold text-white">
                         📌 Pinned
                       </span>
                     )}
-                    <h4 className="font-semibold text-[#252323]">{ann.title}</h4>
+                    <h4 className="font-semibold text-[#1C1A17]">{ann.title}</h4>
                   </div>
                   {ann.created_by === currentUserId && (
                     <div className="flex shrink-0 gap-3">
                       <button
                         onClick={() => togglePin(ann.id, ann.is_pinned)}
-                        className="text-xs text-[#70798C] transition-colors hover:text-[#252323]"
+                        className="text-xs text-[#3B6D11] transition-colors hover:text-[#1C1A17]"
                       >
                         {ann.is_pinned ? 'Unpin' : 'Pin'}
                       </button>
@@ -430,7 +430,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
                     </div>
                   )}
                 </div>
-                <p className="whitespace-pre-wrap text-sm text-[#A99985]">{ann.content}</p>
+                <p className="whitespace-pre-wrap text-sm text-[#6B6460]">{ann.content}</p>
                 <p className="mt-2 text-xs text-[#DAD2BC]">
                   {ann.created_by_profile?.display_name || ann.created_by_profile?.email} ·{' '}
                   {new Date(ann.created_at).toLocaleDateString()}

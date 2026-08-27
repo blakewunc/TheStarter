@@ -31,7 +31,7 @@ export default function GolfTripPlannerPage() {
           <p style={{ fontSize: '10px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.40)', marginBottom: '16px', fontWeight: 600 }}>
             The Starter — Golf Trip Planner
           </p>
-          <h1 style={{ fontSize: '38px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", lineHeight: 1.15, marginBottom: '16px' }}>
+          <h1 style={{ fontSize: '38px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.15, marginBottom: '16px' }}>
             Golf Trip Planner
           </h1>
           <p style={{ fontSize: '15px', color: 'rgba(245,241,237,0.55)', lineHeight: 1.7, maxWidth: '560px' }}>
@@ -43,7 +43,7 @@ export default function GolfTripPlannerPage() {
       {/* Body */}
       <div style={{ maxWidth: '720px', margin: '0 auto', padding: '56px 24px 80px' }}>
 
-        <div className="prose prose-stone max-w-none prose-headings:font-medium prose-headings:text-[#1C1A17] prose-headings:tracking-tight prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3 prose-p:text-[#3C3835] prose-p:leading-8 prose-p:text-base prose-li:text-[#3C3835] prose-li:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-strong:text-[#1C1A17] prose-strong:font-semibold prose-a:text-[#70798C] prose-a:no-underline hover:prose-a:underline prose-hr:border-[rgba(28,26,23,0.10)] prose-hr:my-10">
+        <div className="prose prose-stone max-w-none prose-headings:font-medium prose-headings:text-[#1C1A17] prose-headings:tracking-tight prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3 prose-p:text-[#3C3835] prose-p:leading-8 prose-p:text-base prose-li:text-[#3C3835] prose-li:leading-relaxed prose-ul:my-4 prose-ol:my-4 prose-strong:text-[#1C1A17] prose-strong:font-semibold prose-a:text-[#3B6D11] prose-a:no-underline hover:prose-a:underline prose-hr:border-[rgba(28,26,23,0.10)] prose-hr:my-10">
 
           <p>
             Most golf trips fall apart not on the course but in the group chat. Someone doesn't know the tee time. Someone else missed the Venmo request. The betting format gets argued about on the first tee. This guide is about preventing all of that.
@@ -209,7 +209,7 @@ export default function GolfTripPlannerPage() {
 
         {/* AI prompt examples */}
         <div style={{ margin: '32px 0', background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '8px', padding: '24px 28px' }}>
-          <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', fontWeight: 600, marginBottom: '16px' }}>
+          <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', fontWeight: 600, marginBottom: '16px' }}>
             Tell us where. We&apos;ll build the trip.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -218,18 +218,18 @@ export default function GolfTripPlannerPage() {
               '"Scottsdale long weekend. TPC + one more course. Skins, $20 per hole."',
             ].map((prompt) => (
               <div key={prompt} style={{ background: '#F5F1ED', borderRadius: '5px', padding: '12px 16px' }}>
-                <p style={{ fontFamily: 'monospace', fontSize: '12px', color: '#70798C', lineHeight: 1.5 }}>{prompt}</p>
+                <p style={{ fontFamily: 'monospace', fontSize: '12px', color: '#3B6D11', lineHeight: 1.5 }}>{prompt}</p>
               </div>
             ))}
           </div>
-          <p style={{ fontSize: '12px', color: '#A09890', marginTop: '14px', lineHeight: 1.6 }}>
+          <p style={{ fontSize: '12px', color: '#6B6460', marginTop: '14px', lineHeight: 1.6 }}>
             The Starter turns this into a full trip draft — itinerary, foursomes, cost splits — ready to share in minutes.
           </p>
         </div>
 
         {/* CTA */}
         <div style={{ marginTop: '56px', background: '#1C1A17', borderRadius: '8px', padding: '36px', textAlign: 'center' }}>
-          <p style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", marginBottom: '8px' }}>
+          <p style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '8px' }}>
             Ready to plan your trip?
           </p>
           <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', marginBottom: '24px', lineHeight: 1.7 }}>
@@ -253,7 +253,7 @@ export default function GolfTripPlannerPage() {
 
         {/* Internal links */}
         <div style={{ marginTop: '48px', paddingTop: '32px', borderTop: '0.5px solid rgba(28,26,23,0.10)' }}>
-          <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', fontWeight: 600, marginBottom: '16px' }}>
+          <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', fontWeight: 600, marginBottom: '16px' }}>
             More from The Starter
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
@@ -267,7 +267,7 @@ export default function GolfTripPlannerPage() {
               <Link
                 key={href}
                 href={href}
-                style={{ fontSize: '12px', color: '#70798C', textDecoration: 'none', background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '5px', padding: '8px 14px' }}
+                style={{ fontSize: '12px', color: '#3B6D11', textDecoration: 'none', background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: '5px', padding: '8px 14px' }}
               >
                 {label} →
               </Link>

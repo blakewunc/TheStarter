@@ -104,17 +104,17 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
     }
   }
 
-  const field = 'w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#252323] placeholder:text-[#A99985] focus:border-[#70798C] focus:outline-none'
+  const field = 'w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-2 text-sm text-[#1C1A17] placeholder:text-[#6B6460] focus:border-[#3B6D11] focus:outline-none'
 
   return (
     <div className="space-y-8">
 
       {/* Main content */}
       <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-        <h2 className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#A99985]">Content</h2>
+        <h2 className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#6B6460]">Content</h2>
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Title</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Title</label>
             <input
               className={field}
               placeholder="Post title"
@@ -123,7 +123,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Slug</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Slug</label>
             <input
               className={field}
               placeholder="post-url-slug"
@@ -132,7 +132,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Excerpt</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Excerpt</label>
             <textarea
               className={`${field} resize-none`}
               rows={2}
@@ -142,7 +142,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Content</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Content</label>
             <textarea
               className={`${field} resize-y font-mono text-xs leading-relaxed`}
               rows={20}
@@ -156,10 +156,10 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
 
       {/* Details */}
       <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-        <h2 className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#A99985]">Details</h2>
+        <h2 className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#6B6460]">Details</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Author</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Author</label>
             <input
               className={field}
               placeholder="Author name"
@@ -168,7 +168,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Category</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Category</label>
             <input
               className={field}
               placeholder="e.g. Golf Tips, Trip Reports"
@@ -177,7 +177,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             />
           </div>
           <div className="sm:col-span-2">
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Featured image URL</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Featured image URL</label>
             <input
               className={field}
               placeholder="https://..."
@@ -190,10 +190,10 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
 
       {/* SEO */}
       <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-        <h2 className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#A99985]">SEO</h2>
+        <h2 className="mb-5 text-xs font-semibold uppercase tracking-widest text-[#6B6460]">SEO</h2>
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Meta title</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Meta title</label>
             <input
               className={field}
               placeholder="Defaults to post title if blank"
@@ -202,7 +202,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Meta description</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Meta description</label>
             <textarea
               className={`${field} resize-none`}
               rows={2}
@@ -212,7 +212,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-semibold text-[#252323]">Focus keyword</label>
+            <label className="mb-1 block text-xs font-semibold text-[#1C1A17]">Focus keyword</label>
             <input
               className={field}
               placeholder="Primary keyword for this post"
@@ -229,7 +229,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
           <button
             onClick={() => handleSave()}
             disabled={saving}
-            className="rounded-[5px] bg-[#252323] px-5 py-2 text-sm font-semibold text-white hover:bg-[#70798C] disabled:opacity-50"
+            className="rounded-[5px] bg-[#252323] px-5 py-2 text-sm font-semibold text-white hover:bg-[#3B6D11] disabled:opacity-50"
           >
             {saving ? 'Saving…' : 'Save draft'}
           </button>
@@ -237,7 +237,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             <button
               onClick={() => handleSave(true)}
               disabled={saving}
-              className="rounded-[5px] border border-[#252323] px-5 py-2 text-sm font-semibold text-[#252323] hover:bg-[#F5F1ED] disabled:opacity-50"
+              className="rounded-[5px] border border-[#252323] px-5 py-2 text-sm font-semibold text-[#1C1A17] hover:bg-[#F5F1ED] disabled:opacity-50"
             >
               Publish
             </button>
@@ -246,7 +246,7 @@ export function BlogPostForm({ initial }: { initial?: BlogPost }) {
             <button
               onClick={() => handleSave(false)}
               disabled={saving}
-              className="rounded-[5px] border border-[#DAD2BC] px-5 py-2 text-sm font-semibold text-[#70798C] hover:bg-[#F5F1ED] disabled:opacity-50"
+              className="rounded-[5px] border border-[#DAD2BC] px-5 py-2 text-sm font-semibold text-[#3B6D11] hover:bg-[#F5F1ED] disabled:opacity-50"
             >
               Unpublish
             </button>

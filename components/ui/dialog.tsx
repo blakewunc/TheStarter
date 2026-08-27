@@ -62,7 +62,7 @@ export function DialogTitle({ children }: { children: React.ReactNode }) {
 }
 
 export function DialogDescription({ children }: { children: React.ReactNode }) {
-  return <p className="mt-1 text-sm text-[#A99985]">{children}</p>
+  return <p className="mt-1 text-sm text-[#6B6460]">{children}</p>
 }
 
 export function DialogFooter({ children }: { children: React.ReactNode }) {

@@ -99,7 +99,7 @@ export function EquipmentCoordination({ tripId }: EquipmentCoordinationProps) {
     <div className="space-y-6">
       {/* My Golf Profile */}
       <div>
-        <h4 className="font-medium text-[#252323] mb-3">My Golf Profile</h4>
+        <h4 className="font-medium text-[#1C1A17] mb-3">My Golf Profile</h4>
         <form onSubmit={handleSave} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="handicap">Handicap</Label>
@@ -113,19 +113,19 @@ export function EquipmentCoordination({ tripId }: EquipmentCoordinationProps) {
               defaultValue={myEquipment?.handicap?.toString() || ''}
               disabled={saving}
             />
-            <p className="text-[11px] text-[#A99985]">Used for group assignments</p>
+            <p className="text-[11px] text-[#6B6460]">Used for group assignments</p>
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm font-medium text-[#252323]">Equipment Needs</p>
+            <p className="text-sm font-medium text-[#1C1A17]">Equipment Needs</p>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
                 name="needs_clubs"
                 defaultChecked={myEquipment?.needs_clubs}
-                className="h-4 w-4 rounded border-[#CEC5B0] text-[#70798C] focus:ring-[#70798C]"
+                className="h-4 w-4 rounded border-[#CEC5B0] text-[#3B6D11] focus:ring-[#1C1A17]"
               />
-              <span className="text-sm text-[#252323]">Need rental clubs</span>
+              <span className="text-sm text-[#1C1A17]">Need rental clubs</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -133,9 +133,9 @@ export function EquipmentCoordination({ tripId }: EquipmentCoordinationProps) {
                 type="checkbox"
                 name="needs_cart"
                 defaultChecked={myEquipment?.needs_cart}
-                className="h-4 w-4 rounded border-[#CEC5B0] text-[#70798C] focus:ring-[#70798C]"
+                className="h-4 w-4 rounded border-[#CEC5B0] text-[#3B6D11] focus:ring-[#1C1A17]"
               />
-              <span className="text-sm text-[#252323]">Need golf cart</span>
+              <span className="text-sm text-[#1C1A17]">Need golf cart</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -143,9 +143,9 @@ export function EquipmentCoordination({ tripId }: EquipmentCoordinationProps) {
                 type="checkbox"
                 name="needs_push_cart"
                 defaultChecked={myEquipment?.needs_push_cart}
-                className="h-4 w-4 rounded border-[#CEC5B0] text-[#70798C] focus:ring-[#70798C]"
+                className="h-4 w-4 rounded border-[#CEC5B0] text-[#3B6D11] focus:ring-[#1C1A17]"
               />
-              <span className="text-sm text-[#252323]">Need push cart</span>
+              <span className="text-sm text-[#1C1A17]">Need push cart</span>
             </label>
           </div>
 
@@ -169,7 +169,7 @@ export function EquipmentCoordination({ tripId }: EquipmentCoordinationProps) {
       {/* Group Summary */}
       {equipment.length > 0 && (
         <div className="pt-4 border-t border-[#DAD2BC]">
-          <h4 className="font-medium text-[#252323] mb-3">Group Summary</h4>
+          <h4 className="font-medium text-[#1C1A17] mb-3">Group Summary</h4>
           <div className="space-y-2">
             {equipment.map((eq) => (
               <div
@@ -177,7 +177,7 @@ export function EquipmentCoordination({ tripId }: EquipmentCoordinationProps) {
                 className="rounded-[5px] border border-[#DAD2BC] bg-white p-3"
               >
                 <div className="flex items-center justify-between mb-1">
-                  <p className="font-medium text-[#252323]">{eq.user_name}</p>
+                  <p className="font-medium text-[#1C1A17]">{eq.user_name}</p>
                   {eq.handicap !== null && (
                     <span className="rounded-full bg-[#4A7C59]/10 px-2 py-0.5 text-xs font-semibold text-[#4A7C59]">
                       HCP {eq.handicap}
@@ -186,26 +186,26 @@ export function EquipmentCoordination({ tripId }: EquipmentCoordinationProps) {
                 </div>
                 <div className="flex flex-wrap gap-2 text-xs">
                   {eq.needs_clubs && (
-                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#252323]">
+                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#1C1A17]">
                       Clubs
                     </span>
                   )}
                   {eq.needs_cart && (
-                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#252323]">
+                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#1C1A17]">
                       Cart
                     </span>
                   )}
                   {eq.needs_push_cart && (
-                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#252323]">
+                    <span className="rounded-full bg-[#F5F1ED] px-2 py-1 text-[#1C1A17]">
                       Push Cart
                     </span>
                   )}
                   {!eq.needs_clubs && !eq.needs_cart && !eq.needs_push_cart && eq.handicap === null && (
-                    <span className="text-[#A99985]">No info yet</span>
+                    <span className="text-[#6B6460]">No info yet</span>
                   )}
                 </div>
                 {eq.notes && (
-                  <p className="text-xs text-[#A99985] mt-2">{eq.notes}</p>
+                  <p className="text-xs text-[#6B6460] mt-2">{eq.notes}</p>
                 )}
               </div>
             ))}

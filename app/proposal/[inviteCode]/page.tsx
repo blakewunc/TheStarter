@@ -185,26 +185,26 @@ export default async function ProposalPage(
       {/* Hero */}
       <div className={trip.cover_image_url ? 'bg-white' : 'bg-gradient-to-b from-white to-[#F5F1ED]'}>
         <div className="mx-auto max-w-3xl px-6 py-16 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#70798C]">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">
             Trip Proposal
           </p>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-[#252323] sm:text-5xl">
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-[#1C1A17] sm:text-5xl">
             {trip.title}
           </h1>
           {trip.destination && (
-            <p className="mb-2 text-lg text-[#A99985]">{trip.destination}</p>
+            <p className="mb-2 text-lg text-[#6B6460]">{trip.destination}</p>
           )}
           {dateRange && (
-            <p className="text-base text-[#A99985]">{dateRange}</p>
+            <p className="text-base text-[#6B6460]">{dateRange}</p>
           )}
           {trip.description && (
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#A99985]">
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#6B6460]">
               {trip.description}
             </p>
           )}
 
           <div className="mt-6 flex items-center justify-center gap-4 text-sm">
-            <span className="text-[#A99985]">{trip.member_count} invited</span>
+            <span className="text-[#6B6460]">{trip.member_count} invited</span>
             <span className="text-[#DAD2BC]">&bull;</span>
             <span className="font-semibold text-[#4A7C59]">
               {trip.accepted_count} confirmed
@@ -213,7 +213,7 @@ export default async function ProposalPage(
 
           <div className="mt-8">
             <JoinButton inviteCode={inviteCode} size="lg" />
-            <p className="mt-3 text-xs text-[#A99985]">Free to join — no credit card required</p>
+            <p className="mt-3 text-xs text-[#6B6460]">Free to join — no credit card required</p>
           </div>
         </div>
       </div>
@@ -221,40 +221,40 @@ export default async function ProposalPage(
       {/* Budget */}
       {categories.length > 0 && (
         <div className="mx-auto max-w-3xl px-6 py-12">
-          <h2 className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-[#70798C]">
+          <h2 className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">
             Estimated Budget
           </h2>
 
           <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="rounded-[8px] border-2 border-[#70798C] bg-white p-5 text-center shadow-[0_2px_6px_rgba(0,0,0,0.08)] sm:order-first">
-              <p className="text-4xl font-bold text-[#70798C]">
+            <div className="rounded-[8px] border-2 border-[#3B6D11] bg-white p-5 text-center shadow-[0_2px_6px_rgba(0,0,0,0.08)] sm:order-first">
+              <p className="text-4xl font-bold text-[#3B6D11]">
                 ${perPerson.toLocaleString()}
               </p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#A99985]">Per Person</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-[#6B6460]">Per Person</p>
             </div>
             <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-              <p className="text-2xl font-bold text-[#252323]">
+              <p className="text-2xl font-bold text-[#1C1A17]">
                 ${totalBudget.toLocaleString()}
               </p>
-              <p className="mt-1 text-xs text-[#A99985]">Total Budget</p>
+              <p className="mt-1 text-xs text-[#6B6460]">Total Budget</p>
             </div>
             <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-5 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-              <p className="text-2xl font-bold text-[#252323]">
+              <p className="text-2xl font-bold text-[#1C1A17]">
                 {guestCount}
               </p>
-              <p className="mt-1 text-xs text-[#A99985]">{trip.expected_guests ? 'Expected' : 'People'}</p>
+              <p className="mt-1 text-xs text-[#6B6460]">{trip.expected_guests ? 'Expected' : 'People'}</p>
             </div>
           </div>
 
           <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-[#252323]">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-[#1C1A17]">
               Breakdown
             </h3>
             <div className="space-y-3">
               {categories.map((cat) => (
                 <div key={cat.id} className="flex items-center justify-between border-b border-[#F5F1ED] pb-3 last:border-0 last:pb-0">
-                  <span className="text-sm text-[#252323]">{cat.name}</span>
-                  <span className="text-sm font-medium text-[#252323]">
+                  <span className="text-sm text-[#1C1A17]">{cat.name}</span>
+                  <span className="text-sm font-medium text-[#1C1A17]">
                     ${cat.estimated_cost.toLocaleString()}
                   </span>
                 </div>
@@ -267,14 +267,14 @@ export default async function ProposalPage(
       {/* Itinerary */}
       {dates.length > 0 && (
         <div className="mx-auto max-w-3xl px-6 py-12">
-          <h2 className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-[#70798C]">
+          <h2 className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">
             Planned Activities
           </h2>
 
           <div className="space-y-6">
             {dates.map((date) => (
               <div key={date}>
-                <h3 className="mb-3 text-base font-semibold text-[#252323]">
+                <h3 className="mb-3 text-base font-semibold text-[#1C1A17]">
                   {formatDate(date)}
                 </h3>
                 <div className="space-y-2">
@@ -284,20 +284,20 @@ export default async function ProposalPage(
                       className="rounded-[5px] border border-[#DAD2BC] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)] overflow-hidden"
                     >
                       <div className="flex items-stretch">
-                        <div className="w-1 flex-shrink-0 bg-[#70798C]" />
+                        <div className="w-1 flex-shrink-0 bg-[#3B6D11]" />
                         <div className="flex items-start gap-3 p-4">
                           {item.time && (
-                            <span className="mt-0.5 min-w-[48px] text-sm font-semibold text-[#70798C]">
+                            <span className="mt-0.5 min-w-[48px] text-sm font-semibold text-[#3B6D11]">
                               {item.time}
                             </span>
                           )}
                           <div>
-                            <p className="font-medium text-[#252323]">{item.title}</p>
+                            <p className="font-medium text-[#1C1A17]">{item.title}</p>
                             {item.location && (
-                              <p className="mt-0.5 text-sm text-[#A99985]">{item.location}</p>
+                              <p className="mt-0.5 text-sm text-[#6B6460]">{item.location}</p>
                             )}
                             {item.description && (
-                              <p className="mt-1 text-sm text-[#A99985]">{item.description}</p>
+                              <p className="mt-1 text-sm text-[#6B6460]">{item.description}</p>
                             )}
                           </div>
                         </div>
@@ -314,12 +314,12 @@ export default async function ProposalPage(
       {/* Bottom CTA */}
       <div className="bg-white">
         <div className="mx-auto max-w-3xl px-6 py-16 text-center">
-          <h2 className="mb-3 text-2xl font-bold text-[#252323]">Ready to join?</h2>
-          <p className="mb-6 text-[#A99985]">
+          <h2 className="mb-3 text-2xl font-bold text-[#1C1A17]">Ready to join?</h2>
+          <p className="mb-6 text-[#6B6460]">
             Sign up to confirm your spot and start collaborating with the group.
           </p>
           <JoinButton inviteCode={inviteCode} size="lg" />
-          <p className="mt-3 text-xs text-[#A99985]">Free to join — no credit card required</p>
+          <p className="mt-3 text-xs text-[#6B6460]">Free to join — no credit card required</p>
         </div>
       </div>
 
@@ -327,7 +327,7 @@ export default async function ProposalPage(
       <div className="py-8 text-center">
         <a
           href={isGolf ? `https://thestarter.app?utm_source=proposal&utm_medium=referral&utm_campaign=trip_share` : `https://grouptrip-mu.vercel.app?utm_source=proposal&utm_medium=referral&utm_campaign=trip_share`}
-          className="text-xs text-[#A99985] underline-offset-2 hover:underline"
+          className="text-xs text-[#6B6460] underline-offset-2 hover:underline"
         >
           Powered by {brandName}
         </a>

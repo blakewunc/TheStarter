@@ -31,7 +31,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
           <p style={{ fontSize: '10px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.40)', marginBottom: '10px' }}>
             The Starter · Journal
           </p>
-          <h1 style={{ fontSize: '36px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", lineHeight: 1.15, marginBottom: '8px' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.15, marginBottom: '8px' }}>
             Golf trip intel.
           </h1>
           <p style={{ fontSize: '14px', color: 'rgba(245,241,237,0.45)', lineHeight: 1.6 }}>
@@ -72,7 +72,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
         </div>
 
         {filtered.length === 0 ? (
-          <p style={{ fontSize: '14px', color: '#A09890', textAlign: 'center', padding: '48px 0' }}>
+          <p style={{ fontSize: '14px', color: '#6B6460', textAlign: 'center', padding: '48px 0' }}>
             No posts in this category yet.
           </p>
         ) : (
@@ -92,7 +92,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                       <span style={{ fontSize: '10px', color: 'rgba(245,241,237,0.30)' }}>·</span>
                       <span style={{ fontSize: '10px', color: 'rgba(245,241,237,0.35)' }}>{featured.readTime}</span>
                     </div>
-                    <h2 style={{ fontSize: '24px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", lineHeight: 1.25, marginBottom: '10px' }}>
+                    <h2 style={{ fontSize: '24px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.25, marginBottom: '10px' }}>
                       {featured.title}
                     </h2>
                     <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', lineHeight: 1.6 }}>
@@ -100,10 +100,10 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                     </p>
                   </div>
                   <div style={{ padding: '14px 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '11px', color: '#A09890' }}>
+                    <span style={{ fontSize: '11px', color: '#6B6460' }}>
                       {new Date(featured.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                     </span>
-                    <span style={{ fontSize: '12px', color: '#70798C', fontWeight: 500 }}>Read →</span>
+                    <span style={{ fontSize: '12px', color: '#3B6D11', fontWeight: 500 }}>Read →</span>
                   </div>
                 </article>
               </Link>
@@ -119,11 +119,11 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                       className="hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                        <span style={{ fontSize: '10px', letterSpacing: '0.10em', textTransform: 'uppercase', color: '#70798C', fontWeight: 600 }}>
+                        <span style={{ fontSize: '10px', letterSpacing: '0.10em', textTransform: 'uppercase', color: '#3B6D11', fontWeight: 600 }}>
                           {CATEGORY_EMOJI[post.category ?? ''] || ''} {post.category}
                         </span>
                         <span style={{ fontSize: '10px', color: '#DAD2BC' }}>·</span>
-                        <span style={{ fontSize: '10px', color: '#A09890' }}>{post.readTime}</span>
+                        <span style={{ fontSize: '10px', color: '#6B6460' }}>{post.readTime}</span>
                       </div>
                       <h3 style={{ fontSize: '16px', fontWeight: 500, color: '#1C1A17', lineHeight: 1.35, marginBottom: '8px' }}>
                         {post.title}
@@ -131,7 +131,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                       <p style={{ fontSize: '12px', color: '#6B6460', lineHeight: 1.6, marginBottom: '14px' }}>
                         {post.excerpt}
                       </p>
-                      <p style={{ fontSize: '11px', color: '#A09890' }}>
+                      <p style={{ fontSize: '11px', color: '#6B6460' }}>
                         {new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </p>
                     </article>
@@ -144,7 +144,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
 
         {/* CTA */}
         <div style={{ marginTop: '56px', background: '#1C1A17', borderRadius: '8px', padding: '32px', textAlign: 'center' }}>
-          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Cormorant Garamond', Georgia, serif", marginBottom: '8px' }}>
+          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '8px' }}>
             Planning a golf trip?
           </p>
           <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', marginBottom: '20px' }}>

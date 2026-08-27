@@ -206,7 +206,7 @@ export default async function RecapPage(
         {/* Golf Leaderboard */}
         {isGolf && leaderboard.length > 0 && (
           <div>
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#70798C]">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">
               Leaderboard
             </h2>
             <div className="rounded-[5px] border border-[#DAD2BC] bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)] overflow-hidden">
@@ -220,24 +220,24 @@ export default async function RecapPage(
                     className={`flex items-center justify-between px-5 py-3.5 ${i < leaderboard.length - 1 ? 'border-b border-[#F5F1ED]' : ''}`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className={`w-5 text-sm font-bold ${isWinner ? 'text-[#B8956A]' : 'text-[#A99985]'}`}>
+                      <span className={`w-5 text-sm font-bold ${isWinner ? 'text-[#B8956A]' : 'text-[#6B6460]'}`}>
                         {i + 1}
                       </span>
-                      <span className="font-medium text-[#252323]">{player.name}</span>
+                      <span className="font-medium text-[#1C1A17]">{player.name}</span>
                       {isWinner && <span className="text-sm">🏆</span>}
                     </div>
                     <div className="text-right">
-                      <span className={`text-sm font-bold ${diff < 0 ? 'text-[#4A7C59]' : diff > 0 ? 'text-[#8B4444]' : 'text-[#A99985]'}`}>
+                      <span className={`text-sm font-bold ${diff < 0 ? 'text-[#4A7C59]' : diff > 0 ? 'text-[#8B4444]' : 'text-[#6B6460]'}`}>
                         {diffStr}
                       </span>
-                      <span className="ml-1.5 text-xs text-[#A99985]">({player.totalScore})</span>
+                      <span className="ml-1.5 text-xs text-[#6B6460]">({player.totalScore})</span>
                     </div>
                   </div>
                 )
               })}
             </div>
             {(golfRounds as any[]).length > 1 && (
-              <p className="mt-2 text-xs text-[#A99985] text-right">
+              <p className="mt-2 text-xs text-[#6B6460] text-right">
                 {(golfRounds as any[]).length} rounds total
               </p>
             )}
@@ -247,28 +247,28 @@ export default async function RecapPage(
         {/* Itinerary */}
         {dates.length > 0 && (
           <div>
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#70798C]">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">
               What We Did
             </h2>
             <div className="space-y-6">
               {dates.map((date) => (
                 <div key={date}>
-                  <h3 className="mb-3 text-sm font-semibold text-[#252323]">{formatDate(date)}</h3>
+                  <h3 className="mb-3 text-sm font-semibold text-[#1C1A17]">{formatDate(date)}</h3>
                   <div className="space-y-2">
                     {itineraryByDate[date].map((item) => (
                       <div key={item.id} className="rounded-[5px] border border-[#DAD2BC] bg-white overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
                         <div className="flex items-stretch">
-                          <div className={`w-1 flex-shrink-0 ${isGolf ? 'bg-[#12733C]' : 'bg-[#70798C]'}`} />
+                          <div className={`w-1 flex-shrink-0 ${isGolf ? 'bg-[#12733C]' : 'bg-[#3B6D11]'}`} />
                           <div className="flex items-start gap-3 p-4">
                             {item.time && (
-                              <span className={`mt-0.5 min-w-[48px] text-sm font-semibold ${isGolf ? 'text-[#12733C]' : 'text-[#70798C]'}`}>
+                              <span className={`mt-0.5 min-w-[48px] text-sm font-semibold ${isGolf ? 'text-[#12733C]' : 'text-[#3B6D11]'}`}>
                                 {item.time}
                               </span>
                             )}
                             <div>
-                              <p className="font-medium text-[#252323]">{item.title}</p>
-                              {item.location && <p className="mt-0.5 text-sm text-[#A99985]">{item.location}</p>}
-                              {item.description && <p className="mt-1 text-sm text-[#A99985]">{item.description}</p>}
+                              <p className="font-medium text-[#1C1A17]">{item.title}</p>
+                              {item.location && <p className="mt-0.5 text-sm text-[#6B6460]">{item.location}</p>}
+                              {item.description && <p className="mt-1 text-sm text-[#6B6460]">{item.description}</p>}
                             </div>
                           </div>
                         </div>
@@ -283,15 +283,15 @@ export default async function RecapPage(
 
         {/* CTA */}
         <div className="rounded-[5px] border border-[#DAD2BC] bg-white p-8 text-center shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-          <p className="mb-2 text-base font-semibold text-[#252323]">
+          <p className="mb-2 text-base font-semibold text-[#1C1A17]">
             {isGolf ? 'Ready for the next round?' : 'Plan your own trip'}
           </p>
-          <p className="mb-4 text-sm text-[#A99985]">
+          <p className="mb-4 text-sm text-[#6B6460]">
             {'The Starter makes it easy to organize your next golf getaway.'}
           </p>
           <Link
             href={`${brandDomain}?utm_source=recap&utm_medium=referral&utm_campaign=trip_share`}
-            className="inline-flex items-center gap-2 rounded-[5px] bg-[#70798C] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#5A6270]"
+            className="inline-flex items-center gap-2 rounded-[5px] bg-[#3B6D11] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#2F5A0E]"
           >
             {isGolf ? 'Plan a Golf Trip' : 'Plan a Trip'} →
           </Link>
@@ -302,7 +302,7 @@ export default async function RecapPage(
       <div className="py-8 text-center">
         <a
           href={`${brandDomain}?utm_source=recap&utm_medium=referral&utm_campaign=trip_share`}
-          className="text-xs text-[#A99985] underline-offset-2 hover:underline"
+          className="text-xs text-[#6B6460] underline-offset-2 hover:underline"
         >
           Powered by {brandName}
         </a>

@@ -58,7 +58,7 @@ export function PuttingCountdown({ tripStart, tripLabel, bookingWindow = 90 }: P
               fontWeight: 500,
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: '#888780',
+              color: '#6B6460',
               marginBottom: '4px',
             }}>
               Tee it up in
@@ -76,7 +76,7 @@ export function PuttingCountdown({ tripStart, tripLabel, bookingWindow = 90 }: P
               <span style={{
                 fontFamily: 'var(--sans)',
                 fontSize: '13px',
-                color: '#888780',
+                color: '#6B6460',
               }}>
                 days
               </span>
@@ -84,7 +84,7 @@ export function PuttingCountdown({ tripStart, tripLabel, bookingWindow = 90 }: P
             <div style={{
               fontFamily: 'var(--sans)',
               fontSize: '11px',
-              color: '#888780',
+              color: '#6B6460',
               marginTop: '6px',
             }}>
               {[tripLabel, pctLabel].filter(Boolean).join(' · ')}
@@ -101,7 +101,7 @@ export function PuttingCountdown({ tripStart, tripLabel, bookingWindow = 90 }: P
             }}>
               {headline}
             </div>
-            <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', marginTop: '4px' }}>
+            <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#6B6460', marginTop: '4px' }}>
               {tripLabel}
             </div>
           </>

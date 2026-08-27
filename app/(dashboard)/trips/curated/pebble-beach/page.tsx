@@ -249,7 +249,7 @@ export default function PebbleBeachCuratedPage() {
             Back to trips
           </Link>
           <p style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.55)', marginBottom: 8 }}>Curated Golf Package · Premium</p>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 40, fontWeight: 300, color: '#F5F1ED', lineHeight: 1.05, margin: 0 }}>
+          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 40, fontWeight: 300, color: '#F5F1ED', lineHeight: 1.05, margin: 0 }}>
             Pebble Beach<br /><em style={{ fontStyle: 'italic' }}>& Monterey Peninsula</em>
           </h1>
           <p style={{ fontSize: 13, color: 'rgba(245,241,237,0.7)', marginTop: 10 }}>
@@ -281,12 +281,12 @@ export default function PebbleBeachCuratedPage() {
           <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: 8, padding: 28, marginBottom: 36 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
               <div>
-                <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 4 }}>Booking Playbook</p>
-                <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 24, fontWeight: 300, color: '#1C1A17', margin: 0 }}>
+                <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 4 }}>Booking Playbook</p>
+                <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 300, color: '#1C1A17', margin: 0 }}>
                   This is where Pebble trips are won or lost
                 </h2>
               </div>
-              <button onClick={() => setTimelineOpen(false)} style={{ fontSize: 12, color: '#A09890', background: 'transparent', border: 'none', cursor: 'pointer', padding: 4 }}>Hide ↑</button>
+              <button onClick={() => setTimelineOpen(false)} style={{ fontSize: 12, color: '#6B6460', background: 'transparent', border: 'none', cursor: 'pointer', padding: 4 }}>Hide ↑</button>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -333,8 +333,8 @@ export default function PebbleBeachCuratedPage() {
 
             {/* Itinerary */}
             <div style={{ marginBottom: 40 }}>
-              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 6 }}>The Itinerary</p>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 24px' }}>
+              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>The Itinerary</p>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 24px' }}>
                 5 days. Every moment matters.
               </h2>
 
@@ -351,7 +351,7 @@ export default function PebbleBeachCuratedPage() {
                   >
                     <div style={{ padding: '14px 20px', borderBottom: '0.5px solid rgba(28,26,23,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: (day as any).highlight ? '#1C1A17' : 'transparent' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                        <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 20, fontWeight: 300, color: (day as any).highlight ? '#F5F1ED' : '#1C1A17' }}>{day.label}</span>
+                        <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 300, color: (day as any).highlight ? '#F5F1ED' : '#1C1A17' }}>{day.label}</span>
                         <span style={{ width: 1, height: 14, background: (day as any).highlight ? 'rgba(245,241,237,0.2)' : 'rgba(28,26,23,0.15)' }} />
                         <span style={{ fontSize: 12, color: (day as any).highlight ? 'rgba(245,241,237,0.7)' : '#6B6460' }}>{day.theme}</span>
                         {(day as any).highlight && (
@@ -371,7 +371,7 @@ export default function PebbleBeachCuratedPage() {
                           <div style={{ flex: 1 }}>
                             <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
                               <span style={{ fontSize: 13, fontWeight: 500, color: '#1C1A17' }}>{item.title}</span>
-                              <span style={{ fontSize: 11, color: '#A09890' }}>{item.time}</span>
+                              <span style={{ fontSize: 11, color: '#6B6460' }}>{item.time}</span>
                             </div>
                             <p style={{ fontSize: 12, color: '#6B6460', margin: '2px 0 0', lineHeight: 1.5 }}>{item.sub}</p>
                           </div>
@@ -385,8 +385,8 @@ export default function PebbleBeachCuratedPage() {
 
             {/* Accommodation */}
             <div>
-              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 6 }}>Where to Stay</p>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 6px' }}>
+              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>Where to Stay</p>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 6px' }}>
                 Stay on-property. Non-negotiable.
               </h2>
               <p style={{ fontSize: 13, color: '#6B6460', marginBottom: 20 }}>
@@ -404,7 +404,7 @@ export default function PebbleBeachCuratedPage() {
                           <span style={{ fontSize: 10, letterSpacing: '0.06em', background: '#EAF3DE', color: '#3B6D11', padding: '2px 8px', borderRadius: 10 }}>{option.badge}</span>
                         )}
                       </div>
-                      <p style={{ fontSize: 11, color: '#A09890', marginBottom: 6, letterSpacing: '0.04em' }}>{option.type}</p>
+                      <p style={{ fontSize: 11, color: '#6B6460', marginBottom: 6, letterSpacing: '0.04em' }}>{option.type}</p>
                       <p style={{ fontSize: 13, color: '#6B6460', lineHeight: 1.55, margin: '0 0 10px' }}>{option.description}</p>
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
                         <span style={{ fontSize: 12, color: '#1C1A17', fontWeight: 500 }}>{option.priceRange}</span>
@@ -412,7 +412,7 @@ export default function PebbleBeachCuratedPage() {
                           href={option.bookingUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{ fontSize: 12, color: '#70798C', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4, letterSpacing: '0.03em' }}
+                          style={{ fontSize: 12, color: '#3B6D11', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4, letterSpacing: '0.03em' }}
                         >
                           Book directly with resort
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M2 8L8 2M8 2H4M8 2V6"/></svg>
@@ -429,7 +429,7 @@ export default function PebbleBeachCuratedPage() {
           <div style={{ position: 'sticky', top: 24 }}>
 
             <div style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: 8, padding: 24, marginBottom: 16 }}>
-              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 16 }}>Plan your trip</p>
+              <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 16 }}>Plan your trip</p>
 
               {/* Booking status */}
               {startDate && (
@@ -476,11 +476,11 @@ export default function PebbleBeachCuratedPage() {
 
               {/* Budget estimate */}
               <div style={{ background: '#F5F1ED', borderRadius: 6, padding: '16px', marginBottom: 20 }}>
-                <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#A09890', marginBottom: 4 }}>Estimated per person</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 44, fontWeight: 300, color: '#1C1A17', lineHeight: 1, margin: '0 0 4px', letterSpacing: '-0.02em' }}>
+                <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 4 }}>Estimated per person</p>
+                <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 44, fontWeight: 300, color: '#1C1A17', lineHeight: 1, margin: '0 0 4px', letterSpacing: '-0.02em' }}>
                   ${totalPerPerson.toLocaleString()}
                 </p>
-                <p style={{ fontSize: 11, color: '#A09890' }}>${totalTrip.toLocaleString()} total for {guests} players</p>
+                <p style={{ fontSize: 11, color: '#6B6460' }}>${totalTrip.toLocaleString()} total for {guests} players</p>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 0, marginBottom: 20 }}>
@@ -511,7 +511,7 @@ export default function PebbleBeachCuratedPage() {
                 {loading ? 'Building your trip...' : 'Build This Trip →'}
               </button>
 
-              <p style={{ fontSize: 11, color: '#A09890', textAlign: 'center', marginTop: 10 }}>
+              <p style={{ fontSize: 11, color: '#6B6460', textAlign: 'center', marginTop: 10 }}>
                 Full itinerary pre-loaded. Edit anything after.
               </p>
             </div>
@@ -540,7 +540,7 @@ export default function PebbleBeachCuratedPage() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
       `}</style>
     </div>
   )

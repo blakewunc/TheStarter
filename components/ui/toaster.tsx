@@ -9,7 +9,7 @@ export function Toaster() {
       toastOptions={{
         style: {
           background: '#ffffff',
-          color: '#252323',
+          color: '#1C1A17',
           border: '1px solid #DAD2BC',
           borderRadius: '5px',
           fontSize: '14px',

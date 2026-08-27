@@ -89,11 +89,11 @@ export function AnnouncementsCard({ tripId, isOrganizer }: AnnouncementsCardProp
   return (
     <div className="rounded-[8px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-[#252323]">Announcements</h3>
+        <h3 className="text-lg font-semibold text-[#1C1A17]">Announcements</h3>
         {isOrganizer && (
           <button
             onClick={() => setShowForm(!showForm)}
-            className="text-sm font-medium text-[#70798C] transition-colors hover:text-[#252323]"
+            className="text-sm font-medium text-[#3B6D11] transition-colors hover:text-[#1C1A17]"
           >
             {showForm ? 'Cancel' : 'Post Update'}
           </button>
@@ -109,19 +109,19 @@ export function AnnouncementsCard({ tripId, isOrganizer }: AnnouncementsCardProp
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-            className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-1.5 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none"
+            className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-1.5 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none"
           />
           <textarea
             placeholder="Details (optional)"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={2}
-            className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-1.5 text-sm text-[#252323] placeholder-[#A99985] focus:border-[#70798C] focus:outline-none"
+            className="w-full rounded-[5px] border border-[#DAD2BC] bg-white px-3 py-1.5 text-sm text-[#1C1A17] placeholder-[#6B6460] focus:border-[#3B6D11] focus:outline-none"
           />
           <button
             type="submit"
             disabled={posting}
-            className="rounded-[5px] bg-[#70798C] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#5A6270]"
+            className="rounded-[5px] bg-[#3B6D11] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#2F5A0E]"
           >
             {posting ? 'Posting...' : 'Post'}
           </button>
@@ -129,14 +129,14 @@ export function AnnouncementsCard({ tripId, isOrganizer }: AnnouncementsCardProp
       )}
 
       {loading ? (
-        <p className="text-sm text-[#A99985]">Loading...</p>
+        <p className="text-sm text-[#6B6460]">Loading...</p>
       ) : announcements.length === 0 ? (
         <div className="py-4 text-center">
-          <p className="text-sm text-[#A99985]">No announcements yet</p>
+          <p className="text-sm text-[#6B6460]">No announcements yet</p>
           {isOrganizer && (
             <button
               onClick={() => setShowForm(true)}
-              className="mt-2 inline-flex items-center gap-1.5 rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+              className="mt-2 inline-flex items-center gap-1.5 rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#1C1A17] transition-colors hover:bg-[#F5F1ED]"
             >
               Post Update
             </button>
@@ -147,13 +147,13 @@ export function AnnouncementsCard({ tripId, isOrganizer }: AnnouncementsCardProp
           {announcements.slice(0, 3).map((a) => (
             <div key={a.id} className="border-b border-[#F5F1ED] pb-3 last:border-0 last:pb-0">
               <div className="flex items-start justify-between gap-2">
-                <p className="text-sm font-medium text-[#252323]">{a.title}</p>
+                <p className="text-sm font-medium text-[#1C1A17]">{a.title}</p>
                 {a.is_pinned && (
                   <span className="shrink-0 text-xs text-[#B8956A]">Pinned</span>
                 )}
               </div>
               {a.content && (
-                <p className="mt-0.5 text-xs text-[#A99985] line-clamp-2">{a.content}</p>
+                <p className="mt-0.5 text-xs text-[#6B6460] line-clamp-2">{a.content}</p>
               )}
               <p className="mt-1 text-[10px] text-[#DAD2BC]">
                 {a.created_by_profile?.display_name || 'Organizer'} &middot; {timeAgo(a.created_at)}

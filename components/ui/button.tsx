@@ -2,7 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils/cn"
 
-// Phase 0.2. The previous default was bg-[#70798C] with white text — 4.37:1, which
+// Phase 0.2. The previous default was bg-[#3B6D11] with white text — 4.37:1, which
 // fails WCAG AA on its own label. It was also the source of the "slate button" look
 // across create-trip, settings and the financials panels; those screens were never
 // using Tailwind slate classes, they were using this variant.

@@ -100,7 +100,7 @@ export function TripDetailHeader({ trip, isOrganizer }: TripDetailHeaderProps) {
           gap: '4px',
           fontFamily: 'var(--sans)',
           fontSize: '11px',
-          color: '#888780',
+          color: '#6B6460',
           background: 'none',
           border: 'none',
           cursor: 'pointer',
@@ -139,7 +139,7 @@ export function TripDetailHeader({ trip, isOrganizer }: TripDetailHeaderProps) {
             marginTop: '8px',
             fontFamily: 'var(--sans)',
             fontSize: '13px',
-            color: '#888780',
+            color: '#6B6460',
           }}>
             <span>{trip.destination}</span>
             <span style={{ color: '#D6CFC8' }}>·</span>
@@ -232,7 +232,7 @@ export function TripDetailHeader({ trip, isOrganizer }: TripDetailHeaderProps) {
                   background: 'transparent',
                   border: '0.5px solid #D6CFC8',
                   borderRadius: '6px',
-                  color: '#888780',
+                  color: '#6B6460',
                   cursor: 'pointer',
                 }}
               >

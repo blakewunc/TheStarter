@@ -27,14 +27,14 @@ export function BudgetSnapshotCard({
 
   return (
     <div className="rounded-[8px] border border-[#DAD2BC] bg-white p-6 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
-      <h3 className="mb-4 text-lg font-semibold text-[#252323]">Budget Snapshot</h3>
+      <h3 className="mb-4 text-lg font-semibold text-[#1C1A17]">Budget Snapshot</h3>
 
       {!hasData ? (
         <div className="py-6 text-center">
-          <p className="mb-3 text-sm text-[#A99985]">No budget categories yet</p>
+          <p className="mb-3 text-sm text-[#6B6460]">No budget categories yet</p>
           <button
             onClick={onAddCategory}
-            className="inline-flex items-center gap-1.5 rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#252323] transition-colors hover:bg-[#F5F1ED]"
+            className="inline-flex items-center gap-1.5 rounded-[5px] border border-[#DAD2BC] px-4 py-2 text-sm font-medium text-[#1C1A17] transition-colors hover:bg-[#F5F1ED]"
           >
             Add a category
           </button>
@@ -43,16 +43,16 @@ export function BudgetSnapshotCard({
         <>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-[#A99985]">Total Estimated</span>
-              <span className="text-xl font-bold text-[#252323]">${totalEstimated.toLocaleString()}</span>
+              <span className="text-sm text-[#6B6460]">Total Estimated</span>
+              <span className="text-xl font-bold text-[#1C1A17]">${totalEstimated.toLocaleString()}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-[#A99985]">Per Person</span>
-              <span className="text-xl font-bold text-[#252323]">${Math.round(perPerson).toLocaleString()}</span>
+              <span className="text-sm text-[#6B6460]">Per Person</span>
+              <span className="text-xl font-bold text-[#1C1A17]">${Math.round(perPerson).toLocaleString()}</span>
             </div>
             {status && (
               <div className="flex items-center justify-between pt-2 border-t border-[#F5F1ED]">
-                <span className="text-sm text-[#A99985]">Status</span>
+                <span className="text-sm text-[#6B6460]">Status</span>
                 <span className={`flex items-center gap-1.5 text-sm font-medium ${status.color}`}>
                   {status.text}
                   {status.icon === 'check' && (
@@ -72,7 +72,7 @@ export function BudgetSnapshotCard({
 
           <button
             onClick={onViewBudget}
-            className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#70798C] transition-colors hover:text-[#252323]"
+            className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-[#3B6D11] transition-colors hover:text-[#1C1A17]"
           >
             View full budget
             <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
