@@ -121,7 +121,7 @@ export async function generateMetadata(
   const guestCount = trip.expected_guests || trip.member_count || 1
   const perPerson = guestCount > 0 ? Math.round(totalBudget / guestCount) : 0
   const isGolf = trip.trip_type === 'golf'
-  const appName = isGolf ? 'The Starter' : 'GroupTrip'
+  const appName = 'The Starter'
 
   const dateRange = formatDateRange(trip.start_date, trip.end_date)
   const parts = [
@@ -163,7 +163,7 @@ export default async function ProposalPage(
   const guestCount = trip.expected_guests || trip.member_count || 1
   const perPerson = guestCount > 0 ? Math.round(totalBudget / guestCount) : 0
   const isGolf = trip.trip_type === 'golf'
-  const brandName = isGolf ? 'The Starter' : 'GroupTrip'
+  const brandName = 'The Starter'
   const dateRange = formatDateRange(trip.start_date, trip.end_date)
 
   const itineraryByDate = itinerary.reduce((acc, item) => {

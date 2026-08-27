@@ -191,7 +191,7 @@ function buildSystemPrompt(trip: any, itinerary: any[], budget: any[]): string {
 
   const tripTypeContext = getTripTypeContext(trip.trip_type)
 
-  return `You are an expert trip planning assistant for GroupTrip, a collaborative group travel planning app.
+  return `You are an expert trip planning assistant for The Starter, a collaborative golf trip planning app.
 
 ## Trip Details
 - **Trip Name**: ${trip.title}

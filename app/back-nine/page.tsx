@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description:
       'Split costs, build the itinerary, set the stakes. Send one link and The Starter keeps the group on the same page.',
     type: 'website',
-    siteName: 'The Starter by GroupTrip',
+    siteName: 'The Starter',
   },
   twitter: {
     card: 'summary',

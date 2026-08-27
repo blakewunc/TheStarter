@@ -1,6 +1,7 @@
 'use client'
 
 import { use, useEffect, useRef, useState } from 'react'
+import { parseLocalDate } from '@/lib/dates'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -131,7 +132,7 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
             <div>
               <p className="text-sm font-medium text-[#A99985]">Start Date</p>
               <p className="text-lg font-medium">
-                {new Date(trip.start_date).toLocaleDateString('en-US', {
+                {parseLocalDate(trip.start_date).toLocaleDateString('en-US', {
                   month: 'long',
                   day: 'numeric',
                   year: 'numeric',
@@ -141,7 +142,7 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
             <div>
               <p className="text-sm font-medium text-[#A99985]">End Date</p>
               <p className="text-lg font-medium">
-                {new Date(trip.end_date).toLocaleDateString('en-US', {
+                {parseLocalDate(trip.end_date).toLocaleDateString('en-US', {
                   month: 'long',
                   day: 'numeric',
                   year: 'numeric',

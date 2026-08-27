@@ -52,7 +52,7 @@ export default function ContactPage() {
               },
               {
                 q: 'Can I use The Starter for non-golf trips?',
-                a: 'The Starter is purpose-built for golf trips. For general group travel, check out GroupTrip.',
+                a: 'The Starter is purpose-built for golf trips.',
               },
               {
                 q: 'How do I report a bug?',

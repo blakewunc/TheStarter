@@ -32,7 +32,7 @@ export function Footer() {
             © {new Date().getFullYear()} The Starter. All rights reserved.
           </p>
           <p style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#888780', margin: 0 }}>
-            A GroupTrip product
+            thestarter.app
           </p>
         </div>
       </footer>

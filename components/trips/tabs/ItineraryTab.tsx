@@ -1,6 +1,7 @@
 'use client'
 
 import { PuttingCountdown } from '@/components/trips/PuttingCountdown'
+import { parseLocalDate } from '@/lib/dates'
 
 import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -138,7 +139,7 @@ export function ItineraryTab({ tripId, trip, currentUserId, isOrganizer }: Itine
           {dates.map((date) => (
             <div key={date}>
               <h3 className="mb-4 text-xl font-bold text-[#252323]">
-                {new Date(date).toLocaleDateString('en-US', {
+                {parseLocalDate(date).toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
                   month: 'long',

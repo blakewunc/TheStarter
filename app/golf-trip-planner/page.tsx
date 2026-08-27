@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'Golf Trip Planner | The Starter',
     description: 'Plan your group golf trip end-to-end. Timelines, logistics, course selection, and betting formats.',
     type: 'article',
-    siteName: 'The Starter by GroupTrip',
+    siteName: 'The Starter',
   },
 }
 

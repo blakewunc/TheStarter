@@ -5,6 +5,7 @@ import { X, Send, Plus, Sparkles } from 'lucide-react'
 import { toast } from 'sonner'
 import { nanoid } from 'nanoid'
 import { parseSuggestions, type ItinerarySuggestion } from '@/lib/utils/parse-suggestions'
+import { parseLocalDate } from '@/lib/dates'
 
 interface AIAssistantPanelProps {
   tripId: string
@@ -318,7 +319,7 @@ function MessageContent({
             <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs text-[#A99985]">
               {data.date && (
                 <span>
-                  {new Date(data.date + 'T00:00:00').toLocaleDateString('en-US', {
+                  {parseLocalDate(data.date).toLocaleDateString('en-US', {
                     weekday: 'short',
                     month: 'short',
                     day: 'numeric',

@@ -16,7 +16,7 @@ export default function PrivacyPage() {
 
           <section>
             <h2 className="mb-3 text-base font-semibold text-[#252323]">1. Who We Are</h2>
-            <p>The Starter ("we," "our," or "us") is a golf trip planning application operated by GroupTrip. We help groups organize golf trips including tee times, scorecards, expense splitting, and itineraries. Our service is available at thestarter.app.</p>
+            <p>The Starter ("we," "our," or "us") is a golf trip planning application. We help groups organize golf trips including tee times, scorecards, expense splitting, and itineraries. Our service is available at thestarter.app.</p>
           </section>
 
           <section>

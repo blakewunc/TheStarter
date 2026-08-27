@@ -3,6 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Expense } from '@/lib/hooks/useExpenses'
+import { parseLocalDate } from '@/lib/dates'
 
 
 interface ExpenseListProps {
@@ -61,7 +62,7 @@ export function ExpenseList({ expenses, currentUserId, onDelete }: ExpenseListPr
                 </div>
                 <CardDescription className="mt-1">
                   Paid by {expense.profiles.display_name || expense.profiles.email} •{' '}
-                  {new Date(expense.date).toLocaleDateString('en-US', {
+                  {parseLocalDate(expense.date).toLocaleDateString('en-US', {
                     month: 'short',
                     day: 'numeric',
                     year: 'numeric'

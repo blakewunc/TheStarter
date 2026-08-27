@@ -420,7 +420,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
         )}
 
         <p className="pb-8 text-center text-xs text-[#A99985] print:hidden">
-          This brief was generated from your GroupTrip trip plan.
+          This brief was generated from your The Starter trip plan.
         </p>
       </div>
 

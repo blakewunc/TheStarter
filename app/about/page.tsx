@@ -49,7 +49,7 @@ export default function AboutPage() {
           </div>
 
           <p>
-            The Starter is part of the GroupTrip family of products — a suite of tools for planning group travel. GroupTrip handles general group trips; The Starter is the golf-specific product.
+            The Starter is purpose-built for golf trips — tee times, scorecards, betting, and the logistics that come with getting a group to a course.
           </p>
 
           <p className="font-medium text-[#252323]">
