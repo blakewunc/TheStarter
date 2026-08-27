@@ -192,7 +192,7 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
             .map((p) => (
               <div key={p.user_id} className="flex items-center justify-between rounded-[5px] bg-[#F5F1ED] px-3 py-2">
                 <span className="text-sm font-medium text-[#1C1A17]">{p.user_name}</span>
-                <span className="rounded-full bg-[#4A7C59]/10 px-2 py-0.5 text-xs font-semibold text-[#4A7C59]">
+                <span className="rounded-full bg-[#3B6D11]/10 px-2 py-0.5 text-xs font-semibold text-[#3B6D11]">
                   HCP {p.handicap}
                 </span>
               </div>
@@ -337,7 +337,7 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
                     >
                       <span className="text-sm text-[#1C1A17]">{player.user_name}</span>
                       {player.handicap !== null ? (
-                        <span className="text-xs font-medium text-[#4A7C59]">
+                        <span className="text-xs font-medium text-[#3B6D11]">
                           {player.handicap}
                         </span>
                       ) : (

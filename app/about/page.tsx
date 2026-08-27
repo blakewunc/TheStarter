@@ -11,7 +11,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#F5F1ED]">
       <div className="mx-auto max-w-2xl px-6 py-16">
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">About</p>
-        <h1 className="mb-8 text-3xl font-bold tracking-tight text-[#1C1A17]">Built for golf trips. Actually.</h1>
+        <h1 className="mb-8 text-3xl page-title tracking-tight text-[#1C1A17]">Built for golf trips. Actually.</h1>
 
         <div className="space-y-6 text-base leading-relaxed text-[#1C1A17]">
           <p>

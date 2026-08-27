@@ -179,7 +179,7 @@ function BetCard({
             <span className="text-xl">{meta.emoji}</span>
             <span className="font-semibold text-[#1C1A17]">{meta.label}</span>
           </div>
-          <span className="rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs text-[#4A7C59]">
+          <span className="rounded-full bg-[#3B6D11]/10 px-2.5 py-0.5 text-xs text-[#3B6D11]">
             ${bet.amount}/person
           </span>
         </div>
@@ -206,7 +206,7 @@ function BetCard({
           <span className="text-xl">{meta.emoji}</span>
           <span className="font-semibold text-[#1C1A17]">{meta.label}</span>
         </div>
-        <span className="rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs text-[#4A7C59]">
+        <span className="rounded-full bg-[#3B6D11]/10 px-2.5 py-0.5 text-xs text-[#3B6D11]">
           ${bet.amount}/person
         </span>
       </div>
@@ -249,7 +249,7 @@ function BetCard({
             size="sm"
             variant="outline"
             onClick={() => onSettle(bet)}
-            className="border-[#4A7C59] text-[#4A7C59] hover:bg-[#4A7C59]/5"
+            className="border-[#3B6D11] text-[#3B6D11] hover:bg-[#3B6D11]/5"
           >
             Settle Up
           </Button>
@@ -380,7 +380,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
                   onClick={() => handleTypeSelect(key)}
                   className={`flex flex-col items-center gap-1 rounded-[5px] border p-2 text-center transition-all ${
                     selectedType === key
-                      ? 'border-[#4A7C59] bg-[#4A7C59]/5'
+                      ? 'border-[#3B6D11] bg-[#3B6D11]/5'
                       : 'border-[#DAD2BC] bg-white hover:border-[#A99985]'
                   }`}
                 >
@@ -455,7 +455,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
                     type="checkbox"
                     checked={selectedParticipants.includes(m.user_id)}
                     onChange={() => toggleParticipant(m.user_id)}
-                    className="h-4 w-4 rounded accent-[#4A7C59]"
+                    className="h-4 w-4 rounded accent-[#3B6D11]"
                   />
                   <span className="text-sm text-[#1C1A17]">
                     {m.display_name || m.email}
@@ -467,8 +467,8 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
 
           {/* Pot preview */}
           {parsedAmount > 0 && selectedParticipants.length >= 2 && (
-            <div className="rounded-[5px] border border-[#4A7C59]/20 bg-[#4A7C59]/5 px-4 py-2.5">
-              <p className="text-sm text-[#4A7C59]">
+            <div className="rounded-[5px] border border-[#3B6D11]/20 bg-[#3B6D11]/5 px-4 py-2.5">
+              <p className="text-sm text-[#3B6D11]">
                 Pot: {selectedParticipants.length} players × ${parsedAmount.toFixed(2)} = ${pot.toFixed(2)}
               </p>
             </div>
@@ -485,7 +485,7 @@ function AddBetDialog({ open, onClose, tripId, members, teeTimes, onAdded }: Add
             <Button
               onClick={handleSubmit}
               disabled={!canSubmit}
-              className="flex-1 bg-[#4A7C59] text-white hover:bg-[#3d6b4a]"
+              className="flex-1 bg-[#3B6D11] text-white hover:bg-[#3d6b4a]"
             >
               {submitting ? 'Adding…' : 'Add Bet'}
             </Button>
@@ -585,8 +585,8 @@ function SettleBetDialog({ bet, onClose, tripId, members, scores, onSettled }: S
 
           {/* Auto-detected winner */}
           {autoWinnerId && (
-            <div className="rounded-[5px] border border-[#4A7C59]/20 bg-[#4A7C59]/5 p-3">
-              <p className="text-sm font-medium text-[#4A7C59]">
+            <div className="rounded-[5px] border border-[#3B6D11]/20 bg-[#3B6D11]/5 p-3">
+              <p className="text-sm font-medium text-[#3B6D11]">
                 📊 Auto-detected: {autoWinnerName}
                 {autoWinnerScore && (
                   <span className="ml-1 font-normal">
@@ -622,8 +622,8 @@ function SettleBetDialog({ bet, onClose, tripId, members, scores, onSettled }: S
 
           {/* Settlement preview */}
           {winnerId && (
-            <div className="rounded-[5px] border border-[#4A7C59]/20 bg-[#4A7C59]/5 p-4 space-y-1">
-              <p className="font-medium text-[#4A7C59]">🏆 {winnerName} wins ${pot.toFixed(2)}</p>
+            <div className="rounded-[5px] border border-[#3B6D11]/20 bg-[#3B6D11]/5 p-4 space-y-1">
+              <p className="font-medium text-[#3B6D11]">🏆 {winnerName} wins ${pot.toFixed(2)}</p>
               <p className="text-sm text-[#1C1A17]">
                 {losers.length} {losers.length === 1 ? 'player' : 'players'} each owe ${bet.amount.toFixed(2)}
               </p>
@@ -640,7 +640,7 @@ function SettleBetDialog({ bet, onClose, tripId, members, scores, onSettled }: S
             <Button
               onClick={handleSubmit}
               disabled={!winnerId || submitting}
-              className="flex-1 bg-[#4A7C59] text-white hover:bg-[#3d6b4a]"
+              className="flex-1 bg-[#3B6D11] text-white hover:bg-[#3d6b4a]"
             >
               {submitting ? 'Settling…' : 'Settle & Add to Expenses'}
             </Button>

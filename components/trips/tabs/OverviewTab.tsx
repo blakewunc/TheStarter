@@ -124,14 +124,14 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6 items-start">
+    <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[1fr_280px] lg:items-start">
 
       {/* LEFT COLUMN */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div className="contents lg:flex lg:flex-col lg:gap-6">
 
         {/* 1. Countdown card */}
         {trip.start_date && (
-          <div style={{
+          <div className="max-lg:order-4" style={{
             ...card,
             border: '1.5px solid #2C2A26',
             padding: '24px',
@@ -149,7 +149,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
         )}
 
         {/* 2. What's Next */}
-        <div style={{ ...card, padding: '24px' }}>
+        <div className="max-lg:order-3" style={{ ...card, padding: '24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
             <p style={eyebrow}>What&apos;s next</p>
             {itineraryItems.length > 0 && (
@@ -201,7 +201,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
 
         {/* 3. Golf Planner (golf trips only) */}
         {trip.trip_type === 'golf' && (
-          <div style={{
+          <div className="max-lg:order-7" style={{
             background: '#EAF3DE',
             border: '0.5px solid #C0DD97',
             borderRadius: '12px',
@@ -264,17 +264,21 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
         )}
 
         {/* 4. Lodging — where you're staying, door code, and the linked cost */}
-        <LodgingCard tripId={tripId} isOrganizer={isOrganizer} splitCount={splitCount} />
+        <div className="max-lg:order-8 lg:contents">
+          <LodgingCard tripId={tripId} isOrganizer={isOrganizer} splitCount={splitCount} />
+        </div>
 
         {/* 5. Announcements */}
-        <AnnouncementsCard tripId={tripId} isOrganizer={isOrganizer} />
+        <div className="max-lg:order-9 lg:contents">
+          <AnnouncementsCard tripId={tripId} isOrganizer={isOrganizer} />
+        </div>
       </div>
 
       {/* RIGHT SIDEBAR */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <div className="contents lg:flex lg:flex-col lg:gap-4">
 
         {/* 1. Trip Progress */}
-        <div style={{ ...card, padding: '20px' }}>
+        <div className="max-lg:order-5" style={{ ...card, padding: '20px' }}>
           <p style={eyebrow}>Trip progress</p>
           <div style={{ height: '2px', background: '#EAE6E1', borderRadius: '2px', overflow: 'hidden', marginBottom: '8px' }}>
             <div style={{ height: '100%', background: '#3B6D11', borderRadius: '2px', width: `${progressPercent}%`, transition: 'width 0.5s' }} />
@@ -294,7 +298,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
         </div>
 
         {/* 2. Budget snapshot */}
-        <div style={{ ...card, padding: '20px' }}>
+        <div className="max-lg:order-2" style={{ ...card, padding: '20px' }}>
           <p style={eyebrow}>Budget snapshot</p>
           {budgetTotal === 0 ? (
             <div style={{ textAlign: 'center', padding: '12px 0' }}>
@@ -331,17 +335,20 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
         </div>
 
         {/* 3. Who's going */}
-        <TripMembersCard
-          members={members}
-          inviteCode={trip.invite_code}
-          tripId={tripId}
-          tripTitle={trip.title}
-          isOrganizer={isOrganizer}
-        />
+        <div className="max-lg:order-6 lg:contents">
+          <TripMembersCard
+            members={members}
+            inviteCode={trip.invite_code}
+            tripId={tripId}
+            tripTitle={trip.title}
+            isOrganizer={isOrganizer}
+          />
+        </div>
 
-        {/* 4. Organizer Tools */}
+        {/* 4. Organizer Tools — first on mobile: it is the only block that asks
+            the organiser to do something. */}
         {isOrganizer && (
-          <div style={{ ...card, padding: '20px' }}>
+          <div className="max-lg:order-1" style={{ ...card, padding: '20px' }}>
             <p style={eyebrow}>Organizer tools</p>
 
             {/* Proposal toggle */}

@@ -85,7 +85,7 @@ export default function PaymentSettingsPage() {
         </Button>
 
         <div className="mb-6">
-          <h1 className="text-4xl font-bold tracking-tight text-[#1C1A17]">Payment Settings</h1>
+          <h1 className="text-4xl page-title tracking-tight text-[#1C1A17]">Payment Settings</h1>
           <p className="mt-2 text-[#6B6460]">
             Add your payment handles so friends can easily send you money
           </p>

@@ -77,7 +77,7 @@ export function Leaderboard({ tripId }: LeaderboardProps) {
     const diff = score - par
     if (diff === 0) return { text: 'E', color: 'text-[#6B6460]' }
     if (diff > 0) return { text: `+${diff}`, color: 'text-[#8B4444]' }
-    return { text: `${diff}`, color: 'text-[#4A7C59]' }
+    return { text: `${diff}`, color: 'text-[#3B6D11]' }
   }
 
   const sortedScores = [...scores].sort((a, b) => {

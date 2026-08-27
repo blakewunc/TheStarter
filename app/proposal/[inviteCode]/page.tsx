@@ -188,7 +188,7 @@ export default async function ProposalPage(
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#3B6D11]">
             Trip Proposal
           </p>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-[#1C1A17] sm:text-5xl">
+          <h1 className="mb-4 text-4xl page-title tracking-tight text-[#1C1A17] sm:text-5xl">
             {trip.title}
           </h1>
           {trip.destination && (
@@ -206,7 +206,7 @@ export default async function ProposalPage(
           <div className="mt-6 flex items-center justify-center gap-4 text-sm">
             <span className="text-[#6B6460]">{trip.member_count} invited</span>
             <span className="text-[#DAD2BC]">&bull;</span>
-            <span className="font-semibold text-[#4A7C59]">
+            <span className="font-semibold text-[#3B6D11]">
               {trip.accepted_count} confirmed
             </span>
           </div>

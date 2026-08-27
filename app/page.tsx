@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#F5F1ED] to-[#E8E3DD] px-4">
       <main className="mx-auto max-w-3xl text-center">
-        <h1 className="mb-4 text-5xl font-bold tracking-tight text-[#1C1A17] sm:text-6xl">
+        <h1 className="mb-4 text-5xl page-title tracking-tight text-[#1C1A17] sm:text-6xl">
           GroupTrip
         </h1>
         <p className="mb-4 text-xl text-[#6B6460]">

@@ -20,7 +20,7 @@ export function BudgetSnapshotCard({
   const getStatus = () => {
     if (!hasData) return null
     if (budgetCap && perPerson > budgetCap) return { text: 'Over budget', color: 'text-[#8B4444]', icon: 'warning' }
-    return { text: 'Under budget', color: 'text-[#4A7C59]', icon: 'check' }
+    return { text: 'Under budget', color: 'text-[#3B6D11]', icon: 'check' }
   }
 
   const status = getStatus()

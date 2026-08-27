@@ -37,10 +37,10 @@ function formatDateTime(dt: string) {
 }
 
 const transportTypeLabels: Record<string, string> = {
-  carpool: '🚗 Carpool',
-  flight: '✈️ Flight',
-  train: '🚂 Train',
-  other: '🚌 Other',
+  carpool: 'Carpool',
+  flight: 'Flight',
+  train: 'Train',
+  other: 'Other',
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -256,7 +256,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
               {accommodation.door_code && (
                 <InfoRow
                   label="Door Code"
-                  value={<span className="font-mono text-base font-bold text-[#4A7C59]">{accommodation.door_code}</span>}
+                  value={<span className="font-mono text-base font-bold text-[#3B6D11]">{accommodation.door_code}</span>}
                 />
               )}
               {accommodation.wifi_name && (
@@ -314,7 +314,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
 
         {/* Golf: Tee Times */}
         {trip.trip_type === 'golf' && teeTimes.length > 0 && (
-          <Section title="⛳ Tee Times">
+          <Section title="Tee Times">
             <div className="space-y-3">
               {teeTimes.map((tt: any) => {
                 const venue = tt.address || tt.location
@@ -353,7 +353,7 @@ export default function SnapshotPage({ params }: { params: Promise<{ tripId: str
                       .map((item: any, i: number) => (
                         <div key={item.id} className="flex items-start gap-3">
                           <div className="flex flex-col items-center">
-                            <div className={`mt-0.5 h-2 w-2 rounded-full ${i === 0 ? 'bg-[#4A7C59]' : 'bg-[#DAD2BC]'}`} />
+                            <div className={`mt-0.5 h-2 w-2 rounded-full ${i === 0 ? 'bg-[#3B6D11]' : 'bg-[#DAD2BC]'}`} />
                             {i < byDate[date].length - 1 && <div className="mt-1 h-6 w-px bg-[#DAD2BC]" />}
                           </div>
                           <div className="min-w-0 flex-1 pb-1">

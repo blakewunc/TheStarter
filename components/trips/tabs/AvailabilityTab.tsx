@@ -175,7 +175,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
                     <div className="flex items-center justify-between">
                       <p className="text-sm font-medium text-[#1C1A17]">{fmtFull(item.date)}</p>
                       {idx === 0 && (
-                        <span className="rounded-full bg-[#4A7C59]/10 px-2.5 py-0.5 text-xs font-semibold text-[#4A7C59]">
+                        <span className="rounded-full bg-[#3B6D11]/10 px-2.5 py-0.5 text-xs font-semibold text-[#3B6D11]">
                           Best
                         </span>
                       )}
@@ -183,7 +183,7 @@ export function AvailabilityTab({ tripId, trip, currentUserId, isOrganizer }: Av
                     <div className="mt-1.5 flex items-center gap-2">
                       <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-[#F5F1ED]">
                         <div
-                          className="h-full rounded-full bg-[#4A7C59]"
+                          className="h-full rounded-full bg-[#3B6D11]"
                           style={{ width: `${item.percentage}%` }}
                         />
                       </div>

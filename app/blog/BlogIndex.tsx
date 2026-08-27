@@ -7,10 +7,10 @@ import type { BlogPost } from '@/lib/blog'
 const CATEGORIES = ['All', 'Trip Planning', 'Course Guides', 'Hidden Gems', 'Trip Planning Tips']
 
 const CATEGORY_EMOJI: Record<string, string> = {
-  'Trip Planning': '📋',
-  'Course Guides': '⛳',
-  'Hidden Gems': '💎',
-  'Trip Planning Tips': '🗂️',
+  'Trip Planning': '',
+  'Course Guides': '',
+  'Hidden Gems': '',
+  'Trip Planning Tips': '',
 }
 
 export default function BlogIndex({ posts }: { posts: BlogPost[] }) {

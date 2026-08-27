@@ -187,7 +187,7 @@ function SuggestionCard({
           {/* Organizer approve/reject for pending */}
           {isOrganizer && suggestion.status === 'pending' && (
             <>
-              <Button size="sm" onClick={onApprove} className="bg-[#4A7C59] hover:bg-[#3d6a4a] text-xs px-3">
+              <Button size="sm" onClick={onApprove} className="bg-[#3B6D11] hover:bg-[#3d6a4a] text-xs px-3">
                 Approve
               </Button>
               <Button size="sm" variant="outline" onClick={onReject} className="text-xs px-3">

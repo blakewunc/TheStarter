@@ -128,7 +128,7 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
 
   const getRsvpLabel = (status: string) => {
     switch (status) {
-      case 'accepted': return { text: 'Going', color: 'text-[#4A7C59]' }
+      case 'accepted': return { text: 'Going', color: 'text-[#3B6D11]' }
       case 'declined': return { text: 'Not going', color: 'text-[#8B4444]' }
       case 'maybe': return { text: 'Maybe', color: 'text-[#B8956A]' }
       default: return { text: 'Not responded', color: 'text-[#6B6460]' }
@@ -177,7 +177,7 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
               </div>
               <div className="flex items-center gap-1.5">
                 <span className={`h-1.5 w-1.5 rounded-full ${
-                  member.rsvp_status === 'accepted' ? 'bg-[#4A7C59]' :
+                  member.rsvp_status === 'accepted' ? 'bg-[#3B6D11]' :
                   member.rsvp_status === 'declined' ? 'bg-[#8B4444]' :
                   member.rsvp_status === 'maybe' ? 'bg-[#B8956A]' : 'bg-[#DAD2BC]'
                 }`} />

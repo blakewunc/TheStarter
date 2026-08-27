@@ -1,5 +1,7 @@
 'use client'
 
+import { Skeleton, SkeletonList } from '@/components/ui/skeleton'
+
 import { useState, useEffect, useCallback } from 'react'
 import { toast } from 'sonner'
 
@@ -711,8 +713,13 @@ export default function MyGroupPage() {
 
   if (loading) {
     return (
-      <div style={{ minHeight: '100vh', background: '#F5F1ED', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460' }}>Loading…</p>
+      <div style={{ minHeight: '100vh', background: '#F5F1ED', padding: '32px 24px' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          {/* Mirrors the real layout, so the page does not jump when it loads. */}
+          <Skeleton className="mb-2 h-9 w-64" />
+          <Skeleton className="mb-8 h-4 w-80" />
+          <SkeletonList count={4} />
+        </div>
       </div>
     )
   }

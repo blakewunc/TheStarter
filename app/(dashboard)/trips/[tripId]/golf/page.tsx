@@ -48,7 +48,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
               Golf Planner
             </p>
             <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
-              ⛳ On the Course
+              On the Course
             </h1>
           </div>
           <Button variant="outline" onClick={() => router.back()} style={{ fontSize: '12px' }}>
