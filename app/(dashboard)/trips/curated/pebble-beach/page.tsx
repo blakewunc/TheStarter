@@ -249,7 +249,7 @@ export default function PebbleBeachCuratedPage() {
             Back to trips
           </Link>
           <p style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.55)', marginBottom: 8 }}>Curated Golf Package · Premium</p>
-          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 40, fontWeight: 300, color: '#F5F1ED', lineHeight: 1.05, margin: 0 }}>
+          <h1 style={{ fontFamily: "var(--serif)", fontSize: 40, fontWeight: 300, color: '#F5F1ED', lineHeight: 1.05, margin: 0 }}>
             Pebble Beach<br /><em style={{ fontStyle: 'italic' }}>& Monterey Peninsula</em>
           </h1>
           <p style={{ fontSize: 13, color: 'rgba(245,241,237,0.7)', marginTop: 10 }}>
@@ -282,7 +282,7 @@ export default function PebbleBeachCuratedPage() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
               <div>
                 <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 4 }}>Booking Playbook</p>
-                <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 300, color: '#1C1A17', margin: 0 }}>
+                <h2 style={{ fontFamily: "var(--serif)", fontSize: 24, fontWeight: 300, color: '#1C1A17', margin: 0 }}>
                   This is where Pebble trips are won or lost
                 </h2>
               </div>
@@ -334,7 +334,7 @@ export default function PebbleBeachCuratedPage() {
             {/* Itinerary */}
             <div style={{ marginBottom: 40 }}>
               <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>The Itinerary</p>
-              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 24px' }}>
+              <h2 style={{ fontFamily: "var(--serif)", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 24px' }}>
                 5 days. Every moment matters.
               </h2>
 
@@ -351,7 +351,7 @@ export default function PebbleBeachCuratedPage() {
                   >
                     <div style={{ padding: '14px 20px', borderBottom: '0.5px solid rgba(28,26,23,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: (day as any).highlight ? '#1C1A17' : 'transparent' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                        <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 300, color: (day as any).highlight ? '#F5F1ED' : '#1C1A17' }}>{day.label}</span>
+                        <span style={{ fontFamily: "var(--serif)", fontSize: 20, fontWeight: 300, color: (day as any).highlight ? '#F5F1ED' : '#1C1A17' }}>{day.label}</span>
                         <span style={{ width: 1, height: 14, background: (day as any).highlight ? 'rgba(245,241,237,0.2)' : 'rgba(28,26,23,0.15)' }} />
                         <span style={{ fontSize: 12, color: (day as any).highlight ? 'rgba(245,241,237,0.7)' : '#6B6460' }}>{day.theme}</span>
                         {(day as any).highlight && (
@@ -386,7 +386,7 @@ export default function PebbleBeachCuratedPage() {
             {/* Accommodation */}
             <div>
               <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>Where to Stay</p>
-              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 6px' }}>
+              <h2 style={{ fontFamily: "var(--serif)", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 6px' }}>
                 Stay on-property. Non-negotiable.
               </h2>
               <p style={{ fontSize: 13, color: '#6B6460', marginBottom: 20 }}>
@@ -477,7 +477,7 @@ export default function PebbleBeachCuratedPage() {
               {/* Budget estimate */}
               <div style={{ background: '#F5F1ED', borderRadius: 6, padding: '16px', marginBottom: 20 }}>
                 <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 4 }}>Estimated per person</p>
-                <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 44, fontWeight: 300, color: '#1C1A17', lineHeight: 1, margin: '0 0 4px', letterSpacing: '-0.02em' }}>
+                <p style={{ fontFamily: "var(--serif)", fontSize: 44, fontWeight: 300, color: '#1C1A17', lineHeight: 1, margin: '0 0 4px', letterSpacing: '-0.02em' }}>
                   ${totalPerPerson.toLocaleString()}
                 </p>
                 <p style={{ fontSize: 11, color: '#6B6460' }}>${totalTrip.toLocaleString()} total for {guests} players</p>

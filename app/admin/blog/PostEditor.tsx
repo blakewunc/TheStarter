@@ -146,7 +146,7 @@ export default function PostEditor({ initialData, mode }: PostEditorProps) {
           >
             ← Back
           </button>
-          <h1 style={{ fontSize: '22px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
+          <h1 style={{ fontSize: '22px', fontWeight: 300, color: '#1C1A17', fontFamily: "var(--serif)" }}>
             {mode === 'new' ? 'New Post' : 'Edit Post'}
           </h1>
         </div>

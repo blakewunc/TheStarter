@@ -20,7 +20,7 @@ function SectionHeader({ label, sublabel }: { label: string; sublabel: string })
         <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: '2px' }}>
           {sublabel}
         </p>
-        <h2 style={{ fontSize: '18px', fontWeight: 500, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
+        <h2 style={{ fontSize: '18px', fontWeight: 500, color: '#1C1A17', fontFamily: "var(--serif)" }}>
           {label}
         </h2>
       </div>
@@ -47,7 +47,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
             <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: '6px' }}>
               Golf Planner
             </p>
-            <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
+            <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "var(--serif)" }}>
               On the Course
             </h1>
           </div>
@@ -202,7 +202,7 @@ export default function GolfPage({ params }: { params: Promise<{ tripId: string 
               <p style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.45)', marginBottom: '8px' }}>
                 Enter Scores
               </p>
-              <p style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '4px' }}>
+              <p style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", marginBottom: '4px' }}>
                 How's everyone doing?
               </p>
               <p style={{ fontSize: '12px', color: 'rgba(245,241,237,0.50)', marginBottom: '20px' }}>

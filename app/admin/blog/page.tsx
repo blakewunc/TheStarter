@@ -58,7 +58,7 @@ export default function AdminBlogList() {
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', padding: '40px 24px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
+        <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "var(--serif)" }}>
           Blog Posts
         </h1>
         <Link href="/admin/blog/new" style={{ background: '#1C1A17', color: '#F5F1ED', borderRadius: '5px', padding: '10px 20px', fontSize: '12px', fontWeight: 500, textDecoration: 'none', letterSpacing: '0.04em' }}>
