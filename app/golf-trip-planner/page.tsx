@@ -31,7 +31,7 @@ export default function GolfTripPlannerPage() {
           <p style={{ fontSize: '10px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.40)', marginBottom: '16px', fontWeight: 600 }}>
             The Starter — Golf Trip Planner
           </p>
-          <h1 style={{ fontSize: '38px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.15, marginBottom: '16px' }}>
+          <h1 style={{ fontSize: '38px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", lineHeight: 1.15, marginBottom: '16px' }}>
             Golf Trip Planner
           </h1>
           <p style={{ fontSize: '15px', color: 'rgba(245,241,237,0.55)', lineHeight: 1.7, maxWidth: '560px' }}>
@@ -229,7 +229,7 @@ export default function GolfTripPlannerPage() {
 
         {/* CTA */}
         <div style={{ marginTop: '56px', background: '#1C1A17', borderRadius: '8px', padding: '36px', textAlign: 'center' }}>
-          <p style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '8px' }}>
+          <p style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", marginBottom: '8px' }}>
             Ready to plan your trip?
           </p>
           <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', marginBottom: '24px', lineHeight: 1.7 }}>

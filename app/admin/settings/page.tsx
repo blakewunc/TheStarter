@@ -85,7 +85,7 @@ export default function AdminSettings() {
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 24px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
+        <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "var(--serif)" }}>
           Site Settings
         </h1>
         <button

@@ -110,7 +110,7 @@ export default function StarterLanding() {
           --cream: #F5F1ED;
           --ink: #1C1A17;
           --muted: #6B6460;
-          --accent: #70798C;
+          --accent: #3B6D11;
           --border: rgba(28,26,23,0.12);
           --serif: 'Playfair Display', Georgia, serif;
           --sans: 'DM Sans', system-ui, sans-serif;
@@ -1085,7 +1085,7 @@ export default function StarterLanding() {
                 <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: '8px', fontWeight: 600 }}>
                   The Starter · Journal
                 </p>
-                <h2 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
+                <h2 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "var(--serif)" }}>
                   From the blog
                 </h2>
               </div>

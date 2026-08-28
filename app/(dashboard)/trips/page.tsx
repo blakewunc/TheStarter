@@ -99,7 +99,7 @@ function TripCard({ trip }: { trip: TripCardData }) {
             </p>
           )}
           <h2
-            style={{ fontSize: '20px', color: '#F5F1ED', fontWeight: 300, lineHeight: 1.2, fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '6px', paddingRight: '70px' }}
+            style={{ fontSize: '20px', color: '#F5F1ED', fontWeight: 300, lineHeight: 1.2, fontFamily: "var(--serif)", marginBottom: '6px', paddingRight: '70px' }}
           >
             {trip.title}
           </h2>
@@ -216,7 +216,7 @@ export default async function TripsPage() {
               <p style={{ fontSize: '11px', letterSpacing: '0.14em', color: '#6B6460', textTransform: 'uppercase', marginBottom: '8px' }}>
                 My Golf Trips
               </p>
-              <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
+              <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "var(--serif)" }}>
                 Where are you headed?
               </h1>
             </div>
@@ -328,7 +328,7 @@ export default async function TripsPage() {
             <p style={{ fontSize: '11px', letterSpacing: '0.14em', color: '#6B6460', textTransform: 'uppercase', marginBottom: '8px' }}>
               My Golf Trips
             </p>
-            <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "'Playfair Display', Georgia, serif" }}>
+            <h1 style={{ fontSize: '26px', fontWeight: 300, color: '#1C1A17', fontFamily: "var(--serif)" }}>
               Where are you headed?
             </h1>
           </div>

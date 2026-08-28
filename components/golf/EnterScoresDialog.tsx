@@ -138,7 +138,7 @@ export function EnterScoresDialog({
           <p style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.45)', marginBottom: '4px' }}>
             Scorecard
           </p>
-          <h2 style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", margin: 0 }}>
+          <h2 style={{ fontSize: '20px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", margin: 0 }}>
             {teeTime.course_name}
           </h2>
           <p style={{ fontSize: '12px', color: 'rgba(245,241,237,0.50)', marginTop: '4px' }}>

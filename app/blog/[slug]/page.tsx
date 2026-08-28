@@ -69,7 +69,7 @@ export default async function BlogPostPage(
             <span style={{ fontSize: '10px', color: 'rgba(245,241,237,0.35)' }}>{post.author}</span>
           </div>
 
-          <h1 style={{ fontSize: '30px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.2, marginBottom: '14px' }}>
+          <h1 style={{ fontSize: '30px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", lineHeight: 1.2, marginBottom: '14px' }}>
             {post.title}
           </h1>
           {post.excerpt && (
@@ -119,7 +119,7 @@ export default async function BlogPostPage(
 
         {/* CTA */}
         <div style={{ margin: '32px 0 0', background: '#1C1A17', borderRadius: '8px', padding: '32px', textAlign: 'center' }}>
-          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '8px' }}>
+          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", marginBottom: '8px' }}>
             Ready to plan your trip?
           </p>
           <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', marginBottom: '20px', lineHeight: 1.6 }}>

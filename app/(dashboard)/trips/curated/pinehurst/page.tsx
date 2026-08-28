@@ -169,7 +169,7 @@ export default function PinehurstCuratedPage() {
             Back to trips
           </Link>
           <p style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.55)', marginBottom: 8, fontWeight: 400 }}>Curated Golf Package</p>
-          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 40, fontWeight: 300, color: '#F5F1ED', lineHeight: 1.05, margin: 0 }}>
+          <h1 style={{ fontFamily: "var(--serif)", fontSize: 40, fontWeight: 300, color: '#F5F1ED', lineHeight: 1.05, margin: 0 }}>
             Pinehurst No. 2<br /><em style={{ fontStyle: 'italic' }}>& Beyond</em>
           </h1>
           <p style={{ fontSize: 13, color: 'rgba(245,241,237,0.7)', marginTop: 10 }}>
@@ -186,7 +186,7 @@ export default function PinehurstCuratedPage() {
           {/* Itinerary */}
           <div style={{ marginBottom: 40 }}>
             <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>The Itinerary</p>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 24px' }}>
+            <h2 style={{ fontFamily: "var(--serif)", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 24px' }}>
               4 days. Every moment planned.
             </h2>
 
@@ -195,7 +195,7 @@ export default function PinehurstCuratedPage() {
                 <div key={day.day} style={{ background: '#fff', border: '0.5px solid rgba(28,26,23,0.10)', borderRadius: 8, overflow: 'hidden' }}>
                   <div style={{ padding: '14px 20px', borderBottom: '0.5px solid rgba(28,26,23,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                      <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 300, color: '#1C1A17' }}>{day.label}</span>
+                      <span style={{ fontFamily: "var(--serif)", fontSize: 20, fontWeight: 300, color: '#1C1A17' }}>{day.label}</span>
                       <span style={{ width: 1, height: 14, background: 'rgba(28,26,23,0.15)' }} />
                       <span style={{ fontSize: 12, color: '#6B6460' }}>{day.theme}</span>
                     </div>
@@ -227,7 +227,7 @@ export default function PinehurstCuratedPage() {
           {/* Accommodation */}
           <div>
             <p style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 6 }}>Where to Stay</p>
-            <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 6px' }}>
+            <h2 style={{ fontFamily: "var(--serif)", fontSize: 26, fontWeight: 300, color: '#1C1A17', margin: '0 0 6px' }}>
               Accommodation options
             </h2>
             <p style={{ fontSize: 13, color: '#6B6460', marginBottom: 20 }}>
@@ -315,7 +315,7 @@ export default function PinehurstCuratedPage() {
             {/* Budget Estimate */}
             <div style={{ background: '#F5F1ED', borderRadius: 6, padding: '16px', marginBottom: 20 }}>
               <p style={{ fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B6460', marginBottom: 4 }}>Estimated per person</p>
-              <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 44, fontWeight: 300, color: '#1C1A17', lineHeight: 1, margin: '0 0 4px', letterSpacing: '-0.02em' }}>
+              <p style={{ fontFamily: "var(--serif)", fontSize: 44, fontWeight: 300, color: '#1C1A17', lineHeight: 1, margin: '0 0 4px', letterSpacing: '-0.02em' }}>
                 ${totalPerPerson.toLocaleString()}
               </p>
               <p style={{ fontSize: 11, color: '#6B6460' }}>${totalTrip.toLocaleString()} total for {guests} players</p>

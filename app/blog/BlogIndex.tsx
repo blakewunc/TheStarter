@@ -31,7 +31,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
           <p style={{ fontSize: '10px', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(245,241,237,0.40)', marginBottom: '10px' }}>
             The Starter · Journal
           </p>
-          <h1 style={{ fontSize: '36px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.15, marginBottom: '8px' }}>
+          <h1 style={{ fontSize: '36px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", lineHeight: 1.15, marginBottom: '8px' }}>
             Golf trip intel.
           </h1>
           <p style={{ fontSize: '14px', color: 'rgba(245,241,237,0.45)', lineHeight: 1.6 }}>
@@ -92,7 +92,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
                       <span style={{ fontSize: '10px', color: 'rgba(245,241,237,0.30)' }}>·</span>
                       <span style={{ fontSize: '10px', color: 'rgba(245,241,237,0.35)' }}>{featured.readTime}</span>
                     </div>
-                    <h2 style={{ fontSize: '24px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", lineHeight: 1.25, marginBottom: '10px' }}>
+                    <h2 style={{ fontSize: '24px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", lineHeight: 1.25, marginBottom: '10px' }}>
                       {featured.title}
                     </h2>
                     <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', lineHeight: 1.6 }}>
@@ -144,7 +144,7 @@ export default function BlogIndex({ posts }: { posts: BlogPost[] }) {
 
         {/* CTA */}
         <div style={{ marginTop: '56px', background: '#1C1A17', borderRadius: '8px', padding: '32px', textAlign: 'center' }}>
-          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "'Playfair Display', Georgia, serif", marginBottom: '8px' }}>
+          <p style={{ fontSize: '18px', fontWeight: 300, color: '#F5F1ED', fontFamily: "var(--serif)", marginBottom: '8px' }}>
             Planning a golf trip?
           </p>
           <p style={{ fontSize: '13px', color: 'rgba(245,241,237,0.50)', marginBottom: '20px' }}>
