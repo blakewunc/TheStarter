@@ -27,6 +27,11 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
   const [error, setError] = useState<string | null>(null)
   const [user, setUser] = useState<any>(null)
   const [joining, setJoining] = useState(false)
+  const [rsvpName, setRsvpName] = useState('')
+  const [rsvpEmail, setRsvpEmail] = useState('')
+  const [rsvp, setRsvp] = useState<'accepted' | 'declined' | 'maybe' | null>(null)
+  const [responded, setResponded] = useState(false)
+  const [rsvpError, setRsvpError] = useState<string | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
   const supabaseRef = useRef(createClient())
 
@@ -58,32 +63,24 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
     fetchTrip()
   }, [inviteCode])
 
-  const handleJoinTrip = async () => {
-    if (!user) {
-      // Redirect to login with return URL
-      router.push(`/login?next=/invite/${inviteCode}`)
-      return
-    }
-
-    if (!trip) return
-
+  const submitRsvp = async (status: 'accepted' | 'declined' | 'maybe') => {
+    if (!rsvpName.trim()) return
     setJoining(true)
+    setRsvpError(null)
     try {
-      const response = await fetch(`/api/trips/${trip.id}/join`, {
+      const res = await fetch(`/api/invite/${inviteCode}/rsvp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ rsvp_status: 'accepted' }),
+        body: JSON.stringify({ name: rsvpName, email: rsvpEmail, rsvp_status: status }),
       })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to join trip')
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || 'Could not save that')
       }
-
-      // Redirect to trip detail page
-      router.push(`/trips/${trip.id}`)
+      setRsvp(status)
+      setResponded(true)
     } catch (err: any) {
-      alert(err.message)
+      setRsvpError(err.message)
     } finally {
       setJoining(false)
     }
@@ -118,12 +115,12 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-zinc-50 to-zinc-100 px-4 dark:from-zinc-900 dark:to-zinc-950">
+    <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED] px-4 py-10">
       <Card className="w-full max-w-2xl">
         <CardHeader>
-          <div className="mb-2 inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 dark:bg-blue-900/20 dark:text-blue-400">
-            You've been invited!
-          </div>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#3B6D11]">
+            You&rsquo;re invited
+          </p>
           <CardTitle className="text-3xl">{trip.title}</CardTitle>
           <CardDescription className="text-lg">{trip.destination}</CardDescription>
         </CardHeader>
@@ -154,13 +151,13 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
           {trip.description && (
             <div>
               <p className="text-sm font-medium text-[#6B6460]">Description</p>
-              <p className="mt-1 text-zinc-700 dark:text-zinc-300">{trip.description}</p>
+              <p className="mt-1 text-[#1C1A17]">{trip.description}</p>
             </div>
           )}
 
-          <div className="rounded-lg border border-zinc-200 bg-[#F5F1ED] p-4 dark:border-zinc-800">
+          <div className="rounded-[5px] border border-[#DAD2BC] bg-[#F5F1ED] p-4">
             <h3 className="mb-2 font-semibold">What's included?</h3>
-            <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-400">
+            <ul className="space-y-2 text-sm text-[#6B6460]">
               <li className="flex items-center">
                 <span className="mr-2">✓</span> Shared trip itinerary
               </li>
@@ -176,14 +173,82 @@ export default function InvitePage({ params }: { params: Promise<{ inviteCode: s
             </ul>
           </div>
 
-          <Button onClick={handleJoinTrip} disabled={joining || authLoading} className="w-full" size="lg">
-            {joining ? 'Joining...' : authLoading ? 'Loading...' : user ? 'Join This Trip' : 'Sign In to Join'}
-          </Button>
+          {/* E.8 — answering must not require an account. This link is the whole
+              experience for most of the group, and it used to dead-end at /login. */}
+          {responded ? (
+            <div className="rounded-[5px] bg-[#EAF3DE] p-4 text-center">
+              <p className="font-medium text-[#3B6D11]">
+                {rsvp === 'accepted'
+                  ? "You're in. The organizer can see it."
+                  : rsvp === 'maybe'
+                  ? 'Marked as maybe. You can change it any time.'
+                  : 'Marked as out. Thanks for letting them know.'}
+              </p>
+              <button
+                onClick={() => setResponded(false)}
+                className="mt-2 text-sm text-[#6B6460] underline-offset-2 hover:text-[#1C1A17] hover:underline"
+              >
+                Change my answer
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <div>
+                <label htmlFor="rsvp-name" className="mb-1 block text-sm font-medium text-[#1C1A17]">
+                  Your name
+                </label>
+                <input
+                  id="rsvp-name"
+                  value={rsvpName}
+                  onChange={(e) => setRsvpName(e.target.value)}
+                  placeholder="So they know who's coming"
+                  className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 text-base text-[#1C1A17] placeholder:text-[#6B6460] focus:border-[#3B6D11] focus:outline-none"
+                />
+              </div>
+              <div>
+                <label htmlFor="rsvp-email" className="mb-1 block text-sm font-medium text-[#1C1A17]">
+                  Email <span className="font-normal text-[#6B6460]">(optional)</span>
+                </label>
+                <input
+                  id="rsvp-email"
+                  type="email"
+                  value={rsvpEmail}
+                  onChange={(e) => setRsvpEmail(e.target.value)}
+                  placeholder="Only so you can update your answer later"
+                  className="flex h-11 w-full rounded-[5px] border border-[#CEC5B0] bg-white px-4 text-base text-[#1C1A17] placeholder:text-[#6B6460] focus:border-[#3B6D11] focus:outline-none"
+                />
+              </div>
 
-          {!user && (
-            <p className="text-center text-sm text-[#6B6460]">
-              You'll need to sign in or create an account to join this trip
-            </p>
+              <div className="grid grid-cols-3 gap-2">
+                {([
+                  ['accepted', "I'm in"],
+                  ['maybe', 'Maybe'],
+                  ['declined', "Can't go"],
+                ] as const).map(([value, label]) => (
+                  <button
+                    key={value}
+                    onClick={() => submitRsvp(value)}
+                    disabled={joining || !rsvpName.trim()}
+                    className={`min-h-11 rounded-[5px] border px-3 text-sm font-medium transition-colors disabled:opacity-40 ${
+                      value === 'accepted'
+                        ? 'border-[#1C1A17] bg-[#1C1A17] text-white hover:opacity-90'
+                        : 'border-[#DAD2BC] bg-white text-[#1C1A17] hover:bg-[#F5F1ED]'
+                    }`}
+                  >
+                    {joining ? '…' : label}
+                  </button>
+                ))}
+              </div>
+
+              {rsvpError && (
+                <p className="text-sm text-[#8B4444]">{rsvpError}</p>
+              )}
+
+              <p className="text-center text-xs text-[#6B6460]">
+                No account needed. Sign in later only if you want to add expenses or
+                scores.
+              </p>
+            </div>
           )}
         </CardContent>
       </Card>
