@@ -23,6 +23,63 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
   const [togglingProposal, setTogglingProposal] = useState(false)
   const [availabilityCount, setAvailabilityCount] = useState(0)
 
+  // E.5. Duplicating asks for dates rather than shifting last year's by 365 days,
+  // which lands on the wrong weekday — and for a golf trip the weekday is the point.
+  const [duplicating, setDuplicating] = useState(false)
+  const [archiving, setArchiving] = useState(false)
+
+  const handleDuplicate = async () => {
+    const start = window.prompt('Start date for the new trip (YYYY-MM-DD)')
+    if (!start) return
+    const end = window.prompt('End date (YYYY-MM-DD)')
+    if (!end) return
+
+    setDuplicating(true)
+    try {
+      const res = await fetch(`/api/trips/${tripId}/duplicate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ start_date: start, end_date: end }),
+      })
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || 'Could not duplicate')
+      }
+      const { trip: created } = await res.json()
+      toast.success('Copied — crew carried over, RSVPs reset')
+      window.location.href = `/trips/${created.id}`
+    } catch (err: any) {
+      toast.error(err.message)
+    } finally {
+      setDuplicating(false)
+    }
+  }
+
+  const handleArchive = async () => {
+    const archiving_now = !trip.archived_at
+    if (archiving_now && !confirm('Archive this trip? It stays intact, just off the main list.')) return
+
+    setArchiving(true)
+    try {
+      const res = await fetch(`/api/trips/${tripId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ archived_at: archiving_now ? new Date().toISOString() : null }),
+      })
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || 'Could not archive')
+      }
+      toast.success(archiving_now ? 'Archived' : 'Back on the list')
+      window.location.reload()
+    } catch (err: any) {
+      toast.error(err.message)
+    } finally {
+      setArchiving(false)
+    }
+  }
+
+
   const { categories } = useBudget(tripId)
   const { items: itineraryItems } = useItinerary(tripId)
 
@@ -405,6 +462,24 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
                 style={{ fontFamily: 'var(--sans)', fontSize: '11px', color: '#3B6D11', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               >
                 View
+              </button>
+            </div>
+
+            {/* E.5 — run it again, and get it off the list when it's done. */}
+            <div style={{ borderTop: '0.5px solid #EAE6E1', paddingTop: '12px', marginTop: '12px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              <button
+                onClick={handleDuplicate}
+                disabled={duplicating}
+                style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#1C1A17', background: 'none', border: '0.5px solid #D6CFC8', borderRadius: '5px', padding: '8px 12px', minHeight: '36px', cursor: 'pointer' }}
+              >
+                {duplicating ? 'Duplicating…' : 'Run it again next year'}
+              </button>
+              <button
+                onClick={handleArchive}
+                disabled={archiving}
+                style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: '#6B6460', background: 'none', border: '0.5px solid #D6CFC8', borderRadius: '5px', padding: '8px 12px', minHeight: '36px', cursor: 'pointer' }}
+              >
+                {archiving ? 'Archiving…' : trip.archived_at ? 'Unarchive' : 'Archive'}
               </button>
             </div>
           </div>
