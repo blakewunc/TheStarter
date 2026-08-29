@@ -113,6 +113,7 @@ export function Navbar() {
             {[
               { href: '/trips', label: 'My trips', active: isActive('/trips') },
               { href: '/my-group', label: 'The Club', active: pathname.startsWith('/my-group') },
+              { href: '/crew', label: 'My crew', active: pathname.startsWith('/crew') },
               { href: '/blog', label: 'Blog', active: pathname.startsWith('/blog') },
               { href: '/trips/new', label: 'Plan a trip', active: isActive('/trips/new') },
             ].map(({ href, label, active }) => (
@@ -178,6 +179,7 @@ export function Navbar() {
           {[
             { href: '/trips', label: 'My trips' },
             { href: '/my-group', label: 'The Club' },
+            { href: '/crew', label: 'My crew' },
             { href: '/blog', label: 'Blog' },
             { href: '/trips/new', label: 'Plan a trip' },
             { href: '/settings', label: 'Settings' },
