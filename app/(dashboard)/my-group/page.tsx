@@ -1,6 +1,7 @@
 'use client'
 
 import { Skeleton, SkeletonList } from '@/components/ui/skeleton'
+import { Standings } from '@/components/golf/Standings'
 
 import { useState, useEffect, useCallback } from 'react'
 import { toast } from 'sonner'
@@ -804,6 +805,11 @@ export default function MyGroupPage() {
                       </p>
                     </div>
                   )}
+
+                  {/* D.3 — standings by net differential. Answers a different question
+                      from the match scoreboard above: how everyone is actually playing,
+                      including members who have never appeared in a match. */}
+                  <Standings groupId={selectedGroupId!} />
 
                   {/* Start a round */}
                   <button onClick={() => setLogMatchOpen(true)} style={{ ...btnDark, width: '100%', justifyContent: 'center', padding: '14px', fontSize: '14px' }}>
