@@ -38,12 +38,40 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
   const [pendingInvites, setPendingInvites] = useState<PendingInvite[]>([])
   const [drafting, setDrafting] = useState(false)
   const [groupText, setGroupText] = useState('')
+  const [inviteResponses, setInviteResponses] = useState<
+    { id: string; name: string; email: string | null; rsvp_status: string }[]
+  >([])
 
   const inviteLink = typeof window !== 'undefined' ? `${window.location.origin}/invite/${inviteCode}` : ''
 
   useEffect(() => {
     if (isOrganizer) fetchPendingInvites()
+    fetchInviteResponses()
   }, [tripId, isOrganizer])
+
+  const fetchInviteResponses = async () => {
+    try {
+      const res = await fetch(`/api/trips/${tripId}/invite-responses`)
+      if (res.ok) {
+        const data = await res.json()
+        setInviteResponses(data.responses || [])
+      }
+    } catch {
+      // A failure here hides replies rather than breaking the card.
+    }
+  }
+
+  const dismissResponse = async (id: string) => {
+    try {
+      const res = await fetch(`/api/trips/${tripId}/invite-responses/${id}`, {
+        method: 'DELETE',
+      })
+      if (!res.ok) throw new Error(await fetchErrorMessage(res, 'Could not remove that'))
+      setInviteResponses((prev) => prev.filter((r) => r.id !== id))
+    } catch (err: any) {
+      toast.error(err.message)
+    }
+  }
 
   const fetchPendingInvites = async () => {
     try {
@@ -292,6 +320,62 @@ export function TripMembersCard({ members, inviteCode, tripId, tripTitle, isOrga
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* E.8 — answers from the shared link. Without this the RSVP was write-only:
+          someone replies, the organiser never sees it, and the invitee believes they
+          have told them. Labelled as unverified because a public link collects
+          whatever people type — these are answers, not identities, and they grant
+          no access to anything. */}
+      {inviteResponses.length > 0 && (
+        <div className="mt-4 space-y-2 border-t border-[#F5F1ED] pt-3">
+          <p className="text-xs font-medium uppercase tracking-wide text-[#6B6460]">
+            Replied via link
+          </p>
+          {inviteResponses.map((r) => (
+            <div key={r.id} className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-dashed border-[#DAD2BC]">
+                  <span className="text-xs font-semibold text-[#6B6460]">
+                    {r.name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-sm font-medium text-[#1C1A17]">{r.name}</span>
+                  <p className="text-[11px] text-[#6B6460]">
+                    {r.email || 'no email given'}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className={`text-[10px] font-medium ${
+                    r.rsvp_status === 'accepted'
+                      ? 'text-[#3B6D11]'
+                      : r.rsvp_status === 'declined'
+                      ? 'text-[#8B4444]'
+                      : 'text-[#7A5E38]'
+                  }`}
+                >
+                  {r.rsvp_status === 'accepted' ? 'Going' : r.rsvp_status === 'declined' ? "Can't go" : 'Maybe'}
+                </span>
+                {isOrganizer && (
+                  <button
+                    onClick={() => dismissResponse(r.id)}
+                    aria-label={`Remove ${r.name}'s reply`}
+                    className="text-[10px] text-[#6B6460] transition-colors hover:text-[#8B4444]"
+                  >
+                    &times;
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+          <p className="text-[11px] text-[#6B6460]">
+            Replied from the link, so these aren&rsquo;t verified accounts. Add them
+            above to give them access to the trip.
+          </p>
         </div>
       )}
 
