@@ -40,6 +40,9 @@ export const updateTripSchema = z.object({
   status: z.enum(['planning', 'confirmed', 'completed', 'cancelled']).optional(),
   trip_type: z.enum(['general', 'golf', 'ski', 'bachelor_party', 'bachelorette_party']).optional(),
   proposal_enabled: z.boolean().optional(),
+  // E.5. Nullable rather than a boolean: null un-archives, a timestamp archives, and
+  // the column records when it happened.
+  archived_at: z.string().datetime().nullable().optional(),
 })
 
 export const joinTripSchema = z.object({

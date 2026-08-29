@@ -63,6 +63,7 @@ interface TripCardData {
   budgetTotal: number
   roundsCount: number
   expectedGuests: number | null
+  archivedAt: string | null
 }
 
 function TripCard({ trip }: { trip: TripCardData }) {
@@ -205,6 +206,7 @@ export default async function TripsPage() {
       })),
       budgetTotal: DEMO_TRIP.totalPerPerson * DEMO_TRIP.players,
       expectedGuests: DEMO_TRIP.players,
+      archivedAt: null,
       roundsCount: DEMO_TRIP.rounds.length,
     }
 
@@ -271,7 +273,7 @@ export default async function TripsPage() {
     const { data: tripData, error: tripError } = await supabase
       .from('trips')
       .select(`
-        id, title, destination, start_date, end_date, status, expected_guests,
+        id, title, destination, start_date, end_date, status, expected_guests, archived_at,
         trip_members(
           user_id, rsvp_status,
           profiles(display_name, email)
@@ -316,6 +318,7 @@ export default async function TripsPage() {
       })),
       budgetTotal: (t.budget_categories ?? []).reduce((sum: number, c: any) => sum + (c.estimated_cost ?? 0), 0),
       expectedGuests: t.expected_guests ?? null,
+      archivedAt: t.archived_at ?? null,
       roundsCount: roundsByTrip.get(t.id) ?? 0,
     }))
   }
@@ -341,12 +344,64 @@ export default async function TripsPage() {
           </Link>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {trips.map(trip => (
-            <TripCard key={trip.id} trip={trip} />
-          ))}
-          <NewTripCard />
-        </div>
+        {(() => {
+          const today = new Date()
+          const todayStr = [
+            today.getFullYear(),
+            String(today.getMonth() + 1).padStart(2, '0'),
+            String(today.getDate()).padStart(2, '0'),
+          ].join('-')
+
+          const live = trips.filter(t => !t.archivedAt)
+          // A trip is past the day after it ends, so the last day still reads as
+          // upcoming while people are actually on it.
+          const upcoming = live.filter(t => !t.end_date || t.end_date >= todayStr)
+          const past = live.filter(t => t.end_date && t.end_date < todayStr)
+          const archived = trips.filter(t => t.archivedAt)
+
+          return (
+            <>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {upcoming.map(trip => (
+                  <TripCard key={trip.id} trip={trip} />
+                ))}
+                <NewTripCard />
+              </div>
+
+              {past.length > 0 && (
+                <div className="mt-12">
+                  <h2 style={{ fontFamily: 'var(--serif)', fontSize: '22px', fontWeight: 400, color: '#1C1A17', marginBottom: '4px' }}>
+                    Past trips
+                  </h2>
+                  <p style={{ fontSize: '13px', color: '#6B6460', marginBottom: '20px' }}>
+                    The recap is waiting on each of these.
+                  </p>
+                  <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {past.map(trip => (
+                      <TripCard key={trip.id} trip={trip} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {archived.length > 0 && (
+                <details className="mt-12">
+                  <summary
+                    className="cursor-pointer"
+                    style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: '#6B6460' }}
+                  >
+                    {archived.length} archived {archived.length === 1 ? 'trip' : 'trips'}
+                  </summary>
+                  <div className="mt-5 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {archived.map(trip => (
+                      <TripCard key={trip.id} trip={trip} />
+                    ))}
+                  </div>
+                </details>
+              )}
+            </>
+          )
+        })()}
       </div>
     </div>
   )
