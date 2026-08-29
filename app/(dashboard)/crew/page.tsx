@@ -45,6 +45,28 @@ export default function CrewPage() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [form, setForm] = useState(EMPTY)
   const [saving, setSaving] = useState(false)
+  // C.2 — history is loaded on demand rather than for every row, so the crew list
+  // stays one request no matter how big the roster gets.
+  const [openHistory, setOpenHistory] = useState<string | null>(null)
+  const [history, setHistory] = useState<Record<string, any>>({})
+
+  const toggleHistory = async (id: string) => {
+    if (openHistory === id) {
+      setOpenHistory(null)
+      return
+    }
+    setOpenHistory(id)
+    if (history[id]) return
+    try {
+      const res = await fetch(`/api/golfers/${id}/history`)
+      if (!res.ok) throw new Error(await fetchErrorMessage(res, 'Could not load history'))
+      const data = await res.json()
+      setHistory((prev) => ({ ...prev, [id]: data }))
+    } catch (err: any) {
+      toast.error(err.message)
+      setOpenHistory(null)
+    }
+  }
 
   const load = useCallback(async () => {
     try {
@@ -256,6 +278,12 @@ export default function CrewPage() {
                   </p>
                   <div className="mt-1 flex justify-end gap-3">
                     <button
+                      onClick={() => toggleHistory(g.id)}
+                      className="text-xs text-[#3B6D11] underline-offset-2 hover:underline"
+                    >
+                      {openHistory === g.id ? 'Hide' : 'History'}
+                    </button>
+                    <button
                       onClick={() => openEdit(g)}
                       className="text-xs text-[#3B6D11] underline-offset-2 hover:underline"
                     >
@@ -270,6 +298,61 @@ export default function CrewPage() {
                   </div>
                 </div>
               </div>
+
+              {openHistory === g.id && history[g.id] && (
+                <div className="mt-3 border-t border-[#F5F1ED] pt-3">
+                  <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    {[
+                      ['Trips together', history[g.id].stats.trip_count],
+                      ['Rounds logged', history[g.id].stats.rounds_logged],
+                      [
+                        'Starter Index',
+                        history[g.id].stats.starter_index ?? '—',
+                      ],
+                      [
+                        'Days to join',
+                        history[g.id].stats.avg_days_to_join ?? '—',
+                      ],
+                    ].map(([label, value]) => (
+                      <div key={String(label)}>
+                        <p className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#6B6460]">
+                          {label}
+                        </p>
+                        <p
+                          style={{ fontFamily: 'var(--serif)', fontVariantNumeric: 'tabular-nums' }}
+                          className="text-xl text-[#1C1A17]"
+                        >
+                          {String(value)}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {history[g.id].stats.self_reported_handicap != null &&
+                    history[g.id].stats.starter_index != null &&
+                    Math.abs(
+                      Number(history[g.id].stats.self_reported_handicap) -
+                        Number(history[g.id].stats.starter_index)
+                    ) >= 3 && (
+                      <p className="mt-2 text-xs text-[#7A5E38]">
+                        Says {history[g.id].stats.self_reported_handicap}, plays like{' '}
+                        {history[g.id].stats.starter_index}.
+                      </p>
+                    )}
+
+                  {history[g.id].trips.length > 0 && (
+                    <ul className="mt-3 space-y-1">
+                      {history[g.id].trips.slice(0, 5).map((t: any) => (
+                        <li key={t.id} className="text-xs text-[#6B6460]">
+                          <span className="text-[#1C1A17]">{t.title}</span>
+                          {t.destination ? ` · ${t.destination}` : ''}
+                          {t.start_date ? ` · ${t.start_date.slice(0, 4)}` : ''}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
