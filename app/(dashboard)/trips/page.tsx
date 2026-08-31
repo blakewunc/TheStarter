@@ -4,7 +4,7 @@ import { formatDateRange } from '@/lib/utils/date'
 import { DEMO_TRIP } from '@/lib/demo-trip'
 import { StatusChip } from '@/components/ui/StatusChip'
 
-const AVATAR_COLORS = ['#70798C', '#B5A98A', '#C4B9A8', '#8C7B6B', '#9A8F82']
+const AVATAR_COLORS = ['#5A6275', '#B5A98A', '#C4B9A8', '#8C7B6B', '#9A8F82']
 
 function getInitials(name: string | null | undefined, email: string | null | undefined): string {
   const src = name || email || '?'
@@ -234,7 +234,7 @@ export default async function TripsPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <div className="relative">
               <TripCard trip={demoTrip} />
-              <div style={{ position: 'absolute', top: '-8px', left: '16px', background: '#70798C', color: '#fff', fontSize: '10px', padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.06em' }}>
+              <div style={{ position: 'absolute', top: '-8px', left: '16px', background: '#5A6275', color: '#fff', fontSize: '10px', padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.06em' }}>
                 SAMPLE TRIP
               </div>
             </div>

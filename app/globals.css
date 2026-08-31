@@ -137,7 +137,7 @@
   --success: #3B6D11;
   --warning: #B8956A;
   --error: #8B4444;
-  --info: #70798C;
+  --info: #5A6275;
 }
 
 @media (prefers-color-scheme: dark) {

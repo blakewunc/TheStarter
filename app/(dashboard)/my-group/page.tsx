@@ -143,7 +143,7 @@ function SeasonBanner({ comp }: { comp: Competition }) {
         {/* Team A */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: a.team.color || '#70798C' }} />
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: a.team.color || '#5A6275' }} />
             {aLeads && <span style={{ fontFamily: 'var(--sans)', fontSize: '10px', color: '#C0DD97', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Leading</span>}
           </div>
           <p style={{ fontFamily: 'var(--serif)', fontSize: '22px', color: '#F5F1ED', margin: '0 0 4px' }}>{a.team.name}</p>
@@ -384,7 +384,7 @@ function LogMatchDialog({
                     style={{
                       padding: '7px 14px', borderRadius: '20px', fontFamily: 'var(--sans)', fontSize: '13px', cursor: 'pointer',
                       background: format === f ? '#2C2A26' : 'transparent',
-                      color: format === f ? '#F5F1ED' : '#888780',
+                      color: format === f ? '#F5F1ED' : '#6B6460',
                       border: `0.5px solid ${format === f ? '#2C2A26' : '#D6CFC8'}`,
                     }}
                   >
@@ -422,7 +422,7 @@ function LogMatchDialog({
                     style={{
                       flex: 1, padding: '12px 8px', borderRadius: '8px', fontFamily: 'var(--sans)', fontSize: '13px', cursor: 'pointer', textAlign: 'center',
                       background: winner === value ? '#2C2A26' : '#fff',
-                      color: winner === value ? '#F5F1ED' : '#888780',
+                      color: winner === value ? '#F5F1ED' : '#6B6460',
                       border: `0.5px solid ${winner === value ? '#2C2A26' : '#D6CFC8'}`,
                     }}
                   >
@@ -581,7 +581,7 @@ function HandicapCell({ groupId, userId, initial, isOwn, isOrganizer }: {
           autoFocus type="number" value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter') save(); if (e.key === 'Escape') setEditing(false) }}
-          style={{ width: '56px', border: '0.5px solid #70798C', borderRadius: '4px', padding: '3px 6px', fontFamily: 'var(--sans)', fontSize: '13px', textAlign: 'center' }}
+          style={{ width: '56px', border: '0.5px solid #5A6275', borderRadius: '4px', padding: '3px 6px', fontFamily: 'var(--sans)', fontSize: '13px', textAlign: 'center' }}
         />
         <button onClick={save} disabled={saving} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#3B6D11', fontSize: '16px', padding: '2px' }}>✓</button>
         <button onClick={() => setEditing(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B6460', fontSize: '14px', padding: '2px' }}>✕</button>
@@ -782,7 +782,7 @@ export default function MyGroupPage() {
                 {(['season', 'matches', 'members'] as const).map((tab) => (
                   <button key={tab} onClick={() => setActiveTab(tab)} style={{
                     fontFamily: 'var(--sans)', fontSize: '13px', fontWeight: activeTab === tab ? 500 : 400,
-                    color: activeTab === tab ? '#2C2A26' : '#888780',
+                    color: activeTab === tab ? '#2C2A26' : '#6B6460',
                     background: 'none', border: 'none', padding: '0.85rem 0',
                     borderBottom: activeTab === tab ? '1.5px solid #2C2A26' : '1.5px solid transparent',
                     marginRight: '1.25rem', cursor: 'pointer', marginBottom: '-0.5px',
@@ -915,7 +915,7 @@ export default function MyGroupPage() {
                             }
                           }
                         }
-                        const COLORS = ['#70798C', '#3B6D11', '#5A7A6B', '#8B7355', '#7C6B8E']
+                        const COLORS = ['#5A6275', '#3B6D11', '#5A7A6B', '#8B7355', '#7C6B8E']
                         return (
                           <div key={gm.user_id} style={{ display: 'grid', gridTemplateColumns: '1fr 80px 80px', gap: '8px', padding: '12px 0', borderBottom: '0.5px solid #EAE6E1', alignItems: 'center' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -993,7 +993,7 @@ export default function MyGroupPage() {
                 {selectedGroup.group_members?.map((gm, i) => {
                   const name = memberName(gm.profiles)
                   const hcp = gm.profiles?.handicap
-                  const COLORS = ['#70798C', '#3B6D11', '#5A7A6B', '#8B7355', '#7C6B8E']
+                  const COLORS = ['#5A6275', '#3B6D11', '#5A7A6B', '#8B7355', '#7C6B8E']
                   return (
                     <div key={gm.user_id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 0', borderBottom: i < (selectedGroup.group_members?.length || 0) - 1 ? '0.5px solid #EAE6E1' : 'none' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

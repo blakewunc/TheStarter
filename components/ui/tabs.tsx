@@ -77,7 +77,7 @@ export function TabsTrigger({ value, children, className = '' }: TabsTriggerProp
         fontFamily: 'var(--sans)',
         fontSize: '13px',
         fontWeight: isActive ? 500 : 400,
-        color: isActive ? '#2C2A26' : '#888780',
+        color: isActive ? '#2C2A26' : '#6B6460',
         background: 'none',
         border: 'none',
         borderBottom: isActive ? '1.5px solid #2C2A26' : '1.5px solid transparent',

@@ -229,7 +229,7 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
                   )}
                   {range && <p className="mt-1 text-sm text-[#6B6460]">{range}</p>}
                 </div>
-                {budget && (
+                {budget ? (
                   <div className="shrink-0 text-right">
                     <p className="font-semibold text-[#1C1A17]">
                       {formatCurrency(budget.estimated_cost)}
@@ -241,6 +241,21 @@ export function LodgingCard({ tripId, isOrganizer, splitCount }: LodgingCardProp
                       </p>
                     )}
                   </div>
+                ) : (
+                  /* A property whose budget line was created separately — or before the
+                     link existed — has no linked category, and the card used to render a
+                     blank space where the cost goes. Silent absence reads as "this rental
+                     is free", which is the same failure as a trips list that renders an
+                     error as an empty account. Say which state this is. */
+                  <p className="shrink-0 text-right text-xs text-[#6B6460]">
+                    No cost linked
+                    {isOrganizer && (
+                      <>
+                        <br />
+                        <span className="text-[#3B6D11]">Edit to add one</span>
+                      </>
+                    )}
+                  </p>
                 )}
               </div>
 

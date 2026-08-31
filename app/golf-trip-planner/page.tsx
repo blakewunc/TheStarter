@@ -214,7 +214,7 @@ export default function GolfTripPlannerPage() {
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
-              '"8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, $600/head."',
+              '"8 players, Pinehurst, 4 nights, 3 rounds, Nassau format, $600/head."',
               '"Scottsdale long weekend. TPC + one more course. Skins, $20 per hole."',
             ].map((prompt) => (
               <div key={prompt} style={{ background: '#F5F1ED', borderRadius: '5px', padding: '12px 16px' }}>

@@ -154,7 +154,7 @@ export default function StarterLanding() {
             </div>
             <div className="space-y-3">
               {[
-                '"8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head."',
+                '"8 players, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head."',
                 '"Scottsdale long weekend. TPC + one more course. Skins game, $20 per hole. Need lodging options near Old Town."',
               ].map((prompt) => (
                 <div

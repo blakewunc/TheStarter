@@ -553,7 +553,7 @@ export default function StarterLanding() {
         .sl-fp-bar {
           width: 2px;
           align-self: stretch;
-          background: #70798C;
+          background: #5A6275;
           flex-shrink: 0;
           transform: scaleY(0);
           transform-origin: top;
@@ -905,7 +905,7 @@ export default function StarterLanding() {
             </div>
             <div className="sl-reveal sl-reveal-d2" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
-                '"8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head."',
+                '"8 players, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head."',
                 '"Scottsdale long weekend. TPC + one more course. Skins game, $20 per hole. Need lodging options near Old Town."',
               ].map((prompt) => (
                 <div key={prompt} style={{ background: 'var(--cream)', border: '0.5px solid rgba(28,26,23,0.12)', borderRadius: '6px', padding: '16px 20px' }}>

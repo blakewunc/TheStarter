@@ -21,7 +21,7 @@ interface PeopleBarProps {
   inviteCode: string
 }
 
-const AVATAR_COLORS = ['#70798C', '#3B6D11', '#5A7A6B', '#8B7355', '#7C6B8E']
+const AVATAR_COLORS = ['#5A6275', '#3B6D11', '#5A7A6B', '#8B7355', '#7C6B8E']
 
 export function PeopleBar({ tripId, members, currentUserId, inviteCode }: PeopleBarProps) {
   const [updating, setUpdating] = useState(false)

@@ -745,7 +745,7 @@ export function GolfBets({ tripId, settleOnly = false }: GolfBetsProps) {
           <Button
             size="sm"
             onClick={() => setShowAdd(true)}
-            style={{ background: '#70798C', color: '#fff', fontSize: '12px', padding: '6px 14px', borderRadius: '5px', border: 'none', cursor: 'pointer', fontWeight: 500 }}
+            style={{ background: '#5A6275', color: '#fff', fontSize: '12px', padding: '6px 14px', borderRadius: '5px', border: 'none', cursor: 'pointer', fontWeight: 500 }}
           >
             + Add Bet
           </Button>
