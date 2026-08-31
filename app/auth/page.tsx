@@ -40,7 +40,7 @@ function AuthForm() {
     <div className="flex min-h-screen items-center justify-center bg-[#F5F1ED] p-4">
       <div className="w-full max-w-sm rounded-[5px] bg-white p-8 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
         <div className="mb-6">
-          <h1 className="font-['Playfair_Display',serif] text-[28px] font-semibold text-[#1C1A17]">
+          <h1 className="font-serif text-[28px] font-semibold text-[#1C1A17]">
             Welcome.
           </h1>
           <p className="mt-1 text-[14px] text-[#6B6460]" style={{ fontFamily: 'DM Sans, sans-serif' }}>

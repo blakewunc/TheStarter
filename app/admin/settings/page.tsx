@@ -91,7 +91,7 @@ export default function AdminSettings() {
         <button
           onClick={handleSave}
           disabled={saving || loading}
-          style={{ background: saving ? '#70798C' : saved ? '#3B6D11' : '#1C1A17', color: '#F5F1ED', borderRadius: '5px', padding: '10px 20px', fontSize: '12px', fontWeight: 500, border: 'none', cursor: 'pointer', letterSpacing: '0.04em', transition: 'background 0.2s' }}
+          style={{ background: saving ? '#5A6275' : saved ? '#3B6D11' : '#1C1A17', color: '#F5F1ED', borderRadius: '5px', padding: '10px 20px', fontSize: '12px', fontWeight: 500, border: 'none', cursor: 'pointer', letterSpacing: '0.04em', transition: 'background 0.2s' }}
         >
           {saving ? 'Saving…' : saved ? 'Saved ✓' : 'Save Changes'}
         </button>

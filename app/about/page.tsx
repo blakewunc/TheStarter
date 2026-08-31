@@ -19,7 +19,7 @@ export default function AboutPage() {
           </p>
 
           <p>
-            It started with a simple problem: planning a golf trip for 8+ guys is a mess. Spreadsheets for expenses, group texts for tee times, someone always forgetting their score from Saturday's round. We built The Starter to replace all of that with a single link you send to your crew.
+            It started with a simple problem: planning a golf trip for eight or more people is a mess. Spreadsheets for expenses, group texts for tee times, someone always forgetting their score from Saturday's round. We built The Starter to replace all of that with a single link you send to your crew.
           </p>
 
           <p>

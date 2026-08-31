@@ -152,7 +152,7 @@ export default async function RecapPage(
   const leaderboard = Object.values(scoreMap)
     .sort((a, b) => (a.totalScore - a.totalPar) - (b.totalScore - b.totalPar))
 
-  const AVATAR_COLORS = ['#70798C', '#A99985', '#8B7355', '#6B8E7B', '#7C6B8E']
+  const AVATAR_COLORS = ['#5A6275', '#A99985', '#8B7355', '#6B8E7B', '#7C6B8E']
 
   return (
     <div className="min-h-screen bg-[#F5F1ED]">

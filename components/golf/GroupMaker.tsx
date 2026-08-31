@@ -292,7 +292,7 @@ export function GroupMaker({ tripId }: GroupMakerProps) {
             onClick={assignGroupsToTeeTime}
             disabled={assigning}
             style={{
-              background: '#70798C',
+              background: '#5A6275',
               color: '#fff',
               border: 'none',
               borderRadius: '5px',

@@ -102,7 +102,11 @@
   --color-border: var(--border);
   --font-sans: var(--font-dm-sans), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-playfair);
+  /* Carries the same fallback stack as --serif, so the `font-serif` utility degrades to
+     Georgia rather than the browser's default serif if the variable is ever missing.
+     Without the stack, `font-serif` resolves to nothing at all when --font-playfair is
+     absent, and the element inherits the sans body font instead. */
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
 
   /* Custom shadows */
   --shadow-card: var(--shadow);
@@ -133,7 +137,7 @@
   --success: #3B6D11;
   --warning: #B8956A;
   --error: #8B4444;
-  --info: #70798C;
+  --info: #5A6275;
 }
 
 @media (prefers-color-scheme: dark) {

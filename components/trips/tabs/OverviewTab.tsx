@@ -234,7 +234,7 @@ export function OverviewTab({ tripId, trip, isOrganizer, onSwitchTab }: Overview
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {upcomingItems.map((item: any, i: number) => {
-                const dotColor = item.category === 'golf' ? '#3B6D11' : item.category === 'accommodation' ? '#70798C' : '#D6CFC8'
+                const dotColor = item.category === 'golf' ? '#3B6D11' : item.category === 'accommodation' ? '#5A6275' : '#D6CFC8'
                 return (
                   <div key={item.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '3px' }}>

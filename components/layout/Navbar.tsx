@@ -118,7 +118,7 @@ export function Navbar() {
               { href: '/blog', label: 'Blog', active: pathname.startsWith('/blog') },
               { href: '/trips/new', label: 'Plan a trip', active: isActive('/trips/new') },
             ].map(({ href, label, active }) => (
-              <Link key={href} href={href} style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: active ? '#2C2A26' : '#888780', textDecoration: 'none', transition: 'color 0.15s' }}>
+              <Link key={href} href={href} style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: active ? '#2C2A26' : '#6B6460', textDecoration: 'none', transition: 'color 0.15s' }}>
                 {label}
               </Link>
             ))}
@@ -136,7 +136,7 @@ export function Navbar() {
                   width: '28px',
                   height: '28px',
                   borderRadius: '50%',
-                  background: '#70798C',
+                  background: '#5A6275',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -186,7 +186,7 @@ export function Navbar() {
             { href: '/trips/new', label: 'Plan a trip' },
             { href: '/settings', label: 'Settings' },
           ].map(({ href, label }) => (
-            <Link key={href} href={href} style={{ display: 'block', padding: '12px 24px', fontFamily: 'var(--sans)', fontSize: '14px', color: pathname === href ? '#2C2A26' : '#888780', textDecoration: 'none' }}>
+            <Link key={href} href={href} style={{ display: 'block', padding: '12px 24px', fontFamily: 'var(--sans)', fontSize: '14px', color: pathname === href ? '#2C2A26' : '#6B6460', textDecoration: 'none' }}>
               {label}
             </Link>
           ))}

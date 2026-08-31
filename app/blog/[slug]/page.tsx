@@ -96,7 +96,7 @@ export default async function BlogPostPage(
             prose-strong:text-[#1C1A17] prose-strong:font-semibold
             prose-a:text-[#3B6D11] prose-a:no-underline hover:prose-a:underline
             prose-hr:border-[rgba(28,26,23,0.10)] prose-hr:my-10
-            prose-blockquote:border-l-[#70798C] prose-blockquote:text-[#6B6460] prose-blockquote:not-italic
+            prose-blockquote:border-l-[#5A6275] prose-blockquote:text-[#6B6460] prose-blockquote:not-italic
           "
         >
           <ReactMarkdown remarkPlugins={[remarkGfm]}>

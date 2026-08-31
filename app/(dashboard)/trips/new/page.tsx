@@ -12,7 +12,7 @@ import { CoursePicker, type Course } from '@/components/golf/CoursePicker'
 import { fetchErrorMessage } from '@/lib/hooks/fetchError'
 
 const EXAMPLE_PROMPT =
-  '8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head.'
+  '8 players, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head.'
 
 // Reuses the exact chips from The Club's round modal, so a format means the same
 // thing whether it is set at trip creation or at the first tee.

@@ -31,7 +31,7 @@ export default function DemoTripPage() {
               <div
                 key={s.player}
                 className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/20 text-xs font-semibold text-white"
-                style={{ backgroundColor: ['#70798C','#3B6D11','#8B7355','#6B8E7B','#7C6B8E','#5A7A6B','#8B4444','#B8956A'][i % 8] }}
+                style={{ backgroundColor: ['#5A6275','#3B6D11','#8B7355','#6B8E7B','#7C6B8E','#5A7A6B','#8B4444','#B8956A'][i % 8] }}
                 title={s.player}
               >
                 {s.player[0]}

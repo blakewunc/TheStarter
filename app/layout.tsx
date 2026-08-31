@@ -98,13 +98,27 @@ export default async function RootLayout({
   const brand = getBrandFromHeader(brandId);
 
   return (
-    <html lang="en" data-brand={brand.id === "backNine" ? "backNine" : undefined}>
+    // The next/font variable classes belong on <html>, not <body>.
+    //
+    // globals.css declares `--serif: var(--font-playfair), …` on `:root`, which *is* the
+    // html element. With the variable classes on <body>, --font-playfair was defined one
+    // level too low: a custom property cannot read a value out of its own descendant, so
+    // the var() was invalid at computed-value time and --serif resolved to nothing at all.
+    // Anything using `font-family: var(--serif)` — every .page-title — inherited the sans
+    // stack instead, while looking perfectly correct in the source.
+    //
+    // The `font-serif` utility kept working throughout and hid this, because @theme inline
+    // inlines the value into the utility class, which lands on an element *below* body
+    // where --font-playfair is in scope. Same token, opposite outcome, purely by depth.
+    <html
+      lang="en"
+      data-brand={brand.id === "backNine" ? "backNine" : undefined}
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${dmSans.variable}`}
+    >
       <head>
         <meta name="google-adsense-account" content="ca-pub-1500136289047835" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${dmSans.variable} antialiased`}
-      >
+      <body className="antialiased">
         <BrandProvider brand={brand}>
           <Navbar />
           {children}

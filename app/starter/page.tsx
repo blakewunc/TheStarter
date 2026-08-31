@@ -104,16 +104,20 @@ export default function StarterLanding() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
-
+        /* Both faces already arrive through next/font in app/layout.tsx, which
+           self-hosts them and sets --font-playfair / --font-dm-sans on <body>. This page
+           used to @import the same two families from Google as well: a render-blocking
+           cross-origin request on the homepage, for fonts the browser already had.
+           Preferring the variables here drops that request and keeps the literal names as
+           the fallback, so nothing regresses if the variables ever go missing. */
         .sl-root {
           --cream: #F5F1ED;
           --ink: #1C1A17;
           --muted: #6B6460;
           --accent: #3B6D11;
           --border: rgba(28,26,23,0.12);
-          --serif: 'Playfair Display', Georgia, serif;
-          --sans: 'DM Sans', system-ui, sans-serif;
+          --serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+          --sans: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
           background: var(--cream);
           color: var(--ink);
           font-family: var(--sans);
@@ -549,7 +553,7 @@ export default function StarterLanding() {
         .sl-fp-bar {
           width: 2px;
           align-self: stretch;
-          background: #70798C;
+          background: #5A6275;
           flex-shrink: 0;
           transform: scaleY(0);
           transform-origin: top;
@@ -901,7 +905,7 @@ export default function StarterLanding() {
             </div>
             <div className="sl-reveal sl-reveal-d2" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
-                '"8 guys, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head."',
+                '"8 players, Pinehurst, 4 nights, 3 rounds, Nassau format, budget around $600/head."',
                 '"Scottsdale long weekend. TPC + one more course. Skins game, $20 per hole. Need lodging options near Old Town."',
               ].map((prompt) => (
                 <div key={prompt} style={{ background: 'var(--cream)', border: '0.5px solid rgba(28,26,23,0.12)', borderRadius: '6px', padding: '16px 20px' }}>
