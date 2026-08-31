@@ -40,7 +40,7 @@ export default function StarterLanding() {
           The Starter — Golf Trip Planner
         </p>
 
-        <h1 className="font-['Playfair_Display',Georgia,serif] mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-[#092D3D] sm:text-6xl lg:text-7xl">
+        <h1 className="font-serif mb-6 text-5xl font-bold leading-[1.1] tracking-tight text-[#092D3D] sm:text-6xl lg:text-7xl">
           The whole trip,{' '}
           <em className="italic text-[#3B6D11]">not just the round.</em>
         </h1>
@@ -122,7 +122,7 @@ export default function StarterLanding() {
                 <span className="text-xs font-semibold tracking-widest text-[#6B6460]">
                   {tile.num}
                 </span>
-                <h3 className="font-['Playfair_Display',Georgia,serif] text-lg font-bold leading-snug text-[#092D3D]">
+                <h3 className="font-serif text-lg font-bold leading-snug text-[#092D3D]">
                   {tile.title}
                 </h3>
                 <p className="flex-1 text-sm leading-relaxed text-[#5A7A6B]">
@@ -145,7 +145,7 @@ export default function StarterLanding() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#3B6D11]">
                 AI trip builder
               </p>
-              <h2 className="font-['Playfair_Display',Georgia,serif] mb-6 text-4xl font-bold leading-tight text-[#092D3D] sm:text-5xl">
+              <h2 className="font-serif mb-6 text-4xl font-bold leading-tight text-[#092D3D] sm:text-5xl">
                 Tell us where. We&apos;ll build the trip.
               </h2>
               <p className="text-base leading-relaxed text-[#5A7A6B]">
@@ -186,7 +186,7 @@ export default function StarterLanding() {
                   { stat: '4.8', label: 'App rating' },
                 ].map((item) => (
                   <div key={item.label} className="px-6 first:pl-0">
-                    <p className="font-['Playfair_Display',Georgia,serif] text-3xl font-bold text-[#092D3D]">
+                    <p className="font-serif text-3xl font-bold text-[#092D3D]">
                       {item.stat}
                     </p>
                     <p className="mt-1 text-xs text-[#6B6460]">{item.label}</p>
@@ -217,7 +217,7 @@ export default function StarterLanding() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#3B6D11]">
                 The viral entry point
               </p>
-              <h2 className="font-['Playfair_Display',Georgia,serif] mb-6 text-4xl font-bold leading-tight text-[#092D3D] sm:text-5xl">
+              <h2 className="font-serif mb-6 text-4xl font-bold leading-tight text-[#092D3D] sm:text-5xl">
                 One link sends the group.
               </h2>
               <p className="text-base leading-relaxed text-[#5A7A6B]">
@@ -232,7 +232,7 @@ export default function StarterLanding() {
               <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#3B6D11]">
                 You&apos;ve been sent off
               </p>
-              <h3 className="font-['Playfair_Display',Georgia,serif] mb-1 text-2xl font-bold text-[#092D3D]">
+              <h3 className="font-serif mb-1 text-2xl font-bold text-[#092D3D]">
                 Pebble Beach, May 2025
               </h3>
               <p className="mb-6 text-sm text-[#5A7A6B]">
@@ -269,7 +269,7 @@ export default function StarterLanding() {
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#5A7A6B]">
             On the course
           </p>
-          <h2 className="font-['Playfair_Display',Georgia,serif] mb-14 text-4xl font-bold leading-tight text-white sm:text-5xl">
+          <h2 className="font-serif mb-14 text-4xl font-bold leading-tight text-white sm:text-5xl">
             When the round starts, The Starter runs it.
           </h2>
           <div className="grid gap-6 sm:grid-cols-3">
@@ -304,7 +304,7 @@ export default function StarterLanding() {
       {/* ── Bottom CTA ────────────────────────────────────────────── */}
       <section className="border-t border-[#DAD2BC]">
         <div className="mx-auto max-w-3xl px-6 py-24 text-center">
-          <h2 className="font-['Playfair_Display',Georgia,serif] mb-4 text-4xl font-bold text-[#092D3D] sm:text-5xl">
+          <h2 className="font-serif mb-4 text-4xl font-bold text-[#092D3D] sm:text-5xl">
             Golf trips, handled.
           </h2>
           <p className="mb-10 text-base text-[#5A7A6B]">

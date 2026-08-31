@@ -104,16 +104,20 @@ export default function StarterLanding() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
-
+        /* Both faces already arrive through next/font in app/layout.tsx, which
+           self-hosts them and sets --font-playfair / --font-dm-sans on <body>. This page
+           used to @import the same two families from Google as well: a render-blocking
+           cross-origin request on the homepage, for fonts the browser already had.
+           Preferring the variables here drops that request and keeps the literal names as
+           the fallback, so nothing regresses if the variables ever go missing. */
         .sl-root {
           --cream: #F5F1ED;
           --ink: #1C1A17;
           --muted: #6B6460;
           --accent: #3B6D11;
           --border: rgba(28,26,23,0.12);
-          --serif: 'Playfair Display', Georgia, serif;
-          --sans: 'DM Sans', system-ui, sans-serif;
+          --serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+          --sans: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
           background: var(--cream);
           color: var(--ink);
           font-family: var(--sans);

@@ -18,7 +18,7 @@ export default async function WelcomePage() {
           The Starter
         </p>
 
-        <h1 className="mb-4 font-['Playfair_Display',serif] text-[48px] font-semibold leading-tight text-[#1a1a1a]">
+        <h1 className="mb-4 font-serif text-[48px] font-semibold leading-tight text-[#1a1a1a]">
           You&apos;re on the tee.
         </h1>
 
